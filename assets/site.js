@@ -274,13 +274,10 @@
         lanes.forEach(lane => {
             const p = lanePoint(lane, lane.link.len - 7);
             ctx.fillStyle = greenFor(lane.link, t) ? '#2aa58f' : '#e0584a';
-            ctx.shadowColor = ctx.fillStyle;
-            ctx.shadowBlur = 6;
             ctx.beginPath();
             ctx.arc(p.x, p.y, 1.9, 0, Math.PI * 2);
             ctx.fill();
         });
-        ctx.shadowBlur = 0;
 
         // 4) micro 차량: 달리는 차는 밝게, 멈춘 차는 흐리게, 버스는 보라
         let moving = 0, stopped = 0;
