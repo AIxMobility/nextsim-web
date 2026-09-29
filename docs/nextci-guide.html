@@ -1,0 +1,1106 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script>
+    /* 사이트 사본 전용 (build.sh 가 맨 앞에 붙인다): ?lang= 과 브라우저 언어를 따른다.
+       저장된 선택이 있으면 가이드 원래 스크립트가 그 값을 쓴다. */
+    (function () {
+        var fallback = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') {
+                lang = q;
+                window.localStorage.setItem('nextsim-doc-lang', q);
+            } else if (!window.localStorage.getItem('nextsim-doc-lang')) {
+                lang = fallback;
+            }
+        } catch (e) { lang = fallback; }
+        if (lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+        }
+    })();
+</script>
+<title>NextSIM NextCI Guide</title>
+<script>
+    /* 언어 선택을 body 파싱 전에 적용해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       가이드 3편이 같은 키를 공유하므로 문서 사이를 오가도 언어가 유지된다. */
+    (function () {
+        try {
+            var saved = window.localStorage.getItem('nextsim-doc-lang');
+            if (saved === 'en' || saved === 'ko') document.documentElement.setAttribute('data-lang', saved);
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+    })();
+</script>
+<style>
+    /* ---------- 토큰: 라이트(기본) ---------- */
+    :root {
+        --bg: #f5f7fb;
+        --surface: #ffffff;
+        --surface-2: #eef2f9;
+        --ink: #182338;
+        --muted: #5b6a83;
+        --hairline: rgba(24, 35, 56, .13);
+        --accent: #2456c4;
+        --accent-soft: rgba(36, 86, 196, .1);
+        --accent-strong: #1c3f96;
+        --kbd-bg: #eef2f9;
+        --kbd-ink: #33415c;
+        --code-bg: #edf1f8;
+        --tip-bg: rgba(21, 128, 61, .08);
+        --tip-edge: #15803d;
+        --warn-bg: rgba(180, 83, 9, .09);
+        --warn-edge: #b45309;
+        --ws-network: #1d4ed8;
+        --ws-od: #0369a1;
+        --ws-mode: #b45309;
+        --ws-scenario: #6d28d9;
+        --ws-signal: #b91c1c;
+        --ws-station: #15803d;
+        --ws-ptline: #a16207;
+        --ws-events: #be185d;
+        --ws-infra: #0f766e;
+        --shadow: 0 10px 30px rgba(24, 35, 56, .07);
+    }
+
+    /* ---------- 다크: 시스템 설정 (명시적 light 선택이 이김) ---------- */
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            --bg: #0d1424;
+            --surface: #141d31;
+            --surface-2: #1a2440;
+            --ink: #e7edf9;
+            --muted: #97a6c1;
+            --hairline: rgba(231, 237, 249, .14);
+            --accent: #7da4f7;
+            --accent-soft: rgba(125, 164, 247, .14);
+            --accent-strong: #a9c3fb;
+            --kbd-bg: #1e2946;
+            --kbd-ink: #c3cfe6;
+            --code-bg: #1a2440;
+            --tip-bg: rgba(74, 222, 128, .1);
+            --tip-edge: #4ade80;
+            --warn-bg: rgba(251, 191, 36, .11);
+            --warn-edge: #fbbf24;
+            --ws-network: #93b4fd;
+            --ws-od: #67c3f0;
+            --ws-mode: #f2b26b;
+            --ws-scenario: #c4a7f7;
+            --ws-signal: #f49a9a;
+            --ws-station: #7fd8a2;
+            --ws-ptline: #e3cc72;
+            --ws-events: #f195c0;
+            --ws-infra: #5eead4;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+        }
+    }
+
+    /* ---------- 다크: 명시적 토글 ---------- */
+    :root[data-theme="dark"] {
+        --bg: #0d1424;
+        --surface: #141d31;
+        --surface-2: #1a2440;
+        --ink: #e7edf9;
+        --muted: #97a6c1;
+        --hairline: rgba(231, 237, 249, .14);
+        --accent: #7da4f7;
+        --accent-soft: rgba(125, 164, 247, .14);
+        --accent-strong: #a9c3fb;
+        --kbd-bg: #1e2946;
+        --kbd-ink: #c3cfe6;
+        --code-bg: #1a2440;
+        --tip-bg: rgba(74, 222, 128, .1);
+        --tip-edge: #4ade80;
+        --warn-bg: rgba(251, 191, 36, .11);
+        --warn-edge: #fbbf24;
+        --ws-network: #93b4fd;
+        --ws-od: #67c3f0;
+        --ws-mode: #f2b26b;
+        --ws-scenario: #c4a7f7;
+        --ws-signal: #f49a9a;
+        --ws-station: #7fd8a2;
+        --ws-ptline: #e3cc72;
+        --ws-events: #f195c0;
+        --ws-infra: #5eead4;
+        --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+    }
+
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
+        font-size: 15px;
+        line-height: 1.72;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    code, kbd, .file-chip, .mono {
+        font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, "Nanum Gothic Coding", monospace;
+    }
+
+    .shell {
+        display: grid;
+        grid-template-columns: 252px minmax(0, 1fr);
+        max-width: 1120px;
+        margin: 0 auto;
+        gap: 0 48px;
+        padding: 0 28px;
+    }
+
+    /* ---------- 사이드바 ---------- */
+    .nav {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100dvh;
+        overflow-y: auto;
+        padding: 34px 0 40px;
+        scrollbar-width: thin;
+    }
+
+    .nav__brand {
+        font-weight: 800;
+        font-size: 17px;
+        letter-spacing: -.01em;
+        margin-bottom: 2px;
+    }
+
+    .nav__brand small {
+        display: block;
+        font-weight: 500;
+        font-size: 11.5px;
+        color: var(--muted);
+        letter-spacing: .02em;
+        margin-top: 3px;
+    }
+
+    .nav__group {
+        margin-top: 22px;
+    }
+
+    .nav__group-label {
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .09em;
+        color: var(--muted);
+        margin-bottom: 6px;
+    }
+
+    .nav a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 10px;
+        margin-left: -10px;
+        border-radius: 7px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+
+    .nav a:hover { color: var(--ink); background: var(--accent-soft); }
+
+    .nav a.is-active {
+        color: var(--accent-strong);
+        background: var(--accent-soft);
+        font-weight: 600;
+    }
+
+    .nav a:focus-visible, a:focus-visible, button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+
+    .ws-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: 0 0 auto;
+        background: var(--dot, var(--muted));
+    }
+
+    /* ---------- 본문 ---------- */
+    .content {
+        padding: 40px 0 90px;
+        min-width: 0;
+    }
+
+    .masthead {
+        border-bottom: 1px solid var(--hairline);
+        padding-bottom: 26px;
+        margin-bottom: 8px;
+    }
+
+    .masthead h1 {
+        font-size: 31px;
+        font-weight: 800;
+        letter-spacing: -.022em;
+        margin: 0 0 10px;
+        text-wrap: balance;
+    }
+
+    .masthead p {
+        max-width: 62ch;
+        margin: 0;
+        color: var(--muted);
+        font-size: 15.5px;
+    }
+
+    .masthead .meta {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+    }
+
+    .chip {
+        display: inline-block;
+        font-size: 11.5px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        color: var(--muted);
+        border: 1px solid var(--hairline);
+    }
+
+    a.chip { text-decoration: none; }
+    a.chip:hover { color: var(--accent-strong); border-color: var(--accent); }
+
+    section {
+        padding-top: 44px;
+    }
+
+    section > h2 {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -.015em;
+        margin: 0 0 4px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-wrap: balance;
+    }
+
+    h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 30px 0 8px;
+        letter-spacing: -.008em;
+    }
+
+    p, ul, ol { max-width: 72ch; }
+    p { margin: 10px 0; }
+    ul, ol { margin: 8px 0; padding-left: 22px; }
+    li { margin: 4px 0; }
+    li::marker { color: var(--muted); }
+
+    a { color: var(--accent-strong); }
+
+    .ws-badge {
+        display: inline-flex;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .04em;
+        padding: 3px 10px;
+        border-radius: 999px;
+        color: var(--ws, var(--accent-strong));
+        background: color-mix(in srgb, var(--ws, var(--accent)) 13%, transparent);
+    }
+
+    .file-chip {
+        display: inline-block;
+        font-size: 12px;
+        background: var(--code-bg);
+        border: 1px solid var(--hairline);
+        border-radius: 6px;
+        padding: 1.5px 8px;
+        white-space: nowrap;
+    }
+
+    .section-files {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 2px 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    kbd {
+        display: inline-block;
+        min-width: 20px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--kbd-ink);
+        background: var(--kbd-bg);
+        border: 1px solid var(--hairline);
+        border-bottom-width: 2px;
+        border-radius: 6px;
+        padding: 1px 7px;
+    }
+
+    code {
+        font-size: 13px;
+        background: var(--code-bg);
+        border-radius: 5px;
+        padding: 1.5px 6px;
+    }
+
+    /* 콜아웃 */
+    .tip, .warn {
+        max-width: 72ch;
+        border-left: 3px solid var(--tip-edge);
+        background: var(--tip-bg);
+        border-radius: 0 10px 10px 0;
+        padding: 11px 16px;
+        margin: 14px 0;
+        font-size: 14px;
+    }
+
+    .warn { border-left-color: var(--warn-edge); background: var(--warn-bg); }
+
+    .tip strong, .warn strong { font-weight: 700; }
+
+    /* 표 */
+    .tablewrap { overflow-x: auto; margin: 14px 0; }
+
+    table {
+        border-collapse: collapse;
+        font-size: 13.5px;
+        min-width: 520px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px 14px 8px 0;
+        border-bottom: 1px solid var(--hairline);
+        vertical-align: top;
+    }
+
+    th {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        color: var(--muted);
+        font-weight: 700;
+    }
+
+    td.center, th.center { text-align: center; padding-right: 10px; }
+    .yes { color: var(--tip-edge); font-weight: 700; }
+    .no { color: var(--muted); }
+
+    /* 단계 리스트 */
+    ol.steps {
+        list-style: none;
+        counter-reset: step;
+        padding-left: 0;
+        margin: 12px 0;
+    }
+
+    ol.steps > li {
+        counter-increment: step;
+        position: relative;
+        padding-left: 38px;
+        margin: 10px 0;
+    }
+
+    ol.steps > li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 12.5px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 카드형 그리드 (파일 요약) */
+    .filegrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 10px;
+        margin: 14px 0;
+    }
+
+    .filecard {
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+        border-radius: 10px;
+        padding: 12px 14px;
+        box-shadow: var(--shadow);
+    }
+
+    .filecard .ws-badge { margin-bottom: 7px; }
+    .filecard div.files { font-size: 12px; display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+    .filecard p { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+    .divider { border: 0; border-top: 1px solid var(--hairline); margin: 44px 0 0; }
+
+    footer {
+        margin-top: 60px;
+        padding-top: 18px;
+        border-top: 1px solid var(--hairline);
+        color: var(--muted);
+        font-size: 12.5px;
+    }
+
+    @media (max-width: 900px) {
+        .shell { grid-template-columns: 1fr; gap: 0; }
+        .nav {
+            position: static;
+            height: auto;
+            padding-bottom: 0;
+        }
+        .nav__links { display: flex; flex-wrap: wrap; gap: 2px 10px; }
+        .nav__group { margin-top: 12px; }
+    }
+
+    /* ---------- 한/영 전환 ---------- */
+    /* 기본(속성 없음)은 한국어. JS 없이도 한국어 문서로 읽힌다. */
+    :root:not([data-lang="en"]) .i18n-en { display: none !important; }
+    :root[data-lang="en"] .i18n-ko { display: none !important; }
+
+    .lang-switch {
+        display: inline-flex;
+        margin-top: 10px;
+        border: 1px solid var(--hairline);
+        border-radius: 999px;
+        background: var(--surface);
+        overflow: hidden;
+    }
+    .lang-switch button {
+        appearance: none;
+        border: 0;
+        padding: 4px 12px;
+        background: transparent;
+        color: var(--muted);
+        font: inherit;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .02em;
+        cursor: pointer;
+    }
+    .lang-switch button + button { border-left: 1px solid var(--hairline); }
+    .lang-switch button:hover { color: var(--ink); }
+    .lang-switch button[aria-pressed="true"] {
+        background: var(--accent);
+        color: #fff;
+    }
+
+    /* ---------- Home: 두 도구로 가는 큰 카드 ---------- */
+    .toolgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+        margin: 18px 0 6px;
+    }
+    .toolcard {
+        display: block;
+        padding: 16px 18px;
+        border: 1px solid var(--hairline);
+        border-left: 3px solid var(--tc, var(--accent));
+        border-radius: 12px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        color: inherit;
+        text-decoration: none;
+        transition: transform .12s ease, border-color .12s ease;
+    }
+    .toolcard:hover { transform: translateY(-2px); border-color: var(--tc, var(--accent)); }
+    .toolcard h3 { margin: 0 0 4px; font-size: 16px; color: var(--tc, var(--accent)); }
+    .toolcard code { font-size: 12px; }
+    .toolcard p { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .toolcard .go { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 700; color: var(--tc, var(--accent)); }
+
+    /* 파이프라인 단계 표시 */
+    .pipeline {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        margin: 12px 0;
+        padding: 12px 14px;
+        border: 1px solid var(--hairline);
+        border-radius: 10px;
+        background: var(--surface-2);
+        font-size: 12.5px;
+    }
+    .pipeline b {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+        font-weight: 600;
+    }
+    .pipeline i { color: var(--muted); font-style: normal; }
+
+    /* 요구사항 / 명령 블록 */
+    pre.cmd {
+        margin: 10px 0;
+        padding: 12px 14px;
+        border: 1px solid var(--hairline);
+        border-radius: 8px;
+        background: var(--code-bg);
+        overflow-x: auto;
+        font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, "Nanum Gothic Coding", monospace;
+        font-size: 12.5px;
+        line-height: 1.6;
+    }
+    pre.cmd .c { color: var(--muted); }
+
+    /* ---------- 설치 방법 카드 ---------- */
+    .methodgrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin: 16px 0 6px;
+    }
+    .methodcard {
+        display: flex;
+        flex-direction: column;
+        padding: 14px 16px;
+        border: 1px solid var(--hairline);
+        border-top: 3px solid var(--tc, var(--accent));
+        border-radius: 12px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        color: inherit;
+        text-decoration: none;
+        transition: transform .12s ease, border-color .12s ease;
+    }
+    .methodcard:hover { transform: translateY(-2px); border-color: var(--tc, var(--accent)); }
+    .methodcard h3 { margin: 4px 0 2px; font-size: 15.5px; color: var(--tc, var(--accent)); }
+    .methodcard p { margin: 4px 0 10px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .methodcard__tag { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    @media (max-width: 640px) { .methodgrid { grid-template-columns: 1fr; } }
+    /* 본문 속 긴 경로·명령은 좁은 화면에서 줄을 바꾼다 */
+    p .mono, li .mono, .tip .mono, .warn .mono { overflow-wrap: anywhere; }
+    .methodcard__need { margin-top: auto; font-size: 11.5px; font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace; color: var(--muted); }
+
+    /* ---------- 사용자 가이드 문서 묶음 (모든 가이드 공통) ---------- */
+    .nav a[aria-current="page"] {
+        color: var(--accent-strong);
+        background: var(--accent-soft);
+        font-weight: 700;
+    }
+    .site-home { display: inline-block; margin: 8px 0 2px; font-size: 12.5px; font-weight: 600; color: var(--muted); text-decoration: none; }
+    .site-home:hover { color: var(--accent-strong); }
+</style>
+<div class="shell">
+    <nav class="nav" id="docNav">
+        <div class="nav__brand">NextSIM NextCI<small><span class="i18n-ko">외부 제어 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">External control guide · KAIST AIxMobility Lab</span></small></div>
+        <a class="site-home" href="../index.html"><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></a>
+        <div class="lang-switch" role="group" aria-label="Language / 언어">
+            <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
+            <button type="button" data-lang="en" aria-pressed="false">English</button>
+        </div>
+        <div class="nav__links">
+            <div class="nav__group doc-set">
+                <div class="nav__group-label"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></div>
+                <a href="index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
+                <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
+                <a href="editor-guide.html" style="--dot: var(--ws-network)"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
+                <a href="visualizer-guide.html" style="--dot: var(--ws-signal)"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
+                <a href="nextci-guide.html" aria-current="page"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></div>
+                <a href="#overview"><span class="i18n-ko">NextCI 란</span><span class="i18n-en">What NextCI is</span></a>
+                <a href="#setup"><span class="i18n-ko">준비</span><span class="i18n-en">Setup</span></a>
+                <a href="#quickstart"><span class="i18n-ko">첫 연결</span><span class="i18n-en">First connection</span></a>
+                <a href="#server"><span class="i18n-ko">서버 실행 방식</span><span class="i18n-en">How the server runs</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">사용법</span><span class="i18n-en">Using it</span></div>
+                <a href="#stepping"><span class="i18n-ko">시간과 스텝</span><span class="i18n-en">Time and steps</span></a>
+                <a href="#queries"><span class="i18n-ko">상태 조회</span><span class="i18n-en">Querying state</span></a>
+                <a href="#meso"><span class="i18n-ko">Meso 조회와 모드 전환</span><span class="i18n-en">Meso queries and mode</span></a>
+                <a href="#detectors"><span class="i18n-ko">검지기</span><span class="i18n-en">Detectors</span></a>
+                <a href="#checkpoint"><span class="i18n-ko">체크포인트</span><span class="i18n-en">Checkpoints</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">참고</span><span class="i18n-en">Reference</span></div>
+                <a href="#protocol"><span class="i18n-ko">와이어 프로토콜</span><span class="i18n-en">Wire protocol</span></a>
+                <a href="#troubleshooting"><span class="i18n-ko">문제 해결</span><span class="i18n-en">Troubleshooting</span></a>
+                <a href="#limits"><span class="i18n-ko">아직 안 되는 것</span><span class="i18n-en">Not yet supported</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <div class="masthead">
+            <h1><span class="i18n-ko">NextCI 가이드</span><span class="i18n-en">NextCI guide</span></h1>
+            <p class="i18n-ko">NextCI 는 NextSIM 엔진을 TCP 로 바깥에서 제어하는 인터페이스입니다. Python 에서 시뮬레이션을
+                원하는 만큼 진행하고, 차량·링크·검지기 상태를 읽고, 같은 시점으로 되돌려 여러 시도를 비교할 수 있습니다.
+                강화학습, 공동 시뮬레이션, 제어 실험처럼 시뮬레이션을 프로그램 안에서 다뤄야 할 때 씁니다.</p>
+            <p class="i18n-en">NextCI is the interface for driving the NextSIM engine from outside over TCP. From Python you
+                advance the simulation as far as you want, read vehicle, link, and detector state, and rewind to the same
+                moment to compare attempts. Use it when a program has to hold the simulation: reinforcement learning,
+                co-simulation, control experiments.</p>
+            <div class="meta">
+                <span class="chip">nextci 0.1.0</span>
+                <span class="chip">Python 3.10+</span>
+                <span class="chip"><span class="i18n-ko">소스 빌드 필요</span><span class="i18n-en">Source build required</span></span>
+            </div>
+        </div>
+
+        <!-- ================================================== 개요 -->
+        <section id="overview">
+            <h2><span class="i18n-ko">NextCI 란</span><span class="i18n-en">What NextCI is</span></h2>
+            <p class="i18n-ko">엔진은 별도 프로세스(<span class="mono">UnitTestsAPI</span>)로 돌고, Python 패키지
+                <span class="mono">nextci</span> 가 TCP 로 명령을 보냅니다. Python 안에서 도는 시뮬레이터가 아니라
+                C++ 프로세스를 원격으로 조종하는 구조입니다.</p>
+            <p class="i18n-en">The engine runs as a separate process (<span class="mono">UnitTestsAPI</span>), and the Python
+                package <span class="mono">nextci</span> sends it commands over TCP. It is not a simulator running inside
+                Python; it remote-controls a C++ process.</p>
+            <div class="pipeline">
+                <b>Python · nextci</b><i>→ TCP :9999 →</i><b>UnitTestsAPI</b><i>→</i><b>SimulationInput / SimulationOutput</b>
+            </div>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>할 수 있는 것</th><th>메서드 예</th></tr>
+                <tr><td>시뮬레이션 진행 · 종료 · 결과 저장</td><td class="mono">sim_step, sim_stop, flush_recordings, save_results</td></tr>
+                <tr><td>상태 조회 — 시뮬레이션, 차량, 링크, 차로, Meso 셀, 검지기</td><td class="mono">get_vehicle_count, get_link_mean_speed_mps, get_meso_cell_density_veh_per_km …</td></tr>
+                <tr><td>검지기 추가 · 삭제 (E1 · E2 · E3)</td><td class="mono">add_detector_e1/e2/e3, remove_detector</td></tr>
+                <tr><td>링크 하나의 micro/meso 모드 전환</td><td class="mono">set_link_mode</td></tr>
+                <tr><td>메모리 체크포인트 저장 · 복원</td><td class="mono">save_checkpoint, restore_checkpoint</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>What you can do</th><th>Example methods</th></tr>
+                <tr><td>Advance, stop, and save a simulation</td><td class="mono">sim_step, sim_stop, flush_recordings, save_results</td></tr>
+                <tr><td>Query state: simulation, vehicles, links, lanes, meso cells, detectors</td><td class="mono">get_vehicle_count, get_link_mean_speed_mps, get_meso_cell_density_veh_per_km …</td></tr>
+                <tr><td>Add and remove detectors (E1 · E2 · E3)</td><td class="mono">add_detector_e1/e2/e3, remove_detector</td></tr>
+                <tr><td>Switch one link between micro and meso</td><td class="mono">set_link_mode</td></tr>
+                <tr><td>Save and restore in-memory checkpoints</td><td class="mono">save_checkpoint, restore_checkpoint</td></tr>
+            </table></div>
+            <div class="warn i18n-ko"><strong>아직 신호·차량·수요를 바꾸는 API 는 없습니다.</strong> 지금의 NextCI 는 조회와
+                시뮬레이션 제어가 중심이고, 바꿀 수 있는 것은 링크 모드와 검지기뿐입니다. 자세한 것은
+                <a href="#limits">아직 안 되는 것</a>을 보세요.</div>
+            <div class="warn i18n-en"><strong>There is no API yet for changing signals, vehicles, or demand.</strong> NextCI
+                today is mostly queries plus simulation control; what you can change is link mode and detectors. See
+                <a href="#limits">Not yet supported</a>.</div>
+        </section>
+
+        <!-- ================================================== 준비 -->
+        <section id="setup">
+            <h2><span class="i18n-ko">준비</span><span class="i18n-en">Setup</span></h2>
+            <p class="i18n-ko">NextCI 서버(<span class="mono">UnitTestsAPI</span>)는 Windows 설치 파일과 Linux · WSL 배포판에
+                들어 있지 않습니다. <a href="installation.html#source">소스에서 빌드</a>한 환경이 필요합니다.</p>
+            <p class="i18n-en">The NextCI server (<span class="mono">UnitTestsAPI</span>) is not in the Windows installer or the
+                Linux · WSL package. You need a <a href="installation.html#source">build from source</a>.</p>
+            <ol class="steps i18n-ko">
+                <li>서버를 빌드합니다. 결과는 <span class="mono">build/captain/release/bin/UnitTestsAPI</span> 입니다.</li>
+                <li>Python 패키지를 설치합니다. 외부 의존성은 없습니다.</li>
+                <li>Python 런처에 서버 위치를 알려 줍니다. 런처가 기본으로 찾는 곳(<span class="mono">Captain/build/bin</span> 등)에는
+                    프리셋 빌드 경로가 없으므로 <span class="mono">NEXTSIM_UNIT_TESTS_API</span> 로 지정합니다.</li>
+            </ol>
+            <ol class="steps i18n-en">
+                <li>Build the server. It lands in <span class="mono">build/captain/release/bin/UnitTestsAPI</span>.</li>
+                <li>Install the Python package. It has no external dependencies.</li>
+                <li>Tell the Python launcher where the server is. Its default search paths
+                    (<span class="mono">Captain/build/bin</span> and so on) do not include the preset build, so set
+                    <span class="mono">NEXTSIM_UNIT_TESTS_API</span>.</li>
+            </ol>
+<pre class="cmd"><span class="c"># 1</span>
+cmake --build --preset release --target UnitTestsAPI -j
+
+<span class="c"># 2</span>
+python3 -m pip install -e NextCI
+
+<span class="c"># 3</span>
+export NEXTSIM_UNIT_TESTS_API="$PWD/build/captain/release/bin/UnitTestsAPI"</pre>
+
+            <h3><span class="i18n-ko">어느 네트워크를 돌리나</span><span class="i18n-en">Which network runs</span></h3>
+            <p class="i18n-ko">서버는 작업 폴더에서 위로 올라가며 <span class="mono">SimulationInput/config.txt</span> 를 찾고,
+                거기 적힌 <span class="mono">network_name</span> · <span class="mono">branch</span> 를 돌립니다. 경로 파일
+                (<span class="mono">Route.json</span> 등)이 있어야 하므로, 처음 쓰는 네트워크는 Simulation 화면에서 한 번
+                실행하거나 RouteGenerator 를 먼저 돌려 두세요. 다른 데이터 폴더를 쓰려면 <span class="mono">NEXTSIM_SERVER_CWD</span>
+                에 그 폴더를 지정합니다.</p>
+            <p class="i18n-en">The server walks up from its working directory looking for
+                <span class="mono">SimulationInput/config.txt</span> and runs the <span class="mono">network_name</span> and
+                <span class="mono">branch</span> it names. Route files (<span class="mono">Route.json</span> and so on) must
+                exist, so for a new network run it once from the Simulation page or run RouteGenerator first. To use another
+                data folder, point <span class="mono">NEXTSIM_SERVER_CWD</span> at it.</p>
+            <div class="warn i18n-ko"><strong>서버도 결과 DB 를 새로 씁니다.</strong> <span class="mono">SimulationOutput/simulation_output.db</span>
+                가 NextCI 세션의 기록으로 바뀝니다. 보관할 결과는 먼저 옮겨 두거나, 별도 데이터 폴더(<span class="mono">NEXTSIM_SERVER_CWD</span>)를 쓰세요.</div>
+            <div class="warn i18n-en"><strong>The server rewrites the result database too.</strong>
+                <span class="mono">SimulationOutput/simulation_output.db</span> becomes the NextCI session's record. Move any result you
+                want to keep first, or use a separate data folder (<span class="mono">NEXTSIM_SERVER_CWD</span>).</div>
+        </section>
+
+        <!-- ================================================== 첫 연결 -->
+        <section id="quickstart">
+            <h2><span class="i18n-ko">첫 연결</span><span class="i18n-en">First connection</span></h2>
+            <p class="i18n-ko"><span class="mono">launch_and_connect()</span> 가 서버를 띄우고 준비될 때까지 기다린 뒤 연결합니다.
+                <span class="mono">with</span> 블록을 벗어나면 연결을 닫고 서버도 끕니다.</p>
+            <p class="i18n-en"><span class="mono">launch_and_connect()</span> starts the server, waits until it is ready, and
+                connects. Leaving the <span class="mono">with</span> block closes the connection and stops the server.</p>
+<pre class="cmd">from nextci import NextCIClient
+
+with NextCIClient(port=9999).launch_and_connect() as client:
+    print(client.get_version())                 <span class="c"># NextSim-NextCI/0.1</span>
+    print(client.get_total_cycle())             <span class="c"># 6000  (10 min scenario)</span>
+    print(client.sim_step(1000))                <span class="c"># cycle=1000;finished=0</span>
+    print(client.get_vehicle_count())           <span class="c"># 313</span>
+
+    client.save_checkpoint("t0")
+    client.sim_step(300)                        <span class="c"># 382 vehicles now</span>
+    print(client.restore_checkpoint("t0"))      <span class="c"># cycle=1000;finished=0</span>
+    print(client.get_vehicle_count())           <span class="c"># 313 again</span></pre>
+            <p class="i18n-ko">주석의 값은 예제 네트워크 <span class="mono">mesopt / bucheon</span> 의 시나리오 0 에서 나온 것입니다.
+                네트워크와 시나리오에 따라 다릅니다.</p>
+            <p class="i18n-en">The values in the comments come from scenario 0 of the example network
+                <span class="mono">mesopt / bucheon</span>; they depend on the network and scenario.</p>
+        </section>
+
+        <!-- ================================================== 서버 -->
+        <section id="server">
+            <h2><span class="i18n-ko">서버 실행 방식</span><span class="i18n-en">How the server runs</span></h2>
+            <p class="i18n-ko">기본은 <strong>ServeOnce</strong> 입니다. 클라이언트 하나가 연결했다가 끊으면 서버 프로세스도 끝납니다.
+                여러 번 연결하려면 서버를 직접 <span class="mono">--serve-loop</span> 로 띄우고 <span class="mono">connect()</span> 만 씁니다.</p>
+            <p class="i18n-en">The default is <strong>ServeOnce</strong>: when one client connects and disconnects, the server
+                process ends. To connect repeatedly, start the server yourself with <span class="mono">--serve-loop</span> and
+                only call <span class="mono">connect()</span>.</p>
+<pre class="cmd"><span class="c"># terminal 1</span>
+build/captain/release/bin/UnitTestsAPI --port 9999 --serve-loop
+
+<span class="c"># Python</span>
+client = NextCIClient(port=9999).connect()</pre>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>설정</th><th>기본값</th><th>의미</th></tr>
+                <tr><td class="mono">NextCIClient(host, port, timeout)</td><td class="mono">127.0.0.1, 9999, 5.0</td><td>접속 주소 · 포트 · 연결 제한 시간(초)</td></tr>
+                <tr><td class="mono">launch_server(ready_timeout_sec=)</td><td class="mono">120.0</td><td>서버가 포트를 열 때까지 기다리는 최대 시간(초)</td></tr>
+                <tr><td class="mono">NEXTSIM_UNIT_TESTS_API</td><td>—</td><td>서버 실행 파일 경로 (인자 <span class="mono">binary_path</span> 가 우선)</td></tr>
+                <tr><td class="mono">NEXTSIM_SERVER_CWD</td><td class="mono">Captain/build <span class="i18n-ko">또는</span> Captain</td><td>서버 작업 폴더. 여기서 위로 <span class="mono">SimulationInput</span> 을 찾습니다.</td></tr>
+                <tr><td class="mono">NEXTCI_SERVE_LOOP</td><td class="mono">0</td><td><span class="mono">1</span> 이면 <span class="mono">--serve-loop</span> 와 같습니다.</td></tr>
+                <tr><td class="mono">NEXTCI_SERVER_LOG_MODE</td><td class="mono">inherit</td><td>서버 로그: <span class="mono">inherit</span> · <span class="mono">devnull</span> · <span class="mono">file</span> · <span class="mono">pipe</span></td></tr>
+                <tr><td class="mono">NEXTCI_SERVER_LOG_FILE</td><td class="mono">Captain/build/nextci-server.log</td><td><span class="mono">file</span> 모드의 로그 파일</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Setting</th><th>Default</th><th>Meaning</th></tr>
+                <tr><td class="mono">NextCIClient(host, port, timeout)</td><td class="mono">127.0.0.1, 9999, 5.0</td><td>Host, port, and connect timeout (s)</td></tr>
+                <tr><td class="mono">launch_server(ready_timeout_sec=)</td><td class="mono">120.0</td><td>Longest wait for the server to open its port (s)</td></tr>
+                <tr><td class="mono">NEXTSIM_UNIT_TESTS_API</td><td>—</td><td>Server binary path (the <span class="mono">binary_path</span> argument wins)</td></tr>
+                <tr><td class="mono">NEXTSIM_SERVER_CWD</td><td class="mono">Captain/build or Captain</td><td>Server working directory; <span class="mono">SimulationInput</span> is searched upward from here</td></tr>
+                <tr><td class="mono">NEXTCI_SERVE_LOOP</td><td class="mono">0</td><td><span class="mono">1</span> is the same as <span class="mono">--serve-loop</span></td></tr>
+                <tr><td class="mono">NEXTCI_SERVER_LOG_MODE</td><td class="mono">inherit</td><td>Server logs: <span class="mono">inherit</span> · <span class="mono">devnull</span> · <span class="mono">file</span> · <span class="mono">pipe</span></td></tr>
+                <tr><td class="mono">NEXTCI_SERVER_LOG_FILE</td><td class="mono">Captain/build/nextci-server.log</td><td>Log file for <span class="mono">file</span> mode</td></tr>
+            </table></div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- ================================================== 스텝 -->
+        <section id="stepping">
+            <h2><span class="i18n-ko">시간과 스텝</span><span class="i18n-en">Time and steps</span></h2>
+            <p class="i18n-ko">시간 단위는 <strong>사이클</strong>이고, 1 사이클은 0.1 초입니다. <span class="mono">sim_step(n)</span> 은
+                n 사이클을 진행하고 <span class="mono">cycle=…;finished=…</span> 형식의 문자열을 돌려줍니다. 시나리오 끝은
+                <span class="mono">get_total_cycle()</span> 과 <span class="mono">is_finished()</span> 로 알 수 있습니다.</p>
+            <p class="i18n-en">Time is counted in <strong>cycles</strong>; one cycle is 0.1 s. <span class="mono">sim_step(n)</span>
+                advances n cycles and returns a string of the form <span class="mono">cycle=…;finished=…</span>. The end of the
+                scenario is given by <span class="mono">get_total_cycle()</span> and <span class="mono">is_finished()</span>.</p>
+<pre class="cmd">with NextCIClient().launch_and_connect() as client:
+    while not client.is_finished():
+        client.sim_step(50)                      <span class="c"># 5 s</span>
+        speed = client.get_link_mean_speed_mps(20000402)
+        ...</pre>
+            <div class="tip i18n-ko"><strong>검지기 구간 값은 flush 뒤에.</strong> 검지기의 구간 집계(교통량, 점유율 등)는
+                <span class="mono">sim_step()</span> 다음 <span class="mono">flush_recordings()</span> 를 불러야 갱신됩니다.</div>
+            <div class="tip i18n-en"><strong>Flush before reading detector intervals.</strong> Interval aggregates (flow,
+                occupancy, and so on) update after <span class="mono">sim_step()</span> followed by
+                <span class="mono">flush_recordings()</span>.</div>
+        </section>
+
+        <!-- ================================================== 조회 -->
+        <section id="queries">
+            <h2><span class="i18n-ko">상태 조회</span><span class="i18n-en">Querying state</span></h2>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>대상</th><th>메서드</th><th>메모</th></tr>
+                <tr><td>시뮬레이션</td><td class="mono">get_current_cycle, get_total_cycle, is_finished, get_sim_time_millis, get_scenario_id, get_output_paths</td><td></td></tr>
+                <tr><td>차량</td><td class="mono">get_vehicle_count, get_vehicle_id_list</td><td></td></tr>
+                <tr><td>링크</td><td class="mono">get_link_count, get_link_id_list, get_link_lane_count, get_link_length, get_link_width, get_link_vehicle_count, get_link_mean_speed_mps, get_link_dynamic_summary</td><td>micro 기준. meso 링크에서는 비어 있을 수 있습니다.</td></tr>
+                <tr><td>차로</td><td class="mono">get_lane_length, get_lane_vehicle_count, get_lane_vehicle_id_list, get_lane_mean_speed_mps</td><td>인자 <span class="mono">(link_id, lane_index)</span></td></tr>
+                <tr><td>Meso 셀</td><td class="mono">get_meso_cell_vehicle_count, get_meso_cell_mean_speed_mps, get_meso_cell_density_veh_per_km, get_meso_cell_fd_speed_kph …</td><td>인자 <span class="mono">(link_id, lane_index, cell_index)</span> — <a href="#meso">Meso 조회</a></td></tr>
+                <tr><td>검지기</td><td class="mono">get_detector_id_list, get_detector_flow, get_detector_occupancy, get_detector_mean_speed, get_detector_mean_travel_time …</td><td>인자 <span class="mono">detector_id</span></td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Target</th><th>Methods</th><th>Notes</th></tr>
+                <tr><td>Simulation</td><td class="mono">get_current_cycle, get_total_cycle, is_finished, get_sim_time_millis, get_scenario_id, get_output_paths</td><td></td></tr>
+                <tr><td>Vehicles</td><td class="mono">get_vehicle_count, get_vehicle_id_list</td><td></td></tr>
+                <tr><td>Links</td><td class="mono">get_link_count, get_link_id_list, get_link_lane_count, get_link_length, get_link_width, get_link_vehicle_count, get_link_mean_speed_mps, get_link_dynamic_summary</td><td>Micro-oriented; may be empty on meso links.</td></tr>
+                <tr><td>Lanes</td><td class="mono">get_lane_length, get_lane_vehicle_count, get_lane_vehicle_id_list, get_lane_mean_speed_mps</td><td>Arguments <span class="mono">(link_id, lane_index)</span></td></tr>
+                <tr><td>Meso cells</td><td class="mono">get_meso_cell_vehicle_count, get_meso_cell_mean_speed_mps, get_meso_cell_density_veh_per_km, get_meso_cell_fd_speed_kph …</td><td>Arguments <span class="mono">(link_id, lane_index, cell_index)</span>; see <a href="#meso">Meso queries</a></td></tr>
+                <tr><td>Detectors</td><td class="mono">get_detector_id_list, get_detector_flow, get_detector_occupancy, get_detector_mean_speed, get_detector_mean_travel_time …</td><td>Argument <span class="mono">detector_id</span></td></tr>
+            </table></div>
+            <p class="i18n-ko">메서드 전체 목록과 변수 ID 는 저장소의 <span class="mono">NextCI/docs/</span> 에 있습니다.</p>
+            <p class="i18n-en">The full method list and variable IDs are in <span class="mono">NextCI/docs/</span> in the repository.</p>
+        </section>
+
+        <!-- ================================================== Meso -->
+        <section id="meso">
+            <h2><span class="i18n-ko">Meso 조회와 모드 전환</span><span class="i18n-en">Meso queries and mode switching</span></h2>
+            <p class="i18n-ko">Meso 셀 값은 <strong>그 링크가 지금 meso 모드일 때만</strong> 읽을 수 있습니다. micro 로 도는 링크의 셀을
+                물으면 <span class="mono">Meso cell not found or currently in micro mode</span> 오류가 납니다. 필요하면
+                <span class="mono">set_link_mode()</span> 로 링크 하나를 meso 로 바꾼 뒤 조금 진행하고 읽습니다.</p>
+            <p class="i18n-en">Meso cell values can be read <strong>only while that link is in meso mode</strong>. Asking for a
+                cell of a link running micro fails with <span class="mono">Meso cell not found or currently in micro mode</span>.
+                If needed, switch the link with <span class="mono">set_link_mode()</span>, advance a little, then read.</p>
+<pre class="cmd">links = client.get_meso_link_id_list()          <span class="c"># links that have meso topology</span>
+link = links[0]
+client.set_link_mode(link, "meso")
+client.sim_step(50)                              <span class="c"># meso updates every 5 s</span>
+print(client.get_meso_section_count(link))
+print(client.get_meso_cell_density_veh_per_km(link, 0, 0))</pre>
+            <div class="tip i18n-ko"><strong>조회 비용.</strong> 대수 · 속도 · 밀도는 사이클마다 캐시되어 가볍지만,
+                <span class="mono">get_meso_cell_vehicle_id_list()</span> 는 대기열을 훑어 목록을 복사하므로 필요할 때만 쓰세요.</div>
+            <div class="tip i18n-en"><strong>Query cost.</strong> Count, speed, and density are cached per cycle and cheap;
+                <span class="mono">get_meso_cell_vehicle_id_list()</span> walks the queue and copies a list, so use it only
+                when you need it.</div>
+        </section>
+
+        <!-- ================================================== 검지기 -->
+        <section id="detectors">
+            <h2><span class="i18n-ko">검지기</span><span class="i18n-en">Detectors</span></h2>
+            <p class="i18n-ko">입력 파일의 검지기 말고도 세션 중에 검지기를 더 붙일 수 있습니다. E1 은 한 지점,
+                E2 는 차로 위 한 구간, E3 는 진입 · 진출 지점으로 둘러싼 영역입니다.</p>
+            <p class="i18n-en">Besides the detectors in the input files, you can attach more during a session. E1 is a point,
+                E2 a stretch of one lane, E3 an area bounded by entry and exit points.</p>
+<pre class="cmd">link = 20001453                                  <span class="c"># 3 lanes, 243.9 m</span>
+client.add_detector_e1(detector_id="e1_a", link_id=link, lane_index=0, pos=120.0, freq=60.0)
+client.add_detector_e3(
+    detector_id="e3_a",
+    entries=f"{link}:0:5.0,{link}:1:5.0,{link}:2:5.0",        <span class="c"># link:lane:pos, …</span>
+    exits=f"{link}:0:238.0,{link}:1:238.0,{link}:2:238.0",
+)
+client.sim_step(600)                             <span class="c"># 60 s</span>
+client.flush_recordings()
+print(client.get_detector_flow("e1_a"))          <span class="c"># 120.0 veh/h</span>
+print(client.get_detector_mean_travel_time("e3_a"))
+client.remove_detector("e3_a")</pre>
+            <p class="i18n-ko">링크 <span class="mono">20001453</span> 과 교통량 값은 예제 네트워크 <span class="mono">mesopt / bucheon</span>
+                기준입니다. 쓰는 네트워크의 ID 로 바꾸세요(<span class="mono">get_link_id_list()</span>, Editor 의 Network 워크스페이스).
+                없는 링크를 적으면 추가는 되지만 <span class="mono">enabled=0</span> 으로 붙어 값이 쌓이지 않습니다. 돌려받은
+                <span class="mono">payload</span> 로 확인하세요.</p>
+            <p class="i18n-en">Link <span class="mono">20001453</span> and the flow value are from the example network
+                <span class="mono">mesopt / bucheon</span>; use IDs from your own network (<span class="mono">get_link_id_list()</span>,
+                or the Editor's Network workspace). A detector on a link that does not exist is still added, but with
+                <span class="mono">enabled=0</span>, so it never records; check the returned <span class="mono">payload</span>.</p>
+        </section>
+
+        <!-- ================================================== 체크포인트 -->
+        <section id="checkpoint">
+            <h2><span class="i18n-ko">체크포인트</span><span class="i18n-en">Checkpoints</span></h2>
+            <p class="i18n-ko">체크포인트는 서버 메모리에 시뮬레이션 상태를 저장합니다. 복원해도 엔진을 다시 띄우지 않고
+                저장한 사이클로 그 자리에서 돌아가므로, 같은 시점에서 여러 정책을 시험하는 데 씁니다. ID 를 달리하면 여러 개를
+                함께 둘 수 있습니다.</p>
+            <p class="i18n-en">A checkpoint stores the simulation state in the server's memory. Restoring does not restart the
+                engine; it returns to the saved cycle in place, so you can try several policies from the same moment.
+                Different IDs coexist.</p>
+<pre class="cmd">client.sim_step(1000)
+client.save_checkpoint("episode_start")
+
+client.sim_step(200)                    <span class="c"># try policy A</span>
+a = client.get_vehicle_count()
+client.restore_checkpoint("episode_start")
+
+client.sim_step(200)                    <span class="c"># try policy B from the same state</span>
+b = client.get_vehicle_count()</pre>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>저장되는 것</th><th>내용</th></tr>
+                <tr><td>P0</td><td>사이클, 차량 ID 카운터, 링크의 차량(micro 차로 + 모든 meso 차로·셀 대기열), 차로·셀별 신호 상태, 모드 시퀀스</td></tr>
+                <tr><td>P1</td><td>검지기 집계 상태</td></tr>
+                <tr><td>P2</td><td>출발지 · 차고지 예약과 대기열, 도착지 대기열</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Captured</th><th>Contents</th></tr>
+                <tr><td>P0</td><td>Cycle, vehicle ID counter, vehicles on links (micro lanes + every meso lane and cell queue), per-lane and per-cell signal state, mode sequence</td></tr>
+                <tr><td>P1</td><td>Detector accumulators</td></tr>
+                <tr><td>P2</td><td>Source and garage reservations and queues, sink queues</td></tr>
+            </table></div>
+            <div class="warn i18n-ko"><strong>난수 상태는 저장되지 않습니다.</strong> 복원한 순간의 사이클 · 차량 수 · 차량 ID 는 저장
+                시점과 같지만, 그 뒤로 더 진행하면 쉬지 않고 돌린 경우와 결과가 달라질 수 있습니다. 같은 상태에서 새 행동을
+                시험하는 용도에는 충분하고, 궤적을 비트 단위로 재현하는 용도에는 맞지 않습니다. 체크포인트는 세션이 끝날 때까지
+                메모리에 남으며 개수 제한이 없습니다.</div>
+            <div class="warn i18n-en"><strong>Random-number state is not saved.</strong> At the moment of restore the cycle,
+                vehicle count, and vehicle IDs match the save, but stepping further can diverge from an uninterrupted run.
+                That is enough for trying new actions from the same state, not for bit-identical trajectory replay.
+                Checkpoints stay in memory until the session ends, with no count limit.</div>
+            <p class="i18n-ko">예전의 <span class="mono">save_state()</span> / <span class="mono">load_state()</span> 는 디스크의
+                <span class="mono">Vehicle.json</span> 을 쓰고, 불러오면 엔진을 다시 띄워 사이클이 0 이 됩니다. 제어 루프에는 체크포인트를 쓰세요.</p>
+            <p class="i18n-en">The older <span class="mono">save_state()</span> / <span class="mono">load_state()</span> use
+                <span class="mono">Vehicle.json</span> on disk, and loading restarts the engine with the cycle back at 0. Use
+                checkpoints in control loops.</p>
+        </section>
+
+        <hr class="divider">
+
+        <!-- ================================================== 프로토콜 -->
+        <section id="protocol">
+            <h2><span class="i18n-ko">와이어 프로토콜</span><span class="i18n-en">Wire protocol</span></h2>
+            <p class="i18n-ko">Python 이 아닌 언어에서 붙으려면 이 형식으로 직접 보내면 됩니다. 정의는
+                <span class="mono">Captain/Includes/captain/NextCI/NextCIProtocol.hpp</span> 에 있습니다.</p>
+            <p class="i18n-en">To connect from a language other than Python, send this format directly. It is defined in
+                <span class="mono">Captain/Includes/captain/NextCI/NextCIProtocol.hpp</span>.</p>
+<pre class="cmd">[Length 4][Command ID 1][Variable ID 1][Object ID Length 2][Object ID][Value Type 1][Value Length 4][Value]</pre>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>값 타입</th><th>ID</th><th>의미</th></tr>
+                <tr><td class="mono">NONE</td><td class="mono">0x00</td><td>값 없음</td></tr>
+                <tr><td class="mono">INTEGER</td><td class="mono">0x01</td><td>4 바이트 빅엔디언 부호 없는 정수</td></tr>
+                <tr><td class="mono">DOUBLE</td><td class="mono">0x02</td><td>8 바이트 빅엔디언 IEEE-754</td></tr>
+                <tr><td class="mono">STRING</td><td class="mono">0x03</td><td>UTF-8 문자열</td></tr>
+                <tr><td class="mono">RAW_BYTES</td><td class="mono">0x04</td><td>바이트열</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Value type</th><th>ID</th><th>Meaning</th></tr>
+                <tr><td class="mono">NONE</td><td class="mono">0x00</td><td>No payload</td></tr>
+                <tr><td class="mono">INTEGER</td><td class="mono">0x01</td><td>4-byte big-endian unsigned integer</td></tr>
+                <tr><td class="mono">DOUBLE</td><td class="mono">0x02</td><td>8-byte big-endian IEEE-754</td></tr>
+                <tr><td class="mono">STRING</td><td class="mono">0x03</td><td>UTF-8 string</td></tr>
+                <tr><td class="mono">RAW_BYTES</td><td class="mono">0x04</td><td>Raw bytes</td></tr>
+            </table></div>
+            <div class="tablewrap"><table>
+                <tr><th>Command</th><th>ID</th><th>Command</th><th>ID</th></tr>
+                <tr><td class="mono">GET_VERSION</td><td class="mono">0x00</td><td class="mono">GET_VEHICLE_VARIABLE</td><td class="mono">0x10</td></tr>
+                <tr><td class="mono">CLOSE</td><td class="mono">0x01</td><td class="mono">GET_SIM_VARIABLE</td><td class="mono">0x20</td></tr>
+                <tr><td class="mono">SIM_STEP</td><td class="mono">0x02</td><td class="mono">GET_LINK_VARIABLE</td><td class="mono">0x21</td></tr>
+                <tr><td class="mono">SIM_STOP</td><td class="mono">0x05</td><td class="mono">GET_LANE_VARIABLE</td><td class="mono">0x22</td></tr>
+                <tr><td class="mono">SIM_RESET</td><td class="mono">0x06</td><td class="mono">GET_DETECTOR_VARIABLE</td><td class="mono">0x23</td></tr>
+                <tr><td class="mono">FLUSH_RECORDINGS</td><td class="mono">0x07</td><td class="mono">ADD_DETECTOR</td><td class="mono">0x24</td></tr>
+                <tr><td class="mono">SAVE_RESULTS</td><td class="mono">0x08</td><td class="mono">REMOVE_DETECTOR</td><td class="mono">0x25</td></tr>
+                <tr><td class="mono">SAVE_STATE</td><td class="mono">0x09</td><td class="mono">SAVE_CHECKPOINT</td><td class="mono">0x26</td></tr>
+                <tr><td class="mono">LOAD_STATE</td><td class="mono">0x0A</td><td class="mono">RESTORE_CHECKPOINT</td><td class="mono">0x27</td></tr>
+                <tr><td></td><td></td><td class="mono">GET_MESO_VARIABLE</td><td class="mono">0x28</td></tr>
+                <tr><td></td><td></td><td class="mono">SET_LINK_MODE</td><td class="mono">0x29</td></tr>
+            </table></div>
+            <p class="i18n-ko">객체 ID 는 링크가 <span class="mono">linkId</span>, 차로가 <span class="mono">linkId:laneIndex</span>,
+                Meso 셀이 <span class="mono">linkId:laneIndex:cellIndex</span> 입니다. <span class="mono">SUBSCRIBE</span>
+                (0x03) · <span class="mono">UNSUBSCRIBE</span> (0x04) 는 예약만 되어 있습니다.</p>
+            <p class="i18n-en">Object IDs are <span class="mono">linkId</span> for links, <span class="mono">linkId:laneIndex</span>
+                for lanes, and <span class="mono">linkId:laneIndex:cellIndex</span> for meso cells.
+                <span class="mono">SUBSCRIBE</span> (0x03) and <span class="mono">UNSUBSCRIBE</span> (0x04) are reserved only.</p>
+        </section>
+
+        <!-- ================================================== 문제 해결 -->
+        <section id="troubleshooting">
+            <h2><span class="i18n-ko">문제 해결</span><span class="i18n-en">Troubleshooting</span></h2>
+
+            <h3><span class="i18n-ko"><span class="mono">UnitTestsAPI binary not found</span></span><span class="i18n-en"><span class="mono">UnitTestsAPI binary not found</span></span></h3>
+            <p class="i18n-ko">서버를 빌드했는지, 그리고 <span class="mono">NEXTSIM_UNIT_TESTS_API</span> 가 그 파일을 가리키는지
+                확인하세요(<a href="#setup">준비</a> 3단계). <span class="mono">launch_and_connect(binary_path=…)</span> 로 직접 줄 수도 있습니다.</p>
+            <p class="i18n-en">Check that the server is built and that <span class="mono">NEXTSIM_UNIT_TESTS_API</span> points at
+                it (<a href="#setup">Setup</a>, step 3). You can also pass <span class="mono">launch_and_connect(binary_path=…)</span>.</p>
+
+            <h3><span class="i18n-ko"><span class="mono">Port 9999 is already in use</span></span><span class="i18n-en"><span class="mono">Port 9999 is already in use</span></span></h3>
+            <p class="i18n-ko">이전 서버가 남아 있습니다. 그 서버를 끄거나(<span class="mono">pkill -f "UnitTestsAPI --port 9999"</span>)
+                다른 포트를 쓰세요(<span class="mono">NextCIClient(port=10000)</span>).</p>
+            <p class="i18n-en">An earlier server is still running. Stop it (<span class="mono">pkill -f "UnitTestsAPI --port 9999"</span>)
+                or use another port (<span class="mono">NextCIClient(port=10000)</span>).</p>
+
+            <h3><span class="i18n-ko">링크 목록의 ID 인데 <span class="mono">Link not found</span> 가 납니다</span><span class="i18n-en">An ID from the link list gives <span class="mono">Link not found</span></span></h3>
+            <p class="i18n-ko"><span class="mono">get_link_id_list()</span> 에는 교차로 내부 링크(예제 네트워크에서는 <span class="mono">100004210</span>
+                같은 9 자리 ID)도 들어 있는데, 이들은 <span class="mono">get_link_*</span> 개별 조회를 지원하지 않습니다.
+                <span class="mono">NextCIStatusError</span> 를 잡고 건너뛰세요.</p>
+            <p class="i18n-en"><span class="mono">get_link_id_list()</span> also lists intersection-internal links (nine-digit IDs such as
+                <span class="mono">100004210</span> in the example network), and these do not support per-link
+                <span class="mono">get_link_*</span> queries. Catch <span class="mono">NextCIStatusError</span> and skip them.</p>
+
+            <h3><span class="i18n-ko">두 번째 연결이 안 됩니다</span><span class="i18n-en">A second connection fails</span></h3>
+            <p class="i18n-ko">기본 ServeOnce 서버는 첫 클라이언트가 끊으면 끝납니다. 여러 번 붙으려면
+                <a href="#server"><span class="mono">--serve-loop</span></a> 로 띄우세요.</p>
+            <p class="i18n-en">The default ServeOnce server ends when the first client disconnects. To connect again and again,
+                start it with <a href="#server"><span class="mono">--serve-loop</span></a>.</p>
+
+            <h3><span class="i18n-ko"><span class="mono">Meso cell not found or currently in micro mode</span></span><span class="i18n-en"><span class="mono">Meso cell not found or currently in micro mode</span></span></h3>
+            <p class="i18n-ko">그 링크가 지금 micro 로 돌고 있습니다. <a href="#meso">Meso 조회와 모드 전환</a>을 보세요.</p>
+            <p class="i18n-en">That link is currently running micro. See <a href="#meso">Meso queries and mode switching</a>.</p>
+
+            <h3><span class="i18n-ko">검지기 값을 읽으면 오류가 납니다</span><span class="i18n-en">Reading a detector value fails</span></h3>
+            <p class="i18n-ko">아직 구간 기록이 없을 때입니다. <span class="mono">sim_step()</span> 으로 집계 주기(<span class="mono">freq</span>)
+                이상 진행하고 <span class="mono">flush_recordings()</span> 를 부른 뒤 읽으세요.</p>
+            <p class="i18n-en">No interval has been recorded yet. Step past the aggregation interval (<span class="mono">freq</span>),
+                call <span class="mono">flush_recordings()</span>, then read.</p>
+        </section>
+
+        <!-- ================================================== 한계 -->
+        <section id="limits">
+            <h2><span class="i18n-ko">아직 안 되는 것</span><span class="i18n-en">Not yet supported</span></h2>
+            <ul class="i18n-ko">
+                <li><strong>제어 API</strong> — 신호 현시, 차량 생성 · 삭제 · 속도, 경로, 수요를 바꾸는 명령은 아직 없습니다.</li>
+                <li><strong>난수 상태 체크포인트</strong> — 복원 뒤 궤적을 그대로 재현하려면 필요하며, 계획만 되어 있습니다.</li>
+                <li><strong>체크포인트 개수 제한</strong> — 세션이 끝날 때까지 모두 메모리에 남습니다.</li>
+                <li><strong>구독(SUBSCRIBE)</strong> — 명령 ID 만 예약되어 있습니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li><strong>Control APIs</strong> — there are no commands yet for signal phases, spawning or removing vehicles, speeds, routes, or demand.</li>
+                <li><strong>RNG in checkpoints</strong> — needed for exact replay after restore; planned only.</li>
+                <li><strong>Checkpoint limits</strong> — every checkpoint stays in memory until the session ends.</li>
+                <li><strong>Subscriptions</strong> — the command IDs are reserved only.</li>
+            </ul>
+        </section>
+
+        <footer>
+            NextSIM · KAIST AIxMobility Lab —
+            <a href="index.html"><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></a> ·
+            <a href="installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a>
+        </footer>
+    </main>
+</div>
+
+<script>
+    // 스크롤 위치에 따라 좌측 목차 활성 표시
+    (function () {
+        const links = Array.from(document.querySelectorAll('#docNav a[href^="#"]'));
+        const byId = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+        const sections = Array.from(document.querySelectorAll('main section[id]'));
+        if (!('IntersectionObserver' in window) || !sections.length) return;
+        let activeId = null;
+        const setActive = (id) => {
+            if (id === activeId) return;
+            activeId = id;
+            links.forEach(a => a.classList.toggle('is-active', a === byId.get(id)));
+        };
+        const observer = new IntersectionObserver((entries) => {
+            const visible = entries.filter(e => e.isIntersecting)
+                .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+            if (visible.length) setActive(visible[0].target.id);
+        }, { rootMargin: '-10% 0px -70% 0px' });
+        sections.forEach(section => observer.observe(section));
+    })();
+
+    // 한/영 전환: 선택을 localStorage 에 남겨 세 문서가 같은 언어로 열린다.
+    (function () {
+        const root = document.documentElement;
+        const buttons = Array.from(document.querySelectorAll('.lang-switch button[data-lang]'));
+        if (!buttons.length) return;
+        const apply = (lang) => {
+            root.setAttribute('data-lang', lang);
+            root.setAttribute('lang', lang);
+            buttons.forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'));
+            try { window.localStorage.setItem('nextsim-doc-lang', lang); } catch (e) { /* 무시 */ }
+        };
+        apply(root.getAttribute('data-lang') === 'en' ? 'en' : 'ko');
+        buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
+    })();
+</script>
+
