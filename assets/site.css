@@ -746,8 +746,17 @@ p { margin: 0; }
 .about__license { padding-left: 48px; box-shadow: inset 1px 0 0 var(--edge); }
 .about__license p:not(.eyebrow) { margin-bottom: 14px; }
 .about .copyright { font-size: 13px; }
+.about__h { font-family: var(--font-display); font-weight: 500; font-size: 18px; color: var(--white); margin-bottom: 12px; }
+.about__cite { min-width: 0; grid-column: 1 / -1; padding-top: 32px; box-shadow: inset 0 1px 0 var(--edge); }
+.about__cite p:not(.eyebrow) { max-width: 80ch; margin-bottom: 12px; }
+.about__ref { overflow-wrap: anywhere; color: var(--mist); font-size: 15px; line-height: 1.6; }
+.about__ref em { font-style: italic; color: var(--frost); }
+.about__bib summary { cursor: pointer; width: fit-content; color: var(--frost); font: 500 13px var(--font-mono); padding: 6px 12px; border-radius: 999px; background: var(--glass-2); box-shadow: inset 0 0 0 1px var(--edge); }
+.about__bib summary:hover { background: var(--glass-3); }
+.about__bib pre { margin: 12px 0 0; padding: 16px 18px; overflow-x: auto; border-radius: 12px; background: rgba(5, 6, 15, .6); box-shadow: inset 0 0 0 1px var(--edge); }
+.about__bib code { background: none; padding: 0; font-size: 12.5px; line-height: 1.6; color: var(--mist); white-space: pre; }
 @media (max-width: 860px) {
-    .about { grid-template-columns: 1fr; padding: 32px 24px; gap: 28px; }
+    .about { grid-template-columns: minmax(0, 1fr); padding: 32px 24px; gap: 28px; }
     .about__license { padding: 28px 0 0; box-shadow: inset 0 1px 0 var(--edge); }
 }
 

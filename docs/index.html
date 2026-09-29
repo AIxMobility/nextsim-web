@@ -593,7 +593,7 @@
                 <a href="index.html" aria-current="page"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
                 <a href="editor-guide.html"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
-                <a href="visualizer-guide.html"><span class="i18n-ko">4. Visualizer 가이드</span><span class="i18n-en">4. Visualizer guide</span></a>
+                <a href="visualizer-guide.html"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">소개</span><span class="i18n-en">Introduction</span></div>
@@ -610,7 +610,7 @@
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">참고</span><span class="i18n-en">Reference</span></div>
                 <a href="#troubleshooting"><span class="i18n-ko">문제 해결</span><span class="i18n-en">Troubleshooting</span></a>
-                <a href="#license"><span class="i18n-ko">라이선스</span><span class="i18n-en">License</span></a>
+                <a href="#license"><span class="i18n-ko">라이선스 · 인용</span><span class="i18n-en">License · citation</span></a>
             </div>
         </div>
     </nav>
@@ -652,11 +652,11 @@
                 <span class="go"><span class="i18n-ko">Editor 가이드 →</span><span class="i18n-en">Editor guide →</span></span>
             </a>
             <a class="toolcard" href="visualizer-guide.html" style="--tc: var(--ws-signal)">
-                <h3>🎬 Visualizer</h3>
-                <code>/visualizer</code>
+                <h3>🎬 Simulation</h3>
+                <code>/simulation</code>
                 <p class="i18n-ko">시뮬레이션을 실행하고 <strong>결과</strong>를 시간축을 따라 재생·분석합니다.</p>
                 <p class="i18n-en">Run a simulation and replay and analyse the <strong>result</strong> along the time axis.</p>
-                <span class="go"><span class="i18n-ko">Visualizer 가이드 →</span><span class="i18n-en">Visualizer guide →</span></span>
+                <span class="go"><span class="i18n-ko">Simulation 가이드 →</span><span class="i18n-en">Simulation guide →</span></span>
             </a>
         </div>
 
@@ -741,7 +741,7 @@
                 <tr><td class="mono">UnitTestsAPI</td><td>실행 파일</td>
                     <td>NextCI TCP 제어 서버. Python <span class="mono">nextci</span> 클라이언트가 이 바이너리에 붙습니다.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>Flask 서버</td>
-                    <td>Editor·Visualizer 웹 UI를 서빙하고, 입력 파일 편집 API와 시뮬레이션 실행을 중계합니다.</td></tr>
+                    <td>Editor·Simulation 웹 UI를 서빙하고, 입력 파일 편집 API와 시뮬레이션 실행을 중계합니다.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Component</th><th>What it is</th><th>Role</th></tr>
@@ -759,7 +759,7 @@
                 <tr><td class="mono">UnitTestsAPI</td><td>executable</td>
                     <td>The NextCI TCP control server; the Python <span class="mono">nextci</span> client attaches to it.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>Flask server</td>
-                    <td>Serves the Editor and Visualizer, exposes the input-editing API, and drives simulation runs.</td></tr>
+                    <td>Serves the Editor and Simulation, exposes the input-editing API, and drives simulation runs.</td></tr>
             </table></div>
             <div class="tip i18n-ko"><strong>배포판에 든 것.</strong> Windows 설치 파일과 Linux · WSL ZIP 에는 앞의 세 실행 파일만
                 들어 있습니다. ZIP 에서는 이름이 <span class="mono">nextsim</span>, <span class="mono">route-generator</span>,
@@ -840,12 +840,12 @@ SimulationInput/datasets/&lt;branch&gt;/parameter_xml/                <span clas
                 (<span class="mono">mesopt</span>, <span class="mono">publictransit</span>,
                 <span class="mono">TRT</span>, <span class="mono">V2X</span>, <span class="mono">curve</span>).
                 한 브랜치는 <span class="mono">parameter_xml/</span> 하나를 공유하고 그 아래 네트워크 폴더를 여럿 둡니다.
-                Visualizer·Editor 에서 폴더를 고르면 이 파일이 자동으로 갱신되므로 직접 편집할 일은 거의 없습니다.</p>
+                Simulation·Editor 에서 폴더를 고르면 이 파일이 자동으로 갱신되므로 직접 편집할 일은 거의 없습니다.</p>
             <p class="i18n-en">A <strong>branch</strong> here is not a git branch — it is a folder grouping a family
                 of experiments (<span class="mono">mesopt</span>, <span class="mono">publictransit</span>,
                 <span class="mono">TRT</span>, <span class="mono">V2X</span>, <span class="mono">curve</span>). One
                 branch shares a single <span class="mono">parameter_xml/</span> across the network folders under it.
-                Choosing a folder in the Editor or Visualizer rewrites this file for you, so you rarely touch it.</p>
+                Choosing a folder in the Editor or Simulation rewrites this file for you, so you rarely touch it.</p>
             <div class="warn i18n-ko"><strong>config.txt 는 시작할 때 한 번만 읽힙니다.</strong> 실행 중에 바꿔도
                 그 실행에는 반영되지 않습니다.</div>
             <div class="warn i18n-en"><strong>config.txt is read once at startup.</strong> Changing it mid-run has no
@@ -992,14 +992,28 @@ SimulationInput/datasets/&lt;branch&gt;/parameter_xml/                <span clas
             <p class="i18n-en">NextSIM is developed by the AIxMobility Lab at KAIST.
                 <strong>Commercial use is not permitted.</strong> For enquiries, please contact the lab —
                 <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">aimobility.kaist.ac.kr</a>.</p>
-            <p class="i18n-ko">Copyright © 2019 Hwasoo Yeo, Yeeun Kim, Sujae Jeon, Seongjin Choi, Justin Kim, Jae Hwan Jeong.</p>
-            <p class="i18n-en">Copyright © 2019 Hwasoo Yeo, Yeeun Kim, Sujae Jeon, Seongjin Choi, Justin Kim, Jae Hwan Jeong.</p>
+            <p>Copyright © 2026 KAIST AIxMobility Lab</p>
+
+            <h3 id="cite"><span class="i18n-ko">연구에 사용할 때</span><span class="i18n-en">Using NextSIM in research</span></h3>
+            <p class="i18n-ko">NextSIM 을 연구에 사용하셨다면 아래 논문을 인용해 주세요.</p>
+            <p class="i18n-en">If you use NextSIM in your research, please cite the following paper.</p>
+            <p>Y. Kim, S. Choi, S. Jeon, and H. Yeo, “NextSim: Multi-Level Traffic Simulation for Urban Networks Using Dynamic Level Assignment,” <em>IEEE Transactions on Intelligent Transportation Systems</em>, vol. 27, no. 7, pp. 8564–8578, 2026, doi: <a href="https://doi.org/10.1109/TITS.2026.3671220" target="_blank" rel="noopener">10.1109/TITS.2026.3671220</a>.</p>
+<pre class="cmd">@article{kim2026nextsim,
+  author  = {Kim, Yeeun and Choi, Seongjin and Jeon, Sujae and Yeo, Hwasoo},
+  title   = {NextSim: Multi-Level Traffic Simulation for Urban Networks Using Dynamic Level Assignment},
+  journal = {IEEE Transactions on Intelligent Transportation Systems},
+  volume  = {27},
+  number  = {7},
+  pages   = {8564--8578},
+  year    = {2026},
+  doi     = {10.1109/TITS.2026.3671220}
+}</pre>
         </section>
 
         <footer>
             NextSIM Documentation · KAIST AIxMobility Lab —
             <a href="installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a> ·
-            <a href="editor-guide.html">Editor</a> · <a href="visualizer-guide.html">Visualizer</a>
+            <a href="editor-guide.html">Editor</a> · <a href="visualizer-guide.html">Simulation</a>
         </footer>
     </main>
 </div>

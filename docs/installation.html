@@ -622,7 +622,7 @@
                 <a href="index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
                 <a href="installation.html" aria-current="page"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
                 <a href="editor-guide.html" style="--dot: var(--ws-network)"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
-                <a href="visualizer-guide.html" style="--dot: var(--ws-signal)"><span class="i18n-ko">4. Visualizer 가이드</span><span class="i18n-en">4. Visualizer guide</span></a>
+                <a href="visualizer-guide.html" style="--dot: var(--ws-signal)"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">설치 방법</span><span class="i18n-en">Install methods</span></div>
@@ -644,11 +644,11 @@
     <main class="content">
         <div class="masthead">
             <h1><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></h1>
-            <p class="i18n-ko">NextSIM 은 시뮬레이션 엔진과 브라우저 도구(Editor · Visualizer)를 한 번에 설치합니다.
+            <p class="i18n-ko">NextSIM 은 시뮬레이션 엔진과 브라우저 도구(Editor · Simulation)를 한 번에 설치합니다.
                 설치 방법은 네 가지이고, 어느 방법이든 끝나면 브라우저에서 같은 화면이 열립니다.
                 사용 환경에 맞는 방법 <strong>하나</strong>만 고르면 됩니다.</p>
             <p class="i18n-en">Installing NextSIM gives you the simulation engine and the browser tools (Editor and
-                Visualizer) together. There are four ways to install; every one of them ends with the same screen in
+                Simulation) together. There are four ways to install; every one of them ends with the same screen in
                 your browser, so pick <strong>one</strong> that fits your machine.</p>
             <div class="meta">
                 <span class="chip">v1.1</span>
@@ -924,10 +924,10 @@ cmake --preset release --fresh -S Captain
 cmake --build --preset release -j</pre>
             <p class="i18n-ko">결과 바이너리는 <span class="mono">build/captain/release/bin/</span> 에 생깁니다.
                 <strong>웹 서버가 기본으로 찾는 위치가 바로 여기</strong>이므로, 이 경로로 빌드하면 별도 설정 없이
-                Visualizer 의 실행 버튼이 동작합니다.</p>
+                Simulation 의 실행 버튼이 동작합니다.</p>
             <p class="i18n-en">The binaries land in <span class="mono">build/captain/release/bin/</span>.
                 <strong>That is exactly where the web server looks by default</strong>, so building this way makes
-                the Visualizer's run button work with no further configuration.</p>
+                the Simulation's run button work with no further configuration.</p>
             <p class="i18n-ko">프리셋은 <span class="mono">debug</span>, <span class="mono">release</span>,
                 <span class="mono">relwithdebinfo</span> 세 가지입니다. 특정 바이너리만 필요하면 타깃을 지정하세요:</p>
             <p class="i18n-en">Three presets exist: <span class="mono">debug</span>,
@@ -959,10 +959,10 @@ cmake --build --preset release -j</pre>
                 직접 실행하려면 <span class="mono">python3 web_server.py</span> 도 됩니다.</p>
             <p class="i18n-en">The script installs Flask if it is missing and, if the port is busy, scans upward for a
                 free one. You can also run <span class="mono">python3 web_server.py</span> directly.</p>
-            <div class="warn i18n-ko"><strong>웹 UI 는 엔진을 빌드하지 않습니다.</strong> Visualizer 의 실행 버튼은
+            <div class="warn i18n-ko"><strong>웹 UI 는 엔진을 빌드하지 않습니다.</strong> Simulation 의 실행 버튼은
                 이미 빌드된 바이너리를 쓸 뿐이며, 없으면 그 사실을 알리고 멈춥니다. 소스를 고쳤다면 직접 다시
                 빌드하세요 — 또는 <span class="mono">NEXTSIM_WEB_BUILD=1</span> 로 자동 빌드를 켜면 됩니다.</div>
-            <div class="warn i18n-en"><strong>The web UI does not build the engine.</strong> The Visualizer's run
+            <div class="warn i18n-en"><strong>The web UI does not build the engine.</strong> The Simulation's run
                 button uses the binaries that are already there and stops with a message if one is missing. Rebuild
                 yourself after changing the source — or set <span class="mono">NEXTSIM_WEB_BUILD=1</span> to have it
                 build first.</div>
@@ -978,19 +978,19 @@ cmake --build --preset release -j</pre>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>주소</th><th>내용</th></tr>
                 <tr><td class="mono">http://localhost:8000/editor</td><td>Editor — 입력 편집</td></tr>
-                <tr><td class="mono">http://localhost:8000/visualizer</td><td>Visualizer — 실행·결과 재생</td></tr>
+                <tr><td class="mono">http://localhost:8000/visualizer</td><td>Simulation — 실행·결과 재생</td></tr>
                 <tr><td class="mono">http://localhost:8000/docs/</td><td>이 사용자 가이드 (오프라인)</td></tr>
                 <tr><td class="mono">http://localhost:8000/health</td><td>서버 상태 JSON</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>URL</th><th>What it serves</th></tr>
                 <tr><td class="mono">http://localhost:8000/editor</td><td>Editor — authoring inputs</td></tr>
-                <tr><td class="mono">http://localhost:8000/visualizer</td><td>Visualizer — running and replaying</td></tr>
+                <tr><td class="mono">http://localhost:8000/visualizer</td><td>Simulation — running and replaying</td></tr>
                 <tr><td class="mono">http://localhost:8000/docs/</td><td>This user guide, offline</td></tr>
                 <tr><td class="mono">http://localhost:8000/health</td><td>Server status as JSON</td></tr>
             </table></div>
             <ol class="steps i18n-ko">
-                <li>Visualizer 에서 <strong>Inputs</strong> 를 열고 예제 네트워크 <span class="mono">mesopt / test</span> 를 고릅니다.
+                <li>Simulation 에서 <strong>Inputs</strong> 를 열고 예제 네트워크 <span class="mono">mesopt / test</span> 를 고릅니다.
                     지도에 도로망이 그려집니다.</li>
                 <li><strong>Run</strong> 패널에서 <strong>Target scenario</strong> 를 고르고
                     <strong>Run Selected Network</strong> 를 누릅니다. 경로 생성부터 결과 적재까지 자동으로 진행되고,
@@ -1000,7 +1000,7 @@ cmake --build --preset release -j</pre>
                     — 시나리오에 따라 수 분에서 수십 분 걸립니다.</li>
             </ol>
             <ol class="steps i18n-en">
-                <li>In the Visualizer, open <strong>Inputs</strong> and pick the example network
+                <li>In the Simulation, open <strong>Inputs</strong> and pick the example network
                     <span class="mono">mesopt / test</span>. The road network appears on the map.</li>
                 <li>In the <strong>Run</strong> panel choose a <strong>Target scenario</strong> and press
                     <strong>Run Selected Network</strong>. Route generation through result loading runs on its own;
@@ -1024,10 +1024,10 @@ cmake --build --preset release -j</pre>
                     <span class="go">Editor →</span>
                 </a>
                 <a class="toolcard" href="visualizer-guide.html" style="--tc: var(--ws-signal)">
-                    <h3><span class="i18n-ko">다음: Visualizer 가이드</span><span class="i18n-en">Next: the Visualizer guide</span></h3>
+                    <h3><span class="i18n-ko">다음: Simulation 가이드</span><span class="i18n-en">Next: the Simulation guide</span></h3>
                     <p class="i18n-ko">재생 컨트롤, 혼잡 표시, BIMS, 객체 조회 등 결과를 읽는 방법.</p>
                     <p class="i18n-en">Playback, congestion display, BIMS, and inspecting what happened.</p>
-                    <span class="go">Visualizer →</span>
+                    <span class="go">Simulation →</span>
                 </a>
             </div>
         </section>
@@ -1150,7 +1150,7 @@ cmake --build --preset release -j</pre>
         <footer>
             NextSIM · KAIST AIxMobility Lab —
             <a href="index.html"><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></a> ·
-            <a href="editor-guide.html">Editor</a> · <a href="visualizer-guide.html">Visualizer</a>
+            <a href="editor-guide.html">Editor</a> · <a href="visualizer-guide.html">Simulation</a>
         </footer>
     </main>
 </div>

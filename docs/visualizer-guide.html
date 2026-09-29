@@ -22,7 +22,7 @@
         }
     })();
 </script>
-<title>NextSIM Visualizer Guide</title>
+<title>NextSIM Simulation Guide</title>
 <script>
     /* 언어 선택을 body 파싱 전에 적용해 잘못된 언어가 잠깐 보이는 것을 막는다.
        기본값은 ko 이며, CSS 가 :root:not([data-lang="en"]) 로 한국어를 기본 표시하므로
@@ -483,7 +483,7 @@
 
 <div class="shell">
     <nav class="nav" id="docNav">
-        <div class="nav__brand">NextSIM Visualizer<small><span class="i18n-ko">사용자 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">User Guide · KAIST AIxMobility Lab</span></small></div>
+        <div class="nav__brand">NextSIM Simulation<small><span class="i18n-ko">사용자 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">User Guide · KAIST AIxMobility Lab</span></small></div>
         <a class="site-home" href="../index.html"><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></a>
         <div class="lang-switch" role="group" aria-label="Language / 언어">
             <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
@@ -495,11 +495,11 @@
                 <a href="index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
                 <a href="editor-guide.html"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
-                <a href="visualizer-guide.html" aria-current="page"><span class="i18n-ko">4. Visualizer 가이드</span><span class="i18n-en">4. Visualizer guide</span></a>
+                <a href="visualizer-guide.html" aria-current="page"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></div>
-                <a href="#overview"><span class="i18n-ko">Visualizer 소개</span><span class="i18n-en">What it is</span></a>
+                <a href="#overview"><span class="i18n-ko">Simulation 소개</span><span class="i18n-en">What it is</span></a>
                 <a href="#getting-started" style="--dot: var(--hue-run)"><span class="ws-dot"></span><span class="i18n-ko">실행과 결과 로드</span><span class="i18n-en">Run &amp; load results</span></a>
             </div>
             <div class="nav__group">
@@ -528,7 +528,7 @@
 
     <main class="content">
         <div class="masthead">
-            <h1><span class="i18n-ko">NextSIM Visualizer 사용자 가이드</span><span class="i18n-en">NextSIM Visualizer User Guide</span></h1>
+            <h1><span class="i18n-ko">NextSIM Simulation 사용자 가이드</span><span class="i18n-en">NextSIM Simulation User Guide</span></h1>
             <p class="i18n-ko">NextSIM 시뮬레이션을 실행하고, 결과를 지도 위에서 재생·분석하는 도구입니다.
                 차량 하나하나의 움직임부터 링크 단위 혼잡도, 신호 현시, 대중교통 운행, 이벤트
                 영향까지 시간을 되감아 가며 확인할 수 있습니다.</p>
@@ -546,18 +546,18 @@
 
         <!-- ================================================== 개요 -->
         <section id="overview">
-            <h2><span class="i18n-ko">Visualizer 소개</span><span class="i18n-en">What the Visualizer is</span></h2>
+            <h2><span class="i18n-ko">Simulation 소개</span><span class="i18n-en">What the Simulation is</span></h2>
             <p class="i18n-ko">NextSIM 웹 도구는 두 부분으로 나뉩니다. <strong>Editor</strong>(<code>/editor</code>)는
-                네트워크·수요·신호 같은 <em>입력</em>을 만들고, <strong>Visualizer</strong>(<code>/visualizer</code>)는
-                시뮬레이션을 돌려 나온 <em>결과 DB</em>를 재생합니다. 이 문서는 Visualizer를 다룹니다 —
+                네트워크·수요·신호 같은 <em>입력</em>을 만들고, <strong>Simulation</strong>(<code>/simulation</code>)는
+                시뮬레이션을 돌려 나온 <em>결과 DB</em>를 재생합니다. 이 문서는 Simulation를 다룹니다 —
                 입력 편집 방법은 <a class="doc-cross" href="editor-guide.html"
                 data-local="editor-guide.html"
                >Editor
                 가이드</a>를 보세요.</p>
             <p class="i18n-en">The NextSIM web tooling comes in two halves. The <strong>Editor</strong>
                 (<code>/editor</code>) authors the <em>inputs</em> — network, demand, signals — and the
-                <strong>Visualizer</strong> (<code>/visualizer</code>) replays the <em>result database</em>
-                a simulation produced. This document covers the Visualizer; for authoring inputs see the
+                <strong>Simulation</strong> (<code>/simulation</code>) replays the <em>result database</em>
+                a simulation produced. This document covers the Simulation; for authoring inputs see the
                 <a class="doc-cross" href="editor-guide.html"
                 data-local="editor-guide.html"
                >Editor
@@ -581,7 +581,7 @@
             <h2><span class="ws-badge" style="--ws: var(--hue-run)">Setup</span> <span class="i18n-ko">실행과 결과 로드</span><span class="i18n-en">Running and loading results</span></h2>
             <ol class="steps i18n-ko">
                 <li>NextSIM 을 설치해 서버를 띄운 뒤(<a href="installation.html">설치 가이드</a>)
-                    <code>http://localhost:8000/visualizer</code> 를 엽니다 (<code>/</code> 기본 경로도 Visualizer).</li>
+                    <code>http://localhost:8000/simulation</code> 를 엽니다 (<code>/</code> 기본 경로도 Simulation).</li>
                 <li>상단바 <strong>Inputs</strong>를 눌러 <strong>Folder</strong>에서 네트워크 폴더를
                     선택합니다 — 지도에 네트워크가 그려집니다.</li>
                 <li>상단바 <strong>Run</strong> 패널을 열고 <strong>Target scenario</strong>에서 재생할
@@ -590,7 +590,7 @@
             </ol>
             <ol class="steps i18n-en">
                 <li>Install NextSIM and start its server (<a href="installation.html">installation guide</a>), then open
-                    <code>http://localhost:8000/visualizer</code> (the bare <code>/</code> path also serves the Visualizer).</li>
+                    <code>http://localhost:8000/simulation</code> (the bare <code>/</code> path also serves the Simulation).</li>
                 <li>Click <strong>Inputs</strong> in the top bar and pick a network folder under
                     <strong>Folder</strong> — the network is drawn on the map.</li>
                 <li>Open the <strong>Run</strong> panel in the top bar and pick the scenario to replay under
@@ -901,7 +901,7 @@
                 위치를 알 수 없습니다. 에디터가 <span class="mono">basemap.json</span> →
                 <span class="mono">osm_import.json</span> → 노드의 <span class="mono">osm_lat/osm_lon</span> →
                 <span class="mono">nodelink_import.json</span> 순으로 정합을 자동 탐색하며, 결과는 패널 아래
-                상태줄에 표시됩니다. 정합이 없는 네트워크는 에디터에서 한 번 맞춰 저장하면 Visualizer에서도
+                상태줄에 표시됩니다. 정합이 없는 네트워크는 에디터에서 한 번 맞춰 저장하면 Simulation에서도
                 그대로 복원됩니다.</p>
             <p class="i18n-en">Network coordinates are <em>local metric</em> with the origin at the bounding
                 box's south-west corner, so they carry no earth position on their own. The tooling looks for a
@@ -909,7 +909,7 @@
                 <span class="mono">osm_import.json</span>, <span class="mono">osm_lat/osm_lon</span> tags on
                 nodes, then <span class="mono">nodelink_import.json</span> — and reports what it found in the
                 status line under the panel. For a network with none of those, align it once in the Editor and
-                save; the Visualizer restores the same alignment.</p>
+                save; the Simulation restores the same alignment.</p>
         </section>
 
         <!-- ================================================== 지도/검색 -->
@@ -1138,13 +1138,13 @@
                 minimap also moves the view.</p>
 
             <h3><span class="i18n-ko">네트워크·수요를 고치고 다시 돌리고 싶어요</span><span class="i18n-en">I want to change the network or demand and re-run</span></h3>
-            <p class="i18n-ko"><code>/editor</code>에서 입력을 수정·저장한 뒤 Visualizer로 돌아와
+            <p class="i18n-ko"><code>/editor</code>에서 입력을 수정·저장한 뒤 Simulation로 돌아와
                 <strong>Run Selected Network</strong>를 다시 실행하면 됩니다. 자세한 편집
                 방법은 <a class="doc-cross" href="editor-guide.html"
                 data-local="editor-guide.html"
                >Editor
                 가이드</a> 참고.</p>
-            <p class="i18n-en">Edit and save the inputs in <code>/editor</code>, come back to the Visualizer,
+            <p class="i18n-en">Edit and save the inputs in <code>/editor</code>, come back to the Simulation,
                 and run <strong>Run Selected Network</strong> again. See the
                 <a class="doc-cross" href="editor-guide.html"
                 data-local="editor-guide.html"
@@ -1153,7 +1153,7 @@
         </section>
 
         <footer>
-            NextSIM Visualizer Guide · KAIST AIxMobility Lab —
+            NextSIM Simulation Guide · KAIST AIxMobility Lab —
             <span class="i18n-ko">입력 편집은 <a class="doc-cross" href="editor-guide.html"
                 data-local="editor-guide.html"
                >Editor 가이드</a>를 보세요.</span>

@@ -535,7 +535,7 @@
                 <a href="index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
                 <a href="editor-guide.html" aria-current="page"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
-                <a href="visualizer-guide.html"><span class="i18n-ko">4. Visualizer 가이드</span><span class="i18n-en">4. Visualizer guide</span></a>
+                <a href="visualizer-guide.html"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></div>
@@ -567,7 +567,7 @@
                 <a href="#faq"><span class="i18n-ko">FAQ · 문제 해결</span><span class="i18n-en">FAQ &amp; troubleshooting</span></a>
                 <a class="doc-cross" href="visualizer-guide.html"
                    data-local="visualizer-guide.html"
-                  >↗ <span class="i18n-ko">Visualizer 가이드</span><span class="i18n-en">Visualizer guide</span></a>
+                  >↗ <span class="i18n-ko">Simulation 가이드</span><span class="i18n-en">Simulation guide</span></a>
             </div>
         </div>
     </nav>
@@ -587,7 +587,7 @@
                 <span class="chip"><span class="i18n-ko">파일 형식: XML · JSON</span><span class="i18n-en">Formats: XML · JSON</span></span>
                 <a class="chip doc-cross" href="visualizer-guide.html"
                    data-local="visualizer-guide.html"
-                  >🎬 <span class="i18n-ko">결과 재생은 Visualizer 가이드 →</span><span class="i18n-en">Replaying results? See the Visualizer guide →</span></a>
+                  >🎬 <span class="i18n-ko">결과 재생은 Simulation 가이드 →</span><span class="i18n-en">Replaying results? See the Simulation guide →</span></a>
             </div>
         </div>
 
@@ -707,7 +707,7 @@
                 <li>NextSIM 을 설치하고 서버를 띄웁니다 — 방법은 <a href="installation.html">설치 가이드</a>를 보세요
                     (소스 저장소라면 루트에서 <code>./start_visualizer.sh</code>).</li>
                 <li>브라우저에서 <code>http://localhost:8000/editor</code> 를 엽니다.
-                    시뮬레이션 결과 재생용 Visualizer는 <code>/visualizer</code> 입니다.</li>
+                    시뮬레이션 결과 재생용 Simulation는 <code>/simulation</code> 입니다.</li>
                 <li>상단바의 <strong>Inputs</strong> 버튼을 눌러 <strong>Folder</strong> 목록에서 네트워크
                     폴더를 선택합니다. <code>SimulationInput/datasets/</code> 아래의
                     <code>network_xml_*</code> 폴더들이 자동으로 나열됩니다.</li>
@@ -716,8 +716,8 @@
             <ol class="steps i18n-en">
                 <li>Install NextSIM and start its server — see the <a href="installation.html">installation guide</a>
                     (from a source checkout, run <code>./start_visualizer.sh</code> at the root).</li>
-                <li>Open <code>http://localhost:8000/editor</code>. The Visualizer, for replaying results, is at
-                    <code>/visualizer</code>.</li>
+                <li>Open <code>http://localhost:8000/editor</code>. The Simulation, for replaying results, is at
+                    <code>/simulation</code>.</li>
                 <li>Click <strong>Inputs</strong> in the top bar and choose a network folder under
                     <strong>Folder</strong> — every <code>network_xml_*</code> folder under
                     <code>SimulationInput/datasets/</code> is listed automatically.</li>
@@ -1630,12 +1630,12 @@
             </ol>
             <p class="i18n-ko">지도에는 E1이 <strong>하늘색</strong> 단면, E2가 <strong>보라색</strong> 구간, E3의
                 진입점이 <strong>초록</strong>, 진출점이 <strong>빨강</strong>으로 표시됩니다. 표에서 행을
-                클릭하면 해당 검지기로 카메라가 이동합니다. 시뮬레이션 후에는 Visualizer에서 검지기 표시를
+                클릭하면 해당 검지기로 카메라가 이동합니다. 시뮬레이션 후에는 Simulation에서 검지기 표시를
                 클릭해 수집된 값을 그래프·표로 볼 수 있습니다.</p>
             <p class="i18n-en">On the map, E1 appears as a <strong>light blue</strong> cross-section, E2 as a
                 <strong>purple</strong> section, and E3's entry points in <strong>green</strong> with exits in
                 <strong>red</strong>. Clicking a table row moves the camera to that detector. After a run you can
-                click a detector in the Visualizer to chart and tabulate what it recorded.</p>
+                click a detector in the Simulation to chart and tabulate what it recorded.</p>
             <div class="warn i18n-ko"><strong>주의.</strong> 링크 ID가 네트워크에 없거나, 차로 인덱스가 범위를
                 벗어나거나, 위치가 차로 길이를 넘으면 표에 경고 색으로 표시되고 저장이 막힙니다.
                 <code>friendlyPos</code>를 켜두면 엔진이 위치를 차로 범위 안으로 보정합니다.</div>
@@ -2046,26 +2046,26 @@
             </ul>
 
             <h3><span class="i18n-ko">편집 결과로 시뮬레이션을 돌리려면?</span><span class="i18n-en">How do I run a simulation with my edits?</span></h3>
-            <p class="i18n-ko">모든 워크스페이스를 저장한 뒤 <code>/visualizer</code>로 이동해 이 네트워크 폴더와
+            <p class="i18n-ko">모든 워크스페이스를 저장한 뒤 <code>/simulation</code>로 이동해 이 네트워크 폴더와
                 시나리오를 선택하고 <strong>Run Selected Network</strong>를 실행하면 됩니다. 결과
                 재생·분석 방법은 <a class="doc-cross" href="visualizer-guide.html"
                 data-local="visualizer-guide.html"
-               >Visualizer 가이드</a>를 보세요.</p>
-            <p class="i18n-en">Save every workspace, go to <code>/visualizer</code>, select this network folder and
+               >Simulation 가이드</a>를 보세요.</p>
+            <p class="i18n-en">Save every workspace, go to <code>/simulation</code>, select this network folder and
                 a scenario, and press <strong>Run Selected Network</strong>. For replaying and analysing the
                 result, see the <a class="doc-cross" href="visualizer-guide.html"
                 data-local="visualizer-guide.html"
-               >Visualizer guide</a>.</p>
+               >Simulation guide</a>.</p>
         </section>
 
         <footer>
             NextSIM Editor Guide · KAIST AIxMobility Lab —
             <span class="i18n-ko">결과 재생은 <a class="doc-cross" href="visualizer-guide.html"
                 data-local="visualizer-guide.html"
-               >Visualizer 가이드</a>를 보세요.</span>
+               >Simulation 가이드</a>를 보세요.</span>
             <span class="i18n-en">For replaying results, see the <a class="doc-cross" href="visualizer-guide.html"
                 data-local="visualizer-guide.html"
-               >Visualizer guide</a>.</span>
+               >Simulation guide</a>.</span>
         </footer>
     </main>
 </div>
