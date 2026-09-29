@@ -1,0 +1,1194 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script>
+    /* 사이트 사본 전용 (build.sh 가 맨 앞에 붙인다): ?lang= 과 브라우저 언어를 따른다.
+       저장된 선택이 있으면 가이드 원래 스크립트가 그 값을 쓴다. */
+    (function () {
+        var fallback = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') {
+                lang = q;
+                window.localStorage.setItem('nextsim-doc-lang', q);
+            } else if (!window.localStorage.getItem('nextsim-doc-lang')) {
+                lang = fallback;
+            }
+        } catch (e) { lang = fallback; }
+        if (lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+        }
+    })();
+</script>
+<title>NextSIM Installation</title>
+<script>
+    /* 언어 선택을 body 파싱 전에 적용해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       가이드 3편이 같은 키를 공유하므로 문서 사이를 오가도 언어가 유지된다. */
+    (function () {
+        try {
+            var saved = window.localStorage.getItem('nextsim-doc-lang');
+            if (saved === 'en' || saved === 'ko') document.documentElement.setAttribute('data-lang', saved);
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+    })();
+</script>
+<style>
+    /* ---------- 토큰: 라이트(기본) ---------- */
+    :root {
+        --bg: #f5f7fb;
+        --surface: #ffffff;
+        --surface-2: #eef2f9;
+        --ink: #182338;
+        --muted: #5b6a83;
+        --hairline: rgba(24, 35, 56, .13);
+        --accent: #2456c4;
+        --accent-soft: rgba(36, 86, 196, .1);
+        --accent-strong: #1c3f96;
+        --kbd-bg: #eef2f9;
+        --kbd-ink: #33415c;
+        --code-bg: #edf1f8;
+        --tip-bg: rgba(21, 128, 61, .08);
+        --tip-edge: #15803d;
+        --warn-bg: rgba(180, 83, 9, .09);
+        --warn-edge: #b45309;
+        --ws-network: #1d4ed8;
+        --ws-od: #0369a1;
+        --ws-mode: #b45309;
+        --ws-scenario: #6d28d9;
+        --ws-signal: #b91c1c;
+        --ws-station: #15803d;
+        --ws-ptline: #a16207;
+        --ws-events: #be185d;
+        --ws-infra: #0f766e;
+        --shadow: 0 10px 30px rgba(24, 35, 56, .07);
+    }
+
+    /* ---------- 다크: 시스템 설정 (명시적 light 선택이 이김) ---------- */
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            --bg: #0d1424;
+            --surface: #141d31;
+            --surface-2: #1a2440;
+            --ink: #e7edf9;
+            --muted: #97a6c1;
+            --hairline: rgba(231, 237, 249, .14);
+            --accent: #7da4f7;
+            --accent-soft: rgba(125, 164, 247, .14);
+            --accent-strong: #a9c3fb;
+            --kbd-bg: #1e2946;
+            --kbd-ink: #c3cfe6;
+            --code-bg: #1a2440;
+            --tip-bg: rgba(74, 222, 128, .1);
+            --tip-edge: #4ade80;
+            --warn-bg: rgba(251, 191, 36, .11);
+            --warn-edge: #fbbf24;
+            --ws-network: #93b4fd;
+            --ws-od: #67c3f0;
+            --ws-mode: #f2b26b;
+            --ws-scenario: #c4a7f7;
+            --ws-signal: #f49a9a;
+            --ws-station: #7fd8a2;
+            --ws-ptline: #e3cc72;
+            --ws-events: #f195c0;
+            --ws-infra: #5eead4;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+        }
+    }
+
+    /* ---------- 다크: 명시적 토글 ---------- */
+    :root[data-theme="dark"] {
+        --bg: #0d1424;
+        --surface: #141d31;
+        --surface-2: #1a2440;
+        --ink: #e7edf9;
+        --muted: #97a6c1;
+        --hairline: rgba(231, 237, 249, .14);
+        --accent: #7da4f7;
+        --accent-soft: rgba(125, 164, 247, .14);
+        --accent-strong: #a9c3fb;
+        --kbd-bg: #1e2946;
+        --kbd-ink: #c3cfe6;
+        --code-bg: #1a2440;
+        --tip-bg: rgba(74, 222, 128, .1);
+        --tip-edge: #4ade80;
+        --warn-bg: rgba(251, 191, 36, .11);
+        --warn-edge: #fbbf24;
+        --ws-network: #93b4fd;
+        --ws-od: #67c3f0;
+        --ws-mode: #f2b26b;
+        --ws-scenario: #c4a7f7;
+        --ws-signal: #f49a9a;
+        --ws-station: #7fd8a2;
+        --ws-ptline: #e3cc72;
+        --ws-events: #f195c0;
+        --ws-infra: #5eead4;
+        --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+    }
+
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
+        font-size: 15px;
+        line-height: 1.72;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    code, kbd, .file-chip, .mono {
+        font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, "Nanum Gothic Coding", monospace;
+    }
+
+    .shell {
+        display: grid;
+        grid-template-columns: 252px minmax(0, 1fr);
+        max-width: 1120px;
+        margin: 0 auto;
+        gap: 0 48px;
+        padding: 0 28px;
+    }
+
+    /* ---------- 사이드바 ---------- */
+    .nav {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100dvh;
+        overflow-y: auto;
+        padding: 34px 0 40px;
+        scrollbar-width: thin;
+    }
+
+    .nav__brand {
+        font-weight: 800;
+        font-size: 17px;
+        letter-spacing: -.01em;
+        margin-bottom: 2px;
+    }
+
+    .nav__brand small {
+        display: block;
+        font-weight: 500;
+        font-size: 11.5px;
+        color: var(--muted);
+        letter-spacing: .02em;
+        margin-top: 3px;
+    }
+
+    .nav__group {
+        margin-top: 22px;
+    }
+
+    .nav__group-label {
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .09em;
+        color: var(--muted);
+        margin-bottom: 6px;
+    }
+
+    .nav a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 10px;
+        margin-left: -10px;
+        border-radius: 7px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+
+    .nav a:hover { color: var(--ink); background: var(--accent-soft); }
+
+    .nav a.is-active {
+        color: var(--accent-strong);
+        background: var(--accent-soft);
+        font-weight: 600;
+    }
+
+    .nav a:focus-visible, a:focus-visible, button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+
+    .ws-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: 0 0 auto;
+        background: var(--dot, var(--muted));
+    }
+
+    /* ---------- 본문 ---------- */
+    .content {
+        padding: 40px 0 90px;
+        min-width: 0;
+    }
+
+    .masthead {
+        border-bottom: 1px solid var(--hairline);
+        padding-bottom: 26px;
+        margin-bottom: 8px;
+    }
+
+    .masthead h1 {
+        font-size: 31px;
+        font-weight: 800;
+        letter-spacing: -.022em;
+        margin: 0 0 10px;
+        text-wrap: balance;
+    }
+
+    .masthead p {
+        max-width: 62ch;
+        margin: 0;
+        color: var(--muted);
+        font-size: 15.5px;
+    }
+
+    .masthead .meta {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+    }
+
+    .chip {
+        display: inline-block;
+        font-size: 11.5px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        color: var(--muted);
+        border: 1px solid var(--hairline);
+    }
+
+    a.chip { text-decoration: none; }
+    a.chip:hover { color: var(--accent-strong); border-color: var(--accent); }
+
+    section {
+        padding-top: 44px;
+    }
+
+    section > h2 {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -.015em;
+        margin: 0 0 4px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-wrap: balance;
+    }
+
+    h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 30px 0 8px;
+        letter-spacing: -.008em;
+    }
+
+    p, ul, ol { max-width: 72ch; }
+    p { margin: 10px 0; }
+    ul, ol { margin: 8px 0; padding-left: 22px; }
+    li { margin: 4px 0; }
+    li::marker { color: var(--muted); }
+
+    a { color: var(--accent-strong); }
+
+    .ws-badge {
+        display: inline-flex;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .04em;
+        padding: 3px 10px;
+        border-radius: 999px;
+        color: var(--ws, var(--accent-strong));
+        background: color-mix(in srgb, var(--ws, var(--accent)) 13%, transparent);
+    }
+
+    .file-chip {
+        display: inline-block;
+        font-size: 12px;
+        background: var(--code-bg);
+        border: 1px solid var(--hairline);
+        border-radius: 6px;
+        padding: 1.5px 8px;
+        white-space: nowrap;
+    }
+
+    .section-files {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 2px 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    kbd {
+        display: inline-block;
+        min-width: 20px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--kbd-ink);
+        background: var(--kbd-bg);
+        border: 1px solid var(--hairline);
+        border-bottom-width: 2px;
+        border-radius: 6px;
+        padding: 1px 7px;
+    }
+
+    code {
+        font-size: 13px;
+        background: var(--code-bg);
+        border-radius: 5px;
+        padding: 1.5px 6px;
+    }
+
+    /* 콜아웃 */
+    .tip, .warn {
+        max-width: 72ch;
+        border-left: 3px solid var(--tip-edge);
+        background: var(--tip-bg);
+        border-radius: 0 10px 10px 0;
+        padding: 11px 16px;
+        margin: 14px 0;
+        font-size: 14px;
+    }
+
+    .warn { border-left-color: var(--warn-edge); background: var(--warn-bg); }
+
+    .tip strong, .warn strong { font-weight: 700; }
+
+    /* 표 */
+    .tablewrap { overflow-x: auto; margin: 14px 0; }
+
+    table {
+        border-collapse: collapse;
+        font-size: 13.5px;
+        min-width: 520px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px 14px 8px 0;
+        border-bottom: 1px solid var(--hairline);
+        vertical-align: top;
+    }
+
+    th {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        color: var(--muted);
+        font-weight: 700;
+    }
+
+    td.center, th.center { text-align: center; padding-right: 10px; }
+    .yes { color: var(--tip-edge); font-weight: 700; }
+    .no { color: var(--muted); }
+
+    /* 단계 리스트 */
+    ol.steps {
+        list-style: none;
+        counter-reset: step;
+        padding-left: 0;
+        margin: 12px 0;
+    }
+
+    ol.steps > li {
+        counter-increment: step;
+        position: relative;
+        padding-left: 38px;
+        margin: 10px 0;
+    }
+
+    ol.steps > li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 12.5px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 카드형 그리드 (파일 요약) */
+    .filegrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 10px;
+        margin: 14px 0;
+    }
+
+    .filecard {
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+        border-radius: 10px;
+        padding: 12px 14px;
+        box-shadow: var(--shadow);
+    }
+
+    .filecard .ws-badge { margin-bottom: 7px; }
+    .filecard div.files { font-size: 12px; display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+    .filecard p { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+    .divider { border: 0; border-top: 1px solid var(--hairline); margin: 44px 0 0; }
+
+    footer {
+        margin-top: 60px;
+        padding-top: 18px;
+        border-top: 1px solid var(--hairline);
+        color: var(--muted);
+        font-size: 12.5px;
+    }
+
+    @media (max-width: 900px) {
+        .shell { grid-template-columns: 1fr; gap: 0; }
+        .nav {
+            position: static;
+            height: auto;
+            padding-bottom: 0;
+        }
+        .nav__links { display: flex; flex-wrap: wrap; gap: 2px 10px; }
+        .nav__group { margin-top: 12px; }
+    }
+
+    /* ---------- 한/영 전환 ---------- */
+    /* 기본(속성 없음)은 한국어. JS 없이도 한국어 문서로 읽힌다. */
+    :root:not([data-lang="en"]) .i18n-en { display: none !important; }
+    :root[data-lang="en"] .i18n-ko { display: none !important; }
+
+    .lang-switch {
+        display: inline-flex;
+        margin-top: 10px;
+        border: 1px solid var(--hairline);
+        border-radius: 999px;
+        background: var(--surface);
+        overflow: hidden;
+    }
+    .lang-switch button {
+        appearance: none;
+        border: 0;
+        padding: 4px 12px;
+        background: transparent;
+        color: var(--muted);
+        font: inherit;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .02em;
+        cursor: pointer;
+    }
+    .lang-switch button + button { border-left: 1px solid var(--hairline); }
+    .lang-switch button:hover { color: var(--ink); }
+    .lang-switch button[aria-pressed="true"] {
+        background: var(--accent);
+        color: #fff;
+    }
+
+    /* ---------- Home: 두 도구로 가는 큰 카드 ---------- */
+    .toolgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+        margin: 18px 0 6px;
+    }
+    .toolcard {
+        display: block;
+        padding: 16px 18px;
+        border: 1px solid var(--hairline);
+        border-left: 3px solid var(--tc, var(--accent));
+        border-radius: 12px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        color: inherit;
+        text-decoration: none;
+        transition: transform .12s ease, border-color .12s ease;
+    }
+    .toolcard:hover { transform: translateY(-2px); border-color: var(--tc, var(--accent)); }
+    .toolcard h3 { margin: 0 0 4px; font-size: 16px; color: var(--tc, var(--accent)); }
+    .toolcard code { font-size: 12px; }
+    .toolcard p { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .toolcard .go { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 700; color: var(--tc, var(--accent)); }
+
+    /* 파이프라인 단계 표시 */
+    .pipeline {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        margin: 12px 0;
+        padding: 12px 14px;
+        border: 1px solid var(--hairline);
+        border-radius: 10px;
+        background: var(--surface-2);
+        font-size: 12.5px;
+    }
+    .pipeline b {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+        font-weight: 600;
+    }
+    .pipeline i { color: var(--muted); font-style: normal; }
+
+    /* 요구사항 / 명령 블록 */
+    pre.cmd {
+        margin: 10px 0;
+        padding: 12px 14px;
+        border: 1px solid var(--hairline);
+        border-radius: 8px;
+        background: var(--code-bg);
+        overflow-x: auto;
+        font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, "Nanum Gothic Coding", monospace;
+        font-size: 12.5px;
+        line-height: 1.6;
+    }
+    pre.cmd .c { color: var(--muted); }
+
+    /* ---------- 설치 방법 카드 ---------- */
+    .methodgrid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin: 16px 0 6px;
+    }
+    .methodcard {
+        display: flex;
+        flex-direction: column;
+        padding: 14px 16px;
+        border: 1px solid var(--hairline);
+        border-top: 3px solid var(--tc, var(--accent));
+        border-radius: 12px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        color: inherit;
+        text-decoration: none;
+        transition: transform .12s ease, border-color .12s ease;
+    }
+    .methodcard:hover { transform: translateY(-2px); border-color: var(--tc, var(--accent)); }
+    .methodcard h3 { margin: 4px 0 2px; font-size: 15.5px; color: var(--tc, var(--accent)); }
+    .methodcard p { margin: 4px 0 10px; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .methodcard__tag { font-size: 10.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    @media (max-width: 640px) { .methodgrid { grid-template-columns: 1fr; } }
+    /* 본문 속 긴 경로·명령은 좁은 화면에서 줄을 바꾼다 */
+    p .mono, li .mono, .tip .mono, .warn .mono { overflow-wrap: anywhere; }
+    .methodcard__need { margin-top: auto; font-size: 11.5px; font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace; color: var(--muted); }
+
+    /* ---------- 사용자 가이드 문서 묶음 (모든 가이드 공통) ---------- */
+    .nav a[aria-current="page"] {
+        color: var(--accent-strong);
+        background: var(--accent-soft);
+        font-weight: 700;
+    }
+    .site-home { display: inline-block; margin: 8px 0 2px; font-size: 12.5px; font-weight: 600; color: var(--muted); text-decoration: none; }
+    .site-home:hover { color: var(--accent-strong); }
+</style>
+<div class="shell">
+    <nav class="nav" id="docNav">
+        <div class="nav__brand">NextSIM<small><span class="i18n-ko">설치 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">Installation · KAIST AIxMobility Lab</span></small></div>
+        <a class="site-home" href="../index.html"><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></a>
+        <div class="lang-switch" role="group" aria-label="Language / 언어">
+            <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
+            <button type="button" data-lang="en" aria-pressed="false">English</button>
+        </div>
+        <div class="nav__links">
+            <div class="nav__group doc-set">
+                <div class="nav__group-label"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></div>
+                <a href="index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
+                <a href="installation.html" aria-current="page"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
+                <a href="editor-guide.html" style="--dot: var(--ws-network)"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
+                <a href="visualizer-guide.html" style="--dot: var(--ws-signal)"><span class="i18n-ko">4. Visualizer 가이드</span><span class="i18n-en">4. Visualizer guide</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">설치 방법</span><span class="i18n-en">Install methods</span></div>
+                <a href="#choose"><span class="i18n-ko">방법 고르기</span><span class="i18n-en">Choosing a method</span></a>
+                <a href="#windows"><span class="i18n-ko">Windows 설치 파일</span><span class="i18n-en">Windows installer</span></a>
+                <a href="#docker">Docker</a>
+                <a href="#zip"><span class="i18n-ko">Linux · WSL 배포판</span><span class="i18n-en">Linux · WSL package</span></a>
+                <a href="#source"><span class="i18n-ko">소스에서 빌드</span><span class="i18n-en">Building from source</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">설치 후</span><span class="i18n-en">After installing</span></div>
+                <a href="#first-run"><span class="i18n-ko">첫 시뮬레이션</span><span class="i18n-en">Your first simulation</span></a>
+                <a href="#options"><span class="i18n-ko">포트와 환경 변수</span><span class="i18n-en">Ports &amp; environment</span></a>
+                <a href="#troubleshooting"><span class="i18n-ko">설치 문제 해결</span><span class="i18n-en">Install troubleshooting</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <div class="masthead">
+            <h1><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></h1>
+            <p class="i18n-ko">NextSIM 은 시뮬레이션 엔진과 브라우저 도구(Editor · Visualizer)를 한 번에 설치합니다.
+                설치 방법은 네 가지이고, 어느 방법이든 끝나면 브라우저에서 같은 화면이 열립니다.
+                사용 환경에 맞는 방법 <strong>하나</strong>만 고르면 됩니다.</p>
+            <p class="i18n-en">Installing NextSIM gives you the simulation engine and the browser tools (Editor and
+                Visualizer) together. There are four ways to install; every one of them ends with the same screen in
+                your browser, so pick <strong>one</strong> that fits your machine.</p>
+            <div class="meta">
+                <span class="chip">v1.1</span>
+                <span class="chip">Windows 10/11 · Linux · WSL2 · Docker</span>
+                <span class="chip"><span class="i18n-ko">x86-64 + AVX2 CPU</span><span class="i18n-en">x86-64 CPU with AVX2</span></span>
+            </div>
+        </div>
+
+        <!-- ================================================== 방법 고르기 -->
+        <section id="choose">
+            <h2><span class="i18n-ko">방법 고르기</span><span class="i18n-en">Choosing a method</span></h2>
+            <div class="methodgrid">
+                <a class="methodcard" href="#windows" style="--tc: var(--ws-network)">
+                    <span class="methodcard__tag"><span class="i18n-ko">가장 쉬움</span><span class="i18n-en">Easiest</span></span>
+                    <h3><span class="i18n-ko">Windows 설치 파일</span><span class="i18n-en">Windows installer</span></h3>
+                    <p class="i18n-ko">설치 마법사만 따라가면 됩니다. Python·WSL·Docker 모두 필요 없습니다.</p>
+                    <p class="i18n-en">Click through the installer. No Python, WSL, or Docker needed.</p>
+                    <span class="methodcard__need">Windows 10/11 64-bit</span>
+                </a>
+                <a class="methodcard" href="#docker" style="--tc: var(--ws-od)">
+                    <span class="methodcard__tag"><span class="i18n-ko">모든 OS</span><span class="i18n-en">Any OS</span></span>
+                    <h3>Docker</h3>
+                    <p class="i18n-ko">명령 한 줄로 엔진 빌드부터 웹 서버까지 컨테이너 안에서 올라갑니다.</p>
+                    <p class="i18n-en">One command builds the engine and starts the web server inside a container.</p>
+                    <span class="methodcard__need">Docker Desktop · Git · <span class="i18n-ko">저장소 권한</span><span class="i18n-en">repo access</span></span>
+                </a>
+                <a class="methodcard" href="#zip" style="--tc: var(--ws-station)">
+                    <span class="methodcard__tag"><span class="i18n-ko">컴파일 불필요</span><span class="i18n-en">No compiler</span></span>
+                    <h3><span class="i18n-ko">Linux · WSL 배포판</span><span class="i18n-en">Linux · WSL package</span></h3>
+                    <p class="i18n-ko">미리 빌드된 실행 파일이 든 ZIP. 풀고 스크립트 하나만 실행합니다.</p>
+                    <p class="i18n-en">A ZIP of prebuilt binaries. Unpack it and run one script.</p>
+                    <span class="methodcard__need">Linux x86-64 / WSL2 · Python 3.9+</span>
+                </a>
+                <a class="methodcard" href="#source" style="--tc: var(--ws-scenario)">
+                    <span class="methodcard__tag"><span class="i18n-ko">개발자용</span><span class="i18n-en">For developers</span></span>
+                    <h3><span class="i18n-ko">소스에서 빌드</span><span class="i18n-en">Build from source</span></h3>
+                    <p class="i18n-ko">엔진을 직접 수정하거나 NextCI 로 외부에서 제어하려면 이 방법을 씁니다.</p>
+                    <p class="i18n-en">For changing the engine itself or driving it externally through NextCI.</p>
+                    <span class="methodcard__need">C++17 · CMake 3.21+ · <span class="i18n-ko">저장소 권한</span><span class="i18n-en">repo access</span></span>
+                </a>
+            </div>
+            <div class="tip i18n-ko"><strong>공통 요구 사항: AVX2 를 지원하는 x86-64 CPU.</strong>
+                2013년(Intel Haswell) 이후의 인텔·AMD CPU 는 대부분 해당합니다. ARM 기기(Apple Silicon Mac,
+                Snapdragon 노트북 등)에서는 현재 실행되지 않습니다.</div>
+            <div class="tip i18n-en"><strong>Every method needs an x86-64 CPU with AVX2.</strong> Almost every Intel
+                or AMD CPU since 2013 (Intel Haswell) qualifies. ARM machines — Apple Silicon Macs, Snapdragon
+                laptops — are not supported today.</div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- ================================================== Windows -->
+        <section id="windows">
+            <h2><span class="i18n-ko">Windows 설치 파일</span><span class="i18n-en">Windows installer</span></h2>
+            <p class="section-files"><span class="file-chip">NextSim-Setup-v1.1.exe</span>
+                <span class="i18n-ko">Windows 10/11 64비트 · Edge 또는 Chrome</span><span class="i18n-en">Windows 10/11 64-bit · Edge or Chrome</span></p>
+            <ol class="steps i18n-ko">
+                <li><a class="download-link" href="https://github.com/AIxMobility/ai-mobility.github.io/releases/latest">릴리스 페이지</a>에서
+                    <span class="mono">NextSim-Setup-v1.1.exe</span> 를 내려받습니다.</li>
+                <li>설치 파일을 실행하고 안내에 따라 설치합니다. Python 과 시뮬레이터가 모두 들어 있어
+                    따로 설치할 것은 없습니다.</li>
+                <li>시작 메뉴나 바탕 화면의 <strong>NextSim</strong> 을 실행합니다. 검은 콘솔 창이 열리고 몇 초 뒤
+                    NextSim 창(브라우저)이 뜹니다.</li>
+                <li><a href="#first-run">첫 시뮬레이션</a>으로 넘어갑니다.</li>
+            </ol>
+            <ol class="steps i18n-en">
+                <li>Download <span class="mono">NextSim-Setup-v1.1.exe</span> from the
+                    <a class="download-link" href="https://github.com/AIxMobility/ai-mobility.github.io/releases/latest">releases page</a>.</li>
+                <li>Run it and follow the installer. Python and the simulator are bundled, so there is nothing else
+                    to install.</li>
+                <li>Launch <strong>NextSim</strong> from the Start menu or the desktop. A black console window opens,
+                    and a few seconds later the NextSim window (your browser) appears.</li>
+                <li>Continue with <a href="#first-run">your first simulation</a>.</li>
+            </ol>
+            <div class="warn i18n-ko"><strong>콘솔 창이 곧 서버입니다.</strong> 이 창을 닫으면 NextSim 이 종료됩니다.
+                서버는 이 PC 안에서만 접속할 수 있고(<span class="mono">http://127.0.0.1:8000/</span>, 사용 중이면
+                다음 빈 포트), 실제 주소는 콘솔 창 상단에 표시됩니다.</div>
+            <div class="warn i18n-en"><strong>The console window is the server.</strong> Closing it quits NextSim.
+                The server only accepts connections from this PC
+                (<span class="mono">http://127.0.0.1:8000/</span>, or the next free port), and the address it
+                settled on is printed at the top of the console.</div>
+            <div class="tip i18n-ko"><strong>"Windows 의 PC 보호" 창이 뜨면</strong> <em>추가 정보 → 실행</em>을
+                누르세요. 서명되지 않은 설치 파일에 Windows SmartScreen 이 보이는 경고입니다.</div>
+            <div class="tip i18n-en"><strong>If "Windows protected your PC" appears,</strong> choose
+                <em>More info → Run anyway</em>. It is SmartScreen's warning for an unsigned installer.</div>
+
+            <h3><span class="i18n-ko">데이터 위치</span><span class="i18n-en">Where your data lives</span></h3>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>폴더</th><th>내용</th></tr>
+                <tr><td class="mono">내 문서\NextSim\SimulationInput</td><td>네트워크 입력 (<span class="mono">datasets\&lt;branch&gt;\network_xml_&lt;이름&gt;</span>)</td></tr>
+                <tr><td class="mono">내 문서\NextSim\SimulationOutput</td><td>실행 결과</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Folder</th><th>Contents</th></tr>
+                <tr><td class="mono">Documents\NextSim\SimulationInput</td><td>Network inputs (<span class="mono">datasets\&lt;branch&gt;\network_xml_&lt;name&gt;</span>)</td></tr>
+                <tr><td class="mono">Documents\NextSim\SimulationOutput</td><td>Run results</td></tr>
+            </table></div>
+            <p class="i18n-ko">다른 폴더를 쓰려면 환경 변수 <span class="mono">NEXTSIM_WORKSPACE</span> 에 경로를 넣고 실행합니다.
+                프로그램을 제거해도 이 폴더는 남습니다.</p>
+            <p class="i18n-en">To use a different folder, set <span class="mono">NEXTSIM_WORKSPACE</span> to its path
+                before launching. Uninstalling the program leaves these folders in place.</p>
+        </section>
+
+        <!-- ================================================== Docker -->
+        <section id="docker">
+            <h2>Docker</h2>
+            <p class="section-files"><span class="file-chip">Dockerfile</span><span class="file-chip">docker-compose.yml</span>
+                <span class="i18n-ko">Windows · macOS(Intel) · Linux</span><span class="i18n-en">Windows · macOS (Intel) · Linux</span></p>
+            <p class="i18n-ko"><a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a>
+                만 있으면 컴파일러 없이 저장소에서 바로 띄울 수 있습니다. 첫 실행은 엔진을 컨테이너 안에서
+                빌드하므로 몇 분 걸립니다.</p>
+            <p class="i18n-en">With <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a>
+                you can start straight from the repository without a local compiler. The first start builds the
+                engine inside the container, so it takes a few minutes.</p>
+            <div class="warn i18n-ko"><strong>소스 저장소 접근 권한이 필요합니다.</strong> NextSIM 소스 저장소는 현재 비공개라,
+                아래 <span class="mono">git clone</span> 은 권한을 받은 계정에서만 됩니다. 권한 없이 쓰려면
+                <a href="#windows">Windows 설치 파일</a>이나 <a href="#zip">Linux · WSL 배포판</a>을 쓰거나,
+                <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">연구실</a>로 문의해 주세요.</div>
+            <div class="warn i18n-en"><strong>Requires access to the source repository.</strong> The NextSIM source repository is
+                private for now, so the <span class="mono">git clone</span> below only works for accounts that have been granted
+                access. Without it, use the <a href="#windows">Windows installer</a> or the
+                <a href="#zip">Linux · WSL package</a>, or contact the
+                <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">lab</a>.</div>
+<pre class="cmd i18n-ko">git clone --recursive https://github.com/AIxMobility/NextSim.git
+cd NextSim
+docker compose up --build        <span class="c"># http://localhost:8000/</span>
+
+WEB_PORT=8100 docker compose up  <span class="c"># 다른 포트로</span></pre>
+<pre class="cmd i18n-en">git clone --recursive https://github.com/AIxMobility/NextSim.git
+cd NextSim
+docker compose up --build        <span class="c"># http://localhost:8000/</span>
+
+WEB_PORT=8100 docker compose up  <span class="c"># on another port</span></pre>
+            <p class="i18n-ko">데이터는 호스트의 <span class="mono">./workspace/</span> 에 남습니다
+                (<span class="mono">SimulationInput/</span>, <span class="mono">SimulationOutput/</span>). 컨테이너를
+                처음 띄울 때 예제 네트워크가 채워지고, 다른 위치를 쓰려면
+                <span class="mono">NEXTSIM_WORKSPACE=~/nextsim-data docker compose up</span> 처럼 지정합니다.</p>
+            <p class="i18n-en">Data stays on the host in <span class="mono">./workspace/</span>
+                (<span class="mono">SimulationInput/</span>, <span class="mono">SimulationOutput/</span>). The demo
+                networks are copied in the first time the container starts; to use another location run
+                <span class="mono">NEXTSIM_WORKSPACE=~/nextsim-data docker compose up</span>.</p>
+        </section>
+
+        <!-- ================================================== ZIP -->
+        <section id="zip">
+            <h2><span class="i18n-ko">Linux · WSL 배포판</span><span class="i18n-en">Linux · WSL package</span></h2>
+            <p class="section-files"><span class="file-chip">nextsim-linux-x64-v1.1.zip</span>
+                <span class="i18n-ko">Linux x86-64 또는 Windows + WSL2 · Python 3.9+</span><span class="i18n-en">Linux x86-64 or Windows + WSL2 · Python 3.9+</span></p>
+            <p class="i18n-ko">미리 빌드된 실행 파일과 예제 네트워크를 묶은 ZIP 입니다. 실행 파일이 완전 정적 링크되어 있어
+                리눅스 배포판 버전을 가리지 않으며, git·cmake·컴파일러·Docker 가 필요 없습니다.</p>
+            <p class="i18n-en">A ZIP of prebuilt binaries and example networks. The binaries are fully statically
+                linked, so any Linux distribution works, and you need no git, cmake, compiler, or Docker.</p>
+            <ol class="steps i18n-ko">
+                <li><a class="download-link" href="https://github.com/AIxMobility/ai-mobility.github.io/releases/latest">릴리스 페이지</a>에서
+                    <span class="mono">nextsim-linux-x64-v1.1.zip</span> 을 내려받아 풉니다. WSL 이라면 Windows 폴더
+                    (<span class="mono">/mnt/c/...</span>)보다 <strong>WSL 홈(<span class="mono">~/</span>) 안</strong>에 푸는 것이 몇 배 빠릅니다.</li>
+                <li>Python 이 없다면 설치합니다 (Ubuntu/WSL: <span class="mono">sudo apt install python3 python3-venv</span>).</li>
+                <li>실행 권한을 주고 시작 스크립트를 실행합니다. 처음에는 Flask 를 내려받느라 1~2분 걸리고,
+                    다음부터는 바로 뜹니다. 브라우저가 자동으로 열립니다.</li>
+            </ol>
+            <ol class="steps i18n-en">
+                <li>Download <span class="mono">nextsim-linux-x64-v1.1.zip</span> from the
+                    <a class="download-link" href="https://github.com/AIxMobility/ai-mobility.github.io/releases/latest">releases page</a> and unpack it.
+                    On WSL, unpacking <strong>inside your WSL home (<span class="mono">~/</span>)</strong> is several
+                    times faster than under a Windows folder (<span class="mono">/mnt/c/...</span>).</li>
+                <li>Install Python if you don't have it (Ubuntu/WSL: <span class="mono">sudo apt install python3 python3-venv</span>).</li>
+                <li>Mark the scripts executable and run the start script. The first run spends a minute or two
+                    fetching Flask; after that it starts immediately. Your browser opens on its own.</li>
+            </ol>
+<pre class="cmd">cd nextsim-linux-x64-v1.1
+chmod +x start_web.sh scripts/*.sh Captain/build/bin/*
+./start_web.sh</pre>
+            <p class="i18n-ko">Windows 에서는 <span class="mono">start_web.bat</span> 을 더블클릭하면 WSL 안에서
+                <span class="mono">start_web.sh</span> 가 실행됩니다. WSL 이 없다면 PowerShell(관리자)에서
+                <span class="mono">wsl --install</span> 후 재부팅하고, Ubuntu 를 한 번 열어 초기 설정을 마친 뒤 다시 실행하세요.
+                종료는 터미널에서 <kbd>Ctrl</kbd>+<kbd>C</kbd>.</p>
+            <p class="i18n-en">On Windows, double-click <span class="mono">start_web.bat</span> to run
+                <span class="mono">start_web.sh</span> inside WSL. Without WSL, run
+                <span class="mono">wsl --install</span> in an administrator PowerShell, reboot, open Ubuntu once to
+                finish its setup, then try again. Stop the server with <kbd>Ctrl</kbd>+<kbd>C</kbd> in the terminal.</p>
+
+            <h3><span class="i18n-ko">데이터를 배포판 밖에 두기</span><span class="i18n-en">Keeping data outside the package</span></h3>
+            <p class="i18n-ko">데이터 폴더를 따로 두면 새 버전 ZIP 으로 갈아타도 네트워크와 결과가 그대로 남습니다.</p>
+            <p class="i18n-en">With a separate data folder, your networks and results survive an upgrade to a newer ZIP.</p>
+<pre class="cmd i18n-ko">mkdir -p ~/nextsim-data
+cp -r SimulationInput ~/nextsim-data/          <span class="c"># 예제로 시작하려면</span>
+NEXTSIM_WORKSPACE=~/nextsim-data ./start_web.sh</pre>
+<pre class="cmd i18n-en">mkdir -p ~/nextsim-data
+cp -r SimulationInput ~/nextsim-data/          <span class="c"># to start from the examples</span>
+NEXTSIM_WORKSPACE=~/nextsim-data ./start_web.sh</pre>
+
+            <h3><span class="i18n-ko">웹 없이 터미널에서만</span><span class="i18n-en">Terminal only, without the web UI</span></h3>
+<pre class="cmd i18n-ko">./scripts/generate_routes.sh            <span class="c"># Route.json, PTRoute.json 생성 (새 네트워크일 때)</span>
+./scripts/generate_routes.sh --with-pax <span class="c"># PaxRoute.json 까지</span>
+./scripts/run_sim.sh                    <span class="c"># Offline 시뮬레이션</span></pre>
+<pre class="cmd i18n-en">./scripts/generate_routes.sh            <span class="c"># Route.json, PTRoute.json (for a new network)</span>
+./scripts/generate_routes.sh --with-pax <span class="c"># PaxRoute.json as well</span>
+./scripts/run_sim.sh                    <span class="c"># offline simulation</span></pre>
+            <p class="i18n-ko">어떤 네트워크를 돌릴지는 <span class="mono">SimulationInput/config.txt</span> 의
+                <span class="mono">network_name</span>, <span class="mono">branch</span> 로 정합니다.</p>
+            <p class="i18n-en">Which network runs is set by <span class="mono">network_name</span> and
+                <span class="mono">branch</span> in <span class="mono">SimulationInput/config.txt</span>.</p>
+        </section>
+
+        <!-- ================================================== 소스 빌드 -->
+        <section id="source">
+            <h2><span class="i18n-ko">소스에서 빌드</span><span class="i18n-en">Building from source</span></h2>
+            <div class="warn i18n-ko"><strong>소스 저장소 접근 권한이 필요합니다.</strong> NextSIM 소스 저장소는 현재 비공개라,
+                아래 <span class="mono">git clone</span> 은 권한을 받은 계정에서만 됩니다. 권한 없이 쓰려면
+                <a href="#windows">Windows 설치 파일</a>이나 <a href="#zip">Linux · WSL 배포판</a>을 쓰거나,
+                <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">연구실</a>로 문의해 주세요.</div>
+            <div class="warn i18n-en"><strong>Requires access to the source repository.</strong> The NextSIM source repository is
+                private for now, so the <span class="mono">git clone</span> below only works for accounts that have been granted
+                access. Without it, use the <a href="#windows">Windows installer</a> or the
+                <a href="#zip">Linux · WSL package</a>, or contact the
+                <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">lab</a>.</div>
+            <h3><span class="i18n-ko">요구 사항</span><span class="i18n-en">Requirements</span></h3>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>항목</th><th>요구</th><th>비고</th></tr>
+                <tr><td>OS</td><td>Linux 또는 WSL</td><td>개발·검증이 이 환경에서 이뤄집니다.</td></tr>
+                <tr><td>CPU</td><td><strong>AVX2 지원 x86-64</strong></td>
+                    <td>빌드 옵션에 <span class="mono">-mavx -mavx2</span> 가 강제되어 있습니다.
+                        Haswell(2013) 이전 CPU나 ARM에서는 그대로 빌드되지 않습니다.</td></tr>
+                <tr><td>컴파일러</td><td>C++17 + OpenMP (g++ / clang++)</td>
+                    <td><span class="mono">-Wall -Werror</span> 가 기본이라 경고도 빌드를 멈춥니다.</td></tr>
+                <tr><td>CMake</td><td><strong>3.21 이상</strong></td><td>아래 프리셋(<span class="mono">--preset</span>)을 쓰려면 필요합니다.</td></tr>
+                <tr><td>Git</td><td>서브모듈 포함</td><td>4개 서브모듈이 실제로 빌드에 필요합니다.</td></tr>
+                <tr><td>Python</td><td>3.10 이상 권장</td>
+                    <td>웹 서버만 쓰면 3.8+ 로도 동작하지만, <span class="mono">nextci</span> 클라이언트가 3.10+ 를 요구합니다.</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Item</th><th>Requirement</th><th>Notes</th></tr>
+                <tr><td>OS</td><td>Linux or WSL</td><td>That is where development and verification happen.</td></tr>
+                <tr><td>CPU</td><td><strong>x86-64 with AVX2</strong></td>
+                    <td>The build hard-codes <span class="mono">-mavx -mavx2</span>. It will not build as-is on
+                        pre-Haswell (2013) x86 or on ARM.</td></tr>
+                <tr><td>Compiler</td><td>C++17 with OpenMP (g++ / clang++)</td>
+                    <td><span class="mono">-Wall -Werror</span> is on by default, so warnings stop the build.</td></tr>
+                <tr><td>CMake</td><td><strong>3.21 or newer</strong></td><td>Required for the <span class="mono">--preset</span> workflow below.</td></tr>
+                <tr><td>Git</td><td>with submodules</td><td>Four submodules are genuinely needed to build.</td></tr>
+                <tr><td>Python</td><td>3.10+ recommended</td>
+                    <td>The web server alone works on 3.8+, but the <span class="mono">nextci</span> client needs 3.10+.</td></tr>
+            </table></div>
+            <p class="i18n-ko">Python 의존성은 <strong>Flask 하나뿐</strong>입니다
+                (<span class="mono">Visualizer/WebVisualization/requirements.txt</span>). 시작 스크립트가 없으면
+                자동으로 설치합니다.</p>
+            <p class="i18n-en">The only Python dependency is <strong>Flask</strong>
+                (<span class="mono">Visualizer/WebVisualization/requirements.txt</span>); the startup script installs
+                it if it is missing.</p>
+
+            <h3><span class="i18n-ko">엔진 빌드</span><span class="i18n-en">Building the engine</span></h3>
+            <p class="i18n-ko">저장소를 받고 <strong>서브모듈까지</strong> 가져온 뒤 프리셋으로 빌드합니다.</p>
+            <p class="i18n-en">Clone the repository <strong>with its submodules</strong>, then build with the preset.</p>
+<pre class="cmd i18n-ko"><span class="c"># 1. 소스 받기 (서브모듈 포함)</span>
+git clone --recursive https://github.com/AIxMobility/NextSim.git
+cd NextSim
+
+<span class="c"># 이미 --recursive 없이 받아 뒀다면</span>
+git submodule update --init --recursive
+
+<span class="c"># 2. 빌드 (저장소 루트에서)</span>
+cmake --preset release --fresh -S Captain
+cmake --build --preset release -j</pre>
+<pre class="cmd i18n-en"><span class="c"># 1. Get the source, submodules included</span>
+git clone --recursive https://github.com/AIxMobility/NextSim.git
+cd NextSim
+
+<span class="c"># If you already cloned without --recursive</span>
+git submodule update --init --recursive
+
+<span class="c"># 2. Build, from the repository root</span>
+cmake --preset release --fresh -S Captain
+cmake --build --preset release -j</pre>
+            <p class="i18n-ko">결과 바이너리는 <span class="mono">build/captain/release/bin/</span> 에 생깁니다.
+                <strong>웹 서버가 기본으로 찾는 위치가 바로 여기</strong>이므로, 이 경로로 빌드하면 별도 설정 없이
+                Visualizer 의 실행 버튼이 동작합니다.</p>
+            <p class="i18n-en">The binaries land in <span class="mono">build/captain/release/bin/</span>.
+                <strong>That is exactly where the web server looks by default</strong>, so building this way makes
+                the Visualizer's run button work with no further configuration.</p>
+            <p class="i18n-ko">프리셋은 <span class="mono">debug</span>, <span class="mono">release</span>,
+                <span class="mono">relwithdebinfo</span> 세 가지입니다. 특정 바이너리만 필요하면 타깃을 지정하세요:</p>
+            <p class="i18n-en">Three presets exist: <span class="mono">debug</span>,
+                <span class="mono">release</span>, and <span class="mono">relwithdebinfo</span>. To build just one
+                binary, name the target:</p>
+<pre class="cmd">cmake --build --preset release --target UnitTestsSimulation -j</pre>
+            <div class="warn i18n-ko"><strong>README 의 빌드 방법은 오래됐습니다.</strong>
+                <span class="mono">cd Captain &amp;&amp; cmake . &amp;&amp; make</span> 는 소스 트리 안에 빌드
+                산출물을 만들고(<span class="mono">Captain/bin/</span>), 웹 서버는 그 경로를 보지 않습니다.
+                위의 프리셋 방식을 쓰세요.</div>
+            <div class="warn i18n-en"><strong>The README's build recipe is out of date.</strong>
+                <span class="mono">cd Captain &amp;&amp; cmake . &amp;&amp; make</span> builds in-source into
+                <span class="mono">Captain/bin/</span>, which the web server never reads. Use the preset workflow above.</div>
+            <div class="tip i18n-ko"><strong>서브모듈 주의.</strong> <span class="mono">NextSim_io</span> 는
+                <span class="mono">.gitmodules</span> 에 <span class="mono">main</span> 으로 적혀 있지만 실제 고정된
+                커밋은 <span class="mono">publictransit</span> 브랜치에 있습니다. 그래서
+                <span class="mono">git submodule update --remote</span> 는 쓰지 마세요 — 잘못된 브랜치를 가져옵니다.
+                <span class="mono">--init --recursive</span> 로 고정된 커밋을 그대로 받으면 됩니다.</div>
+            <div class="tip i18n-en"><strong>A submodule caveat.</strong> <span class="mono">.gitmodules</span> lists
+                <span class="mono">main</span> for <span class="mono">NextSim_io</span>, but the pinned commit lives
+                on <span class="mono">publictransit</span>. Avoid
+                <span class="mono">git submodule update --remote</span>, which would fetch the wrong branch — use
+                <span class="mono">--init --recursive</span> to take the pinned commits as they are.</div>
+
+            <h3><span class="i18n-ko">웹 서버 실행</span><span class="i18n-en">Running the web server</span></h3>
+<pre class="cmd">cd NextSim
+./start_visualizer.sh</pre>
+            <p class="i18n-ko">Flask 가 없으면 스크립트가 설치하고, 포트가 사용 중이면 비어 있는 포트를 찾아 올립니다.
+                직접 실행하려면 <span class="mono">python3 web_server.py</span> 도 됩니다.</p>
+            <p class="i18n-en">The script installs Flask if it is missing and, if the port is busy, scans upward for a
+                free one. You can also run <span class="mono">python3 web_server.py</span> directly.</p>
+            <div class="warn i18n-ko"><strong>웹 UI 는 엔진을 빌드하지 않습니다.</strong> Visualizer 의 실행 버튼은
+                이미 빌드된 바이너리를 쓸 뿐이며, 없으면 그 사실을 알리고 멈춥니다. 소스를 고쳤다면 직접 다시
+                빌드하세요 — 또는 <span class="mono">NEXTSIM_WEB_BUILD=1</span> 로 자동 빌드를 켜면 됩니다.</div>
+            <div class="warn i18n-en"><strong>The web UI does not build the engine.</strong> The Visualizer's run
+                button uses the binaries that are already there and stops with a message if one is missing. Rebuild
+                yourself after changing the source — or set <span class="mono">NEXTSIM_WEB_BUILD=1</span> to have it
+                build first.</div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- ================================================== 첫 실행 -->
+        <section id="first-run">
+            <h2><span class="i18n-ko">첫 시뮬레이션</span><span class="i18n-en">Your first simulation</span></h2>
+            <p class="i18n-ko">어떤 방법으로 설치했든 여기서부터는 같습니다. 서버가 뜨면 아래 주소가 열립니다.</p>
+            <p class="i18n-en">However you installed, from here on it is the same. Once the server is up, these addresses are live.</p>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>주소</th><th>내용</th></tr>
+                <tr><td class="mono">http://localhost:8000/editor</td><td>Editor — 입력 편집</td></tr>
+                <tr><td class="mono">http://localhost:8000/visualizer</td><td>Visualizer — 실행·결과 재생</td></tr>
+                <tr><td class="mono">http://localhost:8000/docs/</td><td>이 사용자 가이드 (오프라인)</td></tr>
+                <tr><td class="mono">http://localhost:8000/health</td><td>서버 상태 JSON</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>URL</th><th>What it serves</th></tr>
+                <tr><td class="mono">http://localhost:8000/editor</td><td>Editor — authoring inputs</td></tr>
+                <tr><td class="mono">http://localhost:8000/visualizer</td><td>Visualizer — running and replaying</td></tr>
+                <tr><td class="mono">http://localhost:8000/docs/</td><td>This user guide, offline</td></tr>
+                <tr><td class="mono">http://localhost:8000/health</td><td>Server status as JSON</td></tr>
+            </table></div>
+            <ol class="steps i18n-ko">
+                <li>Visualizer 에서 <strong>Inputs</strong> 를 열고 예제 네트워크 <span class="mono">mesopt / test</span> 를 고릅니다.
+                    지도에 도로망이 그려집니다.</li>
+                <li><strong>Run</strong> 패널에서 <strong>Target scenario</strong> 를 고르고
+                    <strong>Run Selected Network</strong> 를 누릅니다. 경로 생성부터 결과 적재까지 자동으로 진행되고,
+                    작은 예제라 몇 초 안에 끝납니다.</li>
+                <li><kbd>Space</kbd> 로 재생하고 슬라이더로 원하는 시각을 찾아 봅니다.</li>
+                <li>실제 도시 규모를 보고 싶다면 <span class="mono">mesopt / bucheon</span> 을 돌려 보세요
+                    — 시나리오에 따라 수 분에서 수십 분 걸립니다.</li>
+            </ol>
+            <ol class="steps i18n-en">
+                <li>In the Visualizer, open <strong>Inputs</strong> and pick the example network
+                    <span class="mono">mesopt / test</span>. The road network appears on the map.</li>
+                <li>In the <strong>Run</strong> panel choose a <strong>Target scenario</strong> and press
+                    <strong>Run Selected Network</strong>. Route generation through result loading runs on its own;
+                    this small example finishes in seconds.</li>
+                <li>Press <kbd>Space</kbd> to play and scrub with the slider.</li>
+                <li>For a city-scale run, try <span class="mono">mesopt / bucheon</span> — minutes to tens of minutes
+                    depending on the scenario.</li>
+            </ol>
+            <div class="warn i18n-ko"><strong>새로 실행하면 이전 결과가 지워집니다.</strong> 엔진은 시작할 때
+                <span class="mono">SimulationOutput/</span> 의 이전 결과 DB를 모두 삭제합니다. 보관하고 싶은
+                결과는 실행 전에 다른 곳으로 복사해 두세요.</div>
+            <div class="warn i18n-en"><strong>A new run deletes the previous result.</strong> On startup the engine
+                removes the earlier result databases in <span class="mono">SimulationOutput/</span>. Copy anything
+                you want to keep somewhere else before running again.</div>
+
+            <div class="toolgrid">
+                <a class="toolcard" href="editor-guide.html" style="--tc: var(--ws-network)">
+                    <h3><span class="i18n-ko">다음: Editor 가이드</span><span class="i18n-en">Next: the Editor guide</span></h3>
+                    <p class="i18n-ko">네트워크·수요·신호·대중교통을 직접 만들고 고치는 방법.</p>
+                    <p class="i18n-en">Building and editing networks, demand, signals, and transit yourself.</p>
+                    <span class="go">Editor →</span>
+                </a>
+                <a class="toolcard" href="visualizer-guide.html" style="--tc: var(--ws-signal)">
+                    <h3><span class="i18n-ko">다음: Visualizer 가이드</span><span class="i18n-en">Next: the Visualizer guide</span></h3>
+                    <p class="i18n-ko">재생 컨트롤, 혼잡 표시, BIMS, 객체 조회 등 결과를 읽는 방법.</p>
+                    <p class="i18n-en">Playback, congestion display, BIMS, and inspecting what happened.</p>
+                    <span class="go">Visualizer →</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ================================================== 옵션 -->
+        <section id="options">
+            <h2><span class="i18n-ko">포트와 환경 변수</span><span class="i18n-en">Ports and environment variables</span></h2>
+            <p class="i18n-ko">시작 스크립트(<span class="mono">start_web.sh</span>, <span class="mono">start_visualizer.sh</span>)가 읽는 변수입니다.
+                Windows 설치판은 포트·workspace 를 스스로 정하므로 <span class="mono">WEB_PORT</span>, <span class="mono">NEXTSIM_WORKSPACE</span>, <span class="mono">NEXTSIM_KEEP_EVENT_DBS</span> 정도만 의미가 있습니다.</p>
+            <p class="i18n-en">These are read by the start scripts (<span class="mono">start_web.sh</span>, <span class="mono">start_visualizer.sh</span>).
+                The Windows build picks its own port and workspace, so only <span class="mono">WEB_PORT</span>, <span class="mono">NEXTSIM_WORKSPACE</span>, and <span class="mono">NEXTSIM_KEEP_EVENT_DBS</span> matter there.</p>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>변수</th><th>기본값</th><th>의미</th></tr>
+                <tr><td class="mono">WEB_PORT</td><td>8000</td><td>서버 포트. <span class="mono">PORT</span> 로도 지정할 수 있고 그쪽이 우선합니다.</td></tr>
+                <tr><td class="mono">AUTO_PORT</td><td>1</td><td>포트가 사용 중이면 다음 빈 포트를 찾습니다. <span class="mono">0</span> 이면 오류로 종료.</td></tr>
+                <tr><td class="mono">PORT_SCAN_RANGE</td><td>100</td><td>빈 포트를 몇 개까지 훑을지.</td></tr>
+                <tr><td class="mono">NEXTSIM_WORKSPACE</td><td>설치 폴더</td><td><span class="mono">SimulationInput/</span>, <span class="mono">SimulationOutput/</span> 을 둘 폴더.</td></tr>
+                <tr><td class="mono">NEXTSIM_OPEN_BROWSER</td><td>1</td><td><span class="mono">0</span> 이면 브라우저를 자동으로 열지 않습니다.</td></tr>
+                <tr><td class="mono">NEXTSIM_BUILD_DIR</td><td>build/captain/release</td><td>실행할 바이너리가 <span class="mono">bin/</span> 아래에 있는 빌드 트리.</td></tr>
+                <tr><td class="mono">NEXTSIM_BIN_DIR</td><td>—</td><td>실행 파일 폴더를 직접 지정 (<span class="mono">NEXTSIM_BUILD_DIR</span> 보다 우선).</td></tr>
+                <tr><td class="mono">NEXTSIM_WEB_BUILD</td><td>0</td><td><span class="mono">1</span> 이면 실행 전에 <span class="mono">cmake --build</span> 를 한 번 돌립니다 (소스 빌드 전용).</td></tr>
+                <tr><td class="mono">NEXTSIM_RUN_TIMEOUT_SECONDS</td><td>1800</td><td>파이프라인 각 단계의 제한 시간(초).</td></tr>
+                <tr><td class="mono">NEXTSIM_KEEP_EVENT_DBS</td><td>0</td><td><span class="mono">1</span> 이면 실행 후 원본 궤적 DB(<span class="mono">vehicle_events_*.db</span>)를 지우지 않고 남깁니다.</td></tr>
+                <tr><td class="mono">AUTO_FIX_LOCALHOST_FORWARDING</td><td>1</td><td>WSL 에서 localhost 접속이 안 되면 포워딩 설정을 자동으로 고칩니다.</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Variable</th><th>Default</th><th>Meaning</th></tr>
+                <tr><td class="mono">WEB_PORT</td><td>8000</td><td>Server port. <span class="mono">PORT</span> also works and takes precedence.</td></tr>
+                <tr><td class="mono">AUTO_PORT</td><td>1</td><td>Find the next free port when the preferred one is busy; <span class="mono">0</span> makes that a hard error.</td></tr>
+                <tr><td class="mono">PORT_SCAN_RANGE</td><td>100</td><td>How many ports to scan past the preferred one.</td></tr>
+                <tr><td class="mono">NEXTSIM_WORKSPACE</td><td>install folder</td><td>Folder that holds <span class="mono">SimulationInput/</span> and <span class="mono">SimulationOutput/</span>.</td></tr>
+                <tr><td class="mono">NEXTSIM_OPEN_BROWSER</td><td>1</td><td>Set to <span class="mono">0</span> to stop the browser opening on its own.</td></tr>
+                <tr><td class="mono">NEXTSIM_BUILD_DIR</td><td>build/captain/release</td><td>Build tree whose <span class="mono">bin/</span> holds the binaries.</td></tr>
+                <tr><td class="mono">NEXTSIM_BIN_DIR</td><td>—</td><td>The binaries' folder, directly (wins over <span class="mono">NEXTSIM_BUILD_DIR</span>).</td></tr>
+                <tr><td class="mono">NEXTSIM_WEB_BUILD</td><td>0</td><td>Set to <span class="mono">1</span> to run <span class="mono">cmake --build</span> before a simulation (source builds only).</td></tr>
+                <tr><td class="mono">NEXTSIM_RUN_TIMEOUT_SECONDS</td><td>1800</td><td>Per-step timeout for the pipeline, in seconds.</td></tr>
+                <tr><td class="mono">NEXTSIM_KEEP_EVENT_DBS</td><td>0</td><td>Set to <span class="mono">1</span> to keep the raw trajectory databases (<span class="mono">vehicle_events_*.db</span>) after a run.</td></tr>
+                <tr><td class="mono">AUTO_FIX_LOCALHOST_FORWARDING</td><td>1</td><td>On WSL, repair localhost forwarding automatically when it is broken.</td></tr>
+            </table></div>
+        </section>
+
+        <!-- ================================================== 문제 해결 -->
+        <section id="troubleshooting">
+            <h2><span class="i18n-ko">설치 문제 해결</span><span class="i18n-en">Install troubleshooting</span></h2>
+
+            <h3><span class="i18n-ko">"Illegal instruction" 이 나거나 실행 파일이 바로 죽습니다</span><span class="i18n-en">"Illegal instruction", or the engine dies immediately</span></h3>
+            <p class="i18n-ko">CPU 가 AVX2 를 지원하지 않는 경우입니다. Linux 에서는
+                <span class="mono">grep -o 'avx2' /proc/cpuinfo | head -1</span> 로 확인할 수 있습니다.
+                소스 빌드라면 이 플래그는 <span class="mono">Captain/CMake/CompileOptions.cmake</span> 에 고정되어 있어
+                직접 손봐야 합니다.</p>
+            <p class="i18n-en">Your CPU lacks AVX2; on Linux check with
+                <span class="mono">grep -o 'avx2' /proc/cpuinfo | head -1</span>. For a source build the flag is
+                hard-coded in <span class="mono">Captain/CMake/CompileOptions.cmake</span>, so you have to edit that
+                file yourself.</p>
+
+            <h3><span class="i18n-ko">Run 이 "실행 파일이 없습니다" 로 실패합니다</span><span class="i18n-en">Run fails with "executable not found"</span></h3>
+            <p class="i18n-ko"><strong>Windows:</strong> 설치 폴더의 <span class="mono">engine\</span> 안에 exe 3개가 있는지,
+                백신이 격리하지 않았는지 확인하세요.
+                <strong>ZIP:</strong> <span class="mono">Captain/build/bin/</span> 에 실행 파일 3개가 있고 실행 권한이 있는지
+                확인하세요. <strong>소스 빌드:</strong> 웹 UI 는 엔진을 빌드하지 않습니다. 결과가
+                <span class="mono">build/captain/release/bin/</span> 에 있는지 보고, 다른 곳에 빌드했다면
+                <span class="mono">NEXTSIM_BIN_DIR</span> 로 알려 주세요.</p>
+            <p class="i18n-en"><strong>Windows:</strong> check that the three exe files are in the install folder's
+                <span class="mono">engine\</span> and that antivirus has not quarantined them.
+                <strong>ZIP:</strong> check that the three binaries are in <span class="mono">Captain/build/bin/</span>
+                and executable. <strong>Source build:</strong> the web UI does not build for you — check the output is
+                in <span class="mono">build/captain/release/bin/</span>, or point
+                <span class="mono">NEXTSIM_BIN_DIR</span> at where you built.</p>
+
+            <h3><span class="i18n-ko">Permission denied (ZIP)</span><span class="i18n-en">Permission denied (ZIP)</span></h3>
+<pre class="cmd">chmod +x start_web.sh scripts/*.sh Captain/build/bin/*</pre>
+
+            <h3><span class="i18n-ko"><span class="mono">python3: command not found</span> 또는 가상환경을 만들 수 없습니다</span><span class="i18n-en"><span class="mono">python3: command not found</span>, or no virtual environment</span></h3>
+<pre class="cmd">sudo apt update &amp;&amp; sudo apt install python3 python3-venv</pre>
+            <p class="i18n-ko">Flask 가 이미 있는 Python 을 쓰려면 <span class="mono">NEXTSIM_PYTHON=/path/to/python ./start_web.sh</span>.</p>
+            <p class="i18n-en">To use a Python that already has Flask: <span class="mono">NEXTSIM_PYTHON=/path/to/python ./start_web.sh</span>.</p>
+
+            <h3><span class="i18n-ko">WSL 에서 localhost 로 접속이 안 됩니다</span><span class="i18n-en">localhost doesn't work on WSL</span></h3>
+            <p class="i18n-ko">시작 스크립트가 기동 시 이를 감지해 WSL 포워딩 설정을 자동으로 고치려 시도합니다. 그래도 안 되면
+                터미널에 표시된 <span class="mono">http://&lt;IP&gt;:8000/</span> 주소로 접속하거나, Windows 쪽에서
+                <span class="mono">wsl --shutdown</span> 후 다시 시작하세요.</p>
+            <p class="i18n-en">The start script detects this and tries to repair WSL's forwarding configuration. If it
+                persists, use the <span class="mono">http://&lt;IP&gt;:8000/</span> address printed in the terminal, or
+                run <span class="mono">wsl --shutdown</span> from Windows and start again.</p>
+
+            <h3><span class="i18n-ko">WSL 에서 너무 느립니다</span><span class="i18n-en">It is very slow on WSL</span></h3>
+            <p class="i18n-ko">NextSIM 폴더가 <span class="mono">/mnt/c/...</span> 아래에 있으면 파일 I/O 가 매우 느립니다.
+                <span class="mono">~/</span> 아래로 옮기세요.</p>
+            <p class="i18n-en">File I/O under <span class="mono">/mnt/c/...</span> is very slow. Move the NextSIM
+                folder under <span class="mono">~/</span>.</p>
+
+            <h3><span class="i18n-ko">포트 8000 이 이미 사용 중입니다</span><span class="i18n-en">Port 8000 is already in use</span></h3>
+            <p class="i18n-ko">기본 설정이면 빈 포트를 자동으로 찾아 올라가고, 실제 주소는 기동 로그에 표시됩니다.
+                포트를 직접 정하려면 <span class="mono">WEB_PORT=8100 ./start_web.sh</span>.</p>
+            <p class="i18n-en">By default it scans for a free port and prints the address it settled on. To choose
+                one yourself: <span class="mono">WEB_PORT=8100 ./start_web.sh</span>.</p>
+
+            <h3><span class="i18n-ko">경고 때문에 빌드가 멈춥니다 (소스 빌드)</span><span class="i18n-en">A warning stops the build (source build)</span></h3>
+            <p class="i18n-ko"><span class="mono">-Werror</span> 가 기본이라 경고가 곧 오류입니다. 컴파일러 버전이
+                달라 새 경고가 나는 경우라면 CMake 옵션
+                <span class="mono">CUBBYFLOW_WARNINGS_AS_ERRORS=OFF</span> 로 끌 수 있습니다.</p>
+            <p class="i18n-en">Warnings are errors by default. If a different compiler version raises new ones, turn
+                it off with the CMake option
+                <span class="mono">CUBBYFLOW_WARNINGS_AS_ERRORS=OFF</span>.</p>
+
+            <h3><span class="i18n-ko"><span class="mono">NextSim_io</span> 를 못 찾는다고 나옵니다 (소스 빌드)</span><span class="i18n-en">It can't find <span class="mono">NextSim_io</span> (source build)</span></h3>
+            <p class="i18n-ko">서브모듈을 받지 않은 상태입니다.
+                <span class="mono">git submodule update --init --recursive</span> 를 실행하세요.
+                <span class="mono">--remote</span> 는 쓰지 마세요 — 고정된 커밋이 아니라 다른 브랜치를 가져옵니다.</p>
+            <p class="i18n-en">The submodules are not checked out. Run
+                <span class="mono">git submodule update --init --recursive</span>. Do not add
+                <span class="mono">--remote</span>; it would fetch a different branch instead of the pinned commit.</p>
+
+            <p class="i18n-ko">시뮬레이션 자체의 문제(차량이 안 나옴, 결과가 사라짐 등)는
+                <a href="index.html#troubleshooting">개요의 문제 해결</a>을 보세요.</p>
+            <p class="i18n-en">For problems with the simulation itself — no vehicles, a vanished result — see
+                <a href="index.html#troubleshooting">troubleshooting in the overview</a>.</p>
+        </section>
+
+        <footer>
+            NextSIM · KAIST AIxMobility Lab —
+            <a href="index.html"><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></a> ·
+            <a href="editor-guide.html">Editor</a> · <a href="visualizer-guide.html">Visualizer</a>
+        </footer>
+    </main>
+</div>
+
+<script>
+    // 스크롤 위치에 따라 좌측 목차 활성 표시
+    (function () {
+        const links = Array.from(document.querySelectorAll('#docNav a[href^="#"]'));
+        const byId = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+        const sections = Array.from(document.querySelectorAll('main section[id]'));
+        if (!('IntersectionObserver' in window) || !sections.length) return;
+        let activeId = null;
+        const setActive = (id) => {
+            if (id === activeId) return;
+            activeId = id;
+            links.forEach(a => a.classList.toggle('is-active', a === byId.get(id)));
+        };
+        const observer = new IntersectionObserver((entries) => {
+            const visible = entries.filter(e => e.isIntersecting)
+                .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+            if (visible.length) setActive(visible[0].target.id);
+        }, { rootMargin: '-10% 0px -70% 0px' });
+        sections.forEach(section => observer.observe(section));
+    })();
+
+    // 한/영 전환: 선택을 localStorage 에 남겨 세 문서가 같은 언어로 열린다.
+    (function () {
+        const root = document.documentElement;
+        const buttons = Array.from(document.querySelectorAll('.lang-switch button[data-lang]'));
+        if (!buttons.length) return;
+        const apply = (lang) => {
+            root.setAttribute('data-lang', lang);
+            root.setAttribute('lang', lang);
+            buttons.forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'));
+            try { window.localStorage.setItem('nextsim-doc-lang', lang); } catch (e) { /* 무시 */ }
+        };
+        apply(root.getAttribute('data-lang') === 'en' ? 'en' : 'ko');
+        buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
+    })();
+</script>
+

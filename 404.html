@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- GitHub Pages 는 어느 경로에서든 이 파일을 보여 준다. 상대 링크가 깨지지 않게 build.sh 가 배포 주소로 바꾼다. -->
+<base href="https://aixmobility.github.io/ai-mobility.github.io/">
+<title>NextSIM — 404</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script>
+    (function () {
+        var lang = null;
+        try {
+            var saved = window.localStorage.getItem('nextsim-doc-lang');
+            if (saved === 'en' || saved === 'ko') lang = saved;
+        } catch (e) { /* 무시 */ }
+        if (!lang) lang = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.setAttribute('lang', lang);
+    })();
+</script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&family=Space+Grotesk:wght@500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+    .notfound { min-height: 100svh; display: grid; place-items: center; text-align: center; padding-block: 64px; }
+    .notfound .wordmark { font-size: clamp(96px, 22vw, 200px); margin-bottom: 12px; }
+    .notfound p:not(.eyebrow) { color: var(--fog); margin: 0 auto 32px; max-width: 46ch; }
+    .notfound .eyebrow { margin-bottom: 20px; }
+</style>
+</head>
+<body>
+<main class="hero notfound">
+    <div class="hero__spot" aria-hidden="true"></div>
+    <div class="hero__grid" aria-hidden="true"></div>
+    <div class="wrap">
+        <p class="eyebrow eyebrow--lined">NextSIM</p>
+        <h1 class="wordmark">404</h1>
+        <p class="i18n-ko">찾는 페이지가 없습니다. 주소가 바뀌었거나 잘못 입력된 것 같습니다.</p>
+        <p class="i18n-en">That page doesn't exist. The address may have changed or been mistyped.</p>
+        <div class="hero__cta">
+            <a class="btn btn--violet" href="index.html"><span class="i18n-ko">홈으로</span><span class="i18n-en">Home</span></a>
+            <a class="btn btn--pill" href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+        </div>
+    </div>
+</main>
+</body>
+</html>

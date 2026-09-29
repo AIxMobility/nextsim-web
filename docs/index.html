@@ -1,0 +1,1042 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script>
+    /* 사이트 사본 전용 (build.sh 가 맨 앞에 붙인다): ?lang= 과 브라우저 언어를 따른다.
+       저장된 선택이 있으면 가이드 원래 스크립트가 그 값을 쓴다. */
+    (function () {
+        var fallback = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') {
+                lang = q;
+                window.localStorage.setItem('nextsim-doc-lang', q);
+            } else if (!window.localStorage.getItem('nextsim-doc-lang')) {
+                lang = fallback;
+            }
+        } catch (e) { lang = fallback; }
+        if (lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+        }
+    })();
+</script>
+<title>NextSIM Documentation</title>
+<script>
+    /* 언어 선택을 body 파싱 전에 적용해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       가이드 3편이 같은 키를 공유하므로 문서 사이를 오가도 언어가 유지된다. */
+    (function () {
+        try {
+            var saved = window.localStorage.getItem('nextsim-doc-lang');
+            if (saved === 'en' || saved === 'ko') document.documentElement.setAttribute('data-lang', saved);
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+    })();
+</script>
+<style>
+    /* ---------- 토큰: 라이트(기본) ---------- */
+    :root {
+        --bg: #f5f7fb;
+        --surface: #ffffff;
+        --surface-2: #eef2f9;
+        --ink: #182338;
+        --muted: #5b6a83;
+        --hairline: rgba(24, 35, 56, .13);
+        --accent: #2456c4;
+        --accent-soft: rgba(36, 86, 196, .1);
+        --accent-strong: #1c3f96;
+        --kbd-bg: #eef2f9;
+        --kbd-ink: #33415c;
+        --code-bg: #edf1f8;
+        --tip-bg: rgba(21, 128, 61, .08);
+        --tip-edge: #15803d;
+        --warn-bg: rgba(180, 83, 9, .09);
+        --warn-edge: #b45309;
+        --ws-network: #1d4ed8;
+        --ws-od: #0369a1;
+        --ws-mode: #b45309;
+        --ws-scenario: #6d28d9;
+        --ws-signal: #b91c1c;
+        --ws-station: #15803d;
+        --ws-ptline: #a16207;
+        --ws-events: #be185d;
+        --ws-infra: #0f766e;
+        --shadow: 0 10px 30px rgba(24, 35, 56, .07);
+    }
+
+    /* ---------- 다크: 시스템 설정 (명시적 light 선택이 이김) ---------- */
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            --bg: #0d1424;
+            --surface: #141d31;
+            --surface-2: #1a2440;
+            --ink: #e7edf9;
+            --muted: #97a6c1;
+            --hairline: rgba(231, 237, 249, .14);
+            --accent: #7da4f7;
+            --accent-soft: rgba(125, 164, 247, .14);
+            --accent-strong: #a9c3fb;
+            --kbd-bg: #1e2946;
+            --kbd-ink: #c3cfe6;
+            --code-bg: #1a2440;
+            --tip-bg: rgba(74, 222, 128, .1);
+            --tip-edge: #4ade80;
+            --warn-bg: rgba(251, 191, 36, .11);
+            --warn-edge: #fbbf24;
+            --ws-network: #93b4fd;
+            --ws-od: #67c3f0;
+            --ws-mode: #f2b26b;
+            --ws-scenario: #c4a7f7;
+            --ws-signal: #f49a9a;
+            --ws-station: #7fd8a2;
+            --ws-ptline: #e3cc72;
+            --ws-events: #f195c0;
+            --ws-infra: #5eead4;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+        }
+    }
+
+    /* ---------- 다크: 명시적 토글 ---------- */
+    :root[data-theme="dark"] {
+        --bg: #0d1424;
+        --surface: #141d31;
+        --surface-2: #1a2440;
+        --ink: #e7edf9;
+        --muted: #97a6c1;
+        --hairline: rgba(231, 237, 249, .14);
+        --accent: #7da4f7;
+        --accent-soft: rgba(125, 164, 247, .14);
+        --accent-strong: #a9c3fb;
+        --kbd-bg: #1e2946;
+        --kbd-ink: #c3cfe6;
+        --code-bg: #1a2440;
+        --tip-bg: rgba(74, 222, 128, .1);
+        --tip-edge: #4ade80;
+        --warn-bg: rgba(251, 191, 36, .11);
+        --warn-edge: #fbbf24;
+        --ws-network: #93b4fd;
+        --ws-od: #67c3f0;
+        --ws-mode: #f2b26b;
+        --ws-scenario: #c4a7f7;
+        --ws-signal: #f49a9a;
+        --ws-station: #7fd8a2;
+        --ws-ptline: #e3cc72;
+        --ws-events: #f195c0;
+        --ws-infra: #5eead4;
+        --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+    }
+
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
+        font-size: 15px;
+        line-height: 1.72;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    code, kbd, .file-chip, .mono {
+        font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, "Nanum Gothic Coding", monospace;
+    }
+
+    .shell {
+        display: grid;
+        grid-template-columns: 252px minmax(0, 1fr);
+        max-width: 1120px;
+        margin: 0 auto;
+        gap: 0 48px;
+        padding: 0 28px;
+    }
+
+    /* ---------- 사이드바 ---------- */
+    .nav {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100dvh;
+        overflow-y: auto;
+        padding: 34px 0 40px;
+        scrollbar-width: thin;
+    }
+
+    .nav__brand {
+        font-weight: 800;
+        font-size: 17px;
+        letter-spacing: -.01em;
+        margin-bottom: 2px;
+    }
+
+    .nav__brand small {
+        display: block;
+        font-weight: 500;
+        font-size: 11.5px;
+        color: var(--muted);
+        letter-spacing: .02em;
+        margin-top: 3px;
+    }
+
+    .nav__group {
+        margin-top: 22px;
+    }
+
+    .nav__group-label {
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .09em;
+        color: var(--muted);
+        margin-bottom: 6px;
+    }
+
+    .nav a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 10px;
+        margin-left: -10px;
+        border-radius: 7px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+
+    .nav a:hover { color: var(--ink); background: var(--accent-soft); }
+
+    .nav a.is-active {
+        color: var(--accent-strong);
+        background: var(--accent-soft);
+        font-weight: 600;
+    }
+
+    .nav a:focus-visible, a:focus-visible, button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+
+    .ws-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: 0 0 auto;
+        background: var(--dot, var(--muted));
+    }
+
+    /* ---------- 본문 ---------- */
+    .content {
+        padding: 40px 0 90px;
+        min-width: 0;
+    }
+
+    .masthead {
+        border-bottom: 1px solid var(--hairline);
+        padding-bottom: 26px;
+        margin-bottom: 8px;
+    }
+
+    .masthead h1 {
+        font-size: 31px;
+        font-weight: 800;
+        letter-spacing: -.022em;
+        margin: 0 0 10px;
+        text-wrap: balance;
+    }
+
+    .masthead p {
+        max-width: 62ch;
+        margin: 0;
+        color: var(--muted);
+        font-size: 15.5px;
+    }
+
+    .masthead .meta {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+    }
+
+    .chip {
+        display: inline-block;
+        font-size: 11.5px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        color: var(--muted);
+        border: 1px solid var(--hairline);
+    }
+
+    a.chip { text-decoration: none; }
+    a.chip:hover { color: var(--accent-strong); border-color: var(--accent); }
+
+    section {
+        padding-top: 44px;
+    }
+
+    section > h2 {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -.015em;
+        margin: 0 0 4px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-wrap: balance;
+    }
+
+    h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 30px 0 8px;
+        letter-spacing: -.008em;
+    }
+
+    p, ul, ol { max-width: 72ch; }
+    p { margin: 10px 0; }
+    ul, ol { margin: 8px 0; padding-left: 22px; }
+    li { margin: 4px 0; }
+    li::marker { color: var(--muted); }
+
+    a { color: var(--accent-strong); }
+
+    .ws-badge {
+        display: inline-flex;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .04em;
+        padding: 3px 10px;
+        border-radius: 999px;
+        color: var(--ws, var(--accent-strong));
+        background: color-mix(in srgb, var(--ws, var(--accent)) 13%, transparent);
+    }
+
+    .file-chip {
+        display: inline-block;
+        font-size: 12px;
+        background: var(--code-bg);
+        border: 1px solid var(--hairline);
+        border-radius: 6px;
+        padding: 1.5px 8px;
+        white-space: nowrap;
+    }
+
+    .section-files {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 2px 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    kbd {
+        display: inline-block;
+        min-width: 20px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--kbd-ink);
+        background: var(--kbd-bg);
+        border: 1px solid var(--hairline);
+        border-bottom-width: 2px;
+        border-radius: 6px;
+        padding: 1px 7px;
+    }
+
+    code {
+        font-size: 13px;
+        background: var(--code-bg);
+        border-radius: 5px;
+        padding: 1.5px 6px;
+    }
+
+    /* 콜아웃 */
+    .tip, .warn {
+        max-width: 72ch;
+        border-left: 3px solid var(--tip-edge);
+        background: var(--tip-bg);
+        border-radius: 0 10px 10px 0;
+        padding: 11px 16px;
+        margin: 14px 0;
+        font-size: 14px;
+    }
+
+    .warn { border-left-color: var(--warn-edge); background: var(--warn-bg); }
+
+    .tip strong, .warn strong { font-weight: 700; }
+
+    /* 표 */
+    .tablewrap { overflow-x: auto; margin: 14px 0; }
+
+    table {
+        border-collapse: collapse;
+        font-size: 13.5px;
+        min-width: 520px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px 14px 8px 0;
+        border-bottom: 1px solid var(--hairline);
+        vertical-align: top;
+    }
+
+    th {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        color: var(--muted);
+        font-weight: 700;
+    }
+
+    td.center, th.center { text-align: center; padding-right: 10px; }
+    .yes { color: var(--tip-edge); font-weight: 700; }
+    .no { color: var(--muted); }
+
+    /* 단계 리스트 */
+    ol.steps {
+        list-style: none;
+        counter-reset: step;
+        padding-left: 0;
+        margin: 12px 0;
+    }
+
+    ol.steps > li {
+        counter-increment: step;
+        position: relative;
+        padding-left: 38px;
+        margin: 10px 0;
+    }
+
+    ol.steps > li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 12.5px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 카드형 그리드 (파일 요약) */
+    .filegrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 10px;
+        margin: 14px 0;
+    }
+
+    .filecard {
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+        border-radius: 10px;
+        padding: 12px 14px;
+        box-shadow: var(--shadow);
+    }
+
+    .filecard .ws-badge { margin-bottom: 7px; }
+    .filecard div.files { font-size: 12px; display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+    .filecard p { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+    .divider { border: 0; border-top: 1px solid var(--hairline); margin: 44px 0 0; }
+
+    footer {
+        margin-top: 60px;
+        padding-top: 18px;
+        border-top: 1px solid var(--hairline);
+        color: var(--muted);
+        font-size: 12.5px;
+    }
+
+    @media (max-width: 900px) {
+        .shell { grid-template-columns: 1fr; gap: 0; }
+        .nav {
+            position: static;
+            height: auto;
+            padding-bottom: 0;
+        }
+        .nav__links { display: flex; flex-wrap: wrap; gap: 2px 10px; }
+        .nav__group { margin-top: 12px; }
+    }
+
+    /* ---------- 한/영 전환 ---------- */
+    /* 기본(속성 없음)은 한국어. JS 없이도 한국어 문서로 읽힌다. */
+    :root:not([data-lang="en"]) .i18n-en { display: none !important; }
+    :root[data-lang="en"] .i18n-ko { display: none !important; }
+
+    .lang-switch {
+        display: inline-flex;
+        margin-top: 10px;
+        border: 1px solid var(--hairline);
+        border-radius: 999px;
+        background: var(--surface);
+        overflow: hidden;
+    }
+    .lang-switch button {
+        appearance: none;
+        border: 0;
+        padding: 4px 12px;
+        background: transparent;
+        color: var(--muted);
+        font: inherit;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .02em;
+        cursor: pointer;
+    }
+    .lang-switch button + button { border-left: 1px solid var(--hairline); }
+    .lang-switch button:hover { color: var(--ink); }
+    .lang-switch button[aria-pressed="true"] {
+        background: var(--accent);
+        color: #fff;
+    }
+
+    /* ---------- Home: 두 도구로 가는 큰 카드 ---------- */
+    .toolgrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 14px;
+        margin: 18px 0 6px;
+    }
+    .toolcard {
+        display: block;
+        padding: 16px 18px;
+        border: 1px solid var(--hairline);
+        border-left: 3px solid var(--tc, var(--accent));
+        border-radius: 12px;
+        background: var(--surface);
+        box-shadow: var(--shadow);
+        color: inherit;
+        text-decoration: none;
+        transition: transform .12s ease, border-color .12s ease;
+    }
+    .toolcard:hover { transform: translateY(-2px); border-color: var(--tc, var(--accent)); }
+    .toolcard h3 { margin: 0 0 4px; font-size: 16px; color: var(--tc, var(--accent)); }
+    .toolcard code { font-size: 12px; }
+    .toolcard p { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
+    .toolcard .go { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 700; color: var(--tc, var(--accent)); }
+
+    /* 파이프라인 단계 표시 */
+    .pipeline {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        margin: 12px 0;
+        padding: 12px 14px;
+        border: 1px solid var(--hairline);
+        border-radius: 10px;
+        background: var(--surface-2);
+        font-size: 12.5px;
+    }
+    .pipeline b {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--surface);
+        border: 1px solid var(--hairline);
+        font-weight: 600;
+    }
+    .pipeline i { color: var(--muted); font-style: normal; }
+
+    /* 요구사항 / 명령 블록 */
+    pre.cmd {
+        margin: 10px 0;
+        padding: 12px 14px;
+        border: 1px solid var(--hairline);
+        border-radius: 8px;
+        background: var(--code-bg);
+        overflow-x: auto;
+        font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, "Nanum Gothic Coding", monospace;
+        font-size: 12.5px;
+        line-height: 1.6;
+    }
+    pre.cmd .c { color: var(--muted); }
+
+    /* ---------- 사용자 가이드 문서 묶음 (모든 가이드 공통) ---------- */
+    .nav a[aria-current="page"] {
+        color: var(--accent-strong);
+        background: var(--accent-soft);
+        font-weight: 700;
+    }
+    .site-home { display: inline-block; margin: 8px 0 2px; font-size: 12.5px; font-weight: 600; color: var(--muted); text-decoration: none; }
+    .site-home:hover { color: var(--accent-strong); }
+</style>
+<div class="shell">
+    <nav class="nav" id="docNav">
+        <div class="nav__brand">NextSIM<small><span class="i18n-ko">문서 · KAIST AIxMobility Lab</span><span class="i18n-en">Documentation · KAIST AIxMobility Lab</span></small></div>
+        <a class="site-home" href="../index.html"><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></a>
+        <div class="lang-switch" role="group" aria-label="Language / 언어">
+            <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
+            <button type="button" data-lang="en" aria-pressed="false">English</button>
+        </div>
+        <div class="nav__links">
+            <div class="nav__group doc-set">
+                <div class="nav__group-label"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></div>
+                <a href="index.html" aria-current="page"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
+                <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
+                <a href="editor-guide.html"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
+                <a href="visualizer-guide.html"><span class="i18n-ko">4. Visualizer 가이드</span><span class="i18n-en">4. Visualizer guide</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">소개</span><span class="i18n-en">Introduction</span></div>
+                <a href="#what"><span class="i18n-ko">NextSIM이란</span><span class="i18n-en">What NextSIM is</span></a>
+                <a href="#hybrid"><span class="i18n-ko">하이브리드 시뮬레이션</span><span class="i18n-en">Hybrid simulation</span></a>
+                <a href="#tools"><span class="i18n-ko">구성 요소</span><span class="i18n-en">The pieces</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">구조</span><span class="i18n-en">How it fits together</span></div>
+                <a href="#layout"><span class="i18n-ko">디렉터리 구조</span><span class="i18n-en">Directory layout</span></a>
+                <a href="#inputs"><span class="i18n-ko">입력 데이터 모델</span><span class="i18n-en">Input data model</span></a>
+                <a href="#pipeline"><span class="i18n-ko">실행 파이프라인</span><span class="i18n-en">Execution pipeline</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">참고</span><span class="i18n-en">Reference</span></div>
+                <a href="#troubleshooting"><span class="i18n-ko">문제 해결</span><span class="i18n-en">Troubleshooting</span></a>
+                <a href="#license"><span class="i18n-ko">라이선스</span><span class="i18n-en">License</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <div class="masthead">
+            <h1><span class="i18n-ko">NextSIM 문서</span><span class="i18n-en">NextSIM Documentation</span></h1>
+            <p class="i18n-ko">NextSIM은 KAIST AIxMobility Lab에서 개발한 <strong>하이브리드 교통 시뮬레이터</strong>입니다.
+                하나의 네트워크 안에서 링크마다 미시(micro)·중시(meso) 모형을 골라 쓸 수 있어, 분석이 필요한
+                구간만 차량 단위로 정밀하게 보면서 나머지는 빠르게 돌릴 수 있습니다.
+                이 문서는 NextSIM 의 구조를 소개하고, <a href="installation.html">설치</a>와 도구별 사용법은 이어지는 가이드에서 다룹니다.</p>
+            <p class="i18n-en">NextSIM is a <strong>hybrid traffic simulator</strong> from the KAIST AIxMobility Lab.
+                Within one network each link can run under a microscopic or mesoscopic model, so you can study the
+                stretch you care about vehicle by vehicle while the rest runs cheaply. This page explains how
+                NextSIM fits together; <a href="installation.html">installation</a> and the tool guides follow on from it.</p>
+            <div class="meta">
+                <span class="chip"><span class="i18n-ko">2026-08 기준</span><span class="i18n-en">As of 2026-08</span></span>
+                <span class="chip">C++17 · Python 3</span>
+                <span class="chip">Windows · Linux · WSL · Docker</span>
+                <span class="chip">KAIST AIxMobility Lab</span>
+            </div>
+        </div>
+
+        <div class="toolgrid">
+            <a class="toolcard" href="installation.html" style="--tc: var(--ws-station)">
+                <h3>🧰 <span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></h3>
+                <code>Windows · Docker · ZIP · source</code>
+                <p class="i18n-ko">사용 환경에 맞는 설치 방법을 고르고 <strong>첫 시뮬레이션</strong>까지 실행합니다.</p>
+                <p class="i18n-en">Pick the install method that fits your machine and run your <strong>first simulation</strong>.</p>
+                <span class="go"><span class="i18n-ko">설치 가이드 →</span><span class="i18n-en">Installation guide →</span></span>
+            </a>
+            <a class="toolcard" href="editor-guide.html" style="--tc: var(--ws-network)">
+                <h3>📘 Editor</h3>
+                <code>/editor</code>
+                <p class="i18n-ko">네트워크·수요·신호·대중교통·이벤트 등 시뮬레이션 <strong>입력</strong>을 지도 위에서
+                    만들고 편집합니다.</p>
+                <p class="i18n-en">Build and edit the simulation <strong>inputs</strong> — network, demand, signals,
+                    transit, events — directly on the map.</p>
+                <span class="go"><span class="i18n-ko">Editor 가이드 →</span><span class="i18n-en">Editor guide →</span></span>
+            </a>
+            <a class="toolcard" href="visualizer-guide.html" style="--tc: var(--ws-signal)">
+                <h3>🎬 Visualizer</h3>
+                <code>/visualizer</code>
+                <p class="i18n-ko">시뮬레이션을 실행하고 <strong>결과</strong>를 시간축을 따라 재생·분석합니다.</p>
+                <p class="i18n-en">Run a simulation and replay and analyse the <strong>result</strong> along the time axis.</p>
+                <span class="go"><span class="i18n-ko">Visualizer 가이드 →</span><span class="i18n-en">Visualizer guide →</span></span>
+            </a>
+        </div>
+
+        <!-- ================================================== 소개 -->
+        <section id="what">
+            <h2><span class="i18n-ko">NextSIM이란</span><span class="i18n-en">What NextSIM is</span></h2>
+            <p class="i18n-ko">NextSIM은 C++17로 작성된 교통 시뮬레이션 엔진과, 그 입력을 만들고 결과를 보는
+                브라우저 도구로 이루어져 있습니다. 도로망·수요·신호를 XML/JSON으로 정의하면 엔진이 차량의
+                움직임을 계산해 SQLite 결과 DB로 남기고, 브라우저에서 그 결과를 지도 위에 재생합니다.</p>
+            <p class="i18n-en">NextSIM is a C++17 traffic simulation engine plus browser tooling to author its
+                inputs and inspect its output. You describe the road network, demand, and signals in XML/JSON; the
+                engine computes vehicle movement and writes it to a SQLite result database; the browser replays it
+                on the map.</p>
+            <ul class="i18n-ko">
+                <li><strong>하이브리드 해상도</strong> — 링크별·시간대별로 micro/meso를 지정합니다.</li>
+                <li><strong>대중교통 통합</strong> — 버스·TRT·트램·철도 노선과 승객 수요를 함께 시뮬레이션합니다.</li>
+                <li><strong>신호 제어</strong> — 현시·플랜·시간대(TOD) 기반 신호와 실시간 제어 연동.</li>
+                <li><strong>검지기</strong> — E1(단면)·E2(구간)·E3(영역) 가상 검지기로 관측값을 수집합니다.</li>
+                <li><strong>외부 제어 (NextCI)</strong> — TCP로 스텝 단위 제어·상태 조회·체크포인트가 가능해
+                    강화학습이나 공동 시뮬레이션에 붙일 수 있습니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li><strong>Hybrid resolution</strong> — micro/meso is chosen per link and per time period.</li>
+                <li><strong>Transit built in</strong> — bus, TRT, tram, and rail lines with passenger demand.</li>
+                <li><strong>Signal control</strong> — phases, plans, and time-of-day schedules, with a hook for real-time control.</li>
+                <li><strong>Detectors</strong> — virtual E1 (point), E2 (section), and E3 (area) detectors collect observations.</li>
+                <li><strong>External control (NextCI)</strong> — step the simulation, query state, and checkpoint over TCP,
+                    for reinforcement learning or co-simulation.</li>
+            </ul>
+        </section>
+
+        <!-- ================================================== 하이브리드 -->
+        <section id="hybrid">
+            <h2><span class="i18n-ko">하이브리드 시뮬레이션</span><span class="i18n-en">Hybrid simulation</span></h2>
+            <p class="i18n-ko">두 모형은 <strong>상태를 표현하는 방식</strong>과 <strong>갱신 주기</strong>가 다릅니다.
+                어느 링크를 어느 모형으로 돌릴지는 <span class="mono">mode.xml</span> 이 기간별로 정합니다
+                (Editor의 Mode 워크스페이스).</p>
+            <p class="i18n-en">The two models differ in <strong>how they represent state</strong> and
+                <strong>how often they update</strong>. Which link runs under which model is set per period in
+                <span class="mono">mode.xml</span> (the Mode workspace in the Editor).</p>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th></th><th>Micro (미시)</th><th>Meso (중시)</th></tr>
+                <tr><td>상태</td><td>차량 개별 위치·속도·가속도, 차로 단위</td><td>링크를 셀로 나눠 셀별 <em>대수</em></td></tr>
+                <tr><td>거동</td><td>차량추종·차로변경 모형 (상태 기계)</td><td>셀 간 유입·유출 흐름 + 확률적 차로변경</td></tr>
+                <tr><td>갱신 주기</td><td>0.1초 (교차로 내부는 1.0초)</td><td>5.0초</td></tr>
+                <tr><td>얻는 것</td><td>차량별 궤적, 차로 수준 상세</td><td>링크 단위 집계 동태, 낮은 계산 비용</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th></th><th>Micro</th><th>Meso</th></tr>
+                <tr><td>State</td><td>Per-vehicle position, speed, acceleration, on discrete lanes</td><td>Link split into cells; vehicle <em>counts</em> per cell</td></tr>
+                <tr><td>Behaviour</td><td>Car-following and lane-change models (a mode machine)</td><td>Inter-cell flow plus probabilistic lane change</td></tr>
+                <tr><td>Update rate</td><td>0.1 s (1.0 s inside intersections)</td><td>5.0 s</td></tr>
+                <tr><td>What you get</td><td>Vehicle trajectories and lane-level detail</td><td>Aggregate link dynamics, cheaply</td></tr>
+            </table></div>
+            <p class="i18n-ko">전역 틱은 0.1초이고 meso 링크는 50틱마다 갱신됩니다 — 즉 micro 는 meso 보다 50배 자주
+                계산합니다. 경계에서는 차량 표현이 자동 변환되므로, 관심 구간만 micro 로 두고 나머지를 meso 로
+                두는 것이 일반적인 사용법입니다. meso 모형의 자유속도·후방파속도·용량 값은 브랜치의
+                <span class="mono">parameter_xml/param.xml</span> 에서 옵니다.</p>
+            <p class="i18n-en">The global tick is 0.1 s and meso links update every 50th tick — micro is computed 50×
+                more often. Vehicles convert between representations at the boundary automatically, so the usual
+                pattern is micro for the area under study and meso everywhere else. The meso model's free-flow speed,
+                backward wave speed, and capacity come from the branch's
+                <span class="mono">parameter_xml/param.xml</span>.</p>
+        </section>
+
+        <!-- ================================================== 구성 요소 -->
+        <section id="tools">
+            <h2><span class="i18n-ko">구성 요소</span><span class="i18n-en">The pieces</span></h2>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>구성 요소</th><th>정체</th><th>역할</th></tr>
+                <tr><td class="mono">UnitTestsSimulation</td><td>실행 파일</td>
+                    <td><strong>시뮬레이션 본체입니다.</strong> 이름이 "UnitTests" 로 시작하지만 테스트가 아니라
+                        실제 시뮬레이션을 돌리는 바이너리입니다 — 가장 헷갈리는 부분이니 기억해 두세요.</td></tr>
+                <tr><td class="mono">RouteGenerator</td><td>실행 파일</td>
+                    <td>차량·대중교통 경로를 미리 계산해 <span class="mono">Route.json</span>,
+                        <span class="mono">PTRoute.json</span>, <span class="mono">LinkRangeMap.json</span> 을 만듭니다.</td></tr>
+                <tr><td class="mono">PaxRouteGenerator</td><td>실행 파일</td>
+                    <td>대중교통 승객의 역쌍 경로(<span class="mono">PaxRoute.json</span>). PTRoute.json 을 쓰므로
+                        RouteGenerator 뒤에 돌려야 합니다.</td></tr>
+                <tr><td class="mono">DTAExperiment</td><td>실행 파일</td>
+                    <td>동적 통행배정(DTA) — 시뮬레이션을 반복해 경로 선택 비율을 수렴시킵니다.</td></tr>
+                <tr><td class="mono">UnitTestsAPI</td><td>실행 파일</td>
+                    <td>NextCI TCP 제어 서버. Python <span class="mono">nextci</span> 클라이언트가 이 바이너리에 붙습니다.</td></tr>
+                <tr><td class="mono">web_server.py</td><td>Flask 서버</td>
+                    <td>Editor·Visualizer 웹 UI를 서빙하고, 입력 파일 편집 API와 시뮬레이션 실행을 중계합니다.</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Component</th><th>What it is</th><th>Role</th></tr>
+                <tr><td class="mono">UnitTestsSimulation</td><td>executable</td>
+                    <td><strong>This is the simulator.</strong> Despite the "UnitTests" prefix it is not a test — it
+                        is the binary that runs a simulation. Worth remembering; it trips up everyone once.</td></tr>
+                <tr><td class="mono">RouteGenerator</td><td>executable</td>
+                    <td>Precomputes vehicle and transit routes into <span class="mono">Route.json</span>,
+                        <span class="mono">PTRoute.json</span>, and <span class="mono">LinkRangeMap.json</span>.</td></tr>
+                <tr><td class="mono">PaxRouteGenerator</td><td>executable</td>
+                    <td>Station-pair routes for transit passengers (<span class="mono">PaxRoute.json</span>). It
+                        consumes PTRoute.json, so it must run after RouteGenerator.</td></tr>
+                <tr><td class="mono">DTAExperiment</td><td>executable</td>
+                    <td>Dynamic traffic assignment — iterates the simulation until route shares converge.</td></tr>
+                <tr><td class="mono">UnitTestsAPI</td><td>executable</td>
+                    <td>The NextCI TCP control server; the Python <span class="mono">nextci</span> client attaches to it.</td></tr>
+                <tr><td class="mono">web_server.py</td><td>Flask server</td>
+                    <td>Serves the Editor and Visualizer, exposes the input-editing API, and drives simulation runs.</td></tr>
+            </table></div>
+            <div class="tip i18n-ko"><strong>배포판에 든 것.</strong> Windows 설치 파일과 Linux · WSL ZIP 에는 앞의 세 실행 파일만
+                들어 있습니다. ZIP 에서는 이름이 <span class="mono">nextsim</span>, <span class="mono">route-generator</span>,
+                <span class="mono">pax-route-generator</span> 로 바뀌어 있습니다.
+                <span class="mono">DTAExperiment</span>(동적 통행배정)와 <span class="mono">UnitTestsAPI</span>(NextCI · 체크포인트)는
+                <a href="installation.html#source">소스에서 빌드</a>해야 씁니다.</div>
+            <div class="tip i18n-en"><strong>What the packages contain.</strong> The Windows installer and the Linux · WSL ZIP
+                ship only the first three executables. In the ZIP they are renamed <span class="mono">nextsim</span>,
+                <span class="mono">route-generator</span>, and <span class="mono">pax-route-generator</span>.
+                <span class="mono">DTAExperiment</span> (dynamic assignment) and <span class="mono">UnitTestsAPI</span> (NextCI and
+                checkpoints) need a <a href="installation.html#source">build from source</a>.</div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- ================================================== 설치 (installation.html 로 이동) -->
+        <section id="install">
+            <h2><span class="i18n-ko">설치와 첫 실행</span><span class="i18n-en">Installing and a first run</span></h2>
+            <p class="i18n-ko">요구 사항, 설치 방법 네 가지(Windows 설치 파일 · Docker · Linux/WSL 배포판 · 소스 빌드),
+                환경 변수, 첫 시뮬레이션은 <a href="installation.html">설치 가이드</a>로 옮겼습니다.</p>
+            <p class="i18n-en">Requirements, the four install methods (Windows installer, Docker, Linux/WSL package,
+                building from source), environment variables, and a first simulation now live in the
+                <a href="installation.html">installation guide</a>.</p>
+            <!-- 예전 앵커로 들어온 링크를 위한 자리 -->
+            <span id="requirements"></span><span id="build"></span><span id="server"></span><span id="quickstart"></span>
+        </section>
+
+        <hr class="divider">
+
+        <!-- ================================================== 디렉터리 -->
+        <section id="layout">
+            <h2><span class="i18n-ko">디렉터리 구조</span><span class="i18n-en">Directory layout</span></h2>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>경로</th><th>내용</th></tr>
+                <tr><td class="mono">Captain/</td><td>C++17 시뮬레이션 엔진. <span class="mono">Sources/</span>·<span class="mono">Includes/</span> 가 엔진 본체, <span class="mono">Tests/</span> 가 실행 파일 5개, <span class="mono">Libraries/</span> 가 서브모듈 4개.</td></tr>
+                <tr><td class="mono">SimulationInput/</td><td>모든 입력. <span class="mono">config.txt</span>(활성 네트워크 지정) + <span class="mono">datasets/</span>(브랜치 트리) + <span class="mono">nodelink/</span>·<span class="mono">osm/</span>(가져오기 원본).</td></tr>
+                <tr><td class="mono">SimulationOutput/</td><td>실행 결과. 결과 DB와 궤적 청크 DB, <span class="mono">SimulationInfo.xml</span>, 그리고 웹 재생용 <span class="mono">visualization_data/</span>.</td></tr>
+                <tr><td class="mono">Visualizer/WebVisualization/</td><td>브라우저 도구 일체 — <span class="mono">editor/</span>, <span class="mono">visualizer/</span>, <span class="mono">js/</span>, 그리고 이 <span class="mono">docs/</span>.</td></tr>
+                <tr><td class="mono">web_server.py</td><td>통합 Flask 서버 (웹 UI + 편집 API + 실행 중계).</td></tr>
+                <tr><td class="mono">NextCI/</td><td>외부 제어용 Python 클라이언트 패키지. 스텝 단위 제어·상태 조회·체크포인트.</td></tr>
+                <tr><td class="mono">Scripts/</td><td>전처리·CI 스크립트 (보행 네트워크 생성, 철도역 정렬 등).</td></tr>
+                <tr><td class="mono">background_traffic_generator/</td><td><span class="mono">backgroundTraffic.xml</span> 생성 도구 — 네트워크가 빈 상태로 시작하지 않도록 초기 교통량을 만듭니다.</td></tr>
+                <tr><td class="mono">Main/</td><td>오프라인 분석 스크립트 (numpy·pandas·geopandas 필요). 경로가 예전 구조로 하드코딩된 부분이 있어 그대로는 안 돌 수 있습니다.</td></tr>
+                <tr><td class="mono">document/</td><td>내부 설계 노트 (개발자용, 사용자 문서 아님).</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Path</th><th>Contents</th></tr>
+                <tr><td class="mono">Captain/</td><td>The C++17 engine. <span class="mono">Sources/</span> and <span class="mono">Includes/</span> are the engine itself, <span class="mono">Tests/</span> holds the five executables, <span class="mono">Libraries/</span> the four submodules.</td></tr>
+                <tr><td class="mono">SimulationInput/</td><td>Every input. <span class="mono">config.txt</span> (which network is active) plus <span class="mono">datasets/</span> (the branch tree) and <span class="mono">nodelink/</span> / <span class="mono">osm/</span> (raw import sources).</td></tr>
+                <tr><td class="mono">SimulationOutput/</td><td>Run output: the result DB and trajectory chunk DBs, <span class="mono">SimulationInfo.xml</span>, and <span class="mono">visualization_data/</span> for web replay.</td></tr>
+                <tr><td class="mono">Visualizer/WebVisualization/</td><td>All the browser tooling — <span class="mono">editor/</span>, <span class="mono">visualizer/</span>, <span class="mono">js/</span>, and this <span class="mono">docs/</span>.</td></tr>
+                <tr><td class="mono">web_server.py</td><td>The unified Flask server (web UI, editing API, run orchestration).</td></tr>
+                <tr><td class="mono">NextCI/</td><td>Python client package for external control: stepping, state queries, checkpoints.</td></tr>
+                <tr><td class="mono">Scripts/</td><td>Preprocessing and CI scripts (footpath network builder, rail station alignment, and so on).</td></tr>
+                <tr><td class="mono">background_traffic_generator/</td><td>Builds <span class="mono">backgroundTraffic.xml</span> so a network does not start empty.</td></tr>
+                <tr><td class="mono">Main/</td><td>Offline analysis scripts (needs numpy/pandas/geopandas). Some paths are hard-coded to an older layout, so they may not run as-is.</td></tr>
+                <tr><td class="mono">document/</td><td>Internal design notes — developer material, not user documentation.</td></tr>
+            </table></div>
+        </section>
+
+        <!-- ================================================== 입력 모델 -->
+        <section id="inputs">
+            <h2><span class="i18n-ko">입력 데이터 모델</span><span class="i18n-en">Input data model</span></h2>
+            <p class="i18n-ko">엔진은 실행 인자로 경로를 받지 않습니다. 대신
+                <span class="mono">SimulationInput/config.txt</span> 두 줄이 <strong>어느 데이터셋을 돌릴지</strong>를
+                정합니다.</p>
+            <p class="i18n-en">The binaries take no path arguments. Instead, two lines in
+                <span class="mono">SimulationInput/config.txt</span> decide <strong>which dataset runs</strong>.</p>
+<pre class="cmd">network_name=bucheon
+branch=mesopt</pre>
+            <p class="i18n-ko">이 값이 곧 경로가 됩니다:</p>
+            <p class="i18n-en">Those values become the paths directly:</p>
+<pre class="cmd i18n-ko">SimulationInput/datasets/&lt;branch&gt;/network_xml_&lt;network_name&gt;/   <span class="c"># 네트워크별 입력</span>
+SimulationInput/datasets/&lt;branch&gt;/parameter_xml/                <span class="c"># 브랜치 공용 파라미터</span></pre>
+<pre class="cmd i18n-en">SimulationInput/datasets/&lt;branch&gt;/network_xml_&lt;network_name&gt;/   <span class="c"># per-network inputs</span>
+SimulationInput/datasets/&lt;branch&gt;/parameter_xml/                <span class="c"># shared across the branch</span></pre>
+            <p class="i18n-ko">여기서 <strong>브랜치</strong>는 git 브랜치가 아니라 실험 계열을 묶는 폴더입니다
+                (<span class="mono">mesopt</span>, <span class="mono">publictransit</span>,
+                <span class="mono">TRT</span>, <span class="mono">V2X</span>, <span class="mono">curve</span>).
+                한 브랜치는 <span class="mono">parameter_xml/</span> 하나를 공유하고 그 아래 네트워크 폴더를 여럿 둡니다.
+                Visualizer·Editor 에서 폴더를 고르면 이 파일이 자동으로 갱신되므로 직접 편집할 일은 거의 없습니다.</p>
+            <p class="i18n-en">A <strong>branch</strong> here is not a git branch — it is a folder grouping a family
+                of experiments (<span class="mono">mesopt</span>, <span class="mono">publictransit</span>,
+                <span class="mono">TRT</span>, <span class="mono">V2X</span>, <span class="mono">curve</span>). One
+                branch shares a single <span class="mono">parameter_xml/</span> across the network folders under it.
+                Choosing a folder in the Editor or Visualizer rewrites this file for you, so you rarely touch it.</p>
+            <div class="warn i18n-ko"><strong>config.txt 는 시작할 때 한 번만 읽힙니다.</strong> 실행 중에 바꿔도
+                그 실행에는 반영되지 않습니다.</div>
+            <div class="warn i18n-en"><strong>config.txt is read once at startup.</strong> Changing it mid-run has no
+                effect on that run.</div>
+
+            <h3><span class="i18n-ko">브랜치 공용 — parameter_xml/</span><span class="i18n-en">Shared per branch — parameter_xml/</span></h3>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>파일</th><th>내용</th></tr>
+                <tr><td class="mono">param.xml</td><td>meso 모형 파라미터(용량·차량길이·후방파속도)와 시뮬레이션 파라미터(micro/meso 시간 간격, 황색시간 등).</td></tr>
+                <tr><td class="mono">vehicletypes.xml</td><td>차종 정의 — 길이·가속·감속·자유속도·동력원 비율 등. OD 매트릭스의 차종이 여기를 참조합니다.</td></tr>
+                <tr><td class="mono">recordMode.xml</td><td>결과 DB에 어떤 테이블·항목을 기록할지.</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>File</th><th>Contents</th></tr>
+                <tr><td class="mono">param.xml</td><td>Meso model parameters (capacity, vehicle length, backward wave speed) and simulation parameters (micro/meso time steps, yellow time, …).</td></tr>
+                <tr><td class="mono">vehicletypes.xml</td><td>Vehicle type definitions — length, acceleration, deceleration, free-flow speed, powertrain mix. The OD matrix's types refer to these.</td></tr>
+                <tr><td class="mono">recordMode.xml</td><td>Which tables and fields get recorded into the result database.</td></tr>
+            </table></div>
+
+            <h3><span class="i18n-ko">네트워크별 — network_xml_&lt;name&gt;/</span><span class="i18n-en">Per network — network_xml_&lt;name&gt;/</span></h3>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>파일</th><th>내용</th><th>편집</th></tr>
+                <tr><td class="mono">network.xml</td><td>도로망 — 노드·링크·차로·커넥션</td><td>Editor · Network</td></tr>
+                <tr><td class="mono">odmatrix.xml</td><td>차량 수요 — 기·종점 쌍과 시간대별 교통량</td><td>Editor · OD Matrix</td></tr>
+                <tr><td class="mono">mode.xml</td><td><strong>링크별 micro/meso 배정</strong> (기간별)</td><td>Editor · Mode</td></tr>
+                <tr><td class="mono">config_scenario.json</td><td>시나리오 — 시작 시각·길이, 쓸 OD/TOD, 기능 토글</td><td>Editor · Scenario</td></tr>
+                <tr><td class="mono">signal.xml · signalTOD.xml</td><td>신호 현시·플랜과 시간대 배정</td><td>Editor · Signal</td></tr>
+                <tr><td class="mono">roadStation.xml · railStation.xml</td><td>버스 정류장, 철도역과 출구</td><td>Editor · Station</td></tr>
+                <tr><td class="mono">roadPTline.xml · railPTline.xml</td><td>버스/TRT/트램 노선, 철도 노선과 시각표</td><td>Editor · PT Line</td></tr>
+                <tr><td class="mono">detector.xml</td><td>검지기 E1·E2·E3</td><td>Editor · Infrastructure</td></tr>
+                <tr><td class="mono">events.xml</td><td>돌발상황·공사·속도제한 이벤트</td><td>Editor · Events</td></tr>
+                <tr><td class="mono">passenger.xml</td><td>대중교통 승객 수요 (역 쌍 단위)</td><td>—</td></tr>
+                <tr><td class="mono">agents.xml</td><td>경로가 지정된 개별 차량 (OD 대신 쓰는 선택 입력)</td><td>—</td></tr>
+                <tr><td class="mono">backgroundTraffic.xml</td><td>시작 시점 링크별 배경 교통량</td><td>생성 도구</td></tr>
+                <tr><td class="mono">footpathNetwork.xml</td><td>보행 네트워크 (역·정류장 접근)</td><td>Scripts</td></tr>
+                <tr><td class="mono">Route.json · PTRoute.json · LinkRangeMap.json</td><td><strong>RouteGenerator 가 생성</strong> — 경로와 공간 색인</td><td>자동</td></tr>
+                <tr><td class="mono">PaxRoute.json</td><td><strong>PaxRouteGenerator 가 생성</strong> — 승객 역쌍 경로</td><td>자동</td></tr>
+                <tr><td class="mono">basemap.json</td><td>위성 배경 좌표 정합 (웹 도구 전용, 엔진은 안 읽음)</td><td>Editor · Display</td></tr>
+                <tr><td class="mono">.backups/</td><td>편집기가 저장 직전 파일을 자동 보관 (파일별 최근 10개)</td><td>자동</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>File</th><th>Contents</th><th>Edited in</th></tr>
+                <tr><td class="mono">network.xml</td><td>Road network — nodes, links, lanes, connections</td><td>Editor · Network</td></tr>
+                <tr><td class="mono">odmatrix.xml</td><td>Vehicle demand — origin/destination pairs and flows per time slice</td><td>Editor · OD Matrix</td></tr>
+                <tr><td class="mono">mode.xml</td><td><strong>Per-link micro/meso assignment</strong>, per period</td><td>Editor · Mode</td></tr>
+                <tr><td class="mono">config_scenario.json</td><td>Scenarios — start and length, which OD/TOD to use, feature toggles</td><td>Editor · Scenario</td></tr>
+                <tr><td class="mono">signal.xml · signalTOD.xml</td><td>Signal phases and plans, and their time-of-day assignment</td><td>Editor · Signal</td></tr>
+                <tr><td class="mono">roadStation.xml · railStation.xml</td><td>Bus stops; rail stations and their exits</td><td>Editor · Station</td></tr>
+                <tr><td class="mono">roadPTline.xml · railPTline.xml</td><td>Bus/TRT/tram lines; rail lines with timetables</td><td>Editor · PT Line</td></tr>
+                <tr><td class="mono">detector.xml</td><td>E1, E2, and E3 detectors</td><td>Editor · Infrastructure</td></tr>
+                <tr><td class="mono">events.xml</td><td>Incidents, work zones, and speed-limit events</td><td>Editor · Events</td></tr>
+                <tr><td class="mono">passenger.xml</td><td>Transit passenger demand between station pairs</td><td>—</td></tr>
+                <tr><td class="mono">agents.xml</td><td>Individually scripted vehicles with fixed routes (optional, instead of OD)</td><td>—</td></tr>
+                <tr><td class="mono">backgroundTraffic.xml</td><td>Initial per-link vehicle loading at t=0</td><td>generator tool</td></tr>
+                <tr><td class="mono">footpathNetwork.xml</td><td>Walking network for station access</td><td>Scripts</td></tr>
+                <tr><td class="mono">Route.json · PTRoute.json · LinkRangeMap.json</td><td><strong>Generated by RouteGenerator</strong> — routes and a spatial index</td><td>automatic</td></tr>
+                <tr><td class="mono">PaxRoute.json</td><td><strong>Generated by PaxRouteGenerator</strong> — station-pair passenger routes</td><td>automatic</td></tr>
+                <tr><td class="mono">basemap.json</td><td>Satellite basemap georeference (web tooling only; the engine never reads it)</td><td>Editor · Display</td></tr>
+                <tr><td class="mono">.backups/</td><td>The editor's automatic pre-save copies (10 most recent per file)</td><td>automatic</td></tr>
+            </table></div>
+        </section>
+
+        <!-- ================================================== 파이프라인 -->
+        <section id="pipeline">
+            <h2><span class="i18n-ko">실행 파이프라인</span><span class="i18n-en">Execution pipeline</span></h2>
+            <div class="pipeline">
+                <b>config.txt</b><i>→</i><b>RouteGenerator</b><i>→</i><b>PaxRouteGenerator</b><i>→</i><b>UnitTestsSimulation</b><i>→</i><b>DB load</b>
+            </div>
+            <ol class="steps i18n-ko">
+                <li><strong>config.txt 갱신</strong> — 고른 브랜치·네트워크를 씁니다. 바이너리에 경로를 넘기는 방법은 이것뿐입니다.</li>
+                <li><strong>RouteGenerator</strong> (기본 켜짐) — <span class="mono">Route.json</span> 등 경로 파일을 만듭니다.
+                    입력을 바꾸지 않았다면 꺼서 시간을 아낄 수 있습니다.</li>
+                <li><strong>PaxRouteGenerator</strong> (기본 꺼짐) — 대중교통 승객 경로. PTRoute.json 을 쓰므로 앞 단계 뒤에 옵니다.</li>
+                <li><strong>UnitTestsSimulation</strong> — 시뮬레이션 본체. 진행률은 표준 출력의 사이클 수로 표시됩니다.</li>
+                <li><strong>DB load</strong> — 위 단계와 <em>동시에</em> 돌면서, 엔진이 마무리한 결과 조각을
+                    재생용으로 색인합니다. 그래서 시뮬레이션이 끝나면 곧바로 재생할 수 있습니다.</li>
+            </ol>
+            <ol class="steps i18n-en">
+                <li><strong>Write config.txt</strong> with the chosen branch and network — this is the only way a path
+                    reaches the binaries.</li>
+                <li><strong>RouteGenerator</strong> (on by default) — produces <span class="mono">Route.json</span> and
+                    friends. Turn it off to save time when the inputs have not changed.</li>
+                <li><strong>PaxRouteGenerator</strong> (off by default) — transit passenger routes; it consumes
+                    PTRoute.json, so it follows the previous step.</li>
+                <li><strong>UnitTestsSimulation</strong> — the simulation itself. Progress comes from the cycle count
+                    on its standard output.</li>
+                <li><strong>DB load</strong> — runs <em>concurrently</em> with the step above, indexing each result
+                    chunk as the engine finalizes it, so replay is ready almost as soon as the run ends.</li>
+            </ol>
+            <p class="i18n-ko">한 번에 하나의 실행만 진행되며, 실행 이력은 서버에 남아 페이지를 새로 열어도 확인할 수 있습니다.</p>
+            <p class="i18n-en">Only one run proceeds at a time, and the job history is persisted on the server so it
+                survives reopening the page.</p>
+
+            <h3><span class="i18n-ko">결과물</span><span class="i18n-en">What a run produces</span></h3>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>파일</th><th>내용</th></tr>
+                <tr><td class="mono">simulation_output.db</td><td>주 결과 DB — 셀·유출·정류장·신호·검지기 이벤트와 차량 통계.</td></tr>
+                <tr><td class="mono">vehicle_events_&lt;시작&gt;_&lt;끝&gt;.db</td><td>차량 궤적 청크. 크기가 차면 잘라 새 파일로 넘어가므로 여러 개가 생깁니다.</td></tr>
+                <tr><td class="mono">SimulationInfo.xml</td><td>실행 요약 — 총 소요 시간, 사이클 수, 실제로 쓰인 micro/meso 링크 집합.</td></tr>
+                <tr><td class="mono">visualization_data/</td><td>웹 재생용 색인 (메타데이터 + 시간·공간 타일).</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>File</th><th>Contents</th></tr>
+                <tr><td class="mono">simulation_output.db</td><td>Main result DB — cell, sink, station, signal, and detector events plus vehicle statistics.</td></tr>
+                <tr><td class="mono">vehicle_events_&lt;start&gt;_&lt;end&gt;.db</td><td>Trajectory chunks. The file rotates once it grows past a size limit, so a run leaves several.</td></tr>
+                <tr><td class="mono">SimulationInfo.xml</td><td>Run summary — total runtime, cycle count, and the micro/meso link sets actually used.</td></tr>
+                <tr><td class="mono">visualization_data/</td><td>The replay index (metadata plus time and space tiles).</td></tr>
+            </table></div>
+        </section>
+
+        <hr class="divider">
+
+        <!-- ================================================== 문제 해결 -->
+        <section id="troubleshooting">
+            <h2><span class="i18n-ko">문제 해결</span><span class="i18n-en">Troubleshooting</span></h2>
+
+            <p class="i18n-ko">빌드·설치·접속 문제(AVX2, 서브모듈, 실행 파일 없음, WSL localhost, 포트)는
+                <a href="installation.html#troubleshooting">설치 문제 해결</a>에 있습니다.</p>
+            <p class="i18n-en">Build, install, and connection problems (AVX2, submodules, missing binaries, WSL
+                localhost, ports) are covered under <a href="installation.html#troubleshooting">install troubleshooting</a>.</p>
+
+            <h3><span class="i18n-ko">이전 실행 결과가 사라졌습니다</span><span class="i18n-en">My previous result disappeared</span></h3>
+            <p class="i18n-ko">엔진은 시작할 때 <span class="mono">SimulationOutput/</span> 의 이전 결과 DB를 지웁니다.
+                의도된 동작이니, 남겨야 하는 결과는 실행 전에 복사해 두세요.</p>
+            <p class="i18n-en">The engine clears the earlier result databases in
+                <span class="mono">SimulationOutput/</span> on startup. That is by design — copy anything you need to
+                keep before starting a new run.</p>
+
+            <h3><span class="i18n-ko">시뮬레이션에 차량이 하나도 안 나옵니다</span><span class="i18n-en">The simulation produces no vehicles</span></h3>
+            <p class="i18n-ko">시나리오의 <span class="mono">odMatrixID</span> 가 실제로 수요가 들어 있는 매트릭스를
+                가리키는지 먼저 확인하세요 — OD 매트릭스가 여러 개일 때 가장 흔한 원인입니다. 그리고
+                기·종점 쌍에 경로가 있어야 하므로 RouteGenerator 를 한 번은 돌려야 합니다.</p>
+            <p class="i18n-en">First check that the scenario's <span class="mono">odMatrixID</span> points at a
+                matrix that actually contains demand — the most common cause when a file holds several. Also, each
+                OD pair needs a route, so RouteGenerator has to have run at least once.</p>
+        </section>
+
+        <!-- ================================================== 라이선스 -->
+        <section id="license">
+            <h2><span class="i18n-ko">라이선스와 문의</span><span class="i18n-en">License and contact</span></h2>
+            <p class="i18n-ko">NextSIM 은 KAIST(한국과학기술원) AIxMobility Lab 에서 개발했습니다.
+                <strong>상업적 이용은 허용되지 않습니다.</strong> 자세한 문의는 연구실로 연락 주세요 —
+                <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">aimobility.kaist.ac.kr</a>.</p>
+            <p class="i18n-en">NextSIM is developed by the AIxMobility Lab at KAIST.
+                <strong>Commercial use is not permitted.</strong> For enquiries, please contact the lab —
+                <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">aimobility.kaist.ac.kr</a>.</p>
+            <p class="i18n-ko">Copyright © 2019 Hwasoo Yeo, Yeeun Kim, Sujae Jeon, Seongjin Choi, Justin Kim, Jae Hwan Jeong.</p>
+            <p class="i18n-en">Copyright © 2019 Hwasoo Yeo, Yeeun Kim, Sujae Jeon, Seongjin Choi, Justin Kim, Jae Hwan Jeong.</p>
+        </section>
+
+        <footer>
+            NextSIM Documentation · KAIST AIxMobility Lab —
+            <a href="installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a> ·
+            <a href="editor-guide.html">Editor</a> · <a href="visualizer-guide.html">Visualizer</a>
+        </footer>
+    </main>
+</div>
+
+<script>
+    // 스크롤 위치에 따라 좌측 목차 활성 표시
+    (function () {
+        const links = Array.from(document.querySelectorAll('#docNav a[href^="#"]'));
+        const byId = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+        const sections = Array.from(document.querySelectorAll('main section[id]'));
+        if (!('IntersectionObserver' in window) || !sections.length) return;
+        let activeId = null;
+        const setActive = (id) => {
+            if (id === activeId) return;
+            activeId = id;
+            links.forEach(a => a.classList.toggle('is-active', a === byId.get(id)));
+        };
+        const observer = new IntersectionObserver((entries) => {
+            const visible = entries.filter(e => e.isIntersecting)
+                .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+            if (visible.length) setActive(visible[0].target.id);
+        }, { rootMargin: '-10% 0px -70% 0px' });
+        sections.forEach(section => observer.observe(section));
+    })();
+
+    // 한/영 전환: 선택을 localStorage 에 남겨 세 문서가 같은 언어로 열린다.
+    (function () {
+        const root = document.documentElement;
+        const buttons = Array.from(document.querySelectorAll('.lang-switch button[data-lang]'));
+        if (!buttons.length) return;
+        const apply = (lang) => {
+            root.setAttribute('data-lang', lang);
+            root.setAttribute('lang', lang);
+            buttons.forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'));
+            try { window.localStorage.setItem('nextsim-doc-lang', lang); } catch (e) { /* 무시 */ }
+        };
+        apply(root.getAttribute('data-lang') === 'en' ? 'en' : 'ko');
+        buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
+    })();
+</script>

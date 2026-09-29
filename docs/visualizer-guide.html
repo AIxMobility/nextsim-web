@@ -1,0 +1,1216 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script>
+    /* 사이트 사본 전용 (build.sh 가 맨 앞에 붙인다): ?lang= 과 브라우저 언어를 따른다.
+       저장된 선택이 있으면 가이드 원래 스크립트가 그 값을 쓴다. */
+    (function () {
+        var fallback = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') {
+                lang = q;
+                window.localStorage.setItem('nextsim-doc-lang', q);
+            } else if (!window.localStorage.getItem('nextsim-doc-lang')) {
+                lang = fallback;
+            }
+        } catch (e) { lang = fallback; }
+        if (lang) {
+            document.documentElement.setAttribute('data-lang', lang);
+            document.documentElement.setAttribute('lang', lang);
+        }
+    })();
+</script>
+<title>NextSIM Visualizer Guide</title>
+<script>
+    /* 언어 선택을 body 파싱 전에 적용해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       기본값은 ko 이며, CSS 가 :root:not([data-lang="en"]) 로 한국어를 기본 표시하므로
+       JS 가 꺼져 있어도 한국어 문서로 읽힌다. */
+    (function () {
+        try {
+            var saved = window.localStorage.getItem('nextsim-doc-lang');
+            if (saved === 'en' || saved === 'ko') document.documentElement.setAttribute('data-lang', saved);
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+    })();
+</script>
+
+<style>
+    /* ---------- 토큰: 라이트(기본) ---------- */
+    :root {
+        --bg: #f5f7fb;
+        --surface: #ffffff;
+        --surface-2: #eef2f9;
+        --ink: #182338;
+        --muted: #5b6a83;
+        --hairline: rgba(24, 35, 56, .13);
+        --accent: #2456c4;
+        --accent-soft: rgba(36, 86, 196, .1);
+        --accent-strong: #1c3f96;
+        --kbd-bg: #eef2f9;
+        --kbd-ink: #33415c;
+        --code-bg: #edf1f8;
+        --tip-bg: rgba(21, 128, 61, .08);
+        --tip-edge: #15803d;
+        --warn-bg: rgba(180, 83, 9, .09);
+        --warn-edge: #b45309;
+        --hue-run: #1d4ed8;
+        --hue-play: #0369a1;
+        --hue-display: #b45309;
+        --hue-inspect: #15803d;
+        --hue-summary: #6d28d9;
+        --shadow: 0 10px 30px rgba(24, 35, 56, .07);
+    }
+
+    /* ---------- 다크: 시스템 설정 (명시적 light 선택이 이김) ---------- */
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+            --bg: #0d1424;
+            --surface: #141d31;
+            --surface-2: #1a2440;
+            --ink: #e7edf9;
+            --muted: #97a6c1;
+            --hairline: rgba(231, 237, 249, .14);
+            --accent: #7da4f7;
+            --accent-soft: rgba(125, 164, 247, .14);
+            --accent-strong: #a9c3fb;
+            --kbd-bg: #1e2946;
+            --kbd-ink: #c3cfe6;
+            --code-bg: #1a2440;
+            --tip-bg: rgba(74, 222, 128, .1);
+            --tip-edge: #4ade80;
+            --warn-bg: rgba(251, 191, 36, .11);
+            --warn-edge: #fbbf24;
+            --hue-run: #93b4fd;
+            --hue-play: #67c3f0;
+            --hue-display: #f2b26b;
+            --hue-inspect: #7fd8a2;
+            --hue-summary: #c4a7f7;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+        }
+    }
+
+    /* ---------- 다크: 명시적 토글 ---------- */
+    :root[data-theme="dark"] {
+        --bg: #0d1424;
+        --surface: #141d31;
+        --surface-2: #1a2440;
+        --ink: #e7edf9;
+        --muted: #97a6c1;
+        --hairline: rgba(231, 237, 249, .14);
+        --accent: #7da4f7;
+        --accent-soft: rgba(125, 164, 247, .14);
+        --accent-strong: #a9c3fb;
+        --kbd-bg: #1e2946;
+        --kbd-ink: #c3cfe6;
+        --code-bg: #1a2440;
+        --tip-bg: rgba(74, 222, 128, .1);
+        --tip-edge: #4ade80;
+        --warn-bg: rgba(251, 191, 36, .11);
+        --warn-edge: #fbbf24;
+        --hue-run: #93b4fd;
+        --hue-play: #67c3f0;
+        --hue-display: #f2b26b;
+        --hue-inspect: #7fd8a2;
+        --hue-summary: #c4a7f7;
+        --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+    }
+
+    body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", "Malgun Gothic", system-ui, sans-serif;
+        font-size: 15px;
+        line-height: 1.72;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    code, kbd, .file-chip, .mono {
+        font-family: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, "Nanum Gothic Coding", monospace;
+    }
+
+    .shell {
+        display: grid;
+        grid-template-columns: 252px minmax(0, 1fr);
+        max-width: 1120px;
+        margin: 0 auto;
+        gap: 0 48px;
+        padding: 0 28px;
+    }
+
+    .nav {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100dvh;
+        overflow-y: auto;
+        padding: 34px 0 40px;
+        scrollbar-width: thin;
+    }
+
+    .nav__brand {
+        font-weight: 800;
+        font-size: 17px;
+        letter-spacing: -.01em;
+        margin-bottom: 2px;
+    }
+
+    .nav__brand small {
+        display: block;
+        font-weight: 500;
+        font-size: 11.5px;
+        color: var(--muted);
+        letter-spacing: .02em;
+        margin-top: 3px;
+    }
+
+    .nav__group { margin-top: 22px; }
+
+    .nav__group-label {
+        font-size: 10.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: .09em;
+        color: var(--muted);
+        margin-bottom: 6px;
+    }
+
+    .nav a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 10px;
+        margin-left: -10px;
+        border-radius: 7px;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+
+    .nav a:hover { color: var(--ink); background: var(--accent-soft); }
+
+    .nav a.is-active {
+        color: var(--accent-strong);
+        background: var(--accent-soft);
+        font-weight: 600;
+    }
+
+    .nav a:focus-visible, a:focus-visible, button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+    }
+
+    .ws-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: 0 0 auto;
+        background: var(--dot, var(--muted));
+    }
+
+    .content { padding: 40px 0 90px; min-width: 0; }
+
+    .masthead {
+        border-bottom: 1px solid var(--hairline);
+        padding-bottom: 26px;
+        margin-bottom: 8px;
+    }
+
+    .masthead h1 {
+        font-size: 31px;
+        font-weight: 800;
+        letter-spacing: -.022em;
+        margin: 0 0 10px;
+        text-wrap: balance;
+    }
+
+    .masthead p {
+        max-width: 62ch;
+        margin: 0;
+        color: var(--muted);
+        font-size: 15.5px;
+    }
+
+    .masthead .meta {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+    }
+
+    .chip {
+        display: inline-block;
+        font-size: 11.5px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: var(--surface-2);
+        color: var(--muted);
+        border: 1px solid var(--hairline);
+    }
+
+    a.chip { text-decoration: none; }
+    a.chip:hover { color: var(--accent-strong); border-color: var(--accent); }
+
+    section { padding-top: 44px; }
+
+    section > h2 {
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: -.015em;
+        margin: 0 0 4px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-wrap: balance;
+    }
+
+    h3 {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 30px 0 8px;
+        letter-spacing: -.008em;
+    }
+
+    p, ul, ol { max-width: 72ch; }
+    p { margin: 10px 0; }
+    ul, ol { margin: 8px 0; padding-left: 22px; }
+    li { margin: 4px 0; }
+    li::marker { color: var(--muted); }
+
+    a { color: var(--accent-strong); }
+
+    .ws-badge {
+        display: inline-flex;
+        align-items: center;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: .04em;
+        padding: 3px 10px;
+        border-radius: 999px;
+        color: var(--ws, var(--accent-strong));
+        background: color-mix(in srgb, var(--ws, var(--accent)) 13%, transparent);
+    }
+
+    .file-chip {
+        display: inline-block;
+        font-size: 12px;
+        background: var(--code-bg);
+        border: 1px solid var(--hairline);
+        border-radius: 6px;
+        padding: 1.5px 8px;
+        white-space: nowrap;
+    }
+
+    kbd {
+        display: inline-block;
+        min-width: 20px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--kbd-ink);
+        background: var(--kbd-bg);
+        border: 1px solid var(--hairline);
+        border-bottom-width: 2px;
+        border-radius: 6px;
+        padding: 1px 7px;
+    }
+
+    code {
+        font-size: 13px;
+        background: var(--code-bg);
+        border-radius: 5px;
+        padding: 1.5px 6px;
+    }
+
+    .tip, .warn {
+        max-width: 72ch;
+        border-left: 3px solid var(--tip-edge);
+        background: var(--tip-bg);
+        border-radius: 0 10px 10px 0;
+        padding: 11px 16px;
+        margin: 14px 0;
+        font-size: 14px;
+    }
+
+    .warn { border-left-color: var(--warn-edge); background: var(--warn-bg); }
+
+    .tablewrap { overflow-x: auto; margin: 14px 0; }
+
+    table {
+        border-collapse: collapse;
+        font-size: 13.5px;
+        min-width: 520px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px 14px 8px 0;
+        border-bottom: 1px solid var(--hairline);
+        vertical-align: top;
+    }
+
+    th {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: .05em;
+        color: var(--muted);
+        font-weight: 700;
+    }
+
+    ol.steps {
+        list-style: none;
+        counter-reset: step;
+        padding-left: 0;
+        margin: 12px 0;
+    }
+
+    ol.steps > li {
+        counter-increment: step;
+        position: relative;
+        padding-left: 38px;
+        margin: 10px 0;
+    }
+
+    ol.steps > li::before {
+        content: counter(step);
+        position: absolute;
+        left: 0;
+        top: 1px;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 12.5px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 혼잡도 범례 재현 */
+    .ci-scale {
+        display: flex;
+        gap: 0;
+        max-width: 420px;
+        margin: 12px 0;
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--hairline);
+    }
+
+    .ci-scale span {
+        flex: 1;
+        padding: 7px 4px 6px;
+        text-align: center;
+        font-size: 10.5px;
+        font-weight: 700;
+        color: #1a2333;
+        background: var(--sw, #ccc);
+        line-height: 1.35;
+    }
+
+    .ci-scale span em { display: block; font-style: normal; font-weight: 500; font-size: 10px; }
+
+    .divider { border: 0; border-top: 1px solid var(--hairline); margin: 44px 0 0; }
+
+    footer {
+        margin-top: 60px;
+        padding-top: 18px;
+        border-top: 1px solid var(--hairline);
+        color: var(--muted);
+        font-size: 12.5px;
+    }
+
+    @media (max-width: 900px) {
+        .shell { grid-template-columns: 1fr; gap: 0; }
+        .nav { position: static; height: auto; padding-bottom: 0; }
+        .nav__links { display: flex; flex-wrap: wrap; gap: 2px 10px; }
+        .nav__group { margin-top: 12px; }
+    }
+
+    /* ---------- 한/영 전환 ---------- */
+    /* 기본(속성 없음)은 한국어. JS 없이도 한국어 문서로 읽힌다. */
+    :root:not([data-lang="en"]) .i18n-en { display: none !important; }
+    :root[data-lang="en"] .i18n-ko { display: none !important; }
+
+    .lang-switch {
+        display: inline-flex;
+        margin-top: 10px;
+        border: 1px solid var(--hairline);
+        border-radius: 999px;
+        background: var(--surface);
+        overflow: hidden;
+    }
+    .lang-switch button {
+        appearance: none;
+        border: 0;
+        padding: 4px 12px;
+        background: transparent;
+        color: var(--muted);
+        font: inherit;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .02em;
+        cursor: pointer;
+    }
+    .lang-switch button + button { border-left: 1px solid var(--hairline); }
+    .lang-switch button:hover { color: var(--ink); }
+    .lang-switch button[aria-pressed="true"] {
+        background: var(--accent);
+        color: #fff;
+    }
+
+    /* ---------- 사용자 가이드 문서 묶음 (모든 가이드 공통) ---------- */
+    .nav a[aria-current="page"] {
+        color: var(--accent-strong);
+        background: var(--accent-soft);
+        font-weight: 700;
+    }
+    .site-home { display: inline-block; margin: 8px 0 2px; font-size: 12.5px; font-weight: 600; color: var(--muted); text-decoration: none; }
+    .site-home:hover { color: var(--accent-strong); }
+</style>
+
+<div class="shell">
+    <nav class="nav" id="docNav">
+        <div class="nav__brand">NextSIM Visualizer<small><span class="i18n-ko">사용자 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">User Guide · KAIST AIxMobility Lab</span></small></div>
+        <a class="site-home" href="../index.html"><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></a>
+        <div class="lang-switch" role="group" aria-label="Language / 언어">
+            <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
+            <button type="button" data-lang="en" aria-pressed="false">English</button>
+        </div>
+        <div class="nav__links">
+            <div class="nav__group doc-set">
+                <div class="nav__group-label"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></div>
+                <a href="index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
+                <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
+                <a href="editor-guide.html"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
+                <a href="visualizer-guide.html" aria-current="page"><span class="i18n-ko">4. Visualizer 가이드</span><span class="i18n-en">4. Visualizer guide</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></div>
+                <a href="#overview"><span class="i18n-ko">Visualizer 소개</span><span class="i18n-en">What it is</span></a>
+                <a href="#getting-started" style="--dot: var(--hue-run)"><span class="ws-dot"></span><span class="i18n-ko">실행과 결과 로드</span><span class="i18n-en">Run &amp; load results</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">재생과 표시</span><span class="i18n-en">Playback &amp; display</span></div>
+                <a href="#playback" style="--dot: var(--hue-play)"><span class="ws-dot"></span><span class="i18n-ko">재생 컨트롤</span><span class="i18n-en">Playback controls</span></a>
+                <a href="#display" style="--dot: var(--hue-display)"><span class="ws-dot"></span><span class="i18n-ko">표시 옵션</span><span class="i18n-en">Display options</span></a>
+                <a href="#bims" style="--dot: var(--hue-inspect)"><span class="ws-dot"></span><span class="i18n-ko">버스 정보(BIMS)</span><span class="i18n-en">BIMS</span></a>
+                <a href="#basemap"><span class="i18n-ko">위성 배경</span><span class="i18n-en">Satellite basemap</span></a>
+                <a href="#map-search"><span class="i18n-ko">지도 탐색과 검색</span><span class="i18n-en">Navigation &amp; search</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">분석</span><span class="i18n-en">Analysis</span></div>
+                <a href="#inspect" style="--dot: var(--hue-inspect)"><span class="ws-dot"></span><span class="i18n-ko">정보 조회</span><span class="i18n-en">Inspecting objects</span></a>
+                <a href="#summary" style="--dot: var(--hue-summary)"><span class="ws-dot"></span><span class="i18n-ko">시나리오 요약</span><span class="i18n-en">Scenario summary</span></a>
+                <a href="#input-files"><span class="i18n-ko">입력 파일 점검</span><span class="i18n-en">Inspect input files</span></a>
+            </div>
+            <div class="nav__group">
+                <div class="nav__group-label"><span class="i18n-ko">참고</span><span class="i18n-en">Reference</span></div>
+                <a href="#faq"><span class="i18n-ko">FAQ · 문제 해결</span><span class="i18n-en">FAQ &amp; troubleshooting</span></a>
+                <a class="doc-cross" href="editor-guide.html"
+                   data-local="editor-guide.html"
+                  >↗ <span class="i18n-ko">Editor 가이드</span><span class="i18n-en">Editor guide</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <div class="masthead">
+            <h1><span class="i18n-ko">NextSIM Visualizer 사용자 가이드</span><span class="i18n-en">NextSIM Visualizer User Guide</span></h1>
+            <p class="i18n-ko">NextSIM 시뮬레이션을 실행하고, 결과를 지도 위에서 재생·분석하는 도구입니다.
+                차량 하나하나의 움직임부터 링크 단위 혼잡도, 신호 현시, 대중교통 운행, 이벤트
+                영향까지 시간을 되감아 가며 확인할 수 있습니다.</p>
+            <p class="i18n-en">Runs a NextSIM simulation and replays the result on the map. You can step
+                back and forth through time to inspect anything from the motion of a single vehicle to
+                link-level congestion, signal phases, transit operation, and the effect of incidents.</p>
+            <div class="meta">
+                <span class="chip"><span class="i18n-ko">2026-08 기준</span><span class="i18n-en">As of 2026-08</span></span>
+                <span class="chip"><span class="i18n-ko">브라우저 기반 (Chrome 권장)</span><span class="i18n-en">Browser based (Chrome recommended)</span></span>
+                <a class="chip doc-cross" href="editor-guide.html"
+                   data-local="editor-guide.html"
+                  >📘 <span class="i18n-ko">입력 편집은 Editor 가이드 →</span><span class="i18n-en">Editing inputs? See the Editor guide →</span></a>
+            </div>
+        </div>
+
+        <!-- ================================================== 개요 -->
+        <section id="overview">
+            <h2><span class="i18n-ko">Visualizer 소개</span><span class="i18n-en">What the Visualizer is</span></h2>
+            <p class="i18n-ko">NextSIM 웹 도구는 두 부분으로 나뉩니다. <strong>Editor</strong>(<code>/editor</code>)는
+                네트워크·수요·신호 같은 <em>입력</em>을 만들고, <strong>Visualizer</strong>(<code>/visualizer</code>)는
+                시뮬레이션을 돌려 나온 <em>결과 DB</em>를 재생합니다. 이 문서는 Visualizer를 다룹니다 —
+                입력 편집 방법은 <a class="doc-cross" href="editor-guide.html"
+                data-local="editor-guide.html"
+               >Editor
+                가이드</a>를 보세요.</p>
+            <p class="i18n-en">The NextSIM web tooling comes in two halves. The <strong>Editor</strong>
+                (<code>/editor</code>) authors the <em>inputs</em> — network, demand, signals — and the
+                <strong>Visualizer</strong> (<code>/visualizer</code>) replays the <em>result database</em>
+                a simulation produced. This document covers the Visualizer; for authoring inputs see the
+                <a class="doc-cross" href="editor-guide.html"
+                data-local="editor-guide.html"
+               >Editor
+                guide</a>.</p>
+            <p class="i18n-ko">화면 구성: 모든 기능이 상단바에 모여 있습니다 —
+                <strong>Inputs</strong>(폴더·시나리오 선택), <strong>Run</strong>(시뮬레이션 실행·DB 로드),
+                재생 컨트롤(Play/Stop·Speed·Timestep), 검색, <strong>Display</strong>(표시 옵션),
+                <strong>Help</strong>. 중앙 지도에서 결과가 재생되고, 링크·노드·차량·정류장을 클릭하면
+                상세 정보 패널이 열립니다. 폴더를 아직 고르지 않았다면 지도 자리에
+                <em>No network loaded</em> 카드와 <strong>Open Inputs</strong> 버튼이 표시됩니다.</p>
+            <p class="i18n-en">Layout: everything lives in the top bar — <strong>Inputs</strong> (folder and
+                scenario selection), <strong>Run</strong> (launch a simulation, load a DB), the playback
+                controls (Play/Stop, Speed, Timestep), search, <strong>Display</strong>, and
+                <strong>Help</strong>. Results replay on the central map; clicking a link, node, vehicle,
+                or station opens a detail panel. Before you pick a folder, the map area shows a
+                <em>No network loaded</em> card with an <strong>Open Inputs</strong> button.</p>
+        </section>
+
+        <!-- ================================================== 시작 -->
+        <section id="getting-started">
+            <h2><span class="ws-badge" style="--ws: var(--hue-run)">Setup</span> <span class="i18n-ko">실행과 결과 로드</span><span class="i18n-en">Running and loading results</span></h2>
+            <ol class="steps i18n-ko">
+                <li>NextSIM 을 설치해 서버를 띄운 뒤(<a href="installation.html">설치 가이드</a>)
+                    <code>http://localhost:8000/visualizer</code> 를 엽니다 (<code>/</code> 기본 경로도 Visualizer).</li>
+                <li>상단바 <strong>Inputs</strong>를 눌러 <strong>Folder</strong>에서 네트워크 폴더를
+                    선택합니다 — 지도에 네트워크가 그려집니다.</li>
+                <li>상단바 <strong>Run</strong> 패널을 열고 <strong>Target scenario</strong>에서 재생할
+                    시나리오를 선택합니다 — 시간 범위 등 시나리오 정보가 바로 아래 카드에 표시됩니다.
+                    (시나리오 선택은 Inputs 가 아니라 Run 패널에 있습니다.)</li>
+            </ol>
+            <ol class="steps i18n-en">
+                <li>Install NextSIM and start its server (<a href="installation.html">installation guide</a>), then open
+                    <code>http://localhost:8000/visualizer</code> (the bare <code>/</code> path also serves the Visualizer).</li>
+                <li>Click <strong>Inputs</strong> in the top bar and pick a network folder under
+                    <strong>Folder</strong> — the network is drawn on the map.</li>
+                <li>Open the <strong>Run</strong> panel in the top bar and pick the scenario to replay under
+                    <strong>Target scenario</strong> — its time range and other details appear in the card just
+                    below. (Scenario selection lives in the Run panel, not in Inputs.)</li>
+            </ol>
+
+            <div class="warn i18n-ko"><strong>시나리오 선택은 재생 전에.</strong> 이벤트의 시각은
+                <em>선택한 시나리오의 시작 시각 기준 오프셋</em>으로 해석됩니다. 시나리오를 바꾸면 이벤트가
+                자동으로 다시 해석되므로, 재생 전에 목표 시나리오를 먼저 고르는 편이 안전합니다.</div>
+            <div class="warn i18n-en"><strong>Pick the scenario before you replay.</strong> Event times are
+                resolved as an <em>offset from the selected scenario's start time</em>. Switching scenarios
+                re-resolves them automatically, so choose the target scenario first.</div>
+
+            <h3><span class="i18n-ko">방법 A — 에디터에서 만든 입력으로 바로 실행</span><span class="i18n-en">Option A — run straight from edited inputs</span></h3>
+            <p class="i18n-ko">상단바 <strong>Run</strong> 버튼을 누르면 실행 패널이 열립니다.</p>
+            <p class="i18n-en">The <strong>Run</strong> button in the top bar opens the run panel.</p>
+            <ul class="i18n-ko">
+                <li><strong>Route generation</strong> — 실행 전에 경로를 생성할지 선택합니다:
+                    <strong>RouteGenerator</strong>(차량·PT 경로), <strong>PaxRouteGenerator</strong>
+                    (대중교통 승객의 역쌍 경로). 입력을 바꾸지 않았다면 꺼서 시간을 아낄 수 있습니다.</li>
+                <li><strong>Scenario time</strong> — 선택한 시나리오의 시작·종료 시각을 실행 직전에
+                    바로 조정할 수 있습니다.</li>
+                <li><strong>Run Selected Network</strong> — 파이프라인을 실행합니다:
+                    <strong>RouteGenerator</strong> → (<strong>PaxRouteGenerator</strong>, 켠 경우) →
+                    <strong>Simulation</strong> → <strong>DB load</strong>.
+                    단계별 진행 상태와 진행률 막대가 표시되고, 완료되면 결과가 자동으로 로드됩니다.
+                    (엔진 빌드는 웹 파이프라인에서 빠졌습니다 — 미리 빌드된 바이너리를 씁니다.)</li>
+                <li><strong>Cancel Run</strong> — 실행 중에만 나타나는 버튼으로, 확인을 거쳐 진행 중인 단계의
+                    프로세스를 즉시 종료합니다. 부분 출력은 버려지고 마지막으로 완료된 결과는 그대로 남습니다.
+                    시뮬레이션이 이미 끝나 결과를 마무리하는 <strong>DB load</strong> 단계는 취소할 수 없습니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li><strong>Route generation</strong> — whether to regenerate routes first:
+                    <strong>RouteGenerator</strong> (vehicle and transit routes) and
+                    <strong>PaxRouteGenerator</strong> (station-pair routes for transit passengers).
+                    Turn them off to save time when the inputs have not changed.</li>
+                <li><strong>Scenario time</strong> — adjust the selected scenario's start and end time
+                    right before launching.</li>
+                <li><strong>Run Selected Network</strong> — runs the pipeline
+                    <strong>RouteGenerator</strong> → (<strong>PaxRouteGenerator</strong>, if enabled) →
+                    <strong>Simulation</strong> → <strong>DB load</strong>. Per-stage status and a progress bar
+                    are shown, and the result loads automatically when it finishes. (Building the engine is not
+                    part of the web pipeline — it uses the pre-built binary.)</li>
+                <li><strong>Cancel Run</strong> — shown only while a run is in progress; after a confirmation it
+                    stops the current stage's process immediately. Partial output is discarded and the last
+                    completed result stays available. The final <strong>DB load</strong> stage, which only
+                    packages an already finished simulation, cannot be cancelled.</li>
+            </ul>
+
+            <p class="i18n-ko"><strong>Live preview (delayed)</strong> 를 켜 두면(기본) 시뮬레이션이 끝나기 전에도
+                <strong>이미 디스크에 확정된 구간</strong>부터 재생할 수 있습니다. 타임라인 옆에
+                <span class="mono">PREVIEW · playable to N s</span> 배지가 뜨고, 확정 구간이 늘어나면 슬라이더 범위도
+                따라 늘어납니다. 엔진의 실제 진행보다 이벤트 청크 하나(수십 초)만큼 늦게 따라가며, 재생이 구간 끝에
+                닿으면 멈추지 않고 새 데이터를 기다립니다. 정류장 승객 배지는 미리보기에서는 표시되지 않고 최종 로드
+                때 나타납니다. 실행이 끝나면 최종 결과가 같은 시점에서 이어서 로드됩니다.</p>
+            <p class="i18n-en">With <strong>Live preview (delayed)</strong> on (the default) you can start replaying
+                the <strong>part of the run already confirmed on disk</strong> before the simulation finishes. A
+                <span class="mono">PREVIEW · playable to N s</span> badge appears next to the timeline and the
+                slider range grows as more of the run is confirmed. The preview lags the engine by about one event
+                chunk (tens of seconds); when playback reaches the end of the confirmed range it waits for new data
+                instead of stopping. Station passenger badges are not shown in the preview; they appear with the
+                final load, which resumes at the same time position when the run completes.</p>
+
+            <div class="warn i18n-ko"><strong>실행 중에는 네트워크를 바꿀 수 없습니다.</strong> Inputs 의 폴더 선택은
+                실행이 끝날 때까지 잠깁니다 — 바꾸면 실행 중인 네트워크의 궤적이 다른 지도 위에 그려지기 때문입니다.
+                결과에는 네트워크 폴더·시나리오·작업 ID가 함께 기록되며(스토어 metadata 와 결과 DB 의
+                <span class="mono">NextSimRunInfo</span> 테이블), 결과를 열 때 지도의 네트워크와 다르면 재생을 막고
+                알림을 띄웁니다. 그 자리에서 기록된 네트워크로 전환해 이어 열 수 있습니다.</div>
+            <div class="warn i18n-en"><strong>The network cannot be changed mid-run.</strong> The folder selector in
+                Inputs is locked until the run finishes — switching would draw the running network's trajectories on
+                a different map. Every result records its network folder, scenario and job id (in the store metadata
+                and in the <span class="mono">NextSimRunInfo</span> table of the result DB); when a result is opened
+                on a different network, playback is blocked and a dialog explains the mismatch, offering to switch to
+                the recorded network and continue.</div>
+
+            <div class="warn i18n-ko"><strong>실행 중에는 페이지를 새로고침하지 마세요.</strong> 서버 작업은
+                계속 돌지만 화면이 그 작업에 다시 붙지 않습니다 — 진행률도, 완료 후 자동 결과 로드도 사라집니다.
+                그 경우 결과 DB를 아래 <em>방법 B</em>로 직접 열어야 합니다.</div>
+            <div class="warn i18n-en"><strong>Don't reload the page mid-run.</strong> The server job keeps going,
+                but the UI does not reattach to it — you lose the progress display and the automatic result load.
+                You would then have to open the result DB by hand via <em>Option B</em> below.</div>
+
+            <h3><span class="i18n-ko">방법 B — 기존 결과 DB 열기</span><span class="i18n-en">Option B — open an existing result DB</span></h3>
+            <p class="i18n-ko">같은 <strong>Run</strong> 패널의 <strong>Select DB file</strong>로 이미 갖고 있는 결과
+                파일(<span class="mono">.db / .sqlite / .sqlite3</span>)을 선택합니다. 이 경로는 파일을
+                <strong>통째로 읽어들인 뒤</strong> 재생이 시작되며 <strong>512&nbsp;MB</strong> 까지만 받습니다.
+                시간 구간별 스트리밍 로드는 서버에서 직접 실행한 경우(방법 A)에만 동작합니다.</p>
+            <p class="i18n-en">Use <strong>Select DB file</strong> in the same <strong>Run</strong> panel to open
+                a result file you already have (<span class="mono">.db / .sqlite / .sqlite3</span>). This path
+                reads the <strong>whole file</strong> before playback can start and is capped at
+                <strong>512&nbsp;MB</strong>. Chunked streaming over the time axis only applies to runs launched
+                from the server (Option A).</p>
+        </section>
+
+        <!-- ================================================== 재생 -->
+        <section id="playback">
+            <h2><span class="ws-badge" style="--ws: var(--hue-play)">Playback</span> <span class="i18n-ko">재생 컨트롤</span><span class="i18n-en">Playback controls</span></h2>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>컨트롤</th><th>동작</th></tr>
+                <tr><td><strong>Play / Stop</strong></td><td>재생 시작·정지. 정지하면 처음으로 돌아가지 않고 현재 시점에 멈춥니다.</td></tr>
+                <tr><td><strong>Speed</strong></td><td>재생 배속 0.5× ~ 32×. <strong>1.0× = 실시간</strong>(시뮬레이션 1초를 1초에 재생).
+                        배속은 브라우저에 저장되어 결과를 다시 열어도 유지됩니다.</td></tr>
+                <tr><td><strong>Timestep 슬라이더</strong></td>
+                    <td>드래그해 원하는 시점으로 즉시 이동(스크럽). 우측 표기는 <strong>시나리오 시작 이후 경과 초</strong>
+                        입니다(<span class="mono">Timestep: 123.4s</span>) — 벽시계 시각이 아닙니다.</td></tr>
+                <tr><td><kbd>Space</kbd></td><td>재생 / 일시정지</td></tr>
+                <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>1초 뒤로 / 앞으로</td></tr>
+                <tr><td><kbd>Shift</kbd>+<kbd>←</kbd> / <kbd>→</kbd></td><td>10초 뒤로 / 앞으로</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Control</th><th>What it does</th></tr>
+                <tr><td><strong>Play / Stop</strong></td><td>Start and stop playback. Stopping holds the current time rather than rewinding.</td></tr>
+                <tr><td><strong>Speed</strong></td><td>Playback rate, 0.5× to 32×. <strong>1.0× is real time</strong> (one simulated second per second).
+                        The choice persists in the browser across result loads.</td></tr>
+                <tr><td><strong>Timestep slider</strong></td>
+                    <td>Drag to scrub to any point in time. The readout on the right is
+                        <strong>elapsed seconds since the scenario start</strong>
+                        (<span class="mono">Timestep: 123.4s</span>), not a wall-clock time.</td></tr>
+                <tr><td><kbd>Space</kbd></td><td>Play / pause</td></tr>
+                <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>Step 1 s back / forward</td></tr>
+                <tr><td><kbd>Shift</kbd>+<kbd>←</kbd> / <kbd>→</kbd></td><td>Step 10 s back / forward</td></tr>
+            </table></div>
+            <p class="i18n-ko">재생 중에는 차량이 이동하고, 신호등이 교차로 정지선 위 색 박스(적/황/녹)로 표시되며,
+                진행 중인 이벤트 구간이 링크 위에 패턴으로 나타납니다. 단축키는 입력칸에 커서가 있지 않고
+                결과 DB가 로드된 상태에서만 동작합니다. 많이 축소한 상태에서는 차량이 히트맵으로 대체되니
+                <a href="#faq">FAQ</a> 를 참고하세요.</p>
+            <p class="i18n-en">During playback vehicles move, signals appear as red/yellow/green boxes above each
+                intersection stop line, and any event active at that moment is drawn as a hatched band on its link.
+                The shortcuts work only with a result DB loaded and no text field focused. When zoomed far out,
+                vehicles give way to the heatmap — see the <a href="#faq">FAQ</a>.</p>
+        </section>
+
+        <!-- ================================================== 표시 -->
+        <section id="display">
+            <h2><span class="ws-badge" style="--ws: var(--hue-display)">Display</span> <span class="i18n-ko">표시 옵션</span><span class="i18n-en">Display options</span></h2>
+            <p class="i18n-ko">상단바 <strong>Display</strong> 버튼을 누르면 표시 옵션 패널이 열립니다.</p>
+            <p class="i18n-en">The <strong>Display</strong> button in the top bar opens the display panel.</p>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>그룹</th><th>옵션</th><th>내용</th></tr>
+                <tr><td rowspan="2"><strong>Labels</strong></td>
+                    <td><strong>Node IDs</strong></td><td>노드 ID 라벨</td></tr>
+                <tr><td><strong>Link IDs</strong></td>
+                    <td>링크 ID 라벨. 화면에 보이는 것만 그리며, 너무 축소해 600개가 넘으면 표시를 보류합니다 — 확대하면 다시 나타납니다.</td></tr>
+                <tr><td rowspan="2"><strong>Vehicles</strong></td>
+                    <td><strong>Micro / Meso vehicles</strong></td>
+                    <td>미시/중시 구간 차량 표시를 각각 켜고 끕니다. 체크박스 옆 색 견본은 <em>라벨 장식</em>이며,
+                        지도 위 차량 색은 아래 <strong>Color by</strong> 만 따릅니다.</td></tr>
+                <tr><td><strong>Color by</strong></td>
+                    <td>차량 색 기준 — <span class="mono">Vehicle type</span> 또는 <span class="mono">Powertrain</span>. 범례가 함께 표시됩니다.</td></tr>
+                <tr><td rowspan="5"><strong>Overlays</strong></td>
+                    <td><strong>Meso link state</strong></td><td>meso 구간 링크를 혼잡지수(CI)에 따라 색칠합니다. CI 범례가 함께 나타납니다.</td></tr>
+                <tr><td><strong>Link heatmap</strong></td>
+                    <td>재생 시점의 밀도(·속도) 기준으로 링크를 혼잡도 색으로 칠합니다. 데이터가 있는 링크만 칠해지며,
+                        같은 CI 범례를 씁니다.</td></tr>
+                <tr><td><strong>Signal connections</strong></td><td>교차로 커넥션을 현재 신호 상태에 따라 녹색/적색으로 색칠합니다.</td></tr>
+                <tr><td><strong>Station pax</strong></td>
+                    <td>정류장 위에 대기 승객 수 배지를 표시합니다. 배지가 겹치지 않도록 <strong>많이 축소하면
+                        자동으로 숨겨집니다</strong> — 확대하면 다시 나타납니다.</td></tr>
+                <tr><td><strong>Events</strong></td><td>진행 중 이벤트 구간 오버레이 표시.</td></tr>
+                <tr><td><strong>Canvas</strong></td><td><strong>Background</strong></td>
+                    <td>지도 배경색 (스크린샷·발표 자료용). ↺ 로 기본값 복원.</td></tr>
+                <tr><td colspan="3" class="mono" style="font-size:12px">
+                    표시 옵션·배경색·위성 배경 설정은 브라우저에 저장되어 다음 접속에도 유지됩니다.</td></tr>
+                <tr><td><strong>Satellite basemap</strong></td><td colspan="2"><a href="#basemap">아래 절 참고</a> — 위성/항공사진 배경.</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Group</th><th>Option</th><th>What it shows</th></tr>
+                <tr><td rowspan="2"><strong>Labels</strong></td>
+                    <td><strong>Node IDs</strong></td><td>Node ID labels.</td></tr>
+                <tr><td><strong>Link IDs</strong></td>
+                    <td>Link ID labels. Only on-screen labels are drawn; past about 600 they are withheld until you zoom in.</td></tr>
+                <tr><td rowspan="2"><strong>Vehicles</strong></td>
+                    <td><strong>Micro / Meso vehicles</strong></td>
+                    <td>Show or hide vehicles in the micro and meso parts of the network independently. The colour
+                        swatch beside each checkbox is <em>label decoration</em>; on-map vehicle colour follows
+                        <strong>Color by</strong> alone.</td></tr>
+                <tr><td><strong>Color by</strong></td>
+                    <td>What vehicle color encodes — <span class="mono">Vehicle type</span> or <span class="mono">Powertrain</span>. A legend follows the choice.</td></tr>
+                <tr><td rowspan="5"><strong>Overlays</strong></td>
+                    <td><strong>Meso link state</strong></td><td>Colors meso links by congestion index (CI); brings up the CI legend.</td></tr>
+                <tr><td><strong>Link heatmap</strong></td>
+                    <td>Colors links by congestion from the density (and speed, where available) at the current
+                        time. Only links with data are colored; it shares the same CI legend.</td></tr>
+                <tr><td><strong>Signal connections</strong></td><td>Colors intersection connections green/red by the current signal state.</td></tr>
+                <tr><td><strong>Station pax</strong></td>
+                    <td>Badges each station with its waiting-passenger count. Badges are <strong>hidden
+                        automatically when zoomed far out</strong> so they don't overlap — zoom in to bring them back.</td></tr>
+                <tr><td><strong>Events</strong></td><td>Overlay for events that are active at the current time.</td></tr>
+                <tr><td><strong>Canvas</strong></td><td><strong>Background</strong></td>
+                    <td>Map background color, for screenshots and slides. ↺ restores the default.</td></tr>
+                <tr><td colspan="3" class="mono" style="font-size:12px">
+                    Display toggles, background color, and basemap settings persist in the browser across sessions.</td></tr>
+                <tr><td><strong>Satellite basemap</strong></td><td colspan="2"><a href="#basemap">See the section below</a> — satellite / aerial imagery behind the network.</td></tr>
+            </table></div>
+
+            <h3><span class="i18n-ko">혼잡지수(CI) 색상</span><span class="i18n-en">Congestion index (CI) colors</span></h3>
+            <div class="ci-scale">
+                <span style="--sw:#00c853">0.00<em>Free flow</em></span>
+                <span style="--sw:#8ee000">0.25<em>Light</em></span>
+                <span style="--sw:#ffd600">0.50<em>Moderate</em></span>
+                <span style="--sw:#ff8a00">0.75<em>Heavy</em></span>
+                <span style="--sw:#ff1744">1.00<em>Congested</em></span>
+            </div>
+            <p class="i18n-ko"><strong>Link heatmap</strong>의 CI는 <strong>밀도 지수</strong>(차로당 밀도 ÷ 80 veh/km/lane)와
+                <strong>속도저하 지수</strong>(1 − 평균속도 ÷ 자유속도) 중 <strong>큰 값</strong>입니다.
+                재생 시점에 따라 실시간으로 갱신됩니다. 이벤트 테이블에 속도(<span class="mono">spd</span>) 컬럼이 없는
+                옛 DB 에서는 밀도 지수만 쓰고, <strong>Meso link state</strong> 는 차량 대수로 구한 밀도 지수만 씁니다.
+                지도 아래 범례의 마지막 줄이 <em>지금 쓰이는 계산식</em>을 그대로 보여줍니다.</p>
+            <p class="i18n-en">For <strong>Link heatmap</strong>, CI is the <strong>larger</strong> of a
+                <strong>density index</strong> (per-lane density ÷ 80 veh/km/lane) and a <strong>speed-drop
+                index</strong> (1 − mean speed ÷ free-flow speed), updated live as playback advances. Older DBs
+                whose event table has no speed (<span class="mono">spd</span>) column fall back to the density
+                index alone, and <strong>Meso link state</strong> uses only the density index derived from vehicle
+                counts. The last line of the on-map legend always shows <em>the formula currently in use</em>.</p>
+        </section>
+
+        <!-- ================================================== BIMS -->
+        <section id="bims">
+            <h2><span class="ws-badge" style="--ws: var(--hue-inspect)">BIMS</span> <span class="i18n-ko">버스 정보 관리(BIMS)</span><span class="i18n-en">Bus Information Management System (BIMS)</span></h2>
+            <p class="i18n-ko">결과 DB가 로드되면 버스·정류장·노선의 운영 정보를 볼 수 있습니다. 평상시 화면은 그대로이며,
+                다음 세 곳에서 들어갑니다.</p>
+            <p class="i18n-en">Once a result DB is loaded, bus, station and route operations can be inspected. The normal
+                map stays unchanged; BIMS opens from three places.</p>
+            <ul class="i18n-ko">
+                <li><strong>버스 클릭 → 차량 정보 패널의 BIMS 버튼</strong> — Bus Information 모달: 현재 재차·혼잡도, 이전/다음
+                    정류장, 다음 정류장까지 거리, 도착 예측(예측과 실제 병기), 운행 진행률. 탭: Overview(노선 스트립과 같은 노선의
+                    다른 버스), Passengers(승하차·재차 프로파일), Stops(정류장별 도착·출발·정차·승하차·배차간격), History(속도·재차·
+                    정차·구간 통행시간 그래프).</li>
+                <li><strong>정류장 클릭</strong> — Station Information 모달: 대기 승객, 누적 승하차, 서비스 대수, 평균 정차시간,
+                    평균 배차간격과 <strong>Upcoming / Recent buses</strong>(Approaching·En Route·At Stop·Departed). 탭:
+                    Arrivals, Waiting Passengers, Lines, Charts(대기 인원·승하차·도착·정차·배차간격 시계열).
+                    <strong>View Approaching Buses</strong>로 이 정류장으로 오는 버스만 지도에서 강조합니다. 헤더의 경유 노선 목록은
+                    <strong>Routes (N)</strong> 토글로 펼치며 기본은 접힌 상태입니다.</li>
+                <li><strong>상단바 BIMS 버튼</strong> — 관제 대시보드: KPI(운행 버스, 노선, 승객, 평균속도, 평균 배차간격, bunching,
+                    이상상황 수), Fleet Status(상태 필터: Running / At Stop / Delayed / Bunched / Finished), Route Performance,
+                    Station Status(지도 정류장을 상태 색으로 표시), Issues(bunching·과대 배차간격·과밀·장기 정차·장기 대기·저속 자동 탐지).
+                    표의 행을 누르면 지도가 그 객체로 이동하고 모달이 열립니다. 톱니 버튼으로 임계값을 조정합니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li><strong>Click a bus → BIMS button in the vehicle panel</strong> — Bus Information modal: occupancy, onboard
+                    passengers, previous/next stop, distance to next stop, estimated arrival (predicted and actual side by side)
+                    and trip progress. Tabs: Overview (route strip with the other buses of the route), Passengers, Stops
+                    (arrival, departure, dwell, board, alight, headway per stop) and History (speed, load, dwell, segment time).</li>
+                <li><strong>Click a station</strong> — Station Information modal: waiting passengers, total boarding/alighting,
+                    buses served, average dwell and headway, and <strong>Upcoming / Recent buses</strong> (Approaching, En Route,
+                    At Stop, Departed). Tabs: Arrivals, Waiting Passengers, Lines, Charts. <strong>View Approaching Buses</strong>
+                    highlights only the buses heading to this station. The routes serving the station are behind a
+                    <strong>Routes (N)</strong> toggle in the header, collapsed by default.</li>
+                <li><strong>BIMS button in the top bar</strong> — the operations dashboard: KPIs, Fleet Status with filters,
+                    Route Performance, Station Status (stations coloured by state on the map) and Issues (automatic detection of
+                    bunching, excessive headway, overcrowding, long dwell, long waiting and slow buses). Clicking a row moves the
+                    map to that object and opens its modal. The gear button adjusts thresholds.</li>
+            </ul>
+            <p class="i18n-ko">BIMS 창은 기본으로 화면 중앙에 뜨지만, 헤더의 <strong>Dock</strong> 버튼으로 우측 패널에 붙일 수
+                있습니다(선택은 브라우저에 저장). Follow·Focus·Highlight처럼 지도를 봐야 하는 동작을 누르면 자동으로 도킹됩니다.
+                대시보드는 왼쪽 가장자리를 끌어 폭을 조절하고, 두 번 클릭하면 기본 폭으로 돌아갑니다. 시점 표기는 시나리오 시각
+                (HH:MM:SS)이며 상단바의 Timestep 옆에도 같은 시각이 표시됩니다. 네트워크 폴더에
+                <span class="mono">ptNames.json</span>(<span class="mono">{"stations": {"30000123": "KAIST"}, "routes": {"1": "102"}}</span>)
+                을 두면 ID 대신 이름이 표시됩니다.</p>
+            <p class="i18n-ko">Route ID·Bus ID·Station ID는 어디서나 칩으로 표시되며 클릭하면 해당 뷰로 이동합니다(브레드크럼으로
+                되돌아갑니다). Route 뷰의 <strong>Highlight on map</strong>은 노선을, <strong>Show all buses</strong>는 운행 중인
+                버스를 지도에 강조하고, Charts 탭에 배차간격 추이·시간-거리(Marey) 다이어그램·재차 프로파일이 있습니다. 검색창에
+                <span class="mono">line:102</span>처럼 입력하면 노선 뷰가 열립니다.</p>
+            <p class="i18n-en">The BIMS window opens centered by default; the <strong>Dock</strong> button in its header pins it to
+                the right side (remembered in the browser). Actions that need the map, such as Follow, Focus and Highlight, dock
+                it automatically. Drag the dashboard's left edge to resize it; double-click restores the default width. Times are
+                shown as scenario clock (HH:MM:SS), also next to Timestep in the top bar. Put a
+                <span class="mono">ptNames.json</span> (<span class="mono">{"stations": {"30000123": "KAIST"}, "routes": {"1": "102"}}</span>)
+                in the network folder to show names instead of IDs.</p>
+            <p class="i18n-en">Route, bus and station IDs are chips everywhere; clicking one switches the view (breadcrumbs go
+                back). In the Route view, <strong>Highlight on map</strong> emphasises the route and <strong>Show all buses</strong>
+                its buses; the Charts tab holds headway over time, a time–distance (Marey) diagram and the load profile. Typing
+                <span class="mono">line:102</span> in the search box opens the route view.</p>
+            <div class="warn i18n-ko"><strong>데이터 한계.</strong> 재차 인원은 정류장 승하차 기록의 누적(승차−하차)으로 계산하며,
+                버스 정원은 입력에 없어 차종별 기본값(NB/AB 50, TRT 80)을 가정합니다. 계획 시각표가 없어 지연은 "배차간격 과대 또는
+                저속" 플래그로 정의합니다. 실행 중 미리보기에서는 정류장 이벤트를 best-effort로 읽어 일부만 보일 수 있습니다.</div>
+            <div class="warn i18n-en"><strong>Data limits.</strong> Onboard counts are cumulative boardings minus alightings from
+                station events; bus capacity is not in the inputs, so a per-type default (NB/AB 50, TRT 80) is assumed. There is
+                no planned timetable, so "Delayed" means excessive headway or a slow segment. During the run preview, station
+                events are read best-effort and may be incomplete.</div>
+        </section>
+
+        <!-- ================================================== 위성 배경 -->
+        <section id="basemap">
+            <h2><span class="i18n-ko">위성 배경</span><span class="i18n-en">Satellite basemap</span></h2>
+            <p class="i18n-ko"><strong>Display</strong> 패널의 <strong>Satellite basemap</strong> 에서 네트워크
+                아래에 위성/항공사진을 깔 수 있습니다. 결과를 실제 지형과 함께 보여줄 때 씁니다.
+                에디터와 같은 기능이며 정합값도 공유합니다.</p>
+            <p class="i18n-en">The <strong>Satellite basemap</strong> group in the <strong>Display</strong>
+                panel puts satellite or aerial imagery under the network — useful when presenting results
+                against real geography. It is the same feature as in the Editor and shares its alignment data.</p>
+            <ul class="i18n-ko">
+                <li><strong>Esri Satellite</strong> — 키 없이 바로 쓸 수 있는 전 세계 위성영상.</li>
+                <li><strong>VWorld Aerial</strong> — 국내 최고 해상도 항공영상.
+                    <a href="https://www.vworld.kr" target="_blank" rel="noopener">vworld.kr</a> 에서 무료 인증키를
+                    발급받아(사용 도메인에 접속 주소 등록) <strong>Key</strong> 칸에 넣습니다.</li>
+                <li><strong>Opacity</strong> — 배경이 진하면 도로가 묻히므로 슬라이더로 조절합니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li><strong>Esri Satellite</strong> — worldwide imagery, no key required.</li>
+                <li><strong>VWorld Aerial</strong> — the highest-resolution aerial imagery for Korea. Get a
+                    free key at <a href="https://www.vworld.kr" target="_blank" rel="noopener">vworld.kr</a>
+                    (register the address you serve from) and paste it into the <strong>Key</strong> field.</li>
+                <li><strong>Opacity</strong> — dial the imagery back so the roads stay readable.</li>
+            </ul>
+            <p class="i18n-ko">네트워크 좌표는 원점이 bbox 남서 모서리인 <em>국소 미터 좌표</em>라 그 자체로는 지구상
+                위치를 알 수 없습니다. 에디터가 <span class="mono">basemap.json</span> →
+                <span class="mono">osm_import.json</span> → 노드의 <span class="mono">osm_lat/osm_lon</span> →
+                <span class="mono">nodelink_import.json</span> 순으로 정합을 자동 탐색하며, 결과는 패널 아래
+                상태줄에 표시됩니다. 정합이 없는 네트워크는 에디터에서 한 번 맞춰 저장하면 Visualizer에서도
+                그대로 복원됩니다.</p>
+            <p class="i18n-en">Network coordinates are <em>local metric</em> with the origin at the bounding
+                box's south-west corner, so they carry no earth position on their own. The tooling looks for a
+                georeference in this order — <span class="mono">basemap.json</span>,
+                <span class="mono">osm_import.json</span>, <span class="mono">osm_lat/osm_lon</span> tags on
+                nodes, then <span class="mono">nodelink_import.json</span> — and reports what it found in the
+                status line under the panel. For a network with none of those, align it once in the Editor and
+                save; the Visualizer restores the same alignment.</p>
+        </section>
+
+        <!-- ================================================== 지도/검색 -->
+        <section id="map-search">
+            <h2><span class="i18n-ko">지도 탐색과 검색</span><span class="i18n-en">Map navigation and search</span></h2>
+            <ul class="i18n-ko">
+                <li><strong>확대/축소</strong> — 마우스 휠. <strong>화면 이동</strong> — 가운데 버튼 드래그.</li>
+                <li><strong>미니맵</strong> — 좌측 하단 개요 지도에서 현재 화면 위치를 확인하고,
+                    클릭·드래그로 바로 이동합니다. ▾로 접을 수 있습니다.</li>
+                <li><strong>축척 막대</strong> — 좌측 하단.</li>
+                <li>차량·링크·노드에 마우스를 올리면 툴팁으로 ID가 표시됩니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li><strong>Zoom</strong> — mouse wheel. <strong>Pan</strong> — drag with the middle button.</li>
+                <li><strong>Minimap</strong> — the overview map at bottom left shows where you are; click or
+                    drag it to jump. Collapse it with ▾.</li>
+                <li><strong>Scale bar</strong> — bottom left.</li>
+                <li>Hovering a vehicle, link, or node shows its ID in a tooltip.</li>
+            </ul>
+
+            <h3><span class="i18n-ko">검색</span><span class="i18n-en">Search</span></h3>
+            <p class="i18n-ko">상단 검색창에 입력하면 <strong>실시간 후보 목록</strong>이 열립니다 —
+                <kbd>↑</kbd><kbd>↓</kbd> 로 이동, <kbd>Enter</kbd> 로 이동·강조(3초), <kbd>Esc</kbd> 로 닫기.
+                정확한 ID를 알면 그대로 입력하고 <kbd>Enter</kbd> 만 눌러도 됩니다.</p>
+            <p class="i18n-en">Typing in the top-bar search box opens a <strong>live suggestion list</strong> —
+                <kbd>↑</kbd><kbd>↓</kbd> to move, <kbd>Enter</kbd> to jump (highlighted for three seconds),
+                <kbd>Esc</kbd> to close. If you know the exact ID, just type it and press <kbd>Enter</kbd>.</p>
+            <div class="tablewrap i18n-ko"><table>
+                <tr><th>입력</th><th>의미</th></tr>
+                <tr><td class="mono">1234</td><td>차량 → 링크 → 노드 순으로 해당 ID를 탐색</td></tr>
+                <tr><td class="mono">v:1234</td><td>차량 ID 지정 검색 (<span class="mono">vehicle:</span> 도 가능)</td></tr>
+                <tr><td class="mono">l:5678</td><td>링크 ID 지정 검색 (<span class="mono">link:</span>)</td></tr>
+                <tr><td class="mono">n:910</td><td>노드 ID 지정 검색 (<span class="mono">node:</span>)</td></tr>
+                <tr><td class="mono">s:12</td><td>정류장 검색 (<span class="mono">station:</span>) —
+                    <strong>후보 목록에서만</strong> 동작합니다. <kbd>Enter</kbd> 직행 검색은 v/l/n 만 받습니다.</td></tr>
+            </table></div>
+            <div class="tablewrap i18n-en"><table>
+                <tr><th>Input</th><th>Meaning</th></tr>
+                <tr><td class="mono">1234</td><td>Look for that ID as a vehicle, then a link, then a node.</td></tr>
+                <tr><td class="mono">v:1234</td><td>Vehicle ID (<span class="mono">vehicle:</span> also works).</td></tr>
+                <tr><td class="mono">l:5678</td><td>Link ID (<span class="mono">link:</span>).</td></tr>
+                <tr><td class="mono">n:910</td><td>Node ID (<span class="mono">node:</span>).</td></tr>
+                <tr><td class="mono">s:12</td><td>Station (<span class="mono">station:</span>) — works
+                    <strong>through the suggestion list only</strong>; the direct <kbd>Enter</kbd> search accepts
+                    v/l/n prefixes.</td></tr>
+            </table></div>
+        </section>
+
+        <!-- ================================================== 조회 -->
+        <section id="inspect">
+            <h2><span class="ws-badge" style="--ws: var(--hue-inspect)">Inspect</span> <span class="i18n-ko">정보 조회</span><span class="i18n-en">Inspecting objects</span></h2>
+
+            <h3><span class="i18n-ko">차량</span><span class="i18n-en">Vehicles</span></h3>
+            <p class="i18n-ko">재생 중 차량을 클릭하면 <strong>Vehicle Information</strong> 패널이 열려 차종, 현재
+                위치(링크·차로), 속도 등 상태를 보여줍니다. 재생을 계속하면 값이 실시간으로 갱신됩니다.</p>
+            <ul class="i18n-ko">
+                <li><strong>Follow vehicle</strong> — 카메라가 그 차량을 따라가고 "Following V &lt;id&gt;" 칩이
+                    표시됩니다. 지도를 드래그해 이동하면 추적이 해제되고(줌은 유지),
+                    <strong>Stop follow</strong> 나 칩의 × 로도 끝냅니다.</li>
+                <li><strong>Show route</strong> — 그 차량의 OD 후보 경로를 지도에 강조합니다
+                    (기·종점 정보가 없으면 비활성).</li>
+            </ul>
+            <p class="i18n-en">Clicking a vehicle during playback opens the <strong>Vehicle Information</strong>
+                panel with its type, current position (link and lane), speed, and other state, updating live as
+                playback continues.</p>
+            <ul class="i18n-en">
+                <li><strong>Follow vehicle</strong> — the camera tracks it and a "Following V &lt;id&gt;" chip
+                    appears. Panning the map cancels the follow; zooming does not. <strong>Stop follow</strong> or
+                    the chip's × also ends it.</li>
+                <li><strong>Show route</strong> — highlights the vehicle's candidate OD routes on the map
+                    (disabled when it has no origin/destination).</li>
+            </ul>
+
+            <h3><span class="i18n-ko">링크 · 노드</span><span class="i18n-en">Links and nodes</span></h3>
+            <p class="i18n-ko">링크나 노드를 클릭하면 <strong>Network information</strong> 플로팅 패널이 열려 속성이
+                표시됩니다. 신호가 설치된 노드는 적용 중인 신호 플랜(주기·옵셋)이 함께 나오고,
+                <strong>🚦 Signal Plan 상세보기</strong> 버튼으로 현시 구성 다이어그램을 팝업으로 볼 수
+                있습니다.</p>
+            <p class="i18n-en">Clicking a link or node opens the floating <strong>Network information</strong>
+                panel with its attributes. Signalized nodes also show the plan in effect (cycle and offset),
+                and the <strong>🚦 Signal Plan</strong> button opens a phase diagram.</p>
+
+            <h3><span class="i18n-ko">정류장 · 대중교통</span><span class="i18n-en">Stations and transit</span></h3>
+            <ul class="i18n-ko">
+                <li>정류장을 클릭하면 해당 시점의 <strong>대기·승하차 승객 현황</strong> 팝업이 열립니다.</li>
+                <li><strong>Station pax</strong> 표시를 켜면(Display 패널) 재생 중 각 정류장의
+                    대기 승객 수가 배지로 표시됩니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li>Clicking a station opens a popup with waiting, boarding, and alighting passengers at that moment.</li>
+                <li>With <strong>Station pax</strong> enabled in the Display panel, each station carries a badge
+                    with its waiting count during playback.</li>
+            </ul>
+
+            <h3><span class="i18n-ko">검지기 분석</span><span class="i18n-en">Detector analysis</span></h3>
+            <p class="i18n-ko">지도의 검지기 표시를 클릭하면 <strong>Detector Analysis</strong> 패널이 열립니다
+                (Editor 의 Infrastructure 워크스페이스에서 정의한 E1·E2·E3 검지기).
+                <strong>Plot</strong> 탭은 시간에 따른 값 그래프를, <strong>Data</strong> 탭은 원자료 표를 보여주며,
+                지표(Metric)와 집계 단위(Aggregation)를 골라 볼 수 있습니다. 검지기는 micro 링크에서만 기록됩니다.</p>
+            <p class="i18n-en">Clicking a detector marker on the map opens the <strong>Detector Analysis</strong>
+                panel (for the E1/E2/E3 detectors defined in the Editor's Infrastructure workspace). The
+                <strong>Plot</strong> tab charts values over time and <strong>Data</strong> shows the raw table;
+                both follow the Metric and Aggregation selectors. Detectors only record on micro links.</p>
+
+            <h3><span class="i18n-ko">이벤트</span><span class="i18n-en">Events</span></h3>
+            <p class="i18n-ko">Events 표시가 켜져 있으면 <strong>현재 재생 시점에 활성인</strong> 이벤트만 링크 위
+                패턴으로 나타나며, 클릭하면 유형·시간·영향 차로 등의 상세 팝오버가 열립니다. 이벤트가 안 보인다면
+                대개 <em>아직 시작 시각 전이거나 이미 끝난</em> 경우입니다 — 타임스텝을 이벤트 구간으로 옮겨 보세요.</p>
+            <p class="i18n-en">With Events enabled, only the events <strong>active at the current playback
+                time</strong> are drawn as a hatched band on their link; clicking one opens a popover with its
+                type, times, and affected lanes. If you see none, the usual reason is that the current time is
+                <em>before the event starts or after it ends</em> — scrub into the event's window.</p>
+        </section>
+
+        <!-- ================================================== 요약 -->
+        <section id="summary">
+            <h2><span class="ws-badge" style="--ws: var(--hue-summary)">Analyze</span> <span class="i18n-ko">시나리오 요약</span><span class="i18n-en">Scenario summary</span></h2>
+            <p class="i18n-ko">결과 DB가 로드된 뒤 <strong>Run 패널의 Scenario Summary</strong>를 누르면 요약 패널이
+                열립니다. 상단에 <strong>총 차량 수 · 우회 비율 · 장시간 정지 · 평균 속도</strong> 지표가 나오고,
+                아래 표는 기준을 골라 정렬해 볼 수 있습니다 —
+                <span class="mono">Long-Stopped Vehicles</span>,
+                <span class="mono">Constrained LC Records</span>,
+                <span class="mono">Rerouted Vehicles</span>,
+                <span class="mono">Speed Drop vs Free Flow</span>.
+                병목·이상 지점을 빠르게 훑는 용도이며, 표의 링크 ID를 검색창에 넣으면 그 위치로 이동합니다
+                (표 행 자체는 클릭 대상이 아닙니다).</p>
+            <p class="i18n-en">Once a result DB is loaded, <strong>Scenario Summary</strong> in the Run panel
+                opens a summary view. Four KPIs sit at the top — <strong>total vehicles, rerouted share,
+                long-stopped count, mean speed</strong> — over a table you can sort by criterion:
+                <span class="mono">Long-Stopped Vehicles</span>,
+                <span class="mono">Constrained LC Records</span>,
+                <span class="mono">Rerouted Vehicles</span>, and
+                <span class="mono">Speed Drop vs Free Flow</span>.
+                It is for scanning a result for bottlenecks and anomalies; to visit one, paste its link ID into
+                the search box (the table rows themselves are not clickable).</p>
+        </section>
+
+        <!-- ================================================== 입력 점검 -->
+        <section id="input-files">
+            <h2><span class="i18n-ko">입력 파일 점검</span><span class="i18n-en">Inspecting input files</span></h2>
+            <p class="i18n-ko"><strong>Inputs 패널의 Inspect input files</strong>는 선택한 네트워크 폴더에 어떤 입력
+                파일이 있는지, 각 파일의 핵심 내용(규모·시간 범위 등)을 요약해 보여줍니다. 재생 결과가
+                기대와 다를 때 "어떤 입력으로 돌린 것인지"를 먼저 확인하는 용도입니다. 입력을 고쳐야
+                한다면 <a class="doc-cross" href="editor-guide.html"
+                data-local="editor-guide.html"
+               >Editor</a>로
+                이동하세요.</p>
+            <p class="i18n-en"><strong>Inspect input files</strong> in the Inputs panel summarizes which input
+                files the selected network folder contains and the gist of each (size, time range, and so on).
+                Use it to answer "what exactly did this run use?" when a result looks wrong. To change an input,
+                switch to the <a class="doc-cross" href="editor-guide.html"
+                data-local="editor-guide.html"
+               >Editor</a>.</p>
+        </section>
+
+        <hr class="divider">
+
+        <!-- ================================================== FAQ -->
+        <section id="faq">
+            <h2><span class="i18n-ko">FAQ · 문제 해결</span><span class="i18n-en">FAQ &amp; troubleshooting</span></h2>
+
+            <h3><span class="i18n-ko">차량이 안 보여요</span><span class="i18n-en">I can't see any vehicles</span></h3>
+            <ul class="i18n-ko">
+                <li>결과 DB가 로드되었는지(Run 패널의 상태 표시), 재생 시점이 시나리오 시간 범위 안인지 확인하세요.</li>
+                <li>Display의 <strong>Micro vehicles / Meso vehicles</strong> 체크가 꺼져 있지 않은지 확인하세요.</li>
+                <li>큰 DB는 구간별로 로드됩니다 — 방금 이동한 시점의 데이터가 아직 로드 중일 수 있습니다.</li>
+                <li>아주 많이 축소한 상태에서는 차량 한 대가 1픽셀 미만이 되어, 대신 링크 혼잡도 히트맵이
+                    표시됩니다(집계 데이터가 있는 경우). 조금 확대하면 차량이 돌아옵니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li>Check that a result DB is loaded (status in the Run panel) and that the current time is
+                    inside the scenario's range.</li>
+                <li>Check that <strong>Micro vehicles</strong> / <strong>Meso vehicles</strong> are still
+                    enabled in the Display panel.</li>
+                <li>Large DBs load in chunks — the data for the time you just jumped to may still be loading.</li>
+                <li>When zoomed very far out a vehicle is under one pixel, so the link congestion heatmap is
+                    drawn instead (where aggregate data exists). Zoom in a little and the vehicles return.</li>
+            </ul>
+
+            <h3><span class="i18n-ko">차량이 축소하면 사라지는 이유는?</span><span class="i18n-en">Why do vehicles thin out when I zoom out?</span></h3>
+            <p class="i18n-ko">차량 표시는 두 기준으로 자동 조절됩니다. 화면에서 차량 한 대가
+                <strong>1픽셀보다 작아지면</strong> 개별 차량 대신 링크 혼잡도 히트맵이 더 정확한 표현이라
+                그쪽으로 바뀝니다(대체할 집계 데이터가 없으면 바뀌지 않습니다). 그리고 화면 안 차량이
+                <strong>6,000대를 넘으면</strong> 일부만 표본으로 그려 프레임률을 지킵니다. 도시 전체를 한 화면에
+                담는 정도의 배율에서는 대부분 그대로 다 보입니다.</p>
+            <p class="i18n-en">Vehicle drawing adapts on two axes. When a vehicle would be
+                <strong>smaller than one pixel</strong> on screen, the link congestion heatmap is the more
+                accurate picture and is drawn instead (this substitution is skipped when there is no aggregate
+                data to show). Separately, when more than <strong>6,000 vehicles</strong> are in view, a sample
+                is drawn to hold the frame rate. At a zoom that fits a whole city on screen you normally still
+                see all of them.</p>
+
+            <h3><span class="i18n-ko">큰 네트워크에서 지도가 느려요</span><span class="i18n-en">The map is slow on a large network</span></h3>
+            <p class="i18n-ko">네트워크는 규모와 무관하게 항상 캔버스로 그려지며, 뷰포트 컬링과 배율별 LOD를 써서
+                수만 링크 규모까지 부드럽게 동작합니다. 차량은 전용 레이어에서 WebGL2 로 그리며, 지원하지 않는 브라우저에서는 Canvas 2D 로 자동 대체됩니다. 렌더 차이를 확인해야 할 때만
+                브라우저 콘솔에서 <code>localStorage.setItem('nextsim-network-canvas','off')</code> 로 예전 SVG
+                경로를 켤 수 있습니다(디버깅용). 반대로 <span class="mono">'on'</span> 을 넣는 것은 이제 의미가 없습니다
+                — 기본이 이미 캔버스입니다.</p>
+            <p class="i18n-en">The network is always drawn on canvas regardless of size, using viewport culling
+                and zoom-based level of detail; it stays smooth into the tens of thousands of links. Vehicles are
+                drawn on their own layer with WebGL2, falling back to Canvas 2D on browsers without it. For debugging a rendering difference you can switch back to the old SVG
+                path from the browser console with
+                <code>localStorage.setItem('nextsim-network-canvas','off')</code>. Setting it to
+                <span class="mono">'on'</span> now does nothing — canvas is already the default.</p>
+
+            <h3><span class="i18n-ko">이벤트가 지도에 안 나타나요</span><span class="i18n-en">Events don't show on the map</span></h3>
+            <ul class="i18n-ko">
+                <li>Display의 <strong>Events</strong> 가 켜져 있는지 확인하세요.</li>
+                <li>이벤트는 <strong>활성 시간대에만</strong> 그려집니다. 이벤트 시각은 선택한 시나리오의 시작
+                    시각 기준 오프셋으로 해석되므로, 예를 들어 08:00 시작 시나리오에서 08:05에 시작하는 이벤트는
+                    재생 300초 지점부터 보입니다.</li>
+                <li>시나리오를 바꾸면 이벤트가 새 기준으로 다시 해석됩니다 — 재생 전에 목표 시나리오를 먼저 고르세요.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li>Check that <strong>Events</strong> is enabled in the Display panel.</li>
+                <li>Events are drawn <strong>only while they are active</strong>. Their times are offsets from
+                    the selected scenario's start, so an event starting at 08:05 in a scenario that starts at
+                    08:00 appears 300 s into playback.</li>
+                <li>Switching scenarios re-resolves event times — pick the target scenario before replaying.</li>
+            </ul>
+
+            <h3><span class="i18n-ko">지도가 안 움직여요</span><span class="i18n-en">The map won't pan</span></h3>
+            <p class="i18n-ko">화면 이동은 마우스 <strong>가운데 버튼</strong> 드래그입니다. 미니맵 클릭으로도 이동할 수
+                있습니다.</p>
+            <p class="i18n-en">Pan by dragging with the <strong>middle mouse button</strong>. Clicking the
+                minimap also moves the view.</p>
+
+            <h3><span class="i18n-ko">네트워크·수요를 고치고 다시 돌리고 싶어요</span><span class="i18n-en">I want to change the network or demand and re-run</span></h3>
+            <p class="i18n-ko"><code>/editor</code>에서 입력을 수정·저장한 뒤 Visualizer로 돌아와
+                <strong>Run Selected Network</strong>를 다시 실행하면 됩니다. 자세한 편집
+                방법은 <a class="doc-cross" href="editor-guide.html"
+                data-local="editor-guide.html"
+               >Editor
+                가이드</a> 참고.</p>
+            <p class="i18n-en">Edit and save the inputs in <code>/editor</code>, come back to the Visualizer,
+                and run <strong>Run Selected Network</strong> again. See the
+                <a class="doc-cross" href="editor-guide.html"
+                data-local="editor-guide.html"
+               >Editor
+                guide</a> for editing details.</p>
+        </section>
+
+        <footer>
+            NextSIM Visualizer Guide · KAIST AIxMobility Lab —
+            <span class="i18n-ko">입력 편집은 <a class="doc-cross" href="editor-guide.html"
+                data-local="editor-guide.html"
+               >Editor 가이드</a>를 보세요.</span>
+            <span class="i18n-en">For authoring inputs, see the <a class="doc-cross" href="editor-guide.html"
+                data-local="editor-guide.html"
+               >Editor guide</a>.</span>
+        </footer>
+    </main>
+</div>
+
+<script>
+    // 스크롤 위치에 따라 좌측 목차 활성 표시
+    (function () {
+        const links = Array.from(document.querySelectorAll('#docNav a[href^="#"]'));
+        const byId = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+        const sections = Array.from(document.querySelectorAll('main section[id]'));
+        if (!('IntersectionObserver' in window) || !sections.length) return;
+        let activeId = null;
+        const setActive = (id) => {
+            if (id === activeId) return;
+            activeId = id;
+            links.forEach(a => a.classList.toggle('is-active', a === byId.get(id)));
+        };
+        const observer = new IntersectionObserver((entries) => {
+            const visible = entries.filter(e => e.isIntersecting)
+                .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+            if (visible.length) setActive(visible[0].target.id);
+        }, { rootMargin: '-10% 0px -70% 0px' });
+        sections.forEach(section => observer.observe(section));
+    })();
+
+    // 가이드 간 상호 링크: 로컬 서버에서는 상대 경로, 그 외(공유 아티팩트)에서는 아티팩트 URL
+    (function () {
+        const host = String(window.location.hostname || '');
+        const isLocal = window.location.protocol === 'file:'
+            || host === 'localhost' || host.startsWith('127.')
+            || host.startsWith('10.') || host.startsWith('192.168.')
+            || /^172\.(1[6-9]|2\d|3[01])\./.test(host)
+            || !host.includes('.');
+        document.querySelectorAll('a.doc-cross').forEach(anchor => {
+            const target = isLocal ? anchor.dataset.local : anchor.dataset.artifact;
+            if (target) anchor.setAttribute('href', target);
+        });
+    })();
+
+    // 한/영 전환: 선택을 localStorage 에 남겨 두 가이드가 같은 언어로 열린다.
+    (function () {
+        const root = document.documentElement;
+        const buttons = Array.from(document.querySelectorAll('.lang-switch button[data-lang]'));
+        if (!buttons.length) return;
+        const apply = (lang) => {
+            root.setAttribute('data-lang', lang);
+            root.setAttribute('lang', lang);
+            buttons.forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false'));
+            try { window.localStorage.setItem('nextsim-doc-lang', lang); } catch (e) { /* 무시 */ }
+        };
+        apply(root.getAttribute('data-lang') === 'en' ? 'en' : 'ko');
+        buttons.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
+    })();
+</script>

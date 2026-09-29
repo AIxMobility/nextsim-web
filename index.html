@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NextSIM — Hybrid Traffic Simulation</title>
+<meta name="description" content="NextSIM is a hybrid mesoscopic–microscopic traffic simulator from the KAIST AIxMobility Lab, with a browser-based Editor and Visualizer.">
+<meta name="theme-color" content="#05060f">
+<link rel="canonical" href="https://aixmobility.github.io/ai-mobility.github.io/">
+<meta property="og:url" content="https://aixmobility.github.io/ai-mobility.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NextSIM — Hybrid Traffic Simulation">
+<meta property="og:description" content="도시 전체는 빠르게, 관심 구간은 차량 한 대까지. KAIST AIxMobility Lab 의 하이브리드 교통 시뮬레이터.">
+<meta property="og:image" content="https://aixmobility.github.io/ai-mobility.github.io/assets/img/visualizer.webp">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<script>
+    /* 언어를 body 파싱 전에 정해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       사용자 가이드(docs/)와 같은 키를 써서 사이트 전체에서 선택이 유지된다.
+       우선순위: ?lang= → 저장된 선택 → 브라우저 언어 → 한국어 */
+    (function () {
+        var root = document.documentElement;
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') lang = q;
+            if (!lang) {
+                var saved = window.localStorage.getItem('nextsim-doc-lang');
+                if (saved === 'en' || saved === 'ko') lang = saved;
+            }
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+        if (!lang) lang = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        root.setAttribute('data-lang', lang);
+        root.setAttribute('lang', lang);
+        root.classList.add('js');   // 스크롤 등장 효과는 JS 가 있을 때만
+    })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span class="i18n-ko">본문으로 건너뛰기</span><span class="i18n-en">Skip to content</span></a>
+
+<!-- ============================================================ 헤더 -->
+<header class="topbar" id="top">
+    <div class="topbar__inner wrap">
+        <a class="brand" href="#top" aria-label="NextSIM">
+            <img src="assets/img/favicon.svg" alt="" width="24" height="24">
+            <span>NextSIM</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">
+            <span class="i18n-ko">메뉴</span><span class="i18n-en">Menu</span>
+        </button>
+        <nav class="sitenav" id="siteNav" aria-label="Site">
+            <a href="#hybrid"><span class="i18n-ko">하이브리드</span><span class="i18n-en">Hybrid</span></a>
+            <a href="#features"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+            <a href="#tools"><span class="i18n-ko">도구</span><span class="i18n-en">Tools</span></a>
+            <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+            <div class="sitenav__end">
+                <div class="lang-switch" role="group" aria-label="Language / 언어">
+                    <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+                    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+                <a class="btn btn--violet btn--sm" href="#start"><span class="i18n-ko">시작하기</span><span class="i18n-en">Get started</span></a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================ 히어로 -->
+<section class="hero">
+    <div class="hero__spot" aria-hidden="true"></div>
+    <div class="hero__grid" aria-hidden="true"></div>
+
+    <div class="wrap hero__inner">
+        <p class="eyebrow eyebrow--lined">KAIST AIxMobility Lab</p>
+        <h1 class="wordmark">NextSIM</h1>
+        <p class="hero__tagline">
+            <span class="i18n-ko">도시 전체는 빠르게, 관심 구간은 차량 한 대까지.</span>
+            <span class="i18n-en">The whole city, fast. The part you care about, car by car.</span>
+        </p>
+        <p class="hero__lede i18n-ko">중시(meso)와 미시(micro) 모형을 한 네트워크 안에서 함께 돌리는 하이브리드 교통 시뮬레이터.
+            입력 편집부터 실행, 결과 재생까지 브라우저에서 끝납니다.</p>
+        <p class="hero__lede i18n-en">A hybrid traffic simulator that runs mesoscopic and microscopic models side by side in
+            one network — with authoring, running, and replay all in the browser.</p>
+        <div class="hero__cta">
+            <a class="btn btn--violet" href="docs/installation.html">
+                <span class="i18n-ko">설치하기</span><span class="i18n-en">Install NextSIM</span>
+            </a>
+            <a class="btn btn--pill" href="docs/index.html">
+                <span class="i18n-ko">사용자 가이드</span><span class="i18n-en">Read the guide</span>
+                <span aria-hidden="true">→</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 앱 창 안에서 도는 하이브리드 도시 + 주변의 떠 있는 인스펙터 패널 -->
+    <div class="wrap stage">
+        <div class="window window--hero">
+            <div class="window__bar" aria-hidden="true">
+                <span class="window__dots"><i></i><i></i><i></i></span>
+                <span class="window__url">localhost:8000/visualizer</span>
+                <span class="window__live"><i></i>LIVE</span>
+            </div>
+            <canvas class="window__canvas" id="heroCanvas" role="img"
+                    aria-label="A synthetic city: meso links coloured by congestion around a micro zone with individual vehicles stopping at signals"></canvas>
+        </div>
+
+        <aside class="float float--meso" aria-hidden="true">
+            <p class="float__label">MESO · 5 s</p>
+            <p class="float__title"><span class="i18n-ko">셀 단위 흐름</span><span class="i18n-en">Cell-level flow</span></p>
+            <span class="ramp"></span>
+            <p class="float__scale"><span class="i18n-ko">원활</span><span class="i18n-en">Free</span><span class="i18n-ko">정체</span><span class="i18n-en">Jammed</span></p>
+        </aside>
+
+        <aside class="float float--signal" aria-hidden="true">
+            <p class="float__label">SIGNAL · TOD</p>
+            <p class="float__title">
+                <span data-hud="phase-ko" class="i18n-ko">동서 방향 녹색</span>
+                <span data-hud="phase-en" class="i18n-en">East–west green</span>
+            </p>
+            <div class="float__meter"><span data-hud="meter"></span></div>
+            <p class="float__mono"><span data-hud="remain">07</span> s</p>
+        </aside>
+
+        <aside class="float float--micro" aria-hidden="true">
+            <p class="float__label">MICRO · 0.1 s</p>
+            <div class="float__stats">
+                <div><b data-hud="moving">0</b><span class="i18n-ko">주행</span><span class="i18n-en">moving</span></div>
+                <div><b data-hud="stopped">0</b><span class="i18n-ko">정지</span><span class="i18n-en">stopped</span></div>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<!-- ============================================================ 숫자 -->
+<section class="facts" aria-label="Key facts">
+    <div class="wrap"><div class="facts__grid">
+        <div class="fact">
+            <b>0.1 s</b>
+            <span class="i18n-ko">Micro 갱신 주기 — 차로 위 차량별 위치·속도</span>
+            <span class="i18n-en">Micro step — per-vehicle position and speed on lanes</span>
+        </div>
+        <div class="fact">
+            <b>5 s</b>
+            <span class="i18n-ko">Meso 갱신 주기 — 셀 단위 흐름으로 넓은 지역을 싸게</span>
+            <span class="i18n-en">Meso step — cell-level flow for wide areas, cheaply</span>
+        </div>
+        <div class="fact">
+            <b>C++17</b>
+            <span class="i18n-ko">OpenMP 멀티스레드 엔진, Linux · Windows</span>
+            <span class="i18n-en">Multithreaded OpenMP engine, Linux and Windows</span>
+        </div>
+        <div class="fact">
+            <b>Web</b>
+            <span class="i18n-ko">Editor · Visualizer — 설치 후 바로 쓰는 브라우저 도구</span>
+            <span class="i18n-en">Editor and Visualizer — browser tools, ready after install</span>
+        </div>
+    </div></div>
+</section>
+
+<!-- ============================================================ 하이브리드 -->
+<section class="section" id="hybrid">
+    <div class="wrap">
+        <header class="section__head reveal">
+            <p class="eyebrow eyebrow--lined"><span class="i18n-ko">하이브리드 시뮬레이션</span><span class="i18n-en">Hybrid simulation</span></p>
+            <h2 class="display"><span class="i18n-ko">정밀도는 필요한 곳에만</span><span class="i18n-en">Spend detail only where you need it</span></h2>
+            <p class="i18n-ko">도시 전체를 차량 단위로 돌리면 느리고, 전부 집계 모형으로 돌리면 교차로 하나의 거동을 볼 수 없습니다.
+                NextSIM 은 링크마다, 시간대마다 모형을 고르고 경계에서 차량 표현을 자동으로 바꿉니다.</p>
+            <p class="i18n-en">Car by car, a whole city is slow; in aggregate, the one intersection you study disappears.
+                NextSIM picks the model per link and per period, and converts vehicles at the boundary automatically.</p>
+        </header>
+
+        <div class="compare">
+            <article class="glass compare__card reveal">
+                <figure class="compare__figure" aria-hidden="true">
+                    <svg viewBox="0 0 520 220">
+                        <defs>
+                            <linearGradient id="trail" x1="0" x2="1">
+                                <stop offset="0" stop-color="#d1e4fa" stop-opacity=".45"/>
+                                <stop offset="1" stop-color="#d1e4fa" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <rect class="svg-road" x="0" y="66" width="520" height="88"/>
+                        <rect class="svg-road" x="446" y="0" width="74" height="220"/>
+                        <path class="svg-lane" d="M0 88 H446 M0 132 H446"/>
+                        <path class="svg-center" d="M0 110 H446"/>
+                        <path class="svg-stop" d="M440 112 V154"/>
+                        <circle class="svg-signal" cx="440" cy="162" r="4"/>
+                        <!-- 서쪽 방향: 자유 주행 (뒤로 속도 꼬리) -->
+                        <g class="svg-trails" fill="url(#trail)">
+                            <rect x="84" y="76" width="40" height="2"/><rect x="202" y="76" width="40" height="2"/>
+                            <rect x="320" y="76" width="40" height="2"/><rect x="146" y="98" width="40" height="2"/>
+                            <rect x="268" y="98" width="40" height="2"/><rect x="392" y="98" width="40" height="2"/>
+                        </g>
+                        <g class="svg-cars">
+                            <rect x="64" y="72" width="20" height="10" rx="3"/>
+                            <rect x="182" y="72" width="20" height="10" rx="3"/>
+                            <rect x="300" y="72" width="20" height="10" rx="3"/>
+                            <rect x="126" y="94" width="20" height="10" rx="3"/>
+                            <rect x="248" y="94" width="20" height="10" rx="3"/>
+                            <rect x="372" y="94" width="20" height="10" rx="3"/>
+                        </g>
+                        <!-- 동행 방향: 적색 신호 앞 대기행렬 -->
+                        <g class="svg-cars svg-cars--queued">
+                            <rect x="414" y="116" width="20" height="10" rx="3"/>
+                            <rect x="389" y="116" width="20" height="10" rx="3"/>
+                            <rect x="364" y="116" width="20" height="10" rx="3"/>
+                            <rect x="339" y="116" width="20" height="10" rx="3"/>
+                            <rect x="414" y="138" width="20" height="10" rx="3"/>
+                            <rect x="389" y="138" width="20" height="10" rx="3"/>
+                            <rect x="336" y="137" width="48" height="12" rx="3" class="svg-bus"/>
+                            <rect x="250" y="116" width="20" height="10" rx="3"/>
+                        </g>
+                        <text class="svg-note" x="16" y="192">per vehicle · x, v, a, lane</text>
+                    </svg>
+                </figure>
+                <h3>Micro <small><span class="i18n-ko">미시</span><span class="i18n-en">microscopic</span></small></h3>
+                <dl class="spec">
+                    <dt><span class="i18n-ko">상태</span><span class="i18n-en">State</span></dt>
+                    <dd><span class="i18n-ko">차량별 위치·속도·가속도, 차로 단위</span><span class="i18n-en">Per-vehicle position, speed, acceleration on lanes</span></dd>
+                    <dt><span class="i18n-ko">거동</span><span class="i18n-en">Behaviour</span></dt>
+                    <dd><span class="i18n-ko">차량추종 · 차로변경 모형</span><span class="i18n-en">Car-following and lane-change models</span></dd>
+                    <dt><span class="i18n-ko">갱신</span><span class="i18n-en">Step</span></dt>
+                    <dd>0.1 s</dd>
+                    <dt><span class="i18n-ko">얻는 것</span><span class="i18n-en">You get</span></dt>
+                    <dd><span class="i18n-ko">차량 궤적, 차로 수준의 상세</span><span class="i18n-en">Trajectories and lane-level detail</span></dd>
+                </dl>
+            </article>
+
+            <article class="glass compare__card reveal">
+                <figure class="compare__figure" aria-hidden="true">
+                    <svg viewBox="0 0 520 220">
+                        <rect class="svg-road" x="0" y="80" width="520" height="60"/>
+                        <g class="svg-cells">
+                            <rect x="6"   y="86" width="57" height="48" rx="4" style="--c: var(--cg-1)"/>
+                            <rect x="69"  y="86" width="57" height="48" rx="4" style="--c: var(--cg-1)"/>
+                            <rect x="132" y="86" width="57" height="48" rx="4" style="--c: var(--cg-2)"/>
+                            <rect x="195" y="86" width="57" height="48" rx="4" style="--c: var(--cg-3)"/>
+                            <rect x="258" y="86" width="57" height="48" rx="4" style="--c: var(--cg-5)"/>
+                            <rect x="321" y="86" width="57" height="48" rx="4" style="--c: var(--cg-4)"/>
+                            <rect x="384" y="86" width="57" height="48" rx="4" style="--c: var(--cg-3)"/>
+                            <rect x="447" y="86" width="57" height="48" rx="4" style="--c: var(--cg-2)"/>
+                        </g>
+                        <g class="svg-counts">
+                            <text x="34" y="116">3</text><text x="97" y="116">4</text><text x="160" y="116">7</text>
+                            <text x="223" y="116">11</text><text x="286" y="116">16</text><text x="349" y="116">14</text>
+                            <text x="412" y="116">10</text><text x="475" y="116">6</text>
+                        </g>
+                        <g class="svg-flow">
+                            <path d="M30 58 H490"/><path d="M482 52 L492 58 L482 64"/>
+                        </g>
+                        <text class="svg-note" x="16" y="192">per cell · count, inflow, outflow</text>
+                    </svg>
+                </figure>
+                <h3>Meso <small><span class="i18n-ko">중시</span><span class="i18n-en">mesoscopic</span></small></h3>
+                <dl class="spec">
+                    <dt><span class="i18n-ko">상태</span><span class="i18n-en">State</span></dt>
+                    <dd><span class="i18n-ko">링크를 셀로 나눠 셀별 차량 대수</span><span class="i18n-en">Links split into cells; vehicle counts per cell</span></dd>
+                    <dt><span class="i18n-ko">거동</span><span class="i18n-en">Behaviour</span></dt>
+                    <dd><span class="i18n-ko">셀 간 유입·유출 흐름 + 확률적 차로변경</span><span class="i18n-en">Inter-cell flow plus probabilistic lane change</span></dd>
+                    <dt><span class="i18n-ko">갱신</span><span class="i18n-en">Step</span></dt>
+                    <dd>5.0 s</dd>
+                    <dt><span class="i18n-ko">얻는 것</span><span class="i18n-en">You get</span></dt>
+                    <dd><span class="i18n-ko">링크 단위 집계 동태, 낮은 계산 비용</span><span class="i18n-en">Aggregate link dynamics at low cost</span></dd>
+                </dl>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ 기능 -->
+<section class="section" id="features">
+    <div class="wrap">
+        <header class="section__head reveal">
+            <p class="eyebrow eyebrow--lined"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></p>
+            <h2 class="display"><span class="i18n-ko">도로, 신호, 대중교통을 한 엔진에서</span><span class="i18n-en">Roads, signals, and transit in one engine</span></h2>
+        </header>
+        <p class="features__note i18n-ko"><span class="badge badge--src">소스 빌드</span> 표시가 있는 기능은 배포판(Windows · ZIP)에 들어 있지 않고, 소스에서 빌드해야 쓸 수 있습니다.</p>
+        <p class="features__note i18n-en">Features marked <span class="badge badge--src">source build</span> are not in the Windows or ZIP packages — they need a build from source.</p>
+        <div class="features">
+            <article class="glass feature reveal">
+                <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h5M16 12h5"/><circle cx="12" cy="12" r="4"/></svg></span>
+                <h3><span class="i18n-ko">하이브리드 해상도</span><span class="i18n-en">Hybrid resolution</span></h3>
+                <p class="i18n-ko">링크별·시간대별로 micro/meso 를 지정합니다. 경계 변환은 엔진이 처리합니다.</p>
+                <p class="i18n-en">Choose micro or meso per link and per period; the engine handles the boundary.</p>
+            </article>
+            <article class="glass feature reveal">
+                <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="13" rx="3"/><path d="M5 11h14M8 20l1-3M16 20l-1-3"/></svg></span>
+                <h3><span class="i18n-ko">대중교통 통합</span><span class="i18n-en">Transit built in</span></h3>
+                <p class="i18n-ko">버스·TRT·트램·철도 노선과 승객 수요를 함께 돌리고, 정류장·재차 인원을 BIMS 로 봅니다.</p>
+                <p class="i18n-en">Bus, TRT, tram, and rail lines with passenger demand, and stops and loads in a BIMS view.</p>
+            </article>
+            <article class="glass feature reveal">
+                <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="20" rx="3"/><circle cx="12" cy="7" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="17" r="1.5"/></svg></span>
+                <h3><span class="i18n-ko">신호 제어</span><span class="i18n-en">Signal control</span></h3>
+                <p class="i18n-ko">현시·플랜·시간대(TOD) 기반 신호를 편집하고 실시간 제어와 연동합니다.</p>
+                <p class="i18n-en">Phases, plans, and time-of-day schedules, with a hook for real-time control.</p>
+            </article>
+            <article class="glass feature reveal">
+                <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18h16M4 6h16"/><path d="M9 6v12M15 6v12" stroke-dasharray="2 2.5"/></svg></span>
+                <h3><span class="i18n-ko">가상 검지기</span><span class="i18n-en">Virtual detectors</span></h3>
+                <p class="i18n-ko">E1(단면)·E2(구간)·E3(영역) 검지기로 실제 관측과 같은 형식의 값을 모읍니다.</p>
+                <p class="i18n-en">E1 point, E2 section, and E3 area detectors collect field-style observations.</p>
+            </article>
+            <article class="glass feature reveal">
+                <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 7l-5 5l5 5M16 7l5 5l-5 5M13.5 5l-3 14"/></svg></span>
+                <h3>NextCI <span class="badge badge--src"><span class="i18n-ko">소스 빌드</span><span class="i18n-en">source build</span></span></h3>
+                <p class="i18n-ko">TCP 로 스텝 단위 실행·상태 조회. 강화학습이나 공동 시뮬레이션에 붙이는 Python 클라이언트를 제공합니다.</p>
+                <p class="i18n-en">Step the simulation and query state over TCP — a Python client for RL and co-simulation.</p>
+            </article>
+            <article class="glass feature reveal">
+                <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.3-5.6"/><path d="M4 4v4h4"/></svg></span>
+                <h3><span class="i18n-ko">체크포인트 · 되감기</span><span class="i18n-en">Checkpoints · rewind</span> <span class="badge badge--src"><span class="i18n-ko">소스 빌드</span><span class="i18n-en">source build</span></span></h3>
+                <p class="i18n-ko">전체 상태를 저장하고 되돌려, 같은 시점에서 여러 제어안을 결정론적으로 비교합니다.</p>
+                <p class="i18n-en">Save and restore the whole state to compare strategies from the same moment, deterministically.</p>
+            </article>
+            <article class="glass feature reveal">
+                <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8 7.5c6 1 2 8 8 9"/><path d="M8.3 5c7.7-1 9 3 9.7 10.5" stroke-dasharray="2 2.5"/></svg></span>
+                <h3><span class="i18n-ko">동적 통행배정</span><span class="i18n-en">Dynamic assignment</span> <span class="badge badge--src"><span class="i18n-ko">소스 빌드</span><span class="i18n-en">source build</span></span></h3>
+                <p class="i18n-ko">시뮬레이션을 반복하며 기·종점 간 경로 선택 비율을 수렴시킵니다 (DTA).</p>
+                <p class="i18n-en">Iterate the simulation until route shares between origins and destinations converge (DTA).</p>
+            </article>
+            <article class="glass feature reveal">
+                <span class="tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5l5-5"/><path d="M4 17v3h16v-3"/></svg></span>
+                <h3><span class="i18n-ko">실제 도로망 가져오기</span><span class="i18n-en">Real road networks</span></h3>
+                <p class="i18n-ko">국가 표준노드링크와 OpenStreetMap 에서 네트워크를 만들어 바로 편집합니다.</p>
+                <p class="i18n-en">Build networks from Korea's standard node-link data or OpenStreetMap and edit right away.</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ 도구 -->
+<section class="section" id="tools">
+    <div class="wrap">
+        <header class="section__head reveal">
+            <p class="eyebrow eyebrow--lined"><span class="i18n-ko">웹 도구</span><span class="i18n-en">Web tools</span></p>
+            <h2 class="display"><span class="i18n-ko">만들고, 돌리고, 읽는 과정이 모두 브라우저에서</span><span class="i18n-en">Author, run, and read — all in the browser</span></h2>
+        </header>
+
+        <ol class="timeline reveal" aria-label="Workflow">
+            <li>
+                <span class="tile tile--lg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h4l10-10l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></span>
+                <b>Editor</b>
+                <span class="i18n-ko">네트워크 · 수요 · 신호 · 대중교통</span><span class="i18n-en">Network, demand, signals, transit</span>
+            </li>
+            <li>
+                <span class="tile tile--lg" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="18" r="2"/><circle cx="19" cy="6" r="2"/><path d="M7 18h5a3 3 0 0 0 0-6h-0a3 3 0 0 1 0-6h5"/></svg></span>
+                <b>RouteGenerator</b>
+                <span class="i18n-ko">차량 · 승객 경로 사전 계산</span><span class="i18n-en">Vehicle and passenger routes</span>
+            </li>
+            <li>
+                <span class="tile tile--lg" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></span>
+                <b><span class="i18n-ko">NextSIM 엔진</span><span class="i18n-en">NextSIM engine</span></b>
+                <span class="i18n-ko">하이브리드 시뮬레이션 실행</span><span class="i18n-en">Runs the hybrid simulation</span>
+            </li>
+            <li>
+                <span class="tile tile--lg" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M10 8.5v5l4-2.5z"/><path d="M3 21h18"/></svg></span>
+                <b>Visualizer</b>
+                <span class="i18n-ko">시간축을 따라 재생 · 분석</span><span class="i18n-en">Replay and analyse over time</span>
+            </li>
+        </ol>
+
+        <div class="tool">
+            <div class="tool__text reveal">
+                <p class="eyebrow">01 · /editor</p>
+                <h3 class="display display--sm">Editor</h3>
+                <p class="tool__lede i18n-ko">시뮬레이션 입력을 지도 위에서 직접 만들고 고칩니다. 파일 형식을 몰라도 됩니다.</p>
+                <p class="tool__lede i18n-en">Build and edit simulation inputs directly on the map — no need to know the file formats.</p>
+                <ul class="checks i18n-ko">
+                    <li>도로망·차로·교차로 연결 편집, 표준노드링크 / OSM 가져오기</li>
+                    <li>OD 수요 행렬, 시간대별 micro/meso 모드 지정</li>
+                    <li>신호 현시·플랜·TOD, 정류장·대중교통 노선, 돌발 이벤트</li>
+                    <li>저장할 때마다 자동 백업, 언제든 복원</li>
+                </ul>
+                <ul class="checks i18n-en">
+                    <li>Roads, lanes, and connections; import from node-link or OSM</li>
+                    <li>OD demand matrices; micro/meso mode per period</li>
+                    <li>Signal phases, plans, TOD; stations, transit lines, incidents</li>
+                    <li>Every save is backed up and can be restored</li>
+                </ul>
+                <a class="textlink" href="docs/editor-guide.html"><span class="i18n-ko">Editor 가이드</span><span class="i18n-en">Editor guide</span> →</a>
+            </div>
+            <div class="tool__media reveal">
+                <div class="window">
+                    <div class="window__bar" aria-hidden="true">
+                        <span class="window__dots"><i></i><i></i><i></i></span>
+                        <span class="window__url">localhost:8000/editor</span>
+                    </div>
+                    <img src="assets/img/editor.webp" alt="NextSIM Editor — Mode workspace" loading="lazy" width="1600" height="1000">
+                </div>
+                <div class="chip-float chip-float--tl" aria-hidden="true">
+                    <span class="dot dot--micro"></span>micro 330 <span class="sep"></span><span class="dot dot--meso"></span>meso 0
+                </div>
+            </div>
+        </div>
+
+        <div class="tool tool--flip">
+            <div class="tool__text reveal">
+                <p class="eyebrow">02 · /visualizer</p>
+                <h3 class="display display--sm">Visualizer</h3>
+                <p class="tool__lede i18n-ko">시뮬레이션을 실행하고, 결과를 지도 위에 시간축을 따라 재생하며 읽습니다.</p>
+                <p class="tool__lede i18n-en">Run a simulation, then replay and read its result on the map along the timeline.</p>
+                <ul class="checks i18n-ko">
+                    <li>실행 중에도 진행 상황을 미리 보는 라이브 프리뷰</li>
+                    <li>재생 속도 조절, 링크 혼잡도 히트맵과 범례</li>
+                    <li>차량·링크·정류장 클릭 조회, 시나리오 요약 통계</li>
+                    <li>버스 운행 정보(BIMS): 정류장별 대기·승하차·재차 인원</li>
+                </ul>
+                <ul class="checks i18n-en">
+                    <li>Live preview of a run while it is still going</li>
+                    <li>Playback speed; link congestion heatmap with a legend</li>
+                    <li>Click any vehicle, link, or stop; scenario summary statistics</li>
+                    <li>Bus information (BIMS): waiting, boarding, on-board per stop</li>
+                </ul>
+                <a class="textlink" href="docs/visualizer-guide.html"><span class="i18n-ko">Visualizer 가이드</span><span class="i18n-en">Visualizer guide</span> →</a>
+            </div>
+            <div class="tool__media reveal">
+                <div class="window">
+                    <div class="window__bar" aria-hidden="true">
+                        <span class="window__dots"><i></i><i></i><i></i></span>
+                        <span class="window__url">localhost:8000/visualizer</span>
+                    </div>
+                    <img src="assets/img/visualizer.webp" alt="NextSIM Visualizer — link congestion heatmap" loading="lazy" width="1600" height="1000">
+                </div>
+                <div class="chip-float chip-float--br" aria-hidden="true">
+                    <span class="ramp ramp--sm"></span>
+                    <span class="i18n-ko">링크 혼잡도 · 08:08:00</span><span class="i18n-en">Link congestion · 08:08:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ 시작하기 -->
+<section class="section" id="start">
+    <div class="wrap">
+        <header class="section__head reveal">
+            <p class="eyebrow eyebrow--lined"><span class="i18n-ko">시작하기</span><span class="i18n-en">Get started</span></p>
+            <h2 class="display"><span class="i18n-ko">몇 분이면 첫 시뮬레이션</span><span class="i18n-en">Your first simulation in minutes</span></h2>
+            <p class="i18n-ko">설치 방법은 네 가지. 어느 쪽이든 끝나면 브라우저에 같은 Editor · Visualizer 가 열립니다.</p>
+            <p class="i18n-en">Four ways to install. Each ends with the same Editor and Visualizer in your browser.</p>
+        </header>
+        <div class="installs">
+            <a class="glass install reveal" href="docs/installation.html#windows">
+                <span class="badge badge--violet"><span class="i18n-ko">가장 쉬움</span><span class="i18n-en">Easiest</span></span>
+                <h3><span class="i18n-ko">Windows 설치 파일</span><span class="i18n-en">Windows installer</span></h3>
+                <p class="i18n-ko">설치 마법사만 따라가면 됩니다. Python · WSL · Docker 불필요.</p>
+                <p class="i18n-en">Just run the installer. No Python, WSL, or Docker.</p>
+                <code>NextSim-Setup-v1.1.exe</code>
+            </a>
+            <a class="glass install reveal" href="docs/installation.html#docker">
+                <span class="badge"><span class="i18n-ko">모든 OS</span><span class="i18n-en">Any OS</span></span>
+                <h3>Docker</h3>
+                <p class="i18n-ko">명령 한 줄로 엔진 빌드부터 웹 서버까지. 소스 저장소 권한이 필요합니다.</p>
+                <p class="i18n-en">One command from engine build to web server. Needs source repository access.</p>
+                <code>docker compose up --build</code>
+            </a>
+            <a class="glass install reveal" href="docs/installation.html#zip">
+                <span class="badge"><span class="i18n-ko">컴파일 불필요</span><span class="i18n-en">No compiler</span></span>
+                <h3><span class="i18n-ko">Linux · WSL 배포판</span><span class="i18n-en">Linux · WSL package</span></h3>
+                <p class="i18n-ko">미리 빌드된 ZIP 을 풀고 스크립트 하나 실행.</p>
+                <p class="i18n-en">Unpack the prebuilt ZIP and run one script.</p>
+                <code>./start_web.sh</code>
+            </a>
+            <a class="glass install reveal" href="docs/installation.html#source">
+                <span class="badge"><span class="i18n-ko">개발자용</span><span class="i18n-en">For developers</span></span>
+                <h3><span class="i18n-ko">소스에서 빌드</span><span class="i18n-en">Build from source</span></h3>
+                <p class="i18n-ko">엔진 수정 · NextCI 연동이 필요할 때. 소스 저장소 권한이 필요합니다.</p>
+                <p class="i18n-en">To change the engine or use NextCI. Needs source repository access.</p>
+                <code>cmake --preset release</code>
+            </a>
+        </div>
+        <p class="req-note i18n-ko">모든 방법에 <strong>AVX2 를 지원하는 x86-64 CPU</strong>(2013년 이후 인텔·AMD 대부분)가 필요합니다.</p>
+        <p class="req-note i18n-en">Every method needs an <strong>x86-64 CPU with AVX2</strong> (most Intel and AMD CPUs since 2013).</p>
+
+        <div class="glass glass--modal guide reveal">
+            <div class="guide__head">
+                <p class="eyebrow"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></p>
+                <h3 class="display display--sm"><span class="i18n-ko">설치부터 분석까지, 순서대로</span><span class="i18n-en">From install to analysis, in order</span></h3>
+            </div>
+            <ol class="guide__steps">
+                <li><a href="docs/index.html"><b>1</b><span><strong><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></strong><span class="i18n-ko">구조와 입력 데이터</span><span class="i18n-en">How it fits together</span></span></a></li>
+                <li><a href="docs/installation.html"><b>2</b><span><strong><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></strong><span class="i18n-ko">네 가지 방법과 첫 실행</span><span class="i18n-en">Four methods, first run</span></span></a></li>
+                <li><a href="docs/editor-guide.html"><b>3</b><span><strong>Editor</strong><span class="i18n-ko">입력 만들기와 편집</span><span class="i18n-en">Authoring the inputs</span></span></a></li>
+                <li><a href="docs/visualizer-guide.html"><b>4</b><span><strong>Visualizer</strong><span class="i18n-ko">실행과 결과 분석</span><span class="i18n-en">Running and analysis</span></span></a></li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ 팀 / 라이선스 -->
+<section class="section section--last" id="about">
+    <div class="wrap">
+        <div class="glass about reveal">
+            <div>
+                <p class="eyebrow"><span class="i18n-ko">만든 사람들</span><span class="i18n-en">Who builds it</span></p>
+                <h2 class="display display--sm">KAIST AIxMobility Lab</h2>
+                <p class="i18n-ko">NextSIM 은 KAIST(한국과학기술원) AIxMobility Lab 에서 개발하고 있습니다.
+                    공동 연구나 사용 문의는 연구실 홈페이지로 연락해 주세요.</p>
+                <p class="i18n-en">NextSIM is developed at the AIxMobility Lab of KAIST (Korea Advanced Institute of Science
+                    and Technology). For collaboration or usage questions, contact us through the lab website.</p>
+                <a class="btn btn--pill" href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">aimobility.kaist.ac.kr <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="about__license">
+                <p class="eyebrow"><span class="i18n-ko">라이선스</span><span class="i18n-en">License</span></p>
+                <p class="i18n-ko"><strong>비상업적 사용</strong>만 허용됩니다. 상업적 이용은 연구실에 문의해 주세요.</p>
+                <p class="i18n-en"><strong>Non-commercial use only.</strong> For commercial use, please contact the lab.</p>
+                <p class="copyright">© 2019 Hwasoo Yeo, Yeeun Kim, Sujae Jeon, Seongjin Choi, Justin Kim, Jae Hwan Jeong.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer__row">
+            <span>NextSIM · KAIST AIxMobility Lab</span>
+            <nav aria-label="Footer">
+                <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+                <a href="docs/installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a>
+                <a href="https://github.com/AIxMobility/ai-mobility.github.io/releases/latest" target="_blank" rel="noopener"><span class="i18n-ko">다운로드</span><span class="i18n-en">Downloads</span></a>
+            </nav>
+        </div>
+        <p class="footer__mark" aria-hidden="true">NextSIM</p>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
