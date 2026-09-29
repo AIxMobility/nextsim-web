@@ -610,7 +610,7 @@
 </style>
 <div class="shell">
     <nav class="nav" id="docNav">
-        <div class="nav__brand">NextSIM NextCI<small><span class="i18n-ko">외부 제어 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">External control guide · KAIST AIxMobility Lab</span></small></div>
+        <div class="nav__brand">NextSIM NextCI<small><span class="i18n-ko">시작하기 · KAIST AIxMobility Lab</span><span class="i18n-en">Getting started · KAIST AIxMobility Lab</span></small></div>
         <a class="site-home" href="../index.html"><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></a>
         <div class="lang-switch" role="group" aria-label="Language / 언어">
             <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
@@ -623,7 +623,9 @@
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
                 <a href="editor-guide.html" style="--dot: var(--ws-network)"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
                 <a href="visualizer-guide.html" style="--dot: var(--ws-signal)"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
-                <a href="nextci-guide.html" aria-current="page"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></a>
+                <a href="nextci-guide.html" aria-current="page"><span class="i18n-ko">5. NextCI 시작하기</span><span class="i18n-en">5. NextCI getting started</span></a>
+                <a href="nextci-tutorials.html"><span class="i18n-ko">6. NextCI 튜토리얼</span><span class="i18n-en">6. NextCI tutorials</span></a>
+                <a href="nextci-reference.html"><span class="i18n-ko">7. NextCI API 레퍼런스</span><span class="i18n-en">7. NextCI API reference</span></a>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></div>
@@ -651,7 +653,7 @@
 
     <main class="content">
         <div class="masthead">
-            <h1><span class="i18n-ko">NextCI 가이드</span><span class="i18n-en">NextCI guide</span></h1>
+            <h1><span class="i18n-ko">NextCI 시작하기</span><span class="i18n-en">NextCI: getting started</span></h1>
             <p class="i18n-ko">NextCI 는 NextSIM 엔진을 TCP 로 바깥에서 제어하는 인터페이스입니다. Python 에서 시뮬레이션을
                 원하는 만큼 진행하고, 차량·링크·검지기 상태를 읽고, 같은 시점으로 되돌려 여러 시도를 비교할 수 있습니다.
                 강화학습, 공동 시뮬레이션, 제어 실험처럼 시뮬레이션을 프로그램 안에서 다뤄야 할 때 씁니다.</p>
@@ -664,6 +666,29 @@
                 <span class="chip">Python 3.10+</span>
                 <span class="chip"><span class="i18n-ko">소스 빌드 필요</span><span class="i18n-en">Source build required</span></span>
             </div>
+        </div>
+
+        <div class="toolgrid">
+            <a class="toolcard" href="#setup" style="--tc: var(--ws-station)">
+                <h3><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></h3>
+                <code><span class="i18n-ko">이 페이지</span><span class="i18n-en">this page</span></code>
+                <p class="i18n-ko">설치, 첫 연결, 서버 실행 방식, 알아 둘 개념.</p>
+                <p class="i18n-en">Setup, first connection, how the server runs, the concepts to know.</p>
+            </a>
+            <a class="toolcard" href="nextci-tutorials.html" style="--tc: var(--ws-network)">
+                <h3><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></h3>
+                <code>4 <span class="i18n-ko">편</span><span class="i18n-en">scripts</span></code>
+                <p class="i18n-ko">기록하기, 검지기로 재기, 같은 시점에서 반복하기, 하이브리드로 바꾸기.</p>
+                <p class="i18n-en">Logging, measuring with detectors, repeating from one moment, going hybrid.</p>
+                <span class="go"><span class="i18n-ko">튜토리얼 →</span><span class="i18n-en">Tutorials →</span></span>
+            </a>
+            <a class="toolcard" href="nextci-reference.html" style="--tc: var(--ws-scenario)">
+                <h3><span class="i18n-ko">API 레퍼런스</span><span class="i18n-en">API reference</span></h3>
+                <code>NextCIClient</code>
+                <p class="i18n-ko">모든 메서드의 인자 · 반환 · 조건 · 비용 · 와이어 ID. 이름으로 찾을 수 있습니다.</p>
+                <p class="i18n-en">Arguments, returns, conditions, costs, and wire IDs of every method, searchable by name.</p>
+                <span class="go"><span class="i18n-ko">레퍼런스 →</span><span class="i18n-en">Reference →</span></span>
+            </a>
         </div>
 
         <!-- ================================================== 개요 -->
@@ -835,26 +860,19 @@ client = NextCIClient(port=9999).connect()</pre>
         <!-- ================================================== 조회 -->
         <section id="queries">
             <h2><span class="i18n-ko">상태 조회</span><span class="i18n-en">Querying state</span></h2>
-            <div class="tablewrap i18n-ko"><table>
-                <tr><th>대상</th><th>메서드</th><th>메모</th></tr>
-                <tr><td>시뮬레이션</td><td class="mono">get_current_cycle, get_total_cycle, is_finished, get_sim_time_millis, get_scenario_id, get_output_paths</td><td></td></tr>
-                <tr><td>차량</td><td class="mono">get_vehicle_count, get_vehicle_id_list</td><td></td></tr>
-                <tr><td>링크</td><td class="mono">get_link_count, get_link_id_list, get_link_lane_count, get_link_length, get_link_width, get_link_vehicle_count, get_link_mean_speed_mps, get_link_dynamic_summary</td><td>micro 기준. meso 링크에서는 비어 있을 수 있습니다.</td></tr>
-                <tr><td>차로</td><td class="mono">get_lane_length, get_lane_vehicle_count, get_lane_vehicle_id_list, get_lane_mean_speed_mps</td><td>인자 <span class="mono">(link_id, lane_index)</span></td></tr>
-                <tr><td>Meso 셀</td><td class="mono">get_meso_cell_vehicle_count, get_meso_cell_mean_speed_mps, get_meso_cell_density_veh_per_km, get_meso_cell_fd_speed_kph …</td><td>인자 <span class="mono">(link_id, lane_index, cell_index)</span> — <a href="#meso">Meso 조회</a></td></tr>
-                <tr><td>검지기</td><td class="mono">get_detector_id_list, get_detector_flow, get_detector_occupancy, get_detector_mean_speed, get_detector_mean_travel_time …</td><td>인자 <span class="mono">detector_id</span></td></tr>
-            </table></div>
-            <div class="tablewrap i18n-en"><table>
-                <tr><th>Target</th><th>Methods</th><th>Notes</th></tr>
-                <tr><td>Simulation</td><td class="mono">get_current_cycle, get_total_cycle, is_finished, get_sim_time_millis, get_scenario_id, get_output_paths</td><td></td></tr>
-                <tr><td>Vehicles</td><td class="mono">get_vehicle_count, get_vehicle_id_list</td><td></td></tr>
-                <tr><td>Links</td><td class="mono">get_link_count, get_link_id_list, get_link_lane_count, get_link_length, get_link_width, get_link_vehicle_count, get_link_mean_speed_mps, get_link_dynamic_summary</td><td>Micro-oriented; may be empty on meso links.</td></tr>
-                <tr><td>Lanes</td><td class="mono">get_lane_length, get_lane_vehicle_count, get_lane_vehicle_id_list, get_lane_mean_speed_mps</td><td>Arguments <span class="mono">(link_id, lane_index)</span></td></tr>
-                <tr><td>Meso cells</td><td class="mono">get_meso_cell_vehicle_count, get_meso_cell_mean_speed_mps, get_meso_cell_density_veh_per_km, get_meso_cell_fd_speed_kph …</td><td>Arguments <span class="mono">(link_id, lane_index, cell_index)</span>; see <a href="#meso">Meso queries</a></td></tr>
-                <tr><td>Detectors</td><td class="mono">get_detector_id_list, get_detector_flow, get_detector_occupancy, get_detector_mean_speed, get_detector_mean_travel_time …</td><td>Argument <span class="mono">detector_id</span></td></tr>
-            </table></div>
-            <p class="i18n-ko">메서드 전체 목록과 변수 ID 는 저장소의 <span class="mono">NextCI/docs/</span> 에 있습니다.</p>
-            <p class="i18n-en">The full method list and variable IDs are in <span class="mono">NextCI/docs/</span> in the repository.</p>
+            <p class="i18n-ko">시뮬레이션 · 차량 · 링크 · 차로 · Meso 셀 · 검지기를 읽는 메서드는 80 개가 넘습니다. 영역별 목록과
+                각 메서드의 인자 · 반환 · 조건 · 비용은 <a href="nextci-reference.html">API 레퍼런스</a>에 있고,
+                <a href="nextci-reference.html#cheatsheet">한눈에 보기</a> 표로 한 번에 훑어볼 수 있습니다.</p>
+            <p class="i18n-en">There are more than 80 methods for reading the simulation, vehicles, links, lanes, meso cells, and
+                detectors. The list by area, with each method's arguments, returns, conditions, and costs, is in the
+                <a href="nextci-reference.html">API reference</a>; the <a href="nextci-reference.html#cheatsheet">at-a-glance</a>
+                table shows them all at once.</p>
+            <div class="warn i18n-ko"><strong>차량 수는 micro 차로 위만 셉니다.</strong> <span class="mono">get_vehicle_count()</span>
+                와 <span class="mono">get_link_*</span> 는 meso 셀 안의 차량을 세지 않습니다. 링크를 meso 로 바꾸면 그 링크의 차량은
+                셀로 옮겨지고, <span class="mono">get_meso_cell_vehicle_count()</span> 로 셉니다.</div>
+            <div class="warn i18n-en"><strong>Vehicle counts cover micro lanes only.</strong> <span class="mono">get_vehicle_count()</span>
+                and <span class="mono">get_link_*</span> do not count vehicles inside meso cells. When a link switches to meso its
+                vehicles move into cells and are counted with <span class="mono">get_meso_cell_vehicle_count()</span>.</div>
         </section>
 
         <!-- ================================================== Meso -->
@@ -1061,8 +1079,9 @@ b = client.get_vehicle_count()</pre>
 
         <footer>
             NextSIM · KAIST AIxMobility Lab —
-            <a href="index.html"><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></a> ·
-            <a href="installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a>
+            <a href="nextci-tutorials.html"><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></a> ·
+            <a href="nextci-reference.html"><span class="i18n-ko">API 레퍼런스</span><span class="i18n-en">API reference</span></a> ·
+            <a href="index.html"><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></a>
         </footer>
     </main>
 </div>
