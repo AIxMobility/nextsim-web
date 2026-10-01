@@ -40,29 +40,10 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
 })();
 
-// ---------------------------------------------------------------- 스크롤 등장
-(function () {
-    const items = Array.from(document.querySelectorAll('.reveal'));
-    if (!items.length) return;
-    if (!('IntersectionObserver' in window)) { items.forEach(el => el.classList.add('is-in')); return; }
-    const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            // 같은 줄에 나란히 들어오는 카드는 조금씩 늦게
-            const siblings = Array.from(entry.target.parentElement.children).filter(c => c.classList.contains('reveal'));
-            const i = Math.max(0, siblings.indexOf(entry.target));
-            entry.target.style.transitionDelay = `${Math.min(i, 5) * 60}ms`;
-            entry.target.classList.add('is-in');
-            io.unobserve(entry.target);
-        });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    items.forEach(el => io.observe(el));
-})();
-
 // ---------------------------------------------------------------- 히어로: 하이브리드 도시
 // 격자형 가상 도시를 그린다. Micro 구역 밖의 링크는 셀 단위 혼잡도 색(meso),
 // 안쪽 링크는 차로 위를 달리며 신호에 멈추는 개별 차량(micro)으로 표현한다.
-// 주변 패널(신호 현시, 주행/정지 대수)은 이 시뮬레이션 값을 그대로 보여준다.
+// 그림 아래 범례(신호 현시, 주행/정지 대수)는 이 시뮬레이션 값을 그대로 보여준다.
 (function () {
     const canvas = document.getElementById('heroCanvas');
     if (!canvas || !canvas.getContext) return;
