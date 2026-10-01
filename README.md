@@ -1,3 +1,8 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/logo/NextSIM_horizontal_color_on-dark.svg">
+  <img src="assets/logo/NextSIM_horizontal_color_on-light.svg" alt="NextSIM" width="320">
+</picture>
+
 # NextSIM website
 
 https://aixmobility.github.io/nextsim-web/

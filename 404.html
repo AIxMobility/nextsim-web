@@ -7,7 +7,9 @@
 <base href="https://aixmobility.github.io/nextsim-web/">
 <title>NextSIM — 404</title>
 <meta name="robots" content="noindex">
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
 <script>
     (function () {
         var lang = null;
@@ -28,17 +30,20 @@
     .notfound .wordmark { font-size: clamp(96px, 22vw, 200px); margin-bottom: 12px; }
     .notfound p:not(.eyebrow) { color: var(--fog); margin: 0 auto 32px; max-width: 46ch; }
     .notfound .eyebrow { margin-bottom: 20px; }
+    .notfound__logo { display: inline-block; margin-bottom: 40px; }
+    .notfound__logo img { height: 40px; width: auto; }
 </style>
 </head>
 <body>
 <main class="hero notfound">
     <div class="hero__spot" aria-hidden="true"></div>
     <div class="wrap">
+        <a class="notfound__logo" href="index.html"><img src="assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="143" height="40"></a>
         <h1 class="wordmark">404</h1>
         <p class="i18n-ko">찾는 페이지가 없습니다. 주소가 바뀌었거나 잘못 입력된 것 같습니다.</p>
         <p class="i18n-en">That page doesn't exist. The address may have changed or been mistyped.</p>
         <div class="hero__cta">
-            <a class="btn btn--violet" href="index.html"><span class="i18n-ko">홈으로</span><span class="i18n-en">Home</span></a>
+            <a class="btn btn--accent" href="index.html"><span class="i18n-ko">홈으로</span><span class="i18n-en">Home</span></a>
             <a class="btn btn--pill" href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
         </div>
     </div>

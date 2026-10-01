@@ -23,6 +23,7 @@
     })();
 </script>
 <title>NextSIM Simulation Guide</title>
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
 <script>
     /* 언어 선택을 body 파싱 전에 적용해 잘못된 언어가 잠깐 보이는 것을 막는다.
        기본값은 ko 이며, CSS 가 :root:not([data-lang="en"]) 로 한국어를 기본 표시하므로
@@ -171,6 +172,19 @@
         letter-spacing: .02em;
         margin-top: 3px;
     }
+
+    /* 로고: 밝은 / 어두운 테마에 맞는 판을 하나만 보인다 (원본 img/logo/) */
+    .nav__brand { display: flex; flex-wrap: wrap; align-items: center; gap: 0 8px; }
+    .nav__brand small { flex-basis: 100%; }
+    .nav__logo img { display: block; width: auto; height: 28px; }
+    .nav__logo .nav__logo-dark { display: none; }
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .nav__logo .nav__logo-light { display: none; }
+        :root:not([data-theme="light"]) .nav__logo .nav__logo-dark { display: block; }
+    }
+    :root[data-theme="dark"] .nav__logo .nav__logo-light { display: none; }
+    :root[data-theme="dark"] .nav__logo .nav__logo-dark { display: block; }
+    .nav__product { padding-left: 8px; border-left: 1px solid var(--hairline); font-size: 14px; line-height: 18px; }
 
     .nav__group { margin-top: 22px; }
 
@@ -494,7 +508,7 @@
 
 <div class="shell">
     <nav class="nav" id="docNav">
-        <div class="nav__brand">NextSIM Simulation<small><span class="i18n-ko">사용자 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">User Guide · KAIST AIxMobility Lab</span></small></div>
+        <div class="nav__brand"><span class="nav__logo"><img class="nav__logo-light" src="../assets/logo/NextSIM_horizontal_color_on-light.svg" alt="NextSIM" width="100" height="28"><img class="nav__logo-dark" src="../assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="100" height="28"></span><span class="nav__product">Simulation</span><small><span class="i18n-ko">사용자 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">User Guide · KAIST AIxMobility Lab</span></small></div>
         <a class="site-home" href="../index.html"><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></a>
         <div class="lang-switch" role="group" aria-label="Language / 언어">
             <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
@@ -676,13 +690,21 @@
                 실행이 끝날 때까지 잠깁니다 — 바꾸면 실행 중인 네트워크의 궤적이 다른 지도 위에 그려지기 때문입니다.
                 결과에는 네트워크 폴더·시나리오·작업 ID가 함께 기록되며(스토어 metadata 와 결과 DB 의
                 <span class="mono">NextSimRunInfo</span> 테이블), 결과를 열 때 지도의 네트워크와 다르면 재생을 막고
-                알림을 띄웁니다. 그 자리에서 기록된 네트워크로 전환해 이어 열 수 있습니다.</div>
+                알림을 띄웁니다. 그 자리에서 기록된 네트워크로 전환해 이어 열 수 있습니다.
+                결과를 열면 그 결과를 만든 시나리오가 자동으로 적용되고, 신호 색·신호 계획·이벤트 시각은 그 시나리오
+                기준으로 계산됩니다. 결과를 연 채로 Run 패널에서 다음 실행용 시나리오를 바꿔도 재생 중인 신호는 바뀌지
+                않습니다. Run 은 고른 시나리오를 그대로 돌립니다(고르지 않으면 파일의 첫 시나리오). 시나리오가 기록되지 않은 옛
+                결과는 그때 엔진이 늘 돌리던 첫 시나리오로 봅니다.</div>
             <div class="warn i18n-en"><strong>The network cannot be changed mid-run.</strong> The folder selector in
                 Inputs is locked until the run finishes — switching would draw the running network's trajectories on
                 a different map. Every result records its network folder, scenario and job id (in the store metadata
                 and in the <span class="mono">NextSimRunInfo</span> table of the result DB); when a result is opened
                 on a different network, playback is blocked and a dialog explains the mismatch, offering to switch to
-                the recorded network and continue.</div>
+                the recorded network and continue. Opening a result applies the scenario that produced it: signal
+                colours, signal plans and event times are computed for that scenario, and changing the Run panel's
+                scenario for the next run does not change the signals of the result being replayed. Older results
+                that do not record a scenario are treated as the first scenario, which older engine builds always ran. Run
+                simulates the scenario you pick (the first one of the file when none is picked).</div>
 
             <div class="warn i18n-ko"><strong>실행 중에는 페이지를 새로고침하지 마세요.</strong> 서버 작업은
                 계속 돌지만 화면이 그 작업에 다시 붙지 않습니다 — 진행률도, 완료 후 자동 결과 로드도 사라집니다.
@@ -933,14 +955,14 @@
         <section id="map-search">
             <h2><span class="i18n-ko">지도 탐색과 검색</span><span class="i18n-en">Map navigation and search</span></h2>
             <ul class="i18n-ko">
-                <li><strong>확대/축소</strong> — 마우스 휠. <strong>화면 이동</strong> — 가운데 버튼 드래그.</li>
+                <li><strong>확대/축소</strong> — 마우스 휠. <strong>화면 이동</strong> — 왼쪽 버튼(또는 가운데 버튼) 드래그. 트랙패드도 누른 채 끌면 됩니다.</li>
                 <li><strong>미니맵</strong> — 좌측 하단 개요 지도에서 현재 화면 위치를 확인하고,
                     클릭·드래그로 바로 이동합니다. ▾로 접을 수 있습니다.</li>
                 <li><strong>축척 막대</strong> — 좌측 하단.</li>
                 <li>차량·링크·노드에 마우스를 올리면 툴팁으로 ID가 표시됩니다.</li>
             </ul>
             <ul class="i18n-en">
-                <li><strong>Zoom</strong> — mouse wheel. <strong>Pan</strong> — drag with the middle button.</li>
+                <li><strong>Zoom</strong> — mouse wheel. <strong>Pan</strong> — drag with the left (or middle) button; on a trackpad, press and drag.</li>
                 <li><strong>Minimap</strong> — the overview map at bottom left shows where you are; click or
                     drag it to jump. Collapse it with ▾.</li>
                 <li><strong>Scale bar</strong> — bottom left.</li>
@@ -1149,9 +1171,9 @@
             </ul>
 
             <h3><span class="i18n-ko">지도가 안 움직여요</span><span class="i18n-en">The map won't pan</span></h3>
-            <p class="i18n-ko">화면 이동은 마우스 <strong>가운데 버튼</strong> 드래그입니다. 미니맵 클릭으로도 이동할 수
+            <p class="i18n-ko">지도를 <strong>왼쪽 버튼</strong>(또는 가운데 버튼)으로 누른 채 끌면 이동합니다. 미니맵 클릭으로도 이동할 수
                 있습니다.</p>
-            <p class="i18n-en">Pan by dragging with the <strong>middle mouse button</strong>. Clicking the
+            <p class="i18n-en">Pan by dragging with the <strong>left</strong> (or middle) mouse button. Clicking the
                 minimap also moves the view.</p>
 
             <h3><span class="i18n-ko">네트워크·수요를 고치고 다시 돌리고 싶어요</span><span class="i18n-en">I want to change the network or demand and re-run</span></h3>

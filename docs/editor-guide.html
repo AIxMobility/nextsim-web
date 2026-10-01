@@ -23,6 +23,7 @@
     })();
 </script>
 <title>NextSIM Editor Guide</title>
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
 <script>
     /* 언어 선택을 body 파싱 전에 적용해 잘못된 언어가 잠깐 보이는 것을 막는다.
        기본값은 ko 이며, CSS 가 :root:not([data-lang="en"]) 로 한국어를 기본 표시하므로
@@ -184,6 +185,19 @@
         letter-spacing: .02em;
         margin-top: 3px;
     }
+
+    /* 로고: 밝은 / 어두운 테마에 맞는 판을 하나만 보인다 (원본 img/logo/) */
+    .nav__brand { display: flex; flex-wrap: wrap; align-items: center; gap: 0 8px; }
+    .nav__brand small { flex-basis: 100%; }
+    .nav__logo img { display: block; width: auto; height: 28px; }
+    .nav__logo .nav__logo-dark { display: none; }
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .nav__logo .nav__logo-light { display: none; }
+        :root:not([data-theme="light"]) .nav__logo .nav__logo-dark { display: block; }
+    }
+    :root[data-theme="dark"] .nav__logo .nav__logo-light { display: none; }
+    :root[data-theme="dark"] .nav__logo .nav__logo-dark { display: block; }
+    .nav__product { padding-left: 8px; border-left: 1px solid var(--hairline); font-size: 14px; line-height: 18px; }
 
     .nav__group {
         margin-top: 22px;
@@ -534,7 +548,7 @@
 
 <div class="shell">
     <nav class="nav" id="docNav">
-        <div class="nav__brand">NextSIM Editor<small><span class="i18n-ko">사용자 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">User Guide · KAIST AIxMobility Lab</span></small></div>
+        <div class="nav__brand"><span class="nav__logo"><img class="nav__logo-light" src="../assets/logo/NextSIM_horizontal_color_on-light.svg" alt="NextSIM" width="100" height="28"><img class="nav__logo-dark" src="../assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="100" height="28"></span><span class="nav__product">Editor</span><small><span class="i18n-ko">사용자 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">User Guide · KAIST AIxMobility Lab</span></small></div>
         <a class="site-home" href="../index.html"><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></a>
         <div class="lang-switch" role="group" aria-label="Language / 언어">
             <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
@@ -764,16 +778,16 @@
             <h3><span class="i18n-ko">화면 이동과 확대</span><span class="i18n-en">Pan and zoom</span></h3>
             <ul class="i18n-ko">
                 <li><strong>확대/축소</strong> — 마우스 휠 (커서 위치 기준)</li>
-                <li><strong>화면 이동(팬)</strong> — <strong>마우스 가운데 버튼</strong>을 누른 채 드래그.
-                    좌클릭 드래그는 워크스페이스별 편집 동작(박스 선택 등)에 쓰입니다.</li>
+                <li><strong>화면 이동(팬)</strong> — <kbd>Space</kbd>를 누른 채 왼쪽 버튼 드래그 (트랙패드도 같음),
+                    또는 마우스 가운데 버튼 드래그. Space 없이 하는 좌클릭 드래그는 워크스페이스별 편집 동작(박스 선택 등)에 쓰입니다.</li>
                 <li><strong>미니맵</strong> — 좌측 하단의 개요 지도. 현재 화면 위치가 사각형으로
                     표시되고, 미니맵을 클릭·드래그하면 그 지점으로 이동합니다. ▾ 버튼으로 접을 수 있습니다.</li>
                 <li><strong>축척 막대</strong> — 좌측 하단에 현재 배율 기준 거리가 표시됩니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>Zoom</strong> — mouse wheel, centred on the cursor.</li>
-                <li><strong>Pan</strong> — drag with the <strong>middle mouse button</strong>. Left-drag is
-                    reserved for per-workspace editing (box select and so on).</li>
+                <li><strong>Pan</strong> — hold <kbd>Space</kbd> and drag with the left button (works on a trackpad),
+                    or drag with the middle mouse button. Left-drag without Space is reserved for per-workspace editing (box select and so on).</li>
                 <li><strong>Minimap</strong> — the overview at bottom left marks the current view with a
                     rectangle; click or drag it to jump. Collapse with ▾.</li>
                 <li><strong>Scale bar</strong> — bottom left, in the current zoom's units.</li>
@@ -913,7 +927,8 @@
                 <tr><td><strong>Conn</strong></td><td><kbd>C</kbd></td>
                     <td>교차로 커넥션을 차로 단위로 편집합니다. 먼저 진입(in) 차로를 클릭해 출발지로 지정하고,
                         이어서 진출(out) 차로를 클릭할 때마다 커넥션이 생성/삭제(토글)됩니다.
-                        같은 차로를 다시 클릭하면 출발지 지정이 해제됩니다.</td></tr>
+                        그 차로의 편집이 끝나면 <kbd>Enter</kbd>(또는 같은 차로를 다시 클릭)로 출발지 지정을 풀고
+                        다음 진입 차로를 고릅니다.</td></tr>
                 <tr><td><strong>Split</strong></td><td><kbd>X</kbd></td>
                     <td>링크 위 클릭 지점에 노드를 삽입해 링크를 둘로 나눕니다. 앞쪽 절반은 기존 링크 ID를
                         유지하고 뒤쪽 절반이 새 ID를 받습니다. 이 모드에서는 커서가 <strong>가위 모양</strong>으로 바뀝니다.</td></tr>
@@ -950,8 +965,8 @@
                         endpoint near a node snaps to it.</td></tr>
                 <tr><td><strong>Conn</strong></td><td><kbd>C</kbd></td>
                     <td>Edits intersection connections lane by lane. Click an inbound lane to set the source,
-                        then each click on an outbound lane toggles that connection. Clicking the source lane
-                        again clears it.</td></tr>
+                        then each click on an outbound lane toggles that connection. When that lane is done, press
+                        <kbd>Enter</kbd> (or click the source lane again) to release it and pick the next inbound lane.</td></tr>
                 <tr><td><strong>Split</strong></td><td><kbd>X</kbd></td>
                     <td>Inserts a node at the clicked point, splitting the link in two. The first half keeps the
                         original link ID and the second gets a new one. The cursor turns into <strong>scissors</strong>
@@ -1884,14 +1899,14 @@
                 <tr><td><kbd>Ctrl</kbd>+<kbd>K</kbd></td><td>전역 검색 (노드·링크·정류장·노선)</td></tr>
                 <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>실행 취소 / 다시 실행 (워크스페이스별)</td></tr>
                 <tr><td><kbd>Esc</kbd></td><td>현재 모드·선택 해제 — 입력칸 안에서는 포커스만, 모달이 떠 있으면 모달 닫기</td></tr>
-                <tr><td>휠 / 가운데 버튼 드래그</td><td>확대·축소 / 화면 이동</td></tr>
+                <tr><td>휠 / <kbd>Space</kbd>+드래그 · 가운데 버튼 드래그</td><td>확대·축소 / 화면 이동</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Key</th><th>Action</th></tr>
                 <tr><td><kbd>Ctrl</kbd>+<kbd>K</kbd></td><td>Global search (nodes, links, stations, lines)</td></tr>
                 <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>Undo / redo (per workspace)</td></tr>
                 <tr><td><kbd>Esc</kbd></td><td>Clear the current mode and selection — inside an input it only removes focus; with a modal open it closes the modal</td></tr>
-                <tr><td>Wheel / middle-drag</td><td>Zoom / pan</td></tr>
+                <tr><td>Wheel / <kbd>Space</kbd>+drag · middle-drag</td><td>Zoom / pan</td></tr>
             </table></div>
 
             <h3><span class="i18n-ko">Network 워크스페이스</span><span class="i18n-en">Network workspace</span></h3>
@@ -1903,7 +1918,7 @@
                 <tr><td><kbd>L</kbd></td><td>링크 그리기 (좌클릭 점 · 우클릭 완료)</td></tr>
                 <tr><td><kbd>M</kbd></td><td>선택 객체 이동 (드래그)</td></tr>
                 <tr><td><kbd>E</kbd></td><td>링크 선형(shape) 편집</td></tr>
-                <tr><td><kbd>C</kbd></td><td>차로 단위 커넥션 편집</td></tr>
+                <tr><td><kbd>C</kbd></td><td>차로 단위 커넥션 편집 (<kbd>Enter</kbd>: 고른 차로 편집 끝)</td></tr>
                 <tr><td><kbd>X</kbd></td><td>링크 분할 (클릭 지점에 노드 삽입)</td></tr>
                 <tr><td><kbd>S</kbd></td><td>정지선 배치 (링크 클릭 지점)</td></tr>
                 <tr><td><kbd>D</kbd></td><td>삭제 모드 (클릭한 오브젝트 제거)</td></tr>
@@ -1924,7 +1939,7 @@
                 <tr><td><kbd>L</kbd></td><td>Draw a link (left-click points, right-click to finish)</td></tr>
                 <tr><td><kbd>M</kbd></td><td>Move the selection by dragging</td></tr>
                 <tr><td><kbd>E</kbd></td><td>Edit link shape</td></tr>
-                <tr><td><kbd>C</kbd></td><td>Edit connections lane by lane</td></tr>
+                <tr><td><kbd>C</kbd></td><td>Edit connections lane by lane (<kbd>Enter</kbd>: finish the selected lane)</td></tr>
                 <tr><td><kbd>X</kbd></td><td>Split a link at the clicked point</td></tr>
                 <tr><td><kbd>S</kbd></td><td>Place a stop line at the clicked point</td></tr>
                 <tr><td><kbd>D</kbd></td><td>Delete mode (click an object to remove it)</td></tr>
@@ -2046,8 +2061,8 @@
 
             <h3><span class="i18n-ko">지도가 이동이 안 돼요 / 클릭이 이상해요</span><span class="i18n-en">The map won't pan, or clicks behave oddly</span></h3>
             <ul class="i18n-ko">
-                <li>화면 이동은 <strong>가운데 버튼</strong> 드래그입니다 — 좌클릭 드래그는 편집
-                    동작(박스 선택 등)에 배정되어 있습니다.</li>
+                <li>화면 이동은 <kbd>Space</kbd>를 누른 채 왼쪽 드래그(또는 가운데 버튼 드래그)입니다 — Space 없이 하는 좌클릭 드래그는 편집
+                    동작(박스 선택 등)에 배정되어 있습니다. 지도 위에 마우스가 있을 때 Space 를 누르세요.</li>
                 <li>측정 도구(📏)가 켜져 있으면 모든 클릭이 측정점 추가로 동작합니다. <kbd>Esc</kbd>로 끄세요.</li>
                 <li>Network의 편집 모드가 걸려 있으면 <kbd>Esc</kbd>로 해제 후 Select(<kbd>V</kbd>)로
                     돌아오세요.</li>
@@ -2055,7 +2070,7 @@
                     아래쪽 바의 <strong>Done</strong> 또는 <kbd>Esc</kbd>로 끝내세요.</li>
             </ul>
             <ul class="i18n-en">
-                <li>Pan with the <strong>middle button</strong> — left-drag is bound to editing (box select and so on).</li>
+                <li>Pan by holding <kbd>Space</kbd> and left-dragging (or with the middle button) — left-drag without Space is bound to editing (box select and so on). Press Space while the pointer is over the map.</li>
                 <li>With the measure tool (📏) on, every click adds a measuring point. <kbd>Esc</kbd> turns it off.</li>
                 <li>If a Network edit mode is active, press <kbd>Esc</kbd> and return to Select (<kbd>V</kbd>).</li>
                 <li>In OD, <strong>source pick mode</strong> makes link clicks toggle entry points — finish it with

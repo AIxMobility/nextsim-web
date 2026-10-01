@@ -291,7 +291,7 @@
                 ctx.save();
                 ctx.translate(p.x, p.y);
                 ctx.rotate(ang);
-                ctx.fillStyle = veh.bus ? '#7a55f6' : (veh.v < STOPPED ? '#7f93b3' : '#d1e4fa');
+                ctx.fillStyle = veh.bus ? '#f2c443' : (veh.v < STOPPED ? '#7f93b3' : '#d1e4fa');
                 ctx.fillRect(-veh.len / 2, -2.1, veh.len, 4.2);
                 ctx.restore();
             });

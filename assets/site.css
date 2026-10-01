@@ -1,6 +1,6 @@
 /* NextSIM 홍보 사이트
    "자정의 서리 유리" — 거의 검은 남색 바탕, 안쪽 빛으로 떠오르는 유리 면, 얼음빛 그라데이션 제목,
-   보라 한 가지만 쓰는 강조색. 참고: WorkOS AuthKit 스타일. */
+   강조색은 로고(img/logo)의 금색 하나 — 실행 버튼에만 쓴다. 참고: WorkOS AuthKit 스타일. */
 
 :root {
     /* 면 */
@@ -19,8 +19,10 @@
     --ice: linear-gradient(0deg, #d8ecf8 0%, #98c0ef 100%);
 
     /* 강조 */
-    --violet: #663af3;
-    --violet-hi: #7a55f6;
+    /* 로고 color_on-dark 의 금색 (#F8D766 → #ECB42C). 위에 얹는 글자는 로고 바탕의 남색 */
+    --accent: #f2c443;
+    --accent-hi: #f8d766;
+    --accent-ink: #14223f;
     --blueprint: #b6d9fc;
 
     /* 선 — 단색 테두리 대신 반투명 한 가지 */
@@ -100,8 +102,8 @@ p { margin: 0; }
     z-index: 100;
     padding: 8px 16px;
     border-radius: 999px;
-    background: var(--violet);
-    color: var(--white);
+    background: var(--accent);
+    color: var(--accent-ink);
 }
 .skip-link:focus { top: 12px; }
 
@@ -163,7 +165,7 @@ p { margin: 0; }
     font-weight: 500;
     letter-spacing: 0;
 }
-.badge--violet { background: rgba(102, 58, 243, .22); color: #dcd2ff; }
+.badge--accent { background: rgba(242, 196, 67, .16); color: var(--accent-hi); }
 .badge--src { vertical-align: 2px; margin-left: 6px; padding: 2px 7px; font-size: 11px; background: transparent; box-shadow: inset 0 0 0 1px var(--edge-strong); color: var(--mist); }
 
 /* 원형 아이콘 타일: 얇은 선 아이콘 */
@@ -209,12 +211,13 @@ p { margin: 0; }
     transition: background-color .16s ease, box-shadow .16s ease, transform .16s ease;
 }
 .btn:active { transform: translateY(1px); }
-.btn--violet {
-    background: var(--violet);
-    color: var(--white);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .2), 0 6px 14px -6px rgba(0, 0, 0, .7);
+.btn--accent {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 6px 14px -6px rgba(0, 0, 0, .7);
 }
-.btn--violet:hover { background: var(--violet-hi); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24), 0 8px 18px -6px rgba(0, 0, 0, .75); }
+.btn--accent:hover { background: var(--accent-hi); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .4), 0 8px 18px -6px rgba(0, 0, 0, .75); }
 .btn--pill {
     background: var(--glass-2);
     color: var(--white);
@@ -247,17 +250,8 @@ p { margin: 0; }
 }
 .topbar__inner { display: flex; align-items: center; gap: 24px; height: 64px; }
 
-.brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--white);
-    text-decoration: none;
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 19px;
-    letter-spacing: -.01em;
-}
+.brand { display: inline-flex; align-items: center; flex: 0 0 auto; }
+.brand img { width: auto; height: 30px; }
 
 .sitenav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
 .sitenav > a {
@@ -354,6 +348,10 @@ p { margin: 0; }
 
 .hero__inner { text-align: center; }
 .hero__inner .eyebrow { margin-bottom: 28px; }
+
+/* 히어로의 로고. 글자 워드마크(.wordmark)는 404 에서 쓴다 */
+.hero__logo { margin: 0 0 40px; line-height: 0; }
+.hero__logo img { display: inline-block; width: clamp(280px, 52vw, 640px); height: auto; }
 
 .wordmark {
     font-family: var(--font-display);
@@ -535,7 +533,7 @@ p { margin: 0; }
 .svg-signal { fill: var(--cg-5); }
 .svg-cars rect { fill: var(--frost); }
 .svg-cars--queued rect { fill: #8fa4c4; }
-.svg-cars .svg-bus, .svg-cars--queued .svg-bus { fill: var(--violet); }
+.svg-cars .svg-bus, .svg-cars--queued .svg-bus { fill: var(--accent); }
 .svg-cells rect { fill: var(--c); opacity: .92; }
 .svg-counts text { fill: #05060f; font: 600 17px var(--font-display); text-anchor: middle; }
 .svg-flow path { stroke: var(--fog); stroke-width: 1.5; fill: none; stroke-dasharray: 5 6; }
@@ -740,7 +738,7 @@ p { margin: 0; }
     gap: 48px;
     padding: 48px;
     background:
-        radial-gradient(80% 120% at 0% 0%, rgba(102, 58, 243, .12), transparent 60%),
+        radial-gradient(80% 120% at 0% 0%, rgba(90, 140, 242, .12), transparent 60%),
         var(--glass);
 }
 .about .eyebrow { margin-bottom: 14px; }
@@ -775,17 +773,14 @@ p { margin: 0; }
 .footer nav { display: flex; flex-wrap: wrap; gap: 22px; }
 .footer a { color: var(--mist); text-decoration: none; }
 .footer a:hover { color: var(--white); }
-/* 바닥에 걸친 거대한 워드마크 */
+/* 바닥에 깔린 큰 로고 (흰색 단색판을 아주 옅게) */
 .footer__mark {
-    margin: 40px 0 -0.22em;
-    text-align: center;
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: clamp(88px, 21vw, 280px);
-    line-height: 1;
-    letter-spacing: -.05em;
-    color: rgba(186, 215, 247, .07);
+    width: min(100%, 960px);
+    height: auto;
+    margin: 48px auto 24px;
+    opacity: .06;
     user-select: none;
+    pointer-events: none;
 }
 
 /* ---------- 스크롤 등장 ---------- */

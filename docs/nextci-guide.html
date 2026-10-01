@@ -23,6 +23,7 @@
     })();
 </script>
 <title>NextSIM NextCI Guide</title>
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
 <script>
     /* 언어 선택을 body 파싱 전에 적용해 잘못된 언어가 잠깐 보이는 것을 막는다.
        가이드 3편이 같은 키를 공유하므로 문서 사이를 오가도 언어가 유지된다. */
@@ -182,6 +183,19 @@
         letter-spacing: .02em;
         margin-top: 3px;
     }
+
+    /* 로고: 밝은 / 어두운 테마에 맞는 판을 하나만 보인다 (원본 img/logo/) */
+    .nav__brand { display: flex; flex-wrap: wrap; align-items: center; gap: 0 8px; }
+    .nav__brand small { flex-basis: 100%; }
+    .nav__logo img { display: block; width: auto; height: 28px; }
+    .nav__logo .nav__logo-dark { display: none; }
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .nav__logo .nav__logo-light { display: none; }
+        :root:not([data-theme="light"]) .nav__logo .nav__logo-dark { display: block; }
+    }
+    :root[data-theme="dark"] .nav__logo .nav__logo-light { display: none; }
+    :root[data-theme="dark"] .nav__logo .nav__logo-dark { display: block; }
+    .nav__product { padding-left: 8px; border-left: 1px solid var(--hairline); font-size: 14px; line-height: 18px; }
 
     .nav__group {
         margin-top: 22px;
@@ -621,7 +635,7 @@
 </style>
 <div class="shell">
     <nav class="nav" id="docNav">
-        <div class="nav__brand">NextSIM NextCI<small><span class="i18n-ko">시작하기 · KAIST AIxMobility Lab</span><span class="i18n-en">Getting started · KAIST AIxMobility Lab</span></small></div>
+        <div class="nav__brand"><span class="nav__logo"><img class="nav__logo-light" src="../assets/logo/NextSIM_horizontal_color_on-light.svg" alt="NextSIM" width="100" height="28"><img class="nav__logo-dark" src="../assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="100" height="28"></span><span class="nav__product">NextCI</span><small><span class="i18n-ko">시작하기 · KAIST AIxMobility Lab</span><span class="i18n-en">Getting started · KAIST AIxMobility Lab</span></small></div>
         <a class="site-home" href="../index.html"><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></a>
         <div class="lang-switch" role="group" aria-label="Language / 언어">
             <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
