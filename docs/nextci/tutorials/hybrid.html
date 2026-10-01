@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html data-lang="ko" lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>NextSIM NextCI · Micro for the study area, meso for the rest</title><link href="../assets/nextci.css" rel="stylesheet"/><script>(function(){try{var q=new URLSearchParams(location.search).get('lang');var s=localStorage.getItem('nextsim-doc-lang');var l=q==='en'||q==='ko'?q:(s==='en'||s==='ko'?s:'ko');document.documentElement.lang=l;document.documentElement.dataset.lang=l;}catch(e){document.documentElement.lang='ko';document.documentElement.dataset.lang='ko';}})();</script></head><body><div class="shell"><nav class="nav" id="docNav"><div class="nav__brand">NextSIM NextCI<small><span><span class="i18n-ko">KAIST AIxMobility Lab</span><span class="i18n-en">KAIST AIxMobility Lab</span></span></small></div><a class="site-home" href="../../../index.html"><span><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></span></a><div aria-label="Language / 언어" class="lang-switch" role="group"><button aria-pressed="true" data-lang="ko" type="button">한국어</button><button aria-pressed="false" data-lang="en" type="button">English</button></div><details class="nav-menu" open=""><summary><span><span class="i18n-ko">문서 메뉴</span><span class="i18n-en">Documentation menu</span></span></summary><div class="nav__links"><div class="nav__group doc-set"><div class="nav__group-label"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></div><a href="../../index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a><a href="../../installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a><a href="../../editor-guide.html"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a><a href="../../visualizer-guide.html"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a><a aria-current="location" href="../index.html"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></a></div><div class="nav__group nav-intro"><div class="nav__group-label"><span><span class="i18n-ko">NextCI 문서</span><span class="i18n-en">NextCI documentation</span></span></div><a href="../index.html"><span><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></span></a><a href="../getting-started.html"><span><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></span></a></div><div class="nav__group nav-commands"><div class="nav__group-label">NextCI commands</div><a href="../api/index.html"><span><span class="i18n-ko">API Overview</span><span class="i18n-en">API Overview</span></span></a><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">실행·관리</span><span class="i18n-en">Execution · management</span></span></div><a href="../api/connection.html"><span><span class="i18n-ko">연결과 서버</span><span class="i18n-en">Connection and server</span></span></a><a href="../api/simulation.html"><span><span class="i18n-ko">시뮬레이션</span><span class="i18n-en">Simulation</span></span></a><a href="../api/checkpoint.html"><span><span class="i18n-ko">체크포인트</span><span class="i18n-en">Checkpoints</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">교통 객체</span><span class="i18n-en">Traffic objects</span></span></div><a href="../api/vehicle.html"><span><span class="i18n-ko">차량</span><span class="i18n-en">Vehicles</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">도로망</span><span class="i18n-en">Network</span></span></div><a href="../api/link.html"><span><span class="i18n-ko">링크</span><span class="i18n-en">Links</span></span></a><a href="../api/lane.html"><span><span class="i18n-ko">차로</span><span class="i18n-en">Lanes</span></span></a><a href="../api/meso.html"><span><span class="i18n-ko">Meso</span><span class="i18n-en">Meso</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">관측</span><span class="i18n-en">Observation</span></span></div><a href="../api/detector.html"><span><span class="i18n-ko">검지기</span><span class="i18n-en">Detectors</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span class="i18n-ko">인프라</span><span class="i18n-en">Infrastructure</span></div><span class="nav-pending" aria-disabled="true"><span class="i18n-ko">교통 신호</span><span class="i18n-en">Traffic light</span><small><span class="i18n-ko">준비 중</span><span class="i18n-en">Planned</span></small></span></div></div><div class="nav__group nav-resources"><div class="nav__group-label"><span class="i18n-ko">참고 문서</span><span class="i18n-en">Reference guides</span></div><a href="../concepts.html"><span><span class="i18n-ko">개념과 조회</span><span class="i18n-en">Concepts and queries</span></span></a><a aria-current="page" href="index.html"><span><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></span></a><a href="../protocol.html"><span><span class="i18n-ko">프로토콜</span><span class="i18n-en">Protocol</span></span></a><a href="../troubleshooting.html"><span><span class="i18n-ko">문제 해결</span><span class="i18n-en">Troubleshooting</span></span></a><a href="../api/types.html"><span><span class="i18n-ko">타입과 예외</span><span class="i18n-en">Types and errors</span></span></a></div></div></details></nav><main class="content"><div class="masthead"><h1><span><span class="i18n-ko">관심 구간만 micro 로, 나머지는 meso 로</span><span class="i18n-en">Micro for the study area, meso for the rest</span></span></h1><p><span><span class="i18n-ko">예제 코드와 실행 결과를 따라 작업 흐름을 익힙니다. 출력 수치는 네트워크와 실행에 따라 달라집니다.</span><span class="i18n-en">Follow the example code and output to learn the workflow. Output values vary with the network and run.</span></span></p></div><p class="i18n-ko">네 가지 흔한 작업을 짧은 스크립트로 따라 합니다. 스크립트는 저장소의 <code>NextCI/examples/tutorials/</code> 에 있고,
+각자 서버를 띄웠다가 끝나면 끕니다. 예제 네트워크 <code>bucheon</code> 의 시나리오 0 에서 돌렸으며, 출력은 그때의 예시입니다.
+시뮬레이션에 무작위성이 있어 실행할 때마다 값이 조금씩 다릅니다.</p><p class="i18n-en">Four common jobs, each as a short script. The scripts live in <code>NextCI/examples/tutorials/</code> in the repository;
+each starts its own server and stops it at the end. They were run on scenario 0 of the example network <code>bucheon</code>,
+and the outputs shown are from those runs. The simulation is stochastic, so values differ a little from run to run.</p><section id="t-hybrid">
+<h2>4. <span class="i18n-ko">관심 구간만 micro 로, 나머지는 meso 로</span><span class="i18n-en">Micro for the study area, meso for the rest</span></h2>
+<p class="i18n-ko">가장 붐비는 링크 다섯 개만 micro 로 남기고 나머지 325 개를 meso 로 바꿔, 같은 시점에서 1 분을 돌렸을 때의 계산 시간과 차량 수를 전부 micro 인 경우와 비교합니다. NextSIM 의 하이브리드 방식을 코드로 확인하는 예제입니다.</p><p class="i18n-en">Keep only the five busiest links micro, switch the other 325 to meso, and from the same moment compare one minute of computation time and vehicle count against all-micro — the hybrid idea of NextSIM, in code.</p>
+<div class="chips-links"><a class="chip" href="../api/checkpoint.html#fn-save_checkpoint"><code>save_checkpoint</code></a><a class="chip" href="../api/checkpoint.html#fn-restore_checkpoint"><code>restore_checkpoint</code></a><a class="chip" href="../api/meso.html#fn-get_meso_link_id_list"><code>get_meso_link_id_list</code></a><a class="chip" href="../api/link.html#fn-set_link_mode"><code>set_link_mode</code></a><a class="chip" href="../api/meso.html#fn-get_meso_lane_count"><code>get_meso_lane_count</code></a><a class="chip" href="../api/meso.html#fn-get_meso_section_count"><code>get_meso_section_count</code></a><a class="chip" href="../api/meso.html#fn-get_meso_cell_vehicle_count"><code>get_meso_cell_vehicle_count</code></a><a class="chip" href="../api/vehicle.html#fn-get_vehicle_count"><code>get_vehicle_count</code></a></div>
+<div class="file-head"><span class="mono">NextCI/examples/tutorials/t4_hybrid.py</span></div>
+<pre class="cmd">"""Tutorial 4: keep the study area micro, switch the rest to meso, and compare."""
+import time
+
+from nextci import NextCIClient, NextCIStatusError
+
+
+def busiest_links(client, n):
+    counts = {}
+    for link in client.get_link_id_list():
+        try:
+            counts[link] = client.get_link_vehicle_count(link)
+        except NextCIStatusError:
+            pass
+    return sorted(counts, key=counts.get, reverse=True)[:n]
+
+
+def total_vehicles(client, meso_links):
+    """Vehicles on micro lanes plus vehicles inside meso cells."""
+    n = client.get_vehicle_count()                   # counts micro lanes only
+    for link in meso_links:
+        for lane in range(client.get_meso_lane_count(link)):
+            for cell in range(client.get_meso_section_count(link)):
+                n += client.get_meso_cell_vehicle_count(link, lane, cell)
+    return n
+
+
+with NextCIClient().launch_and_connect() as client:
+    client.sim_step(3000)
+    client.save_checkpoint("t300")
+    study = set(busiest_links(client, 5))            # the study area: the 5 busiest links
+
+    # A. one minute with every link micro
+    t0 = time.perf_counter()
+    client.sim_step(600)
+    print(f"all micro : {time.perf_counter() - t0:.2f} s wall, vehicles {client.get_vehicle_count()}")
+
+    # B. from the same moment, everything outside the study area meso
+    client.restore_checkpoint("t300")
+    meso = [link for link in client.get_meso_link_id_list() if link not in study]
+    for link in meso:
+        client.set_link_mode(link, "meso")
+    t0 = time.perf_counter()
+    client.sim_step(600)
+    print(f"hybrid    : {time.perf_counter() - t0:.2f} s wall, vehicles {total_vehicles(client, meso)}"
+          f"  ({len(meso)} links meso, {len(study)} micro)")
+    print("micro only:", client.get_vehicle_count())</pre>
+<h3><span class="i18n-ko">실행</span><span class="i18n-en">Run</span></h3>
+<pre class="cmd">python3 NextCI/examples/tutorials/t4_hybrid.py</pre>
+<h3><span class="i18n-ko">예시 출력</span><span class="i18n-en">Example output</span></h3>
+<pre class="cmd">all micro : 0.79 s wall, vehicles 1077
+hybrid    : 0.31 s wall, vehicles 968  (325 links meso, 5 micro)
+micro only: 132</pre>
+<h3><span class="i18n-ko">살펴볼 점</span><span class="i18n-en">What to notice</span></h3>
+<ul><li><span class="i18n-ko">meso 로 바꾼 링크의 차량은 사라지지 않고 셀로 옮겨집니다. 다만 <code>get_vehicle_count()</code> 는 micro 차로 위만 세므로, 전체는 <code>total_vehicles()</code> 처럼 셀을 더해야 합니다 (위 출력의 132 와 968).</span><span class="i18n-en">Vehicles on links switched to meso are not lost; they move into cells. <code>get_vehicle_count()</code> counts micro lanes only, so the total needs the cells added, as <code>total_vehicles()</code> does (132 versus 968 above).</span></li><li><span class="i18n-ko">계산 시간은 이 컴퓨터에서 0.79 s → 0.31 s 로 줄었습니다. 컴퓨터와 네트워크에 따라 다릅니다.</span><span class="i18n-en">Computation time dropped from 0.79 s to 0.31 s on this machine; it depends on the machine and the network.</span></li><li><span class="i18n-ko">차량 수가 1077 과 968 로 다른 것은 두 모형의 거동이 다르기 때문입니다. 정밀도와 계산 비용 사이의 선택이 바로 이것입니다.</span><span class="i18n-en">The vehicle counts differ (1077 and 968) because the two models behave differently — exactly the trade-off between detail and cost.</span></li><li><span class="i18n-ko">링크 325 개를 바꾸는 데 약 2 s 가 걸렸습니다. <code>set_link_mode()</code> 가 호출마다 엔진의 연결 정보를 다시 계산하기 때문입니다.</span><span class="i18n-en">Switching 325 links took about 2 s, because each <code>set_link_mode()</code> call recomputes the engine's connection info.</span></li></ul>
+</section><footer><span><span class="i18n-ko">NextSIM · KAIST AIxMobility Lab — </span><span class="i18n-en">NextSIM · KAIST AIxMobility Lab — </span></span><br/><span><span class="i18n-ko">NextCI 0.1.0 · Python API</span><span class="i18n-en">NextCI 0.1.0 · Python API</span></span></footer></main></div><script src="../assets/nextci.js"></script></body></html>

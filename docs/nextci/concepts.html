@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html data-lang="ko" lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>NextSIM NextCI · NextCI concepts and queries</title><link href="assets/nextci.css" rel="stylesheet"/><script>(function(){try{var q=new URLSearchParams(location.search).get('lang');var s=localStorage.getItem('nextsim-doc-lang');var l=q==='en'||q==='ko'?q:(s==='en'||s==='ko'?s:'ko');document.documentElement.lang=l;document.documentElement.dataset.lang=l;}catch(e){document.documentElement.lang='ko';document.documentElement.dataset.lang='ko';}})();</script></head><body><div class="shell"><nav class="nav" id="docNav"><div class="nav__brand">NextSIM NextCI<small><span><span class="i18n-ko">KAIST AIxMobility Lab</span><span class="i18n-en">KAIST AIxMobility Lab</span></span></small></div><a class="site-home" href="../../index.html"><span><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></span></a><div aria-label="Language / 언어" class="lang-switch" role="group"><button aria-pressed="true" data-lang="ko" type="button">한국어</button><button aria-pressed="false" data-lang="en" type="button">English</button></div><details class="nav-menu" open=""><summary><span><span class="i18n-ko">문서 메뉴</span><span class="i18n-en">Documentation menu</span></span></summary><div class="nav__links"><div class="nav__group doc-set"><div class="nav__group-label"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></div><a href="../index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a><a href="../installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a><a href="../editor-guide.html"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a><a href="../visualizer-guide.html"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a><a aria-current="location" href="index.html"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></a></div><div class="nav__group nav-intro"><div class="nav__group-label"><span><span class="i18n-ko">NextCI 문서</span><span class="i18n-en">NextCI documentation</span></span></div><a href="index.html"><span><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></span></a><a href="getting-started.html"><span><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></span></a></div><div class="nav__group nav-commands"><div class="nav__group-label">NextCI commands</div><a href="api/index.html"><span><span class="i18n-ko">API Overview</span><span class="i18n-en">API Overview</span></span></a><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">실행·관리</span><span class="i18n-en">Execution · management</span></span></div><a href="api/connection.html"><span><span class="i18n-ko">연결과 서버</span><span class="i18n-en">Connection and server</span></span></a><a href="api/simulation.html"><span><span class="i18n-ko">시뮬레이션</span><span class="i18n-en">Simulation</span></span></a><a href="api/checkpoint.html"><span><span class="i18n-ko">체크포인트</span><span class="i18n-en">Checkpoints</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">교통 객체</span><span class="i18n-en">Traffic objects</span></span></div><a href="api/vehicle.html"><span><span class="i18n-ko">차량</span><span class="i18n-en">Vehicles</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">도로망</span><span class="i18n-en">Network</span></span></div><a href="api/link.html"><span><span class="i18n-ko">링크</span><span class="i18n-en">Links</span></span></a><a href="api/lane.html"><span><span class="i18n-ko">차로</span><span class="i18n-en">Lanes</span></span></a><a href="api/meso.html"><span><span class="i18n-ko">Meso</span><span class="i18n-en">Meso</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">관측</span><span class="i18n-en">Observation</span></span></div><a href="api/detector.html"><span><span class="i18n-ko">검지기</span><span class="i18n-en">Detectors</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span class="i18n-ko">인프라</span><span class="i18n-en">Infrastructure</span></div><span class="nav-pending" aria-disabled="true"><span class="i18n-ko">교통 신호</span><span class="i18n-en">Traffic light</span><small><span class="i18n-ko">준비 중</span><span class="i18n-en">Planned</span></small></span></div></div><div class="nav__group nav-resources"><div class="nav__group-label"><span class="i18n-ko">참고 문서</span><span class="i18n-en">Reference guides</span></div><a aria-current="page" href="concepts.html"><span><span class="i18n-ko">개념과 조회</span><span class="i18n-en">Concepts and queries</span></span></a><a href="tutorials/index.html"><span><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></span></a><a href="protocol.html"><span><span class="i18n-ko">프로토콜</span><span class="i18n-en">Protocol</span></span></a><a href="troubleshooting.html"><span><span class="i18n-ko">문제 해결</span><span class="i18n-en">Troubleshooting</span></span></a><a href="api/types.html"><span><span class="i18n-ko">타입과 예외</span><span class="i18n-en">Types and errors</span></span></a></div></div></details></nav><main class="content"><div class="masthead"><h1><span><span class="i18n-ko">NextCI 개념과 조회</span><span class="i18n-en">NextCI concepts and queries</span></span></h1><p><span><span class="i18n-ko">시간 단위, 조회 범위, 검지기 집계 시점과 체크포인트 복원 조건을 확인하세요.</span><span class="i18n-en">Understand time units, query scope, detector aggregation, and checkpoint restore conditions.</span></span></p></div><section id="stepping">
+<h2><span class="i18n-ko">시간과 스텝</span><span class="i18n-en">Time and steps</span></h2>
+<p class="i18n-ko">시간 단위는 <strong>사이클</strong>이고, 1 사이클은 0.1 초입니다. <span class="mono">sim_step(n)</span> 은
+                n 사이클을 진행하고 <span class="mono">cycle=…;finished=…</span> 형식의 문자열을 돌려줍니다. 시나리오 끝은
+                <span class="mono">get_total_cycle()</span> 과 <span class="mono">is_finished()</span> 로 알 수 있습니다.</p>
+<p class="i18n-en">Time is counted in <strong>cycles</strong>; one cycle is 0.1 s. <span class="mono">sim_step(n)</span>
+                advances n cycles and returns a string of the form <span class="mono">cycle=…;finished=…</span>. The end of the
+                scenario is given by <span class="mono">get_total_cycle()</span> and <span class="mono">is_finished()</span>.</p>
+<pre class="cmd">with NextCIClient().launch_and_connect() as client:
+    while not client.is_finished():
+        client.sim_step(50)                      <span class="c"># 5 s</span>
+        speed = client.get_link_mean_speed_mps(20000402)
+        ...</pre>
+<div class="tip i18n-ko"><strong>검지기 구간 값은 flush 뒤에.</strong> 검지기의 구간 집계(교통량, 점유율 등)는
+                <span class="mono">sim_step()</span> 다음 <span class="mono">flush_recordings()</span> 를 불러야 갱신됩니다.</div>
+<div class="tip i18n-en"><strong>Flush before reading detector intervals.</strong> Interval aggregates (flow,
+                occupancy, and so on) update after <span class="mono">sim_step()</span> followed by
+                <span class="mono">flush_recordings()</span>.</div>
+</section><section id="queries">
+<h2><span class="i18n-ko">상태 조회</span><span class="i18n-en">Querying state</span></h2>
+<p class="i18n-ko">시뮬레이션 · 차량 · 링크 · 차로 · Meso 셀 · 검지기를 읽는 메서드는 80 개가 넘습니다. 영역별 목록과
+                각 메서드의 인자 · 반환 · 조건 · 비용은 <a href="api/index.html">API 레퍼런스</a>에 있고,
+                <a href="api/index.html#cheatsheet">한눈에 보기</a> 표로 한 번에 훑어볼 수 있습니다.</p>
+<p class="i18n-en">There are more than 80 methods for reading the simulation, vehicles, links, lanes, meso cells, and
+                detectors. The list by area, with each method's arguments, returns, conditions, and costs, is in the
+                <a href="api/index.html">API reference</a>; the <a href="api/index.html#cheatsheet">at-a-glance</a>
+                table shows them all at once.</p>
+<div class="warn i18n-ko"><strong>차량 수는 micro 차로 위만 셉니다.</strong> <span class="mono">get_vehicle_count()</span>
+                와 <span class="mono">get_link_*</span> 는 meso 셀 안의 차량을 세지 않습니다. 링크를 meso 로 바꾸면 그 링크의 차량은
+                셀로 옮겨지고, <span class="mono">get_meso_cell_vehicle_count()</span> 로 셉니다.</div>
+<div class="warn i18n-en"><strong>Vehicle counts cover micro lanes only.</strong> <span class="mono">get_vehicle_count()</span>
+                and <span class="mono">get_link_*</span> do not count vehicles inside meso cells. When a link switches to meso its
+                vehicles move into cells and are counted with <span class="mono">get_meso_cell_vehicle_count()</span>.</div>
+</section><section id="meso">
+<h2><span class="i18n-ko">Meso 조회와 모드 전환</span><span class="i18n-en">Meso queries and mode switching</span></h2>
+<p class="i18n-ko">Meso 셀 값은 <strong>그 링크가 지금 meso 모드일 때만</strong> 읽을 수 있습니다. micro 로 도는 링크의 셀을
+                물으면 <span class="mono">Meso cell not found or currently in micro mode</span> 오류가 납니다. 필요하면
+                <span class="mono">set_link_mode()</span> 로 링크 하나를 meso 로 바꾼 뒤 조금 진행하고 읽습니다.</p>
+<p class="i18n-en">Meso cell values can be read <strong>only while that link is in meso mode</strong>. Asking for a
+                cell of a link running micro fails with <span class="mono">Meso cell not found or currently in micro mode</span>.
+                If needed, switch the link with <span class="mono">set_link_mode()</span>, advance a little, then read.</p>
+<pre class="cmd">links = client.get_meso_link_id_list()          <span class="c"># links that have meso topology</span>
+link = links[0]
+client.set_link_mode(link, "meso")
+client.sim_step(50)                              <span class="c"># meso updates every 5 s</span>
+print(client.get_meso_section_count(link))
+print(client.get_meso_cell_density_veh_per_km(link, 0, 0))</pre>
+<div class="tip i18n-ko"><strong>조회 비용.</strong> 대수 · 속도 · 밀도는 사이클마다 캐시되어 가볍지만,
+                <span class="mono">get_meso_cell_vehicle_id_list()</span> 는 대기열을 훑어 목록을 복사하므로 필요할 때만 쓰세요.</div>
+<div class="tip i18n-en"><strong>Query cost.</strong> Count, speed, and density are cached per cycle and cheap;
+                <span class="mono">get_meso_cell_vehicle_id_list()</span> walks the queue and copies a list, so use it only
+                when you need it.</div>
+</section><section id="detectors">
+<h2><span class="i18n-ko">검지기</span><span class="i18n-en">Detectors</span></h2>
+<p class="i18n-ko">입력 파일의 검지기 말고도 세션 중에 검지기를 더 붙일 수 있습니다. E1 은 한 지점,
+                E2 는 차로 위 한 구간, E3 는 진입 · 진출 지점으로 둘러싼 영역입니다.</p>
+<p class="i18n-en">Besides the detectors in the input files, you can attach more during a session. E1 is a point,
+                E2 a stretch of one lane, E3 an area bounded by entry and exit points.</p>
+<pre class="cmd">link = 20001453                                  <span class="c"># 3 lanes, 243.9 m</span>
+client.add_detector_e1(detector_id="e1_a", link_id=link, lane_index=0, pos=120.0, freq=60.0)
+client.add_detector_e3(
+    detector_id="e3_a",
+    entries=f"{link}:0:5.0,{link}:1:5.0,{link}:2:5.0",        <span class="c"># link:lane:pos, …</span>
+    exits=f"{link}:0:238.0,{link}:1:238.0,{link}:2:238.0",
+)
+client.sim_step(600)                             <span class="c"># 60 s</span>
+client.flush_recordings()
+print(client.get_detector_flow("e1_a"))          <span class="c"># 120.0 veh/h</span>
+print(client.get_detector_mean_travel_time("e3_a"))
+client.remove_detector("e3_a")</pre>
+<p class="i18n-ko">링크 <span class="mono">20001453</span> 과 교통량 값은 예제 네트워크 <span class="mono">bucheon</span>
+                기준입니다. 쓰는 네트워크의 ID 로 바꾸세요(<span class="mono">get_link_id_list()</span>, Editor 의 Network 워크스페이스).
+                없는 링크를 적으면 추가는 되지만 <span class="mono">enabled=0</span> 으로 붙어 값이 쌓이지 않습니다. 돌려받은
+                <span class="mono">payload</span> 로 확인하세요.</p>
+<p class="i18n-en">Link <span class="mono">20001453</span> and the flow value are from the example network
+                <span class="mono">bucheon</span>; use IDs from your own network (<span class="mono">get_link_id_list()</span>,
+                or the Editor's Network workspace). A detector on a link that does not exist is still added, but with
+                <span class="mono">enabled=0</span>, so it never records; check the returned <span class="mono">payload</span>.</p>
+</section><section id="checkpoint">
+<h2><span class="i18n-ko">체크포인트</span><span class="i18n-en">Checkpoints</span></h2>
+<p class="i18n-ko">체크포인트는 서버 메모리에 시뮬레이션 상태를 저장합니다. 복원해도 엔진을 다시 띄우지 않고
+                저장한 사이클로 그 자리에서 돌아가므로, 같은 시점에서 여러 정책을 시험하는 데 씁니다. ID 를 달리하면 여러 개를
+                함께 둘 수 있습니다.</p>
+<p class="i18n-en">A checkpoint stores the simulation state in the server's memory. Restoring does not restart the
+                engine; it returns to the saved cycle in place, so you can try several policies from the same moment.
+                Different IDs coexist.</p>
+<pre class="cmd">client.sim_step(1000)
+client.save_checkpoint("episode_start")
+
+client.sim_step(200)                    <span class="c"># try policy A</span>
+a = client.get_vehicle_count()
+client.restore_checkpoint("episode_start")
+
+client.sim_step(200)                    <span class="c"># try policy B from the same state</span>
+b = client.get_vehicle_count()</pre>
+<div class="tablewrap i18n-ko"><table>
+<tr><th>저장되는 것</th><th>내용</th></tr>
+<tr><td>P0</td><td>사이클, 차량 ID 카운터, 링크의 차량(micro 차로 + 모든 meso 차로·셀 대기열), 차로·셀별 신호 상태, 모드 시퀀스</td></tr>
+<tr><td>P1</td><td>검지기 집계 상태</td></tr>
+<tr><td>P2</td><td>출발지 · 차고지 예약과 대기열, 도착지 대기열</td></tr>
+</table></div>
+<div class="tablewrap i18n-en"><table>
+<tr><th>Captured</th><th>Contents</th></tr>
+<tr><td>P0</td><td>Cycle, vehicle ID counter, vehicles on links (micro lanes + every meso lane and cell queue), per-lane and per-cell signal state, mode sequence</td></tr>
+<tr><td>P1</td><td>Detector accumulators</td></tr>
+<tr><td>P2</td><td>Source and garage reservations and queues, sink queues</td></tr>
+</table></div>
+<div class="warn i18n-ko"><strong>난수 상태는 저장되지 않습니다.</strong> 복원한 순간의 사이클 · 차량 수 · 차량 ID 는 저장
+                시점과 같지만, 그 뒤로 더 진행하면 쉬지 않고 돌린 경우와 결과가 달라질 수 있습니다. 같은 상태에서 새 행동을
+                시험하는 용도에는 충분하고, 궤적을 비트 단위로 재현하는 용도에는 맞지 않습니다. 체크포인트는 세션이 끝날 때까지
+                메모리에 남으며 개수 제한이 없습니다.</div>
+<div class="warn i18n-en"><strong>Random-number state is not saved.</strong> At the moment of restore the cycle,
+                vehicle count, and vehicle IDs match the save, but stepping further can diverge from an uninterrupted run.
+                That is enough for trying new actions from the same state, not for bit-identical trajectory replay.
+                Checkpoints stay in memory until the session ends, with no count limit.</div>
+<p class="i18n-ko">예전의 <span class="mono">save_state()</span> / <span class="mono">load_state()</span> 는 디스크의
+                <span class="mono">Vehicle.json</span> 을 쓰고, 불러오면 엔진을 다시 띄워 사이클이 0 이 됩니다. 제어 루프에는 체크포인트를 쓰세요.</p>
+<p class="i18n-en">The older <span class="mono">save_state()</span> / <span class="mono">load_state()</span> use
+                <span class="mono">Vehicle.json</span> on disk, and loading restarts the engine with the cycle back at 0. Use
+                checkpoints in control loops.</p>
+</section><footer><span><span class="i18n-ko">NextSIM · KAIST AIxMobility Lab — </span><span class="i18n-en">NextSIM · KAIST AIxMobility Lab — </span></span><br/><span><span class="i18n-ko">NextCI 0.1.0 · Python API</span><span class="i18n-en">NextCI 0.1.0 · Python API</span></span></footer></main></div><script src="assets/nextci.js"></script></body></html>

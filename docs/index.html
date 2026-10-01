@@ -571,17 +571,7 @@
     pre.cmd .c { color: var(--muted); }
 
     /* ---------- 사용자 가이드 문서 묶음 (모든 가이드 공통) ---------- */
-    /* 사용자 가이드 목차: 5. NextCI 가이드 아래 세 페이지 */
-    .doc-set__parent {
-        display: block;
-        padding: 5px 0;
-        color: var(--muted);
-        font-size: 13.5px;
-        line-height: 1.5;
-    }
-    .doc-set:has(.doc-set__sub a[aria-current="page"]) .doc-set__parent { color: var(--ink); font-weight: 600; }
-    .doc-set__sub { margin: 0 0 2px 2px; padding-left: 12px; border-left: 1px solid var(--hairline); }
-    .doc-set__sub a { margin-left: 0; font-size: 13px; }
+
     .nav a[aria-current="page"] {
         color: var(--accent-strong);
         background: var(--accent-soft);
@@ -605,12 +595,8 @@
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
                 <a href="editor-guide.html"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
                 <a href="visualizer-guide.html"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
-                <span class="doc-set__parent"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></span>
-                <div class="doc-set__sub">
-                    <a href="nextci-guide.html"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></a>
-                    <a href="nextci-tutorials.html"><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></a>
-                    <a href="nextci-reference.html"><span class="i18n-ko">API 레퍼런스</span><span class="i18n-en">API reference</span></a>
-                </div>
+                <a href="nextci/index.html"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></a>
+
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">소개</span><span class="i18n-en">Introduction</span></div>
@@ -675,7 +661,7 @@
                 <p class="i18n-en">Run a simulation and replay and analyse the <strong>result</strong> along the time axis.</p>
                 <span class="go"><span class="i18n-ko">Simulation 가이드 →</span><span class="i18n-en">Simulation guide →</span></span>
             </a>
-            <a class="toolcard" href="nextci-guide.html" style="--tc: var(--ws-scenario)">
+            <a class="toolcard" href="nextci/index.html" style="--tc: var(--ws-scenario)">
                 <h3>NextCI</h3>
                 <code>UnitTestsAPI · Python nextci</code>
                 <p class="i18n-ko">Python 에서 TCP 로 시뮬레이션을 스텝 단위로 진행하고, 상태를 읽고, 체크포인트로 되돌립니다. 소스 빌드가 필요합니다.</p>
@@ -763,7 +749,7 @@
                 <tr><td class="mono">DTAExperiment</td><td>실행 파일</td>
                     <td>동적 통행배정(DTA) — 시뮬레이션을 반복해 경로 선택 비율을 수렴시킵니다.</td></tr>
                 <tr><td class="mono">UnitTestsAPI</td><td>실행 파일</td>
-                    <td>NextCI TCP 제어 서버. Python <span class="mono">nextci</span> 클라이언트가 이 바이너리에 붙습니다. <a href="nextci-guide.html">NextCI 가이드</a> 참고.</td></tr>
+                    <td>NextCI TCP 제어 서버. Python <span class="mono">nextci</span> 클라이언트가 이 바이너리에 붙습니다. <a href="nextci/index.html">NextCI 가이드</a> 참고.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>Flask 서버</td>
                     <td>Editor·Simulation 웹 UI를 서빙하고, 입력 파일 편집 API와 시뮬레이션 실행을 중계합니다.</td></tr>
             </table></div>
@@ -781,7 +767,7 @@
                 <tr><td class="mono">DTAExperiment</td><td>executable</td>
                     <td>Dynamic traffic assignment — iterates the simulation until route shares converge.</td></tr>
                 <tr><td class="mono">UnitTestsAPI</td><td>executable</td>
-                    <td>The NextCI TCP control server; the Python <span class="mono">nextci</span> client attaches to it. See the <a href="nextci-guide.html">NextCI guide</a>.</td></tr>
+                    <td>The NextCI TCP control server; the Python <span class="mono">nextci</span> client attaches to it. See the <a href="nextci/index.html">NextCI guide</a>.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>Flask server</td>
                     <td>Serves the Editor and Simulation, exposes the input-editing API, and drives simulation runs.</td></tr>
             </table></div>

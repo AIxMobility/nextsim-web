@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html data-lang="ko" lang="ko"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/><title>NextSIM NextCI · Simulation</title><link href="../assets/nextci.css" rel="stylesheet"/><script>(function(){try{var q=new URLSearchParams(location.search).get('lang');var s=localStorage.getItem('nextsim-doc-lang');var l=q==='en'||q==='ko'?q:(s==='en'||s==='ko'?s:'ko');document.documentElement.lang=l;document.documentElement.dataset.lang=l;}catch(e){document.documentElement.lang='ko';document.documentElement.dataset.lang='ko';}})();</script></head><body><div class="shell"><nav class="nav" id="docNav"><div class="nav__brand">NextSIM NextCI<small><span><span class="i18n-ko">KAIST AIxMobility Lab</span><span class="i18n-en">KAIST AIxMobility Lab</span></span></small></div><a class="site-home" href="../../../index.html"><span><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></span></a><div aria-label="Language / 언어" class="lang-switch" role="group"><button aria-pressed="true" data-lang="ko" type="button">한국어</button><button aria-pressed="false" data-lang="en" type="button">English</button></div><details class="nav-menu" open=""><summary><span><span class="i18n-ko">문서 메뉴</span><span class="i18n-en">Documentation menu</span></span></summary><div class="nav__links"><div class="nav__group doc-set"><div class="nav__group-label"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></div><a href="../../index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a><a href="../../installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a><a href="../../editor-guide.html"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a><a href="../../visualizer-guide.html"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a><a aria-current="location" href="../index.html"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></a></div><div class="nav__group nav-intro"><div class="nav__group-label"><span><span class="i18n-ko">NextCI 문서</span><span class="i18n-en">NextCI documentation</span></span></div><a href="../index.html"><span><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></span></a><a href="../getting-started.html"><span><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></span></a></div><div class="nav__group nav-commands"><div class="nav__group-label">NextCI commands</div><a href="index.html"><span><span class="i18n-ko">API Overview</span><span class="i18n-en">API Overview</span></span></a><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">실행·관리</span><span class="i18n-en">Execution · management</span></span></div><a href="connection.html"><span><span class="i18n-ko">연결과 서버</span><span class="i18n-en">Connection and server</span></span></a><a aria-current="page" href="simulation.html"><span><span class="i18n-ko">시뮬레이션</span><span class="i18n-en">Simulation</span></span></a><a href="checkpoint.html"><span><span class="i18n-ko">체크포인트</span><span class="i18n-en">Checkpoints</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">교통 객체</span><span class="i18n-en">Traffic objects</span></span></div><a href="vehicle.html"><span><span class="i18n-ko">차량</span><span class="i18n-en">Vehicles</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">도로망</span><span class="i18n-en">Network</span></span></div><a href="link.html"><span><span class="i18n-ko">링크</span><span class="i18n-en">Links</span></span></a><a href="lane.html"><span><span class="i18n-ko">차로</span><span class="i18n-en">Lanes</span></span></a><a href="meso.html"><span><span class="i18n-ko">Meso</span><span class="i18n-en">Meso</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span><span class="i18n-ko">관측</span><span class="i18n-en">Observation</span></span></div><a href="detector.html"><span><span class="i18n-ko">검지기</span><span class="i18n-en">Detectors</span></span></a></div><div class="nav-subgroup"><div class="nav__group-label"><span class="i18n-ko">인프라</span><span class="i18n-en">Infrastructure</span></div><span aria-disabled="true" class="nav-pending"><span class="i18n-ko">교통 신호</span><span class="i18n-en">Traffic light</span><small><span class="i18n-ko">준비 중</span><span class="i18n-en">Planned</span></small></span></div></div><div class="nav__group nav-resources"><div class="nav__group-label"><span class="i18n-ko">참고 문서</span><span class="i18n-en">Reference guides</span></div><a href="../concepts.html"><span><span class="i18n-ko">개념과 조회</span><span class="i18n-en">Concepts and queries</span></span></a><a href="../tutorials/index.html"><span><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></span></a><a href="../protocol.html"><span><span class="i18n-ko">프로토콜</span><span class="i18n-en">Protocol</span></span></a><a href="../troubleshooting.html"><span><span class="i18n-ko">문제 해결</span><span class="i18n-en">Troubleshooting</span></span></a><a href="types.html"><span><span class="i18n-ko">타입과 예외</span><span class="i18n-en">Types and errors</span></span></a></div></div></details></nav><main class="content"><div class="masthead"><h1><span><span class="i18n-ko">시뮬레이션</span><span class="i18n-en">Simulation</span></span></h1><p><span><span class="i18n-ko">시뮬레이션 진행·종료와 시간·출력 조회 메서드입니다.</span><span class="i18n-en">Simulation stepping, termination, and time and output query methods.</span></span></p><div class="meta"><span class="chip"><span><span class="i18n-ko">공개 메서드</span><span class="i18n-en">Public methods</span></span></span></div></div>
+<section class="api-overview" id="overview"><h2>Overview</h2><p class="i18n-ko">메서드 이름을 클릭하면 아래의 상세 설명으로 이동합니다.</p><p class="i18n-en">Select a method name to jump to its detailed description below.</p><div aria-label="Command overview / 명령 요약" class="tablewrap" role="region" tabindex="0"><table class="command-overview"><thead><tr><th scope="col"><span class="i18n-ko">메서드</span><span class="i18n-en">Method</span></th><th scope="col"><span class="i18n-ko">반환 타입</span><span class="i18n-en">Return type</span></th><th scope="col"><span class="i18n-ko">설명</span><span class="i18n-en">Description</span></th></tr></thead><tbody><tr><td><a href="#fn-get_version"><code>get_version</code></a></td><td class="mono">str</td><td><span class="i18n-ko">서버 버전 문자열. 연결 확인용으로 좋습니다.</span><span class="i18n-en">Server version string; handy for checking the connection.</span></td></tr><tr><td><a href="#fn-close_session"><code>close_session</code></a></td><td class="mono">str</td><td><span class="i18n-ko">서버에 세션 종료를 알립니다.</span><span class="i18n-en">Tell the server the session is over.</span></td></tr><tr><td><a href="#fn-sim_step"><code>sim_step</code></a></td><td class="mono">str</td><td><span class="i18n-ko">시뮬레이션을 <code>step_size</code> 사이클 진행합니다.</span><span class="i18n-en">Advance the simulation by <code>step_size</code> cycles.</span></td></tr><tr><td><a href="#fn-sim_stop"><code>sim_stop</code></a></td><td class="mono">str</td><td><span class="i18n-ko">시뮬레이션을 끝 사이클로 옮깁니다. 이후 <code>is_finished()</code> 는 <code>True</code>.</span><span class="i18n-en">Move the simulation to its final cycle; <code>is_finished()</code> is <code>True</code> afterwards.</span></td></tr><tr><td><a href="#fn-sim_reset"><code>sim_reset</code></a></td><td class="mono">str</td><td><span class="i18n-ko">세션을 초기화합니다.</span><span class="i18n-en">Reset the session.</span></td></tr><tr><td><a href="#fn-flush_recordings"><code>flush_recordings</code></a></td><td class="mono">str</td><td><span class="i18n-ko">쌓인 기록을 내보내고 검지기 구간 값을 갱신합니다.</span><span class="i18n-en">Flush pending recordings and update detector interval values.</span></td></tr><tr><td><a href="#fn-save_results"><code>save_results</code></a></td><td class="mono">str</td><td><span class="i18n-ko">출력 기록을 저장합니다.</span><span class="i18n-en">Save output records.</span></td></tr><tr><td><a href="#fn-get_sim_variable_int"><code>get_sim_variable_int</code></a></td><td class="mono">int</td><td><span class="i18n-ko">정수형 시뮬레이션 변수를 ID 로 직접 읽습니다. 보통은 위의 전용 메서드를 씁니다.</span><span class="i18n-en">Read an integer simulation variable by ID. Normally use the dedicated methods above.</span></td></tr><tr><td><a href="#fn-get_sim_variable_string"><code>get_sim_variable_string</code></a></td><td class="mono">str</td><td><span class="i18n-ko">문자열 시뮬레이션 변수를 ID 로 직접 읽습니다.</span><span class="i18n-en">Read a string simulation variable by ID.</span></td></tr><tr><td><a href="#fn-get_current_cycle"><code>get_current_cycle</code></a></td><td class="mono">int</td><td><span class="i18n-ko">지금 사이클.</span><span class="i18n-en">Current cycle.</span></td></tr><tr><td><a href="#fn-get_total_cycle"><code>get_total_cycle</code></a></td><td class="mono">int</td><td><span class="i18n-ko">시나리오 전체 사이클 수. 10 분 시나리오면 6000.</span><span class="i18n-en">Total cycles in the scenario; 6000 for a 10-minute scenario.</span></td></tr><tr><td><a href="#fn-is_finished"><code>is_finished</code></a></td><td class="mono">bool</td><td><span class="i18n-ko">시나리오가 끝났는지.</span><span class="i18n-en">Whether the scenario has ended.</span></td></tr><tr><td><a href="#fn-get_step_interval"><code>get_step_interval</code></a></td><td class="mono">int</td><td><span class="i18n-ko">micro 갱신 간격 (틱 단위). 기본 설정에서 1.</span><span class="i18n-en">Micro update interval in ticks; 1 with the default settings.</span></td></tr><tr><td><a href="#fn-get_sim_time_millis"><code>get_sim_time_millis</code></a></td><td class="mono">int</td><td><span class="i18n-ko">시뮬레이션 경과 시간 (ms) = 사이클 × 100.</span><span class="i18n-en">Elapsed simulation time in ms (cycles × 100).</span></td></tr><tr><td><a href="#fn-get_scenario_id"><code>get_scenario_id</code></a></td><td class="mono">int</td><td><span class="i18n-ko">돌고 있는 시나리오 번호.</span><span class="i18n-en">ID of the scenario being run.</span></td></tr><tr><td><a href="#fn-get_bgt_cycles"><code>get_bgt_cycles</code></a></td><td class="mono">int</td><td><span class="i18n-ko">배경 교통(BGT) 준비 구간의 사이클 수. 시나리오의 <code>BGTduration</code> 에서 옵니다.</span><span class="i18n-en">Cycles of the background-traffic (BGT) warm-up, from the scenario's <code>BGTduration</code>.</span></td></tr><tr><td><a href="#fn-get_record_modes_enabled"><code>get_record_modes_enabled</code></a></td><td class="mono">str</td><td><span class="i18n-ko">켜져 있는 기록 종류 번호를 쉼표로 이은 문자열. 예: <code>1,2,3,4,5,7,10</code>.</span><span class="i18n-en">Comma-separated IDs of the enabled record types, for example <code>1,2,3,4,5,7,10</code>.</span></td></tr><tr><td><a href="#fn-get_output_paths"><code>get_output_paths</code></a></td><td class="mono">str</td><td><span class="i18n-ko">출력 폴더와 결과 파일 경로. <code>outputDir=…;db=…;vehicleState=…;simulationInfo=…</code></span><span class="i18n-en">Output folder and result file paths: <code>outputDir=…;db=…;vehicleState=…;simulationInfo=…</code></span></td></tr><tr><td><a href="#fn-get_recommended_flush_interval"><code>get_recommended_flush_interval</code></a></td><td class="mono">int</td><td><span class="i18n-ko">어댑터가 기록을 내보내는 주기 (사이클). 지금은 200.</span><span class="i18n-en">How often the adapter flushes recordings, in cycles; 200 today.</span></td></tr></tbody></table></div></section>
+<section data-group="control" id="g-control">
+
+
+<article class="fn" data-domain="simulation" data-fn="get_version 서버 버전 문자열. 연결 확인용으로 좋습니다. server version string; handy for checking the connection." id="fn-get_version">
+<h3><a href="simulation.html#fn-get_version"><code>get_version</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">서버 버전 문자열. 연결 확인용으로 좋습니다.</p><p class="i18n-en">Server version string; handy for checking the connection.</p>
+<pre class="cmd sig">client.get_version() -&gt; str</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>str</code> — <span class="i18n-ko">예: <code>NextSim-NextCI/0.1</code></span><span class="i18n-en">For example <code>NextSim-NextCI/0.1</code>.</span></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="close_session 서버에 세션 종료를 알립니다. tell the server the session is over." id="fn-close_session">
+<h3><a href="simulation.html#fn-close_session"><code>close_session</code></a></h3><div class="method-action"><span><span class="i18n-ko">연결·실행</span><span class="i18n-en">Connection / execution</span></span></div>
+<p class="i18n-ko">서버에 세션 종료를 알립니다.</p><p class="i18n-en">Tell the server the session is over.</p>
+<pre class="cmd sig">client.close_session() -&gt; str</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>str</code></dd>
+<dt><span class="i18n-ko">조건</span><span class="i18n-en">Conditions</span></dt><dd><span class="i18n-ko">ServeOnce 서버는 이 뒤에 끝납니다.</span><span class="i18n-en">A ServeOnce server exits afterwards.</span></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="sim_step 시뮬레이션을 `step_size` 사이클 진행합니다. advance the simulation by `step_size` cycles." id="fn-sim_step">
+<h3><a href="simulation.html#fn-sim_step"><code>sim_step</code></a></h3><div class="method-action"><span><span class="i18n-ko">연결·실행</span><span class="i18n-en">Connection / execution</span></span></div>
+<p class="i18n-ko">시뮬레이션을 <code>step_size</code> 사이클 진행합니다.</p><p class="i18n-en">Advance the simulation by <code>step_size</code> cycles.</p>
+<pre class="cmd sig">client.sim_step(step_size: int = 1) -&gt; str</pre>
+<dl>
+<dt><span class="i18n-ko">인자</span><span class="i18n-en">Arguments</span></dt><dd><table class="params"><thead><tr><th><span><span class="i18n-ko">이름</span><span class="i18n-en">Name</span></span></th><th><span><span class="i18n-ko">타입 · 기본값</span><span class="i18n-en">Type · default</span></span></th><th><span><span class="i18n-ko">의미</span><span class="i18n-en">Meaning</span></span></th></tr></thead><tr data-required="false"><td><code>step_size</code> <span class="param-status param-status--optional"><span><span class="i18n-ko">선택</span><span class="i18n-en">optional</span></span></span></td><td class="mono">int = <code>1</code></td><td><span class="i18n-ko">진행할 사이클 수. 1 사이클 = 0.1 s.</span><span class="i18n-en">Cycles to advance; one cycle is 0.1 s.</span></td></tr></table></dd>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>str</code> — <span class="i18n-ko"><code>cycle=1000;finished=0</code> 형식의 상태 문자열.</span><span class="i18n-en">A status string such as <code>cycle=1000;finished=0</code>.</span></dd>
+<dt><span class="i18n-ko">조건</span><span class="i18n-en">Conditions</span></dt><dd><span class="i18n-ko">어댑터는 200 사이클마다 기록을 알아서 내보냅니다. 검지기 구간 값을 바로 읽으려면 <code>flush_recordings()</code> 를 부르세요.</span><span class="i18n-en">The adapter flushes recordings every 200 cycles on its own; call <code>flush_recordings()</code> to read detector intervals right away.</span></dd>
+<dt><span class="i18n-ko">함께 보기</span><span class="i18n-en">See also</span></dt><dd class="refs"><a href="simulation.html#fn-is_finished"><code>is_finished</code></a><a href="simulation.html#fn-get_current_cycle"><code>get_current_cycle</code></a><a href="simulation.html#fn-flush_recordings"><code>flush_recordings</code></a></dd>
+</dl>
+<details class="example" id="fn-sim_step-example-1"><summary><span><span class="i18n-ko">간단한 사용 예제</span><span class="i18n-en">Quick example</span></span></summary><p class="example-note"><span><span class="i18n-ko">연결된 클라이언트에서 실행하세요. 표시된 ID는 자신의 네트워크 값으로 바꾸세요.</span><span class="i18n-en">Run with a connected client. Replace shown IDs with values from your network.</span></span></p><pre class="cmd">while not client.is_finished():
+    client.sim_step(50)        # 5 s</pre></details>
+</article>
+<article class="fn" data-domain="simulation" data-fn="sim_stop 시뮬레이션을 끝 사이클로 옮깁니다. 이후 `is_finished()` 는 `true`. move the simulation to its final cycle; `is_finished()` is `true` afterwards." id="fn-sim_stop">
+<h3><a href="simulation.html#fn-sim_stop"><code>sim_stop</code></a></h3><div class="method-action"><span><span class="i18n-ko">연결·실행</span><span class="i18n-en">Connection / execution</span></span></div>
+<p class="i18n-ko">시뮬레이션을 끝 사이클로 옮깁니다. 이후 <code>is_finished()</code> 는 <code>True</code>.</p><p class="i18n-en">Move the simulation to its final cycle; <code>is_finished()</code> is <code>True</code> afterwards.</p>
+<pre class="cmd sig">client.sim_stop() -&gt; str</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>str</code> — <span class="i18n-ko"><code>Simulation cursor moved to end</code></span><span class="i18n-en"><code>Simulation cursor moved to end</code></span></dd>
+<dt><span class="i18n-ko">함께 보기</span><span class="i18n-en">See also</span></dt><dd class="refs"><a href="simulation.html#fn-is_finished"><code>is_finished</code></a></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="sim_reset 세션을 초기화합니다. reset the session." id="fn-sim_reset">
+<h3><a href="simulation.html#fn-sim_reset"><code>sim_reset</code></a></h3><div class="method-action"><span><span class="i18n-ko">변경</span><span class="i18n-en">Change</span></span></div>
+<p class="i18n-ko">세션을 초기화합니다.</p><p class="i18n-en">Reset the session.</p>
+<pre class="cmd sig">client.sim_reset() -&gt; str</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>str</code></dd>
+<dt><span class="i18n-ko">조건</span><span class="i18n-en">Conditions</span></dt><dd><span class="i18n-ko">서버 쪽에서 세션이 닫힙니다. 같은 시점으로 돌아가려면 체크포인트를 쓰세요.</span><span class="i18n-en">It closes the session on the server side. To return to a moment, use checkpoints instead.</span></dd>
+<dt><span class="i18n-ko">함께 보기</span><span class="i18n-en">See also</span></dt><dd class="refs"><a href="checkpoint.html#fn-restore_checkpoint"><code>restore_checkpoint</code></a></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="flush_recordings 쌓인 기록을 내보내고 검지기 구간 값을 갱신합니다. flush pending recordings and update detector interval values." id="fn-flush_recordings">
+<h3><a href="simulation.html#fn-flush_recordings"><code>flush_recordings</code></a></h3><div class="method-action"><span><span class="i18n-ko">연결·실행</span><span class="i18n-en">Connection / execution</span></span></div>
+<p class="i18n-ko">쌓인 기록을 내보내고 검지기 구간 값을 갱신합니다.</p><p class="i18n-en">Flush pending recordings and update detector interval values.</p>
+<pre class="cmd sig">client.flush_recordings() -&gt; str</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>str</code></dd>
+<dt><span class="i18n-ko">함께 보기</span><span class="i18n-en">See also</span></dt><dd class="refs"><a href="detector.html#fn-get_detector_flow"><code>get_detector_flow</code></a><a href="simulation.html#fn-save_results"><code>save_results</code></a></dd>
+</dl>
+<details class="example" id="fn-flush_recordings-example-1"><summary><span><span class="i18n-ko">간단한 사용 예제</span><span class="i18n-en">Quick example</span></span></summary><p class="example-note"><span><span class="i18n-ko">연결된 클라이언트에서 실행하세요. 표시된 ID는 자신의 네트워크 값으로 바꾸세요.</span><span class="i18n-en">Run with a connected client. Replace shown IDs with values from your network.</span></span></p><pre class="cmd">client.sim_step(600)
+client.flush_recordings()
+print(client.get_detector_flow("e1_a"))</pre></details>
+</article>
+<article class="fn" data-domain="simulation" data-fn="save_results 출력 기록을 저장합니다. save output records." id="fn-save_results">
+<h3><a href="simulation.html#fn-save_results"><code>save_results</code></a></h3><div class="method-action"><span><span class="i18n-ko">연결·실행</span><span class="i18n-en">Connection / execution</span></span></div>
+<p class="i18n-ko">출력 기록을 저장합니다.</p><p class="i18n-en">Save output records.</p>
+<pre class="cmd sig">client.save_results() -&gt; str</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>str</code></dd>
+<dt><span class="i18n-ko">함께 보기</span><span class="i18n-en">See also</span></dt><dd class="refs"><a href="simulation.html#fn-get_output_paths"><code>get_output_paths</code></a></dd>
+</dl>
+</article>
+</section><section data-group="sim" id="g-sim">
+
+<article class="fn" data-domain="simulation" data-fn="get_sim_variable_int 정수형 시뮬레이션 변수를 id 로 직접 읽습니다. 보통은 위의 전용 메서드를 씁니다. read an integer simulation variable by id. normally use the dedicated methods above." id="fn-get_sim_variable_int">
+<h3><a href="simulation.html#fn-get_sim_variable_int"><code>get_sim_variable_int</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">정수형 시뮬레이션 변수를 ID 로 직접 읽습니다. 보통은 위의 전용 메서드를 씁니다.</p><p class="i18n-en">Read an integer simulation variable by ID. Normally use the dedicated methods above.</p>
+<pre class="cmd sig">client.get_sim_variable_int(variable_id: SimVariableId) -&gt; int</pre>
+<dl>
+<dt><span class="i18n-ko">인자</span><span class="i18n-en">Arguments</span></dt><dd><table class="params"><thead><tr><th><span><span class="i18n-ko">이름</span><span class="i18n-en">Name</span></span></th><th><span><span class="i18n-ko">타입 · 기본값</span><span class="i18n-en">Type · default</span></span></th><th><span><span class="i18n-ko">의미</span><span class="i18n-en">Meaning</span></span></th></tr></thead><tr data-required="true"><td><code>variable_id</code> <span class="param-status param-status--required"><span><span class="i18n-ko">필수</span><span class="i18n-en">required</span></span></span></td><td class="mono">SimVariableId</td><td><span class="i18n-ko"><code>SimVariableId</code> 값.</span><span class="i18n-en">A <code>SimVariableId</code> value.</span></td></tr></table></dd>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>int</code></dd>
+</dl>
+<p><a href="types.html#sim-variable-members"><span><span class="i18n-ko">SimVariableId 목록과 전용 조회 메서드</span><span class="i18n-en">SimVariableId members and dedicated query methods</span></span></a></p></article>
+<article class="fn" data-domain="simulation" data-fn="get_sim_variable_string 문자열 시뮬레이션 변수를 id 로 직접 읽습니다. read a string simulation variable by id." id="fn-get_sim_variable_string">
+<h3><a href="simulation.html#fn-get_sim_variable_string"><code>get_sim_variable_string</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">문자열 시뮬레이션 변수를 ID 로 직접 읽습니다.</p><p class="i18n-en">Read a string simulation variable by ID.</p>
+<pre class="cmd sig">client.get_sim_variable_string(variable_id: SimVariableId) -&gt; str</pre>
+<dl>
+<dt><span class="i18n-ko">인자</span><span class="i18n-en">Arguments</span></dt><dd><table class="params"><thead><tr><th><span><span class="i18n-ko">이름</span><span class="i18n-en">Name</span></span></th><th><span><span class="i18n-ko">타입 · 기본값</span><span class="i18n-en">Type · default</span></span></th><th><span><span class="i18n-ko">의미</span><span class="i18n-en">Meaning</span></span></th></tr></thead><tr data-required="true"><td><code>variable_id</code> <span class="param-status param-status--required"><span><span class="i18n-ko">필수</span><span class="i18n-en">required</span></span></span></td><td class="mono">SimVariableId</td><td><span class="i18n-ko"><code>SimVariableId</code> 값.</span><span class="i18n-en">A <code>SimVariableId</code> value.</span></td></tr></table></dd>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>str</code></dd>
+</dl>
+<p><a href="types.html#sim-variable-members"><span><span class="i18n-ko">SimVariableId 목록과 전용 조회 메서드</span><span class="i18n-en">SimVariableId members and dedicated query methods</span></span></a></p></article>
+<article class="fn" data-domain="simulation" data-fn="get_current_cycle 지금 사이클. current cycle." id="fn-get_current_cycle">
+<h3><a href="simulation.html#fn-get_current_cycle"><code>get_current_cycle</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">지금 사이클.</p><p class="i18n-en">Current cycle.</p>
+<pre class="cmd sig">client.get_current_cycle() -&gt; int</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>int</code></dd>
+<dt><span class="i18n-ko">함께 보기</span><span class="i18n-en">See also</span></dt><dd class="refs"><a href="simulation.html#fn-get_sim_time_millis"><code>get_sim_time_millis</code></a><a href="simulation.html#fn-get_total_cycle"><code>get_total_cycle</code></a></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="get_total_cycle 시나리오 전체 사이클 수. 10 분 시나리오면 6000. total cycles in the scenario; 6000 for a 10-minute scenario." id="fn-get_total_cycle">
+<h3><a href="simulation.html#fn-get_total_cycle"><code>get_total_cycle</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">시나리오 전체 사이클 수. 10 분 시나리오면 6000.</p><p class="i18n-en">Total cycles in the scenario; 6000 for a 10-minute scenario.</p>
+<pre class="cmd sig">client.get_total_cycle() -&gt; int</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>int</code></dd>
+<dt><span class="i18n-ko">함께 보기</span><span class="i18n-en">See also</span></dt><dd class="refs"><a href="simulation.html#fn-is_finished"><code>is_finished</code></a></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="is_finished 시나리오가 끝났는지. whether the scenario has ended." id="fn-is_finished">
+<h3><a href="simulation.html#fn-is_finished"><code>is_finished</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">시나리오가 끝났는지.</p><p class="i18n-en">Whether the scenario has ended.</p>
+<pre class="cmd sig">client.is_finished() -&gt; bool</pre>
+<dl><dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>bool</code></dd></dl>
+<details class="example" id="fn-is_finished-example-1"><summary><span><span class="i18n-ko">간단한 사용 예제</span><span class="i18n-en">Quick example</span></span></summary><p class="example-note"><span><span class="i18n-ko">연결된 클라이언트에서 실행하세요. 표시된 ID는 자신의 네트워크 값으로 바꾸세요.</span><span class="i18n-en">Run with a connected client. Replace shown IDs with values from your network.</span></span></p><pre class="cmd">while not client.is_finished():
+    client.sim_step(600)</pre></details>
+</article>
+<article class="fn" data-domain="simulation" data-fn="get_step_interval micro 갱신 간격 (틱 단위). 기본 설정에서 1. micro update interval in ticks; 1 with the default settings." id="fn-get_step_interval">
+<h3><a href="simulation.html#fn-get_step_interval"><code>get_step_interval</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">micro 갱신 간격 (틱 단위). 기본 설정에서 1.</p><p class="i18n-en">Micro update interval in ticks; 1 with the default settings.</p>
+<pre class="cmd sig">client.get_step_interval() -&gt; int</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>int</code></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="get_sim_time_millis 시뮬레이션 경과 시간 (ms) = 사이클 × 100. elapsed simulation time in ms (cycles × 100)." id="fn-get_sim_time_millis">
+<h3><a href="simulation.html#fn-get_sim_time_millis"><code>get_sim_time_millis</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">시뮬레이션 경과 시간 (ms) = 사이클 × 100.</p><p class="i18n-en">Elapsed simulation time in ms (cycles × 100).</p>
+<pre class="cmd sig">client.get_sim_time_millis() -&gt; int</pre>
+<dl><dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>int</code></dd></dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="get_scenario_id 돌고 있는 시나리오 번호. id of the scenario being run." id="fn-get_scenario_id">
+<h3><a href="simulation.html#fn-get_scenario_id"><code>get_scenario_id</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">돌고 있는 시나리오 번호.</p><p class="i18n-en">ID of the scenario being run.</p>
+<pre class="cmd sig">client.get_scenario_id() -&gt; int</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>int</code></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="get_bgt_cycles 배경 교통(bgt) 준비 구간의 사이클 수. 시나리오의 `bgtduration` 에서 옵니다. cycles of the background-traffic (bgt) warm-up, from the scenario's `bgtduration`." id="fn-get_bgt_cycles">
+<h3><a href="simulation.html#fn-get_bgt_cycles"><code>get_bgt_cycles</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">배경 교통(BGT) 준비 구간의 사이클 수. 시나리오의 <code>BGTduration</code> 에서 옵니다.</p><p class="i18n-en">Cycles of the background-traffic (BGT) warm-up, from the scenario's <code>BGTduration</code>.</p>
+<pre class="cmd sig">client.get_bgt_cycles() -&gt; int</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>int</code></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="get_record_modes_enabled 켜져 있는 기록 종류 번호를 쉼표로 이은 문자열. 예: `1,2,3,4,5,7,10`. comma-separated ids of the enabled record types, for example `1,2,3,4,5,7,10`." id="fn-get_record_modes_enabled">
+<h3><a href="simulation.html#fn-get_record_modes_enabled"><code>get_record_modes_enabled</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">켜져 있는 기록 종류 번호를 쉼표로 이은 문자열. 예: <code>1,2,3,4,5,7,10</code>.</p><p class="i18n-en">Comma-separated IDs of the enabled record types, for example <code>1,2,3,4,5,7,10</code>.</p>
+<pre class="cmd sig">client.get_record_modes_enabled() -&gt; str</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>str</code></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="get_output_paths 출력 폴더와 결과 파일 경로. `outputdir=…;db=…;vehiclestate=…;simulationinfo=…` output folder and result file paths: `outputdir=…;db=…;vehiclestate=…;simulationinfo=…`" id="fn-get_output_paths">
+<h3><a href="simulation.html#fn-get_output_paths"><code>get_output_paths</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">출력 폴더와 결과 파일 경로. <code>outputDir=…;db=…;vehicleState=…;simulationInfo=…</code></p><p class="i18n-en">Output folder and result file paths: <code>outputDir=…;db=…;vehicleState=…;simulationInfo=…</code></p>
+<pre class="cmd sig">client.get_output_paths() -&gt; str</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>str</code></dd>
+</dl>
+</article>
+<article class="fn" data-domain="simulation" data-fn="get_recommended_flush_interval 어댑터가 기록을 내보내는 주기 (사이클). 지금은 200. how often the adapter flushes recordings, in cycles; 200 today." id="fn-get_recommended_flush_interval">
+<h3><a href="simulation.html#fn-get_recommended_flush_interval"><code>get_recommended_flush_interval</code></a></h3><div class="method-action"><span><span class="i18n-ko">조회</span><span class="i18n-en">Query</span></span></div>
+<p class="i18n-ko">어댑터가 기록을 내보내는 주기 (사이클). 지금은 200.</p><p class="i18n-en">How often the adapter flushes recordings, in cycles; 200 today.</p>
+<pre class="cmd sig">client.get_recommended_flush_interval() -&gt; int</pre>
+<dl>
+<dt><span class="i18n-ko">반환</span><span class="i18n-en">Returns</span></dt><dd><code>int</code></dd>
+</dl>
+</article>
+</section><footer><span><span class="i18n-ko">NextSIM · KAIST AIxMobility Lab — </span><span class="i18n-en">NextSIM · KAIST AIxMobility Lab — </span></span><br/><span><span class="i18n-ko">NextCI 0.1.0 · Python API</span><span class="i18n-en">NextCI 0.1.0 · Python API</span></span></footer></main></div><script src="../assets/nextci.js"></script></body></html>
