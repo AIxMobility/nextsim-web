@@ -600,6 +600,17 @@
     .methodcard__need { margin-top: auto; font-size: 11.5px; font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace; color: var(--muted); }
 
     /* ---------- 사용자 가이드 문서 묶음 (모든 가이드 공통) ---------- */
+    /* 사용자 가이드 목차: 5. NextCI 가이드 아래 세 페이지 */
+    .doc-set__parent {
+        display: block;
+        padding: 5px 0;
+        color: var(--muted);
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+    .doc-set:has(.doc-set__sub a[aria-current="page"]) .doc-set__parent { color: var(--ink); font-weight: 600; }
+    .doc-set__sub { margin: 0 0 2px 2px; padding-left: 12px; border-left: 1px solid var(--hairline); }
+    .doc-set__sub a { margin-left: 0; font-size: 13px; }
     .nav a[aria-current="page"] {
         color: var(--accent-strong);
         background: var(--accent-soft);
@@ -623,9 +634,12 @@
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
                 <a href="editor-guide.html" style="--dot: var(--ws-network)"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
                 <a href="visualizer-guide.html" style="--dot: var(--ws-signal)"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
-                <a href="nextci-guide.html" aria-current="page"><span class="i18n-ko">5. NextCI 시작하기</span><span class="i18n-en">5. NextCI getting started</span></a>
-                <a href="nextci-tutorials.html"><span class="i18n-ko">6. NextCI 튜토리얼</span><span class="i18n-en">6. NextCI tutorials</span></a>
-                <a href="nextci-reference.html"><span class="i18n-ko">7. NextCI API 레퍼런스</span><span class="i18n-en">7. NextCI API reference</span></a>
+                <span class="doc-set__parent"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></span>
+                <div class="doc-set__sub">
+                    <a href="nextci-guide.html" aria-current="page"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></a>
+                    <a href="nextci-tutorials.html"><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></a>
+                    <a href="nextci-reference.html"><span class="i18n-ko">API 레퍼런스</span><span class="i18n-en">API reference</span></a>
+                </div>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></div>
@@ -748,7 +762,7 @@
                     <span class="mono">NEXTSIM_UNIT_TESTS_API</span>.</li>
             </ol>
 <pre class="cmd"><span class="c"># 1</span>
-cmake --build --preset release --target UnitTestsAPI -j
+cmake --build build/captain/release --target UnitTestsAPI -j
 
 <span class="c"># 2</span>
 python3 -m pip install -e NextCI
@@ -758,13 +772,13 @@ export NEXTSIM_UNIT_TESTS_API="$PWD/build/captain/release/bin/UnitTestsAPI"</pre
 
             <h3><span class="i18n-ko">어느 네트워크를 돌리나</span><span class="i18n-en">Which network runs</span></h3>
             <p class="i18n-ko">서버는 작업 폴더에서 위로 올라가며 <span class="mono">SimulationInput/config.txt</span> 를 찾고,
-                거기 적힌 <span class="mono">network_name</span> · <span class="mono">branch</span> 를 돌립니다. 경로 파일
+                거기 적힌 <span class="mono">network</span>(<span class="mono">SimulationInput/networks/&lt;network&gt;/</span>)를 돌립니다. 경로 파일
                 (<span class="mono">Route.json</span> 등)이 있어야 하므로, 처음 쓰는 네트워크는 Simulation 화면에서 한 번
                 실행하거나 RouteGenerator 를 먼저 돌려 두세요. 다른 데이터 폴더를 쓰려면 <span class="mono">NEXTSIM_SERVER_CWD</span>
                 에 그 폴더를 지정합니다.</p>
             <p class="i18n-en">The server walks up from its working directory looking for
-                <span class="mono">SimulationInput/config.txt</span> and runs the <span class="mono">network_name</span> and
-                <span class="mono">branch</span> it names. Route files (<span class="mono">Route.json</span> and so on) must
+                <span class="mono">SimulationInput/config.txt</span> and runs the <span class="mono">network</span> it names
+                (<span class="mono">SimulationInput/networks/&lt;network&gt;/</span>). Route files (<span class="mono">Route.json</span> and so on) must
                 exist, so for a new network run it once from the Simulation page or run RouteGenerator first. To use another
                 data folder, point <span class="mono">NEXTSIM_SERVER_CWD</span> at it.</p>
             <div class="warn i18n-ko"><strong>서버도 결과 DB 를 새로 씁니다.</strong> <span class="mono">SimulationOutput/simulation_output.db</span>
@@ -793,10 +807,10 @@ with NextCIClient(port=9999).launch_and_connect() as client:
     client.sim_step(300)                        <span class="c"># 382 vehicles now</span>
     print(client.restore_checkpoint("t0"))      <span class="c"># cycle=1000;finished=0</span>
     print(client.get_vehicle_count())           <span class="c"># 313 again</span></pre>
-            <p class="i18n-ko">주석의 값은 예제 네트워크 <span class="mono">mesopt / bucheon</span> 의 시나리오 0 에서 나온 것입니다.
+            <p class="i18n-ko">주석의 값은 예제 네트워크 <span class="mono">bucheon</span> 의 시나리오 0 에서 나온 것입니다.
                 네트워크와 시나리오에 따라 다릅니다.</p>
             <p class="i18n-en">The values in the comments come from scenario 0 of the example network
-                <span class="mono">mesopt / bucheon</span>; they depend on the network and scenario.</p>
+                <span class="mono">bucheon</span>; they depend on the network and scenario.</p>
         </section>
 
         <!-- ================================================== 서버 -->
@@ -916,12 +930,12 @@ client.flush_recordings()
 print(client.get_detector_flow("e1_a"))          <span class="c"># 120.0 veh/h</span>
 print(client.get_detector_mean_travel_time("e3_a"))
 client.remove_detector("e3_a")</pre>
-            <p class="i18n-ko">링크 <span class="mono">20001453</span> 과 교통량 값은 예제 네트워크 <span class="mono">mesopt / bucheon</span>
+            <p class="i18n-ko">링크 <span class="mono">20001453</span> 과 교통량 값은 예제 네트워크 <span class="mono">bucheon</span>
                 기준입니다. 쓰는 네트워크의 ID 로 바꾸세요(<span class="mono">get_link_id_list()</span>, Editor 의 Network 워크스페이스).
                 없는 링크를 적으면 추가는 되지만 <span class="mono">enabled=0</span> 으로 붙어 값이 쌓이지 않습니다. 돌려받은
                 <span class="mono">payload</span> 로 확인하세요.</p>
             <p class="i18n-en">Link <span class="mono">20001453</span> and the flow value are from the example network
-                <span class="mono">mesopt / bucheon</span>; use IDs from your own network (<span class="mono">get_link_id_list()</span>,
+                <span class="mono">bucheon</span>; use IDs from your own network (<span class="mono">get_link_id_list()</span>,
                 or the Editor's Network workspace). A detector on a link that does not exist is still added, but with
                 <span class="mono">enabled=0</span>, so it never records; check the returned <span class="mono">payload</span>.</p>
         </section>

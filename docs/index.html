@@ -571,6 +571,17 @@
     pre.cmd .c { color: var(--muted); }
 
     /* ---------- 사용자 가이드 문서 묶음 (모든 가이드 공통) ---------- */
+    /* 사용자 가이드 목차: 5. NextCI 가이드 아래 세 페이지 */
+    .doc-set__parent {
+        display: block;
+        padding: 5px 0;
+        color: var(--muted);
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+    .doc-set:has(.doc-set__sub a[aria-current="page"]) .doc-set__parent { color: var(--ink); font-weight: 600; }
+    .doc-set__sub { margin: 0 0 2px 2px; padding-left: 12px; border-left: 1px solid var(--hairline); }
+    .doc-set__sub a { margin-left: 0; font-size: 13px; }
     .nav a[aria-current="page"] {
         color: var(--accent-strong);
         background: var(--accent-soft);
@@ -594,9 +605,12 @@
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
                 <a href="editor-guide.html"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
                 <a href="visualizer-guide.html"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
-                <a href="nextci-guide.html"><span class="i18n-ko">5. NextCI 시작하기</span><span class="i18n-en">5. NextCI getting started</span></a>
-                <a href="nextci-tutorials.html"><span class="i18n-ko">6. NextCI 튜토리얼</span><span class="i18n-en">6. NextCI tutorials</span></a>
-                <a href="nextci-reference.html"><span class="i18n-ko">7. NextCI API 레퍼런스</span><span class="i18n-en">7. NextCI API reference</span></a>
+                <span class="doc-set__parent"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></span>
+                <div class="doc-set__sub">
+                    <a href="nextci-guide.html"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></a>
+                    <a href="nextci-tutorials.html"><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></a>
+                    <a href="nextci-reference.html"><span class="i18n-ko">API 레퍼런스</span><span class="i18n-en">API reference</span></a>
+                </div>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">소개</span><span class="i18n-en">Introduction</span></div>
@@ -723,12 +737,12 @@
             </table></div>
             <p class="i18n-ko">전역 틱은 0.1초이고 meso 링크는 50틱마다 갱신됩니다 — 즉 micro 는 meso 보다 50배 자주
                 계산합니다. 경계에서는 차량 표현이 자동 변환되므로, 관심 구간만 micro 로 두고 나머지를 meso 로
-                두는 것이 일반적인 사용법입니다. meso 모형의 자유속도·후방파속도·용량 값은 브랜치의
+                두는 것이 일반적인 사용법입니다. meso 모형의 자유속도·후방파속도·용량 값은 네트워크 폴더의
                 <span class="mono">parameter_xml/param.xml</span> 에서 옵니다.</p>
             <p class="i18n-en">The global tick is 0.1 s and meso links update every 50th tick — micro is computed 50×
                 more often. Vehicles convert between representations at the boundary automatically, so the usual
                 pattern is micro for the area under study and meso everywhere else. The meso model's free-flow speed,
-                backward wave speed, and capacity come from the branch's
+                backward wave speed, and capacity come from the network folder's
                 <span class="mono">parameter_xml/param.xml</span>.</p>
         </section>
 
@@ -805,7 +819,7 @@
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>경로</th><th>내용</th></tr>
                 <tr><td class="mono">Captain/</td><td>C++17 시뮬레이션 엔진. <span class="mono">Sources/</span>·<span class="mono">Includes/</span> 가 엔진 본체, <span class="mono">Tests/</span> 가 실행 파일 5개, <span class="mono">Libraries/</span> 가 서브모듈 4개.</td></tr>
-                <tr><td class="mono">SimulationInput/</td><td>모든 입력. <span class="mono">config.txt</span>(활성 네트워크 지정) + <span class="mono">datasets/</span>(브랜치 트리) + <span class="mono">nodelink/</span>·<span class="mono">osm/</span>(가져오기 원본).</td></tr>
+                <tr><td class="mono">SimulationInput/</td><td>모든 입력. <span class="mono">config.txt</span>(활성 네트워크 지정) + <span class="mono">networks/</span>(네트워크 폴더들) + <span class="mono">nodelink/</span>·<span class="mono">osm/</span>(가져오기 원본).</td></tr>
                 <tr><td class="mono">SimulationOutput/</td><td>실행 결과. 결과 DB와 궤적 청크 DB, <span class="mono">SimulationInfo.xml</span>, 그리고 웹 재생용 <span class="mono">visualization_data/</span>.</td></tr>
                 <tr><td class="mono">Visualizer/WebVisualization/</td><td>브라우저 도구 일체 — <span class="mono">editor/</span>, <span class="mono">visualizer/</span>, <span class="mono">js/</span>, 그리고 이 <span class="mono">docs/</span>.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>통합 Flask 서버 (웹 UI + 편집 API + 실행 중계).</td></tr>
@@ -818,7 +832,7 @@
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Path</th><th>Contents</th></tr>
                 <tr><td class="mono">Captain/</td><td>The C++17 engine. <span class="mono">Sources/</span> and <span class="mono">Includes/</span> are the engine itself, <span class="mono">Tests/</span> holds the five executables, <span class="mono">Libraries/</span> the four submodules.</td></tr>
-                <tr><td class="mono">SimulationInput/</td><td>Every input. <span class="mono">config.txt</span> (which network is active) plus <span class="mono">datasets/</span> (the branch tree) and <span class="mono">nodelink/</span> / <span class="mono">osm/</span> (raw import sources).</td></tr>
+                <tr><td class="mono">SimulationInput/</td><td>Every input. <span class="mono">config.txt</span> (which network is active) plus <span class="mono">networks/</span> (one folder per network) and <span class="mono">nodelink/</span> / <span class="mono">osm/</span> (raw import sources).</td></tr>
                 <tr><td class="mono">SimulationOutput/</td><td>Run output: the result DB and trajectory chunk DBs, <span class="mono">SimulationInfo.xml</span>, and <span class="mono">visualization_data/</span> for web replay.</td></tr>
                 <tr><td class="mono">Visualizer/WebVisualization/</td><td>All the browser tooling — <span class="mono">editor/</span>, <span class="mono">visualizer/</span>, <span class="mono">js/</span>, and this <span class="mono">docs/</span>.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>The unified Flask server (web UI, editing API, run orchestration).</td></tr>
@@ -834,34 +848,37 @@
         <section id="inputs">
             <h2><span class="i18n-ko">입력 데이터 모델</span><span class="i18n-en">Input data model</span></h2>
             <p class="i18n-ko">엔진은 실행 인자로 경로를 받지 않습니다. 대신
-                <span class="mono">SimulationInput/config.txt</span> 두 줄이 <strong>어느 데이터셋을 돌릴지</strong>를
+                <span class="mono">SimulationInput/config.txt</span> 한 줄이 <strong>어느 네트워크를 돌릴지</strong>를
                 정합니다.</p>
-            <p class="i18n-en">The binaries take no path arguments. Instead, two lines in
-                <span class="mono">SimulationInput/config.txt</span> decide <strong>which dataset runs</strong>.</p>
-<pre class="cmd">network_name=bucheon
-branch=mesopt</pre>
-            <p class="i18n-ko">이 값이 곧 경로가 됩니다:</p>
-            <p class="i18n-en">Those values become the paths directly:</p>
-<pre class="cmd i18n-ko">SimulationInput/datasets/&lt;branch&gt;/network_xml_&lt;network_name&gt;/   <span class="c"># 네트워크별 입력</span>
-SimulationInput/datasets/&lt;branch&gt;/parameter_xml/                <span class="c"># 브랜치 공용 파라미터</span></pre>
-<pre class="cmd i18n-en">SimulationInput/datasets/&lt;branch&gt;/network_xml_&lt;network_name&gt;/   <span class="c"># per-network inputs</span>
-SimulationInput/datasets/&lt;branch&gt;/parameter_xml/                <span class="c"># shared across the branch</span></pre>
-            <p class="i18n-ko">여기서 <strong>브랜치</strong>는 git 브랜치가 아니라 실험 계열을 묶는 폴더입니다
-                (<span class="mono">mesopt</span>, <span class="mono">publictransit</span>,
-                <span class="mono">TRT</span>, <span class="mono">V2X</span>, <span class="mono">curve</span>).
-                한 브랜치는 <span class="mono">parameter_xml/</span> 하나를 공유하고 그 아래 네트워크 폴더를 여럿 둡니다.
-                Simulation·Editor 에서 폴더를 고르면 이 파일이 자동으로 갱신되므로 직접 편집할 일은 거의 없습니다.</p>
-            <p class="i18n-en">A <strong>branch</strong> here is not a git branch — it is a folder grouping a family
-                of experiments (<span class="mono">mesopt</span>, <span class="mono">publictransit</span>,
-                <span class="mono">TRT</span>, <span class="mono">V2X</span>, <span class="mono">curve</span>). One
-                branch shares a single <span class="mono">parameter_xml/</span> across the network folders under it.
-                Choosing a folder in the Editor or Simulation rewrites this file for you, so you rarely touch it.</p>
+            <p class="i18n-en">The binaries take no path arguments. Instead, one line in
+                <span class="mono">SimulationInput/config.txt</span> decides <strong>which network runs</strong>.</p>
+<pre class="cmd">network=bucheon</pre>
+            <p class="i18n-ko">이 값이 곧 경로가 됩니다. 네트워크 하나가 폴더 하나이고, 파라미터도 그 안에 둡니다:</p>
+            <p class="i18n-en">That value becomes the path directly. One network is one folder, parameters included:</p>
+<pre class="cmd i18n-ko">SimulationInput/networks/&lt;network&gt;/                  <span class="c"># 네트워크 입력</span>
+SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># 이 네트워크의 파라미터</span></pre>
+<pre class="cmd i18n-en">SimulationInput/networks/&lt;network&gt;/                  <span class="c"># network inputs</span>
+SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># this network's parameters</span></pre>
+            <p class="i18n-ko">네트워크 폴더에 <span class="mono">parameter_xml/</span> 이 없으면
+                <span class="mono">SimulationInput/parameter_xml/</span> 을 공용 기본값으로 씁니다. Editor 에서 새 네트워크를
+                만들면 기본 <span class="mono">parameter_xml/</span> 이 함께 복사됩니다.
+                Simulation·Editor 에서 폴더를 고르면 config.txt 가 자동으로 갱신되므로 직접 편집할 일은 거의 없습니다.
+                예전 구조(<span class="mono">datasets/&lt;branch&gt;/network_xml_&lt;이름&gt;/</span>)의 패키지는 서버가 시작할 때
+                <span class="mono">networks/&lt;이름&gt;/</span> 으로 자동으로 옮기고, 무엇을 옮겼는지
+                <span class="mono">networks/MIGRATION.txt</span> 에 남깁니다.</p>
+            <p class="i18n-en">If a network folder has no <span class="mono">parameter_xml/</span>,
+                <span class="mono">SimulationInput/parameter_xml/</span> is used as the shared default. A network created in
+                the Editor gets a default <span class="mono">parameter_xml/</span> copied in. Choosing a folder in the
+                Editor or Simulation rewrites config.txt for you, so you rarely touch it. Packages in the old layout
+                (<span class="mono">datasets/&lt;branch&gt;/network_xml_&lt;name&gt;/</span>) are moved to
+                <span class="mono">networks/&lt;name&gt;/</span> when the server starts; the moves are listed in
+                <span class="mono">networks/MIGRATION.txt</span>.</p>
             <div class="warn i18n-ko"><strong>config.txt 는 시작할 때 한 번만 읽힙니다.</strong> 실행 중에 바꿔도
                 그 실행에는 반영되지 않습니다.</div>
             <div class="warn i18n-en"><strong>config.txt is read once at startup.</strong> Changing it mid-run has no
                 effect on that run.</div>
 
-            <h3><span class="i18n-ko">브랜치 공용 — parameter_xml/</span><span class="i18n-en">Shared per branch — parameter_xml/</span></h3>
+            <h3><span class="i18n-ko">네트워크 파라미터 — parameter_xml/</span><span class="i18n-en">Network parameters — parameter_xml/</span></h3>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>파일</th><th>내용</th></tr>
                 <tr><td class="mono">param.xml</td><td>meso 모형 파라미터(용량·차량길이·후방파속도)와 시뮬레이션 파라미터(micro/meso 시간 간격, 황색시간 등).</td></tr>
@@ -875,7 +892,7 @@ SimulationInput/datasets/&lt;branch&gt;/parameter_xml/                <span clas
                 <tr><td class="mono">recordMode.xml</td><td>Which tables and fields get recorded into the result database.</td></tr>
             </table></div>
 
-            <h3><span class="i18n-ko">네트워크별 — network_xml_&lt;name&gt;/</span><span class="i18n-en">Per network — network_xml_&lt;name&gt;/</span></h3>
+            <h3><span class="i18n-ko">네트워크 입력 — networks/&lt;name&gt;/</span><span class="i18n-en">Network inputs — networks/&lt;name&gt;/</span></h3>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>파일</th><th>내용</th><th>편집</th></tr>
                 <tr><td class="mono">network.xml</td><td>도로망 — 노드·링크·차로·커넥션</td><td>Editor · Network</td></tr>
@@ -925,7 +942,7 @@ SimulationInput/datasets/&lt;branch&gt;/parameter_xml/                <span clas
                 <b>config.txt</b><i>→</i><b>RouteGenerator</b><i>→</i><b>PaxRouteGenerator</b><i>→</i><b>UnitTestsSimulation</b><i>→</i><b>DB load</b>
             </div>
             <ol class="steps i18n-ko">
-                <li><strong>config.txt 갱신</strong> — 고른 브랜치·네트워크를 씁니다. 바이너리에 경로를 넘기는 방법은 이것뿐입니다.</li>
+                <li><strong>config.txt 갱신</strong> — 고른 네트워크를 씁니다. 바이너리에 경로를 넘기는 방법은 이것뿐입니다.</li>
                 <li><strong>RouteGenerator</strong> (기본 켜짐) — <span class="mono">Route.json</span> 등 경로 파일을 만듭니다.
                     입력을 바꾸지 않았다면 꺼서 시간을 아낄 수 있습니다.</li>
                 <li><strong>PaxRouteGenerator</strong> (기본 꺼짐) — 대중교통 승객 경로. PTRoute.json 을 쓰므로 앞 단계 뒤에 옵니다.</li>
@@ -934,7 +951,7 @@ SimulationInput/datasets/&lt;branch&gt;/parameter_xml/                <span clas
                     재생용으로 색인합니다. 그래서 시뮬레이션이 끝나면 곧바로 재생할 수 있습니다.</li>
             </ol>
             <ol class="steps i18n-en">
-                <li><strong>Write config.txt</strong> with the chosen branch and network — this is the only way a path
+                <li><strong>Write config.txt</strong> with the chosen network — this is the only way a path
                     reaches the binaries.</li>
                 <li><strong>RouteGenerator</strong> (on by default) — produces <span class="mono">Route.json</span> and
                     friends. Turn it off to save time when the inputs have not changed.</li>

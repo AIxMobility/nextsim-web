@@ -512,6 +512,17 @@
     }
 
     /* ---------- 사용자 가이드 문서 묶음 (모든 가이드 공통) ---------- */
+    /* 사용자 가이드 목차: 5. NextCI 가이드 아래 세 페이지 */
+    .doc-set__parent {
+        display: block;
+        padding: 5px 0;
+        color: var(--muted);
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+    .doc-set:has(.doc-set__sub a[aria-current="page"]) .doc-set__parent { color: var(--ink); font-weight: 600; }
+    .doc-set__sub { margin: 0 0 2px 2px; padding-left: 12px; border-left: 1px solid var(--hairline); }
+    .doc-set__sub a { margin-left: 0; font-size: 13px; }
     .nav a[aria-current="page"] {
         color: var(--accent-strong);
         background: var(--accent-soft);
@@ -536,9 +547,12 @@
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
                 <a href="editor-guide.html" aria-current="page"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
                 <a href="visualizer-guide.html"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
-                <a href="nextci-guide.html"><span class="i18n-ko">5. NextCI 시작하기</span><span class="i18n-en">5. NextCI getting started</span></a>
-                <a href="nextci-tutorials.html"><span class="i18n-ko">6. NextCI 튜토리얼</span><span class="i18n-en">6. NextCI tutorials</span></a>
-                <a href="nextci-reference.html"><span class="i18n-ko">7. NextCI API 레퍼런스</span><span class="i18n-en">7. NextCI API reference</span></a>
+                <span class="doc-set__parent"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></span>
+                <div class="doc-set__sub">
+                    <a href="nextci-guide.html"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></a>
+                    <a href="nextci-tutorials.html"><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></a>
+                    <a href="nextci-reference.html"><span class="i18n-ko">API 레퍼런스</span><span class="i18n-en">API reference</span></a>
+                </div>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></div>
@@ -712,8 +726,8 @@
                 <li>브라우저에서 <code>http://localhost:8000/editor</code> 를 엽니다.
                     시뮬레이션 결과 재생용 Simulation는 <code>/simulation</code> 입니다.</li>
                 <li>상단바의 <strong>Inputs</strong> 버튼을 눌러 <strong>Folder</strong> 목록에서 네트워크
-                    폴더를 선택합니다. <code>SimulationInput/datasets/</code> 아래의
-                    <code>network_xml_*</code> 폴더들이 자동으로 나열됩니다.</li>
+                    폴더를 선택합니다. <code>SimulationInput/networks/</code> 아래의
+                    네트워크 폴더들이 이름으로 나열됩니다.</li>
                 <li>폴더를 선택하면 지도에 네트워크가 그려지고, 각 워크스페이스가 해당 파일을 읽어옵니다.</li>
             </ol>
             <ol class="steps i18n-en">
@@ -722,8 +736,8 @@
                 <li>Open <code>http://localhost:8000/editor</code>. The Simulation, for replaying results, is at
                     <code>/simulation</code>.</li>
                 <li>Click <strong>Inputs</strong> in the top bar and choose a network folder under
-                    <strong>Folder</strong> — every <code>network_xml_*</code> folder under
-                    <code>SimulationInput/datasets/</code> is listed automatically.</li>
+                    <strong>Folder</strong> — every network folder under
+                    <code>SimulationInput/networks/</code> is listed by name.</li>
                 <li>Selecting a folder draws the network and loads each workspace's file.</li>
             </ol>
 

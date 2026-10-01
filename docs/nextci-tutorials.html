@@ -601,6 +601,17 @@
     .methodcard__need { margin-top: auto; font-size: 11.5px; font-family: "IBM Plex Mono", ui-monospace, Consolas, monospace; color: var(--muted); }
 
     /* ---------- 사용자 가이드 문서 묶음 (모든 가이드 공통) ---------- */
+    /* 사용자 가이드 목차: 5. NextCI 가이드 아래 세 페이지 */
+    .doc-set__parent {
+        display: block;
+        padding: 5px 0;
+        color: var(--muted);
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+    .doc-set:has(.doc-set__sub a[aria-current="page"]) .doc-set__parent { color: var(--ink); font-weight: 600; }
+    .doc-set__sub { margin: 0 0 2px 2px; padding-left: 12px; border-left: 1px solid var(--hairline); }
+    .doc-set__sub a { margin-left: 0; font-size: 13px; }
     .nav a[aria-current="page"] {
         color: var(--accent-strong);
         background: var(--accent-soft);
@@ -670,9 +681,12 @@
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
                 <a href="editor-guide.html" style="--dot: var(--ws-network)"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
                 <a href="visualizer-guide.html" style="--dot: var(--ws-signal)"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
-                <a href="nextci-guide.html"><span class="i18n-ko">5. NextCI 시작하기</span><span class="i18n-en">5. NextCI getting started</span></a>
-                <a href="nextci-tutorials.html" aria-current="page"><span class="i18n-ko">6. NextCI 튜토리얼</span><span class="i18n-en">6. NextCI tutorials</span></a>
-                <a href="nextci-reference.html"><span class="i18n-ko">7. NextCI API 레퍼런스</span><span class="i18n-en">7. NextCI API reference</span></a>
+                <span class="doc-set__parent"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></span>
+                <div class="doc-set__sub">
+                    <a href="nextci-guide.html"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></a>
+                    <a href="nextci-tutorials.html" aria-current="page"><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></a>
+                    <a href="nextci-reference.html"><span class="i18n-ko">API 레퍼런스</span><span class="i18n-en">API reference</span></a>
+                </div>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></div>
@@ -688,17 +702,17 @@
         <div class="masthead">
             <h1><span class="i18n-ko">NextCI 튜토리얼</span><span class="i18n-en">NextCI tutorials</span></h1>
             <p class="i18n-ko">네 가지 흔한 작업을 짧은 스크립트로 따라 합니다. 스크립트는 저장소의 <code>NextCI/examples/tutorials/</code> 에 있고,
-각자 서버를 띄웠다가 끝나면 끕니다. 예제 네트워크 <code>mesopt / bucheon</code> 의 시나리오 0 에서 돌렸으며, 출력은 그때의 예시입니다.
+각자 서버를 띄웠다가 끝나면 끕니다. 예제 네트워크 <code>bucheon</code> 의 시나리오 0 에서 돌렸으며, 출력은 그때의 예시입니다.
 시뮬레이션에 무작위성이 있어 실행할 때마다 값이 조금씩 다릅니다.</p><p class="i18n-en">Four common jobs, each as a short script. The scripts live in <code>NextCI/examples/tutorials/</code> in the repository;
-each starts its own server and stops it at the end. They were run on scenario 0 of the example network <code>mesopt / bucheon</code>,
+each starts its own server and stops it at the end. They were run on scenario 0 of the example network <code>bucheon</code>,
 and the outputs shown are from those runs. The simulation is stochastic, so values differ a little from run to run.</p>
             <div class="meta">
                 <span class="chip">4 <span class="i18n-ko">편</span><span class="i18n-en">tutorials</span></span>
-                <span class="chip">mesopt / bucheon</span>
+                <span class="chip">bucheon</span>
                 <span class="chip">NextCI/examples/tutorials/</span>
             </div>
         </div>
-        <div class="i18n-ko tip">시작하기 전에: <code>NextCI 시작하기</code> 의 준비 세 단계를 마치고, <code>SimulationInput/config.txt</code> 가 <code>network_name=bucheon</code>, <code>branch=mesopt</code> 인지 확인하세요.</div><div class="i18n-en tip">Before you start: finish the three setup steps in <code>NextCI getting started</code>, and make sure <code>SimulationInput/config.txt</code> says <code>network_name=bucheon</code> and <code>branch=mesopt</code>.</div>
+        <div class="i18n-ko tip">시작하기 전에: <code>NextCI 시작하기</code> 의 준비 세 단계를 마치고, <code>SimulationInput/config.txt</code> 가 <code>network=bucheon</code> 인지 확인하세요 (네트워크 폴더 <code>SimulationInput/networks/bucheon/</code>).</div><div class="i18n-en tip">Before you start: finish the three setup steps in <code>NextCI getting started</code>, and make sure <code>SimulationInput/config.txt</code> says <code>network=bucheon</code> (network folder <code>SimulationInput/networks/bucheon/</code>).</div>
 
 
         <section id="t-log-links">
@@ -758,7 +772,7 @@ with NextCIClient().launch_and_connect() as client, open(&quot;links.csv&quot;, 
 <pre class="cmd">&quot;&quot;&quot;Tutorial 2: measure flow, occupancy, and travel time with E1, E2, and E3 detectors.&quot;&quot;&quot;
 from nextci import NextCIClient
 
-LINK = 20001453                          # 3 lanes, 243.9 m in the example network mesopt / bucheon
+LINK = 20001453                          # 3 lanes, 243.9 m in the example network bucheon
 
 with NextCIClient().launch_and_connect() as client:
     length = client.get_link_length(LINK)
