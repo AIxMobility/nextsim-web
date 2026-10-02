@@ -22,7 +22,7 @@
         }
     })();
 </script>
-<title>NextSIM Editor Guide</title>
+<title>NextSIM Edit Mode Guide</title>
 <link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
 <script>
     /* 언어 선택을 body 파싱 전에 적용해 잘못된 언어가 잠깐 보이는 것을 막는다.
@@ -548,7 +548,7 @@
 
 <div class="shell">
     <nav class="nav" id="docNav">
-        <div class="nav__brand"><span class="nav__logo"><img class="nav__logo-light" src="../assets/logo/NextSIM_horizontal_color_on-light.svg" alt="NextSIM" width="100" height="28"><img class="nav__logo-dark" src="../assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="100" height="28"></span><span class="nav__product">Editor</span><small><span class="i18n-ko">사용자 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">User Guide · KAIST AIxMobility Lab</span></small></div>
+        <div class="nav__brand"><span class="nav__logo"><img class="nav__logo-light" src="../assets/logo/NextSIM_horizontal_color_on-light.svg" alt="NextSIM" width="100" height="28"><img class="nav__logo-dark" src="../assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="100" height="28"></span><span class="nav__product"><span class="i18n-ko">Edit 모드</span><span class="i18n-en">Edit mode</span></span><small><span class="i18n-ko">사용자 가이드 · KAIST AIxMobility Lab</span><span class="i18n-en">User Guide · KAIST AIxMobility Lab</span></small></div>
         <a class="site-home" href="../index.html"><span class="i18n-ko">← NextSIM 홈페이지</span><span class="i18n-en">← NextSIM website</span></a>
         <div class="lang-switch" role="group" aria-label="Language / 언어">
             <button type="button" data-lang="ko" aria-pressed="true">한국어</button>
@@ -559,8 +559,8 @@
                 <div class="nav__group-label"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></div>
                 <a href="index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
-                <a href="editor-guide.html" aria-current="page"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
-                <a href="visualizer-guide.html"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
+                <a href="editor-guide.html" aria-current="page"><span class="i18n-ko">3. Edit 모드 가이드</span><span class="i18n-en">3. Edit mode guide</span></a>
+                <a href="visualizer-guide.html"><span class="i18n-ko">4. Run 모드 가이드</span><span class="i18n-en">4. Run mode guide</span></a>
                 <span class="doc-set__parent"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></span>
                 <div class="doc-set__sub">
                     <a href="nextci-guide.html"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></a>
@@ -570,8 +570,9 @@
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></div>
-                <a href="#overview"><span class="i18n-ko">에디터 소개</span><span class="i18n-en">What it is</span></a>
+                <a href="#overview"><span class="i18n-ko">Edit 모드 소개</span><span class="i18n-en">What it is</span></a>
                 <a href="#getting-started"><span class="i18n-ko">설치와 첫 실행</span><span class="i18n-en">Install &amp; first run</span></a>
+                <a href="#switch-to-run"><span class="i18n-ko">Run 모드로 전환</span><span class="i18n-en">Switching to Run mode</span></a>
                 <a href="#map-basics"><span class="i18n-ko">지도 조작 공통 기능</span><span class="i18n-en">Shared map controls</span></a>
             </div>
             <div class="nav__group">
@@ -591,6 +592,7 @@
                 <a href="#import-nodelink"><span class="i18n-ko">표준노드링크 가져오기</span><span class="i18n-en">Import standard node-link</span></a>
                 <a href="#import-osm"><span class="i18n-ko">OpenStreetMap 가져오기</span><span class="i18n-en">Import OpenStreetMap</span></a>
                 <a href="#backups"><span class="i18n-ko">저장 백업과 복원</span><span class="i18n-en">Backups &amp; restore</span></a>
+                <a href="#packages"><span class="i18n-ko">패키지와 다른 이름으로 저장</span><span class="i18n-en">Packages &amp; Save as</span></a>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">참고</span><span class="i18n-en">Reference</span></div>
@@ -598,43 +600,54 @@
                 <a href="#faq"><span class="i18n-ko">FAQ · 문제 해결</span><span class="i18n-en">FAQ &amp; troubleshooting</span></a>
                 <a class="doc-cross" href="visualizer-guide.html"
                    data-local="visualizer-guide.html"
-                  >↗ <span class="i18n-ko">Simulation 가이드</span><span class="i18n-en">Simulation guide</span></a>
+                  >↗ <span class="i18n-ko">Run 모드 가이드</span><span class="i18n-en">Run mode guide</span></a>
             </div>
         </div>
     </nav>
 
     <main class="content">
         <div class="masthead">
-            <h1><span class="i18n-ko">NextSIM Editor 사용자 가이드</span><span class="i18n-en">NextSIM Editor User Guide</span></h1>
-            <p class="i18n-ko">NextSIM 하이브리드 교통 시뮬레이터의 입력 데이터를 브라우저에서 시각적으로 만들고 편집하는
-                도구입니다. 도로 네트워크부터 수요(OD), 신호, 대중교통, 이벤트, 시나리오까지 —
-                시뮬레이션에 필요한 모든 입력 파일을 하나의 지도 위에서 다룹니다.</p>
-            <p class="i18n-en">A browser tool for building and editing the input data of the NextSIM hybrid
-                traffic simulator. Road network, demand (OD), signals, transit, events, scenarios — every input
-                file a simulation needs, all on one map.</p>
+            <h1><span class="i18n-ko">NextSIM Edit 모드 사용자 가이드</span><span class="i18n-en">NextSIM Edit Mode User Guide</span></h1>
+            <p class="i18n-ko">NextSIM 화면의 <strong>Edit 모드</strong>에서 NextSIM 하이브리드 교통 시뮬레이터의 입력 데이터를
+                브라우저에서 시각적으로 만들고 편집합니다. 도로 네트워크부터 수요(OD), 신호, 대중교통, 이벤트, 시나리오까지 —
+                시뮬레이션에 필요한 모든 입력 파일을 하나의 지도 위에서 다룹니다. 시뮬레이션 실행과 결과 재생은
+                같은 화면의 <strong>Run 모드</strong>가 맡습니다.</p>
+            <p class="i18n-en"><strong>Edit mode</strong> of the NextSIM page is where you build and edit the input data
+                of the NextSIM hybrid traffic simulator in the browser. Road network, demand (OD), signals, transit,
+                events, scenarios — every input file a simulation needs, all on one map. Running simulations and
+                replaying results is the job of <strong>Run mode</strong> on the same page.</p>
             <div class="meta">
                 <span class="chip"><span class="i18n-ko">2026-08 기준</span><span class="i18n-en">As of 2026-08</span></span>
                 <span class="chip"><span class="i18n-ko">브라우저 기반 (Chrome 권장)</span><span class="i18n-en">Browser based (Chrome recommended)</span></span>
                 <span class="chip"><span class="i18n-ko">파일 형식: XML · JSON</span><span class="i18n-en">Formats: XML · JSON</span></span>
                 <a class="chip doc-cross" href="visualizer-guide.html"
                    data-local="visualizer-guide.html"
-                  >🎬 <span class="i18n-ko">결과 재생은 Simulation 가이드 →</span><span class="i18n-en">Replaying results? See the Simulation guide →</span></a>
+                  >🎬 <span class="i18n-ko">실행·결과 재생은 Run 모드 가이드 →</span><span class="i18n-en">Running and replaying? See the Run mode guide →</span></a>
             </div>
         </div>
 
         <!-- ================================================== 개요 -->
         <section id="overview">
-            <h2><span class="i18n-ko">에디터 소개</span><span class="i18n-en">What the Editor is</span></h2>
-            <p class="i18n-ko">NextSIM Editor는 <strong>네트워크 폴더</strong> 단위로 동작합니다. 하나의 네트워크 폴더는
-                시뮬레이션 한 세트에 필요한 입력 파일 묶음이고, 에디터의 각 <strong>워크스페이스</strong>가
+            <h2><span class="i18n-ko">Edit 모드 소개</span><span class="i18n-en">What Edit mode is</span></h2>
+            <p class="i18n-ko">Edit 모드는 <strong>네트워크 폴더</strong> 단위로 동작합니다. 하나의 네트워크 폴더는
+                시뮬레이션 한 세트에 필요한 입력 파일 묶음이고, Edit 모드의 각 <strong>워크스페이스</strong>가
                 그중 한 파일을 담당합니다. 모든 워크스페이스는 같은 지도(네트워크 캔버스)를 공유합니다.</p>
-            <p class="i18n-en">The Editor works one <strong>network folder</strong> at a time. A network folder is
-                the bundle of input files one simulation needs, and each <strong>workspace</strong> in the editor
+            <p class="i18n-en">Edit mode works one <strong>network folder</strong> at a time. A network folder is
+                the bundle of input files one simulation needs, and each <strong>workspace</strong> in Edit mode
                 owns one of those files. Every workspace shares the same map canvas.</p>
+            <p class="i18n-ko">NextSIM 화면에는 <strong>Run 모드</strong>(실행·결과 재생)와 <strong>Edit 모드</strong>(입력 편집)가
+                있고, 둘은 동시에 켜지지 않습니다. 상단바의 <strong>Run | Edit</strong> 전환으로 오가며, 두 모드는 같은
+                네트워크 폴더를 엽니다 — 전환할 때의 규칙은 <a href="#switch-to-run">Run 모드로 전환</a>을 보세요.</p>
+            <p class="i18n-en">The NextSIM page has two modes that are never on at the same time: <strong>Run mode</strong>
+                (running and replaying) and <strong>Edit mode</strong> (editing inputs). The <strong>Run | Edit</strong>
+                switch in the top bar moves between them, and both work on the same network folder — see
+                <a href="#switch-to-run">Switching to Run mode</a> for what happens on the way.</p>
 
             <h3><span class="i18n-ko">화면 구성</span><span class="i18n-en">Layout</span></h3>
             <ul class="i18n-ko">
-                <li><strong>상단바</strong> — 좌측에 <strong>Inputs</strong>(폴더 선택·새 폴더·가져오기·백업)와
+                <li><strong>상단바</strong> — 좌측에 NextSIM 로고, <strong>Run | Edit</strong> 모드 전환,
+                    <strong>네트워크 버튼</strong>(폴더 아이콘과 지금 네트워크 이름 — 누르면 <strong>Network</strong> 창:
+                    네트워크 선택·추가·패키지 내보내기·다른 이름으로 저장·백업)과
                     워크스페이스 선택 스트립(Scenario ~ Events)이, <strong>우측 끝에</strong>
                     <strong>Save XML</strong>(현재 워크스페이스용) · <strong>Display</strong>(표시 옵션) ·
                     <strong>Help</strong> 가 모여 있습니다.</li>
@@ -648,8 +661,10 @@
                     지도를 덮는 반투명 오버레이(OD·Scenario)로 열립니다.</li>
             </ul>
             <ul class="i18n-en">
-                <li><strong>Top bar</strong> — on the left, <strong>Inputs</strong> (folder selection, new folder,
-                    import, backups) and the workspace strip (Scenario … Events). <strong>Right-aligned</strong> at
+                <li><strong>Top bar</strong> — on the left, the NextSIM logo, the <strong>Run | Edit</strong> mode
+                    switch, the <strong>network button</strong> (folder icon and the current network's name; it opens the
+                    <strong>Network</strong> dialog: selecting, adding, exporting as a package, save as, backups) and
+                    the workspace strip (Scenario … Events). <strong>Right-aligned</strong> at
                     the far end: <strong>Save XML</strong> (for the current workspace), <strong>Display</strong>,
                     and <strong>Help</strong>.</li>
                 <li><strong>Tools panel</strong> — a floating panel centred just under the top bar holding the
@@ -714,14 +729,17 @@
                 <strong>저장 / 저장 안 함 / 취소</strong>를 묻는 창이 뜹니다. "저장 안 함"을 고르면 서버에
                 저장된 파일을 다시 불러와 편집 전 상태로 되돌립니다. 폴더를 바꾸거나 페이지를 닫을 때도
                 같은 보호가 걸리며, <strong>Events 워크스페이스도 여기에 포함됩니다</strong>.
+                Run 모드로 전환할 때는 저장하지 않은 워크스페이스를 한 창에 모아 묻습니다
+                (<a href="#switch-to-run">Run 모드로 전환</a>).
                 저장할 때마다 이전 파일이 자동으로 백업되므로(<a href="#backups">저장 백업과 복원</a>)
                 실수해도 되돌릴 수 있습니다.</p>
             <p class="i18n-en">Edits reach disk only when you press <strong>Save XML</strong> for that workspace.
                 Until then they live in the browser, and moving to another workspace prompts
                 <strong>Save / Discard / Cancel</strong>. "Discard" reloads the file from the server, undoing
                 everything since the last save. The same protection applies when you switch folders or close the
-                page, and <strong>the Events workspace is included</strong>. Every save backs up the previous file
-                first (<a href="#backups">Backups &amp; restore</a>), so mistakes are recoverable.</p>
+                page, and <strong>the Events workspace is included</strong>. Switching to Run mode asks once about
+                every unsaved workspace (<a href="#switch-to-run">Switching to Run mode</a>). Every save backs up the
+                previous file first (<a href="#backups">Backups &amp; restore</a>), so mistakes are recoverable.</p>
 
             <div class="tip i18n-ko"><strong>Tip.</strong> 각 워크스페이스에서는 그 워크스페이스가 쓰는 지도
                 오브젝트만 클릭에 반응합니다. 예를 들어 OD Matrix에서는 링크만 클릭되고 노드·커넥션은
@@ -737,38 +755,117 @@
             <ol class="steps i18n-ko">
                 <li>NextSIM 을 설치하고 서버를 띄웁니다 — 방법은 <a href="installation.html">설치 가이드</a>를 보세요
                     (소스 저장소라면 루트에서 <code>./start_visualizer.sh</code>).</li>
-                <li>브라우저에서 <code>http://localhost:8000/editor</code> 를 엽니다.
-                    시뮬레이션 결과 재생용 Simulation는 <code>/simulation</code> 입니다.</li>
-                <li>상단바의 <strong>Inputs</strong> 버튼을 눌러 <strong>Folder</strong> 목록에서 네트워크
-                    폴더를 선택합니다. <code>SimulationInput/networks/</code> 아래의
+                <li>브라우저에서 <code>http://localhost:8000/nextsim/?mode=edit</code> 를 엽니다.
+                    <code>/nextsim/</code> 은 Run 모드로 열리므로, 상단바의 <strong>Edit</strong> 를 눌러 전환해도 됩니다.
+                    홈 화면(<code>/</code>)의 네트워크 카드에서 <strong>편집</strong>을 누르면 그 네트워크가 Edit 모드로 열립니다.
+                    네트워크까지 정해 열려면 <code>/nextsim/?mode=edit&amp;folder=SimulationInput/networks/&lt;이름&gt;</code>
+                    처럼 씁니다. 예전 주소 <code>/editor/</code> 는 <code>/nextsim/?mode=edit</code> 로 넘어갑니다(쿼리는 그대로).</li>
+                <li>상단바의 네트워크 버튼(폴더 아이콘, 처음에는 <em>Select network</em>)을 눌러
+                    <strong>Network</strong> 창의 목록에서 네트워크 폴더를 선택합니다. <code>SimulationInput/networks/</code> 아래의
                     네트워크 폴더들이 이름으로 나열됩니다.</li>
                 <li>폴더를 선택하면 지도에 네트워크가 그려지고, 각 워크스페이스가 해당 파일을 읽어옵니다.</li>
             </ol>
             <ol class="steps i18n-en">
                 <li>Install NextSIM and start its server — see the <a href="installation.html">installation guide</a>
                     (from a source checkout, run <code>./start_visualizer.sh</code> at the root).</li>
-                <li>Open <code>http://localhost:8000/editor</code>. The Simulation, for replaying results, is at
-                    <code>/simulation</code>.</li>
-                <li>Click <strong>Inputs</strong> in the top bar and choose a network folder under
-                    <strong>Folder</strong> — every network folder under
-                    <code>SimulationInput/networks/</code> is listed by name.</li>
+                <li>Open <code>http://localhost:8000/nextsim/?mode=edit</code>. Plain <code>/nextsim/</code> opens in
+                    Run mode; click <strong>Edit</strong> in the top bar to switch. On the home page (<code>/</code>), a
+                    network card's <strong>편집</strong> (Edit) button opens that network in Edit mode. To open a given
+                    network directly, use <code>/nextsim/?mode=edit&amp;folder=SimulationInput/networks/&lt;name&gt;</code>.
+                    The old address <code>/editor/</code> redirects to <code>/nextsim/?mode=edit</code>, keeping its query.</li>
+                <li>Click the network button in the top bar (folder icon; it reads <em>Select network</em> until you
+                    pick one) and choose a network folder from the list in the <strong>Network</strong> dialog — every
+                    network folder under <code>SimulationInput/networks/</code> is listed by name.</li>
                 <li>Selecting a folder draws the network and loads each workspace's file.</li>
             </ol>
 
-            <h3><span class="i18n-ko">새 네트워크 폴더 만들기</span><span class="i18n-en">Creating a new network folder</span></h3>
-            <p class="i18n-ko"><strong>Inputs → New network folder</strong>를 누르고 이름을 입력하면 빈 템플릿 파일
-                세트가 들어 있는 폴더가 생성됩니다. 빈 지도에서 Network 워크스페이스로 도로를 그리기
-                시작하면 됩니다. 실제 한국 도로망에서 시작하려면
-                <a href="#import-nodelink">표준노드링크 가져오기</a>를 쓰는 편이 훨씬 빠릅니다.</p>
-            <p class="i18n-en"><strong>Inputs → New network folder</strong>, give it a name, and you get a folder
-                with a set of empty template files — start drawing roads in the Network workspace on the blank map.
-                To start from a real Korean road network,
-                <a href="#import-nodelink">importing standard node-link data</a> is far faster.</p>
+            <h3><span class="i18n-ko">새 네트워크 추가하기</span><span class="i18n-en">Adding a network</span></h3>
+            <p class="i18n-ko"><strong>Network → Add network</strong>를 누르면(네트워크를 고르기 전 빈 화면의
+                <strong>Add network</strong> 버튼도 같습니다) 만드는 방법을 고르는 <em>Add a network</em> 창이 뜹니다.
+                Run 모드에서 누르면 먼저 Edit 모드로 전환하며, 실행 중이거나 결과가 열려 있으면 전환 경고가 먼저 뜹니다.</p>
+            <ul class="i18n-ko">
+                <li><strong>New network folder</strong> — 이름을 입력하면 빈 템플릿 파일 세트(기본
+                    <span class="mono">parameter_xml/</span> 포함)가 든 폴더가 생깁니다. 빈 지도에서 Network
+                    워크스페이스로 도로를 그리기 시작하면 됩니다.</li>
+                <li><strong>Import OpenStreetMap</strong> — 위경도 bbox 로 OSM 도로망을 가져옵니다
+                    (<a href="#import-osm">OpenStreetMap 가져오기</a>).</li>
+                <li><strong>Import Korean node-link</strong> — 국가표준노드링크 SHP 에서 영역을 잘라 만듭니다
+                    (<a href="#import-nodelink">표준노드링크 가져오기</a>). 실제 한국 도로망에서 시작하려면 이쪽이 훨씬 빠릅니다.</li>
+                <li><strong>Random network</strong> — 간선·곡선·제거 블록이 섞인 도시형 격자망을 만듭니다. 격자 크기·블록 길이·
+                    흔들림·곡률·일방통행 비율과 <em>Entry roads every n-th edge road</em>(가장자리 도로 n 개마다 바깥으로
+                    나가는 진출입로 — 그 끝이 수요가 드나드는 terminal 노드가 됩니다, 0 = 없음)를 정합니다. 같은 seed 와
+                    설정이면 항상 같은 망이 나오며, 수요는 만든 뒤 OD Matrix 워크스페이스에서 넣습니다.</li>
+                <li><strong>Import network package</strong> — 받은 네트워크 패키지(<span class="mono">.zip</span>)로 추가합니다
+                    (<a href="#packages">패키지와 다른 이름으로 저장</a>).</li>
+            </ul>
+            <p class="i18n-ko">새로 추가한 네트워크를 돌려 보려면 Edit 모드에서 저장한 뒤 Run 모드로 전환해 실행합니다.</p>
+            <p class="i18n-en"><strong>Network → Add network</strong> (or the <strong>Add network</strong> button on the
+                empty screen shown before a network is picked) opens the <em>Add a network</em> chooser. Pressed in Run
+                mode, it switches to Edit mode first — with the switch warning if a run is in progress or a result
+                is open.</p>
+            <ul class="i18n-en">
+                <li><strong>New network folder</strong> — give it a name and you get a folder with a set of empty
+                    template files (default <span class="mono">parameter_xml/</span> included); start drawing roads in
+                    the Network workspace on the blank map.</li>
+                <li><strong>Import OpenStreetMap</strong> — road network from OSM for a lat/lon bbox
+                    (<a href="#import-osm">Importing OpenStreetMap</a>).</li>
+                <li><strong>Import Korean node-link</strong> — cut an area out of the national standard node-link SHP
+                    set (<a href="#import-nodelink">Importing standard node-link data</a>). To start from a real Korean
+                    road network, this is far faster.</li>
+                <li><strong>Random network</strong> — a city-like grid with arterials, curves, and removed blocks. You
+                    set the grid size, block length, jitter, curvature, one-way share, and <em>Entry roads every n-th
+                    edge road</em> (a short road leaving the area on every n-th edge road; its end becomes a terminal
+                    node where demand enters and leaves, 0 = none). The same seed and settings always give the same
+                    network; add demand afterwards in the OD Matrix workspace.</li>
+                <li><strong>Import network package</strong> — add a network from a package file
+                    (<span class="mono">.zip</span>) you received (<a href="#packages">Packages &amp; Save as</a>).</li>
+            </ul>
+            <p class="i18n-en">To run a network you just added, save it in Edit mode, switch to Run mode, and run it there.</p>
 
             <div class="warn i18n-ko"><strong>주의.</strong> 저장하지 않은 변경이 있는 상태로 페이지를 닫거나
                 새로고침하면 브라우저가 한 번 더 확인을 요청합니다. 폴더를 바꿀 때도 마찬가지입니다.</div>
             <div class="warn i18n-en"><strong>Note.</strong> Closing or reloading the page with unsaved changes
                 triggers a browser confirmation, as does switching folders.</div>
+        </section>
+
+        <!-- ================================================== Run 모드로 전환 -->
+        <section id="switch-to-run">
+            <h2><span class="i18n-ko">Run 모드로 전환</span><span class="i18n-en">Switching to Run mode</span></h2>
+            <p class="i18n-ko">상단바의 <strong>Run</strong> 을 누르면 같은 네트워크가 Run 모드로 열립니다. 저장하지 않은 변경이
+                없으면 바로 넘어가고, 있으면 그 워크스페이스들을 나열한 <strong>Unsaved changes</strong> 창이 뜹니다.</p>
+            <p class="i18n-en"><strong>Run</strong> in the top bar opens the same network in Run mode. With nothing
+                unsaved it switches straight away; otherwise an <strong>Unsaved changes</strong> dialog lists the
+                workspaces with unsaved edits.</p>
+            <ul class="i18n-ko">
+                <li><strong>Discard</strong> — 변경을 버리고 넘어갑니다. Run 모드는 마지막으로 저장된 네트워크를 씁니다.</li>
+                <li><strong>Save &amp; switch</strong> — 저장하지 않은 워크스페이스를 모두 저장한 뒤(Network 먼저) 넘어갑니다.
+                    하나라도 저장에 실패하면(검증 오류 등) Edit 모드에 남습니다 — 그 패널에 표시된 문제를 고친 뒤 다시 전환하세요.</li>
+                <li>오른쪽 위 <strong>X</strong> 또는 <kbd>Esc</kbd> — 창을 닫고 Edit 모드에 남습니다. 저장할 곳을 알려 주려고
+                    지금 보이는 <strong>Save XML</strong> 버튼이 잠깐 깜빡입니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li><strong>Discard</strong> — drop the changes and switch; Run mode uses the network as last saved.</li>
+                <li><strong>Save &amp; switch</strong> — save every unsaved workspace (Network first), then switch. If a
+                    save fails — a validation error, say — you stay in Edit mode; fix the problem shown in that panel
+                    and switch again.</li>
+                <li><strong>X</strong> (top right) or <kbd>Esc</kbd> — close the dialog and stay in Edit mode. The
+                    visible <strong>Save XML</strong> button pulses briefly to show where to save.</li>
+            </ul>
+            <p class="i18n-ko">모드를 바꿀 때마다 지금 네트워크 폴더를 서버에서 다시 읽으므로, Run 모드에는 Edit 모드에서 저장한
+                내용이 그대로 보입니다. 지도 위치(화면)는 전환해도 유지됩니다. 편집을 저장하고 Run 모드로 넘어가면
+                <em>Your edits are saved. Run the simulation again to see their effect.</em> 알림이 뜹니다.
+                <span class="mono">network.xml</span> 을 고쳤다면 편집 전에 만든 결과를 열 때 네트워크가 바뀌었다는 경고가 뜨니,
+                다시 실행하세요 (<a class="doc-cross" href="visualizer-guide.html#switch-to-edit"
+                data-local="visualizer-guide.html#switch-to-edit"
+               >Run 모드 가이드</a>).</p>
+            <p class="i18n-en">Every mode switch reloads the current network folder from the server, so Run mode shows
+                exactly what you saved in Edit mode, and the map position is kept. Arriving in Run mode after saving
+                edits shows <em>Your edits are saved. Run the simulation again to see their effect.</em> If you changed
+                <span class="mono">network.xml</span>, a result produced before the edits opens with a warning that
+                the network has changed, so run again (see the
+                <a class="doc-cross" href="visualizer-guide.html#switch-to-edit"
+                data-local="visualizer-guide.html#switch-to-edit"
+               >Run mode guide</a>).</p>
         </section>
 
         <!-- ================================================== 지도 -->
@@ -1662,12 +1759,12 @@
             </ol>
             <p class="i18n-ko">지도에는 E1이 <strong>하늘색</strong> 단면, E2가 <strong>보라색</strong> 구간, E3의
                 진입점이 <strong>초록</strong>, 진출점이 <strong>빨강</strong>으로 표시됩니다. 표에서 행을
-                클릭하면 해당 검지기로 카메라가 이동합니다. 시뮬레이션 후에는 Simulation에서 검지기 표시를
+                클릭하면 해당 검지기로 카메라가 이동합니다. 시뮬레이션 후에는 Run 모드에서 검지기 표시를
                 클릭해 수집된 값을 그래프·표로 볼 수 있습니다.</p>
             <p class="i18n-en">On the map, E1 appears as a <strong>light blue</strong> cross-section, E2 as a
                 <strong>purple</strong> section, and E3's entry points in <strong>green</strong> with exits in
                 <strong>red</strong>. Clicking a table row moves the camera to that detector. After a run you can
-                click a detector in the Simulation to chart and tabulate what it recorded.</p>
+                click a detector in Run mode to chart and tabulate what it recorded.</p>
             <div class="warn i18n-ko"><strong>주의.</strong> 링크 ID가 네트워크에 없거나, 차로 인덱스가 범위를
                 벗어나거나, 위치가 차로 길이를 넘으면 표에 경고 색으로 표시되고 저장이 막힙니다.
                 <code>friendlyPos</code>를 켜두면 엔진이 위치를 차로 범위 안으로 보정합니다.</div>
@@ -1730,7 +1827,7 @@
                     <code>SimulationInput/nodelink/&lt;이름&gt;/</code> 폴더에
                     <span class="mono">MOCT_NODE.shp/.dbf</span>, <span class="mono">MOCT_LINK.shp/.dbf</span>
                     4개 파일을 둡니다.</li>
-                <li>상단바 <strong>Inputs → Import nodelink (SHP)</strong> → <strong>SHP set</strong>에서 폴더를
+                <li>상단바 <strong>Network → Add network → Import Korean node-link</strong> → <strong>SHP set</strong>에서 폴더를
                     선택하면 노드·링크 수와 전체 범위가 표시됩니다.</li>
                 <li><strong>Extent</strong>에 잘라낼 영역의 좌표(EPSG:5186, m)를 입력하거나
                     <strong>Use full extent</strong>로 전체를 지정합니다.</li>
@@ -1746,7 +1843,7 @@
                 <li>Download the standard node-link SHP set from ITS (its.go.kr) and put the four files
                     <span class="mono">MOCT_NODE.shp/.dbf</span> and <span class="mono">MOCT_LINK.shp/.dbf</span>
                     into <code>SimulationInput/nodelink/&lt;name&gt;/</code>.</li>
-                <li><strong>Inputs → Import nodelink (SHP)</strong>, then pick the folder under
+                <li><strong>Network → Add network → Import Korean node-link</strong>, then pick the folder under
                     <strong>SHP set</strong> — the node and link counts and the full extent are shown.</li>
                 <li>Enter the area to cut out under <strong>Extent</strong> (EPSG:5186, metres), or press
                     <strong>Use full extent</strong>.</li>
@@ -1767,7 +1864,7 @@
             <p class="i18n-ko">전 세계 어디든 위경도 bbox 만으로 도로망을 가져올 수 있습니다. 표준노드링크가 없는
                 해외 지역이나, 빠르게 시험용 네트워크가 필요할 때 씁니다.</p>
             <ol class="steps i18n-ko">
-                <li>상단바 <strong>Inputs &#8594; Import OpenStreetMap</strong>.</li>
+                <li>상단바 <strong>Network &#8594; Add network &#8594; Import OpenStreetMap</strong>.</li>
                 <li><strong>Mode</strong> 선택 &#8212;
                     <strong>Overpass API</strong> 는 bbox 만 넣으면 서버가 직접 내려받고,
                     <strong>Local .osm file</strong> 은 <code>SimulationInput/osm/</code> 에 둔
@@ -1828,7 +1925,7 @@
             <p class="i18n-ko">커넥션까지 자동으로 채워지므로 가져온 직후 <strong>Validate</strong> 가 에러 0 &#183; 경고 0 으로 통과합니다.
                 OSM 데이터는 <strong>ODbL 1.0</strong> 이며 출처 표기가 네트워크 폴더의
                 <span class="mono">osm_import.json</span> 에 기록됩니다.</p>
-            <p class="i18n-en"><strong>In short:</strong> <strong>Inputs → Import OpenStreetMap</strong>,
+            <p class="i18n-en"><strong>In short:</strong> <strong>Network → Add network → Import OpenStreetMap</strong>,
                 choose <strong>Overpass API</strong> (the server downloads from a bbox) or
                 <strong>Local .osm file</strong> (a file you placed in <code>SimulationInput/osm/</code>), give the
                 <strong>Extent</strong> in <strong>WGS84 lat/lon</strong> — unlike node-link, which is metric —
@@ -1868,7 +1965,7 @@
             <p class="i18n-ko">어떤 워크스페이스든 저장할 때마다 덮어쓰기 직전의 파일이 폴더 안 <code>.backups/</code>에
                 자동 보관됩니다 (파일별 최근 10개, 내용이 같으면 중복 저장 안 함).</p>
             <ol class="steps i18n-ko">
-                <li>상단바 <strong>Inputs → Backups</strong>를 누르면 파일별 백업 목록이 시각·크기와
+                <li>상단바 <strong>Network → Backups</strong>(Edit 모드)를 누르면 파일별 백업 목록이 시각·크기와
                     함께 표시됩니다. 현재 파일과 내용이 같은 백업은 "= current"로 표시됩니다.</li>
                 <li><strong>Diff</strong> — 그 백업과 현재 파일의 차이(추가/삭제 줄 수와 상세 diff)를
                     미리 봅니다.</li>
@@ -1880,13 +1977,84 @@
                 <code>.backups/</code> inside the folder (the 10 most recent per file; identical content is not
                 stored twice).</p>
             <ol class="steps i18n-en">
-                <li><strong>Inputs → Backups</strong> lists the backups per file with time and size. A backup whose
+                <li><strong>Network → Backups</strong> (Edit mode) lists the backups per file with time and size. A backup whose
                     content matches the current file is marked "= current".</li>
                 <li><strong>Diff</strong> — preview what changed between that backup and the current file (added and
                     removed line counts, plus the detailed diff).</li>
                 <li><strong>Restore</strong> — roll back to that point. The file as it stands is backed up first, so
                     the restore itself can be undone. The folder reloads afterwards.</li>
             </ol>
+        </section>
+
+        <!-- ================================================== Packages -->
+        <section id="packages">
+            <h2><span class="i18n-ko">네트워크 패키지와 다른 이름으로 저장</span><span class="i18n-en">Network packages and Save as</span></h2>
+            <p class="i18n-ko"><strong>네트워크 패키지</strong>는 네트워크 폴더 하나를 묶은 <span class="mono">.zip</span> 입니다.
+                네트워크를 다른 사람에게 보내거나 다른 PC 로 옮길 때 씁니다.</p>
+            <p class="i18n-en">A <strong>network package</strong> is a <span class="mono">.zip</span> of one network
+                folder — the way to send a network to someone or move it to another machine.</p>
+
+            <h3><span class="i18n-ko">내보내기 — Export package</span><span class="i18n-en">Export package</span></h3>
+            <ul class="i18n-ko">
+                <li><strong>Network → Export package</strong>는 <span class="mono">&lt;이름&gt;.nextsim.zip</span> 을 내려받습니다.
+                    zip 루트에 매니페스트 <span class="mono">nextsim-package.json</span> 이 있고, 네트워크 파일은
+                    <span class="mono">&lt;이름&gt;/</span> 아래에 들어갑니다. Run 모드와 Edit 모드 어디서나 쓸 수 있습니다.</li>
+                <li>생성 파일(<span class="mono">Route.json</span>, <span class="mono">PTRoute.json</span>,
+                    <span class="mono">LinkRangeMap.json</span>, <span class="mono">PaxRoute.json</span>,
+                    <span class="mono">dta/</span> 폴더)과 <span class="mono">.backups</span> 는 넣지 않습니다 —
+                    실행할 때 RouteGenerator 가 다시 만듭니다.</li>
+                <li>Edit 모드에서 저장하지 않은 편집은 들어가지 않습니다. 저장된 파일이 내보내지므로, 편집을 넣으려면 먼저 저장하세요.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li><strong>Network → Export package</strong> downloads <span class="mono">&lt;name&gt;.nextsim.zip</span>:
+                    a <span class="mono">nextsim-package.json</span> manifest at the zip root and the network files under
+                    <span class="mono">&lt;name&gt;/</span>. It is available in both Run and Edit mode.</li>
+                <li>Generated files (<span class="mono">Route.json</span>, <span class="mono">PTRoute.json</span>,
+                    <span class="mono">LinkRangeMap.json</span>, <span class="mono">PaxRoute.json</span>, the
+                    <span class="mono">dta/</span> folder) and <span class="mono">.backups</span> are left out —
+                    RouteGenerator rebuilds them when you run.</li>
+                <li>Unsaved edits in Edit mode are not exported; the saved files are. Save first to include your edits.</li>
+            </ul>
+
+            <h3><span class="i18n-ko">가져오기 — Import network package</span><span class="i18n-en">Import network package</span></h3>
+            <ol class="steps i18n-ko">
+                <li><strong>Network → Add network → Import network package</strong>.</li>
+                <li><strong>Package file (.zip)</strong> 에서 패키지를 고릅니다 — NextSIM 에서 내보낸 것, 또는
+                    <code>SimulationInput/networks/&lt;이름&gt;</code> 폴더를 그대로 zip 으로 묶은 것.</li>
+                <li><strong>Network name</strong> 은 파일 이름으로 채워지며 바꿀 수 있습니다. <strong>Import</strong> 를 누르면
+                    <code>SimulationInput/networks/&lt;이름&gt;/</code> 이 만들어지고 그 네트워크가 열립니다.</li>
+            </ol>
+            <ol class="steps i18n-en">
+                <li><strong>Network → Add network → Import network package</strong>.</li>
+                <li>Pick the file under <strong>Package file (.zip)</strong> — one exported from NextSIM, or a plain zip
+                    of a <code>SimulationInput/networks/&lt;name&gt;</code> folder.</li>
+                <li><strong>Network name</strong> is prefilled from the file name; change it if you like.
+                    <strong>Import</strong> creates <code>SimulationInput/networks/&lt;name&gt;/</code> and opens that
+                    network.</li>
+            </ol>
+            <div class="warn i18n-ko"><strong>가져오기 규칙.</strong>
+                이미 있는 이름은 쓸 수 없으며, 오류 문구가 비어 있는 이름(예: <span class="mono">name_2</span>)을 알려 줍니다.
+                절대 경로·<span class="mono">..</span>·심볼릭 링크가 든 zip, zip 이 아닌 파일, <span class="mono">network.xml</span> 이
+                없는 패키지는 거부합니다. <span class="mono">.xml · .json · .txt · .csv · .md</span> 파일만 가져오고 나머지는
+                건너뜁니다. <span class="mono">parameter_xml</span> 이 없는 패키지에는 기본 <span class="mono">parameter_xml</span> 을
+                넣습니다. 크기 한도는 기본 1024&nbsp;MB 이며 환경 변수 <span class="mono">NEXTSIM_MAX_PACKAGE_MB</span> 로 바꿉니다.</div>
+            <div class="warn i18n-en"><strong>Import rules.</strong>
+                The name must not exist yet; the error suggests a free one (such as <span class="mono">name_2</span>).
+                Zips with absolute paths, <span class="mono">..</span> or symbolic links, files that are not zips, and
+                packages without <span class="mono">network.xml</span> are rejected. Only
+                <span class="mono">.xml · .json · .txt · .csv · .md</span> files are taken; anything else is skipped. A
+                package without <span class="mono">parameter_xml</span> gets the default
+                <span class="mono">parameter_xml</span>. The size limit is 1024&nbsp;MB by default; change it with the
+                environment variable <span class="mono">NEXTSIM_MAX_PACKAGE_MB</span>.</div>
+
+            <h3><span class="i18n-ko">다른 이름으로 저장 — Save as new network…</span><span class="i18n-en">Save as new network…</span></h3>
+            <p class="i18n-ko">Edit 모드의 <strong>Network → Save as new network…</strong>는 지금 네트워크를 새 폴더로 복사하고
+                (<span class="mono">.backups</span> 와 생성 파일 제외), 저장하지 않은 워크스페이스를 모두 새 폴더에 저장한 뒤
+                새 네트워크를 이어서 편집합니다. 원래 네트워크는 바뀌지 않습니다. 새 이름도 가져오기처럼 이미 있는 이름은 쓸 수 없습니다.</p>
+            <p class="i18n-en"><strong>Network → Save as new network…</strong> (Edit mode) copies the current network to a
+                new folder (without <span class="mono">.backups</span> and generated files), saves every unsaved workspace
+                into the new folder, and carries on editing the new network. The original network is not changed. As
+                with an import, the new name must not exist yet.</p>
         </section>
 
 
@@ -2078,26 +2246,30 @@
             </ul>
 
             <h3><span class="i18n-ko">편집 결과로 시뮬레이션을 돌리려면?</span><span class="i18n-en">How do I run a simulation with my edits?</span></h3>
-            <p class="i18n-ko">모든 워크스페이스를 저장한 뒤 <code>/simulation</code>로 이동해 이 네트워크 폴더와
-                시나리오를 선택하고 <strong>Run Selected Network</strong>를 실행하면 됩니다. 결과
+            <p class="i18n-ko">상단바의 <strong>Run</strong> 으로 전환합니다 — 저장하지 않은 변경이 있으면
+                <strong>Save &amp; switch</strong> 로 저장하며 넘어갑니다(<a href="#switch-to-run">Run 모드로 전환</a>).
+                같은 네트워크가 Run 모드로 열리면 <strong>Simulation</strong> 패널에서 시나리오를 고르고
+                <strong>Run Selected Network</strong>를 실행하면 됩니다. 결과
                 재생·분석 방법은 <a class="doc-cross" href="visualizer-guide.html"
                 data-local="visualizer-guide.html"
-               >Simulation 가이드</a>를 보세요.</p>
-            <p class="i18n-en">Save every workspace, go to <code>/simulation</code>, select this network folder and
-                a scenario, and press <strong>Run Selected Network</strong>. For replaying and analysing the
+               >Run 모드 가이드</a>를 보세요.</p>
+            <p class="i18n-en">Switch with <strong>Run</strong> in the top bar — if anything is unsaved,
+                <strong>Save &amp; switch</strong> saves it on the way (<a href="#switch-to-run">Switching to Run mode</a>).
+                The same network opens in Run mode; pick a scenario in the <strong>Simulation</strong> panel and press
+                <strong>Run Selected Network</strong>. For replaying and analysing the
                 result, see the <a class="doc-cross" href="visualizer-guide.html"
                 data-local="visualizer-guide.html"
-               >Simulation guide</a>.</p>
+               >Run mode guide</a>.</p>
         </section>
 
         <footer>
-            NextSIM Editor Guide · KAIST AIxMobility Lab —
-            <span class="i18n-ko">결과 재생은 <a class="doc-cross" href="visualizer-guide.html"
+            NextSIM Edit Mode Guide · KAIST AIxMobility Lab —
+            <span class="i18n-ko">실행과 결과 재생은 <a class="doc-cross" href="visualizer-guide.html"
                 data-local="visualizer-guide.html"
-               >Simulation 가이드</a>를 보세요.</span>
-            <span class="i18n-en">For replaying results, see the <a class="doc-cross" href="visualizer-guide.html"
+               >Run 모드 가이드</a>를 보세요.</span>
+            <span class="i18n-en">For running and replaying, see the <a class="doc-cross" href="visualizer-guide.html"
                 data-local="visualizer-guide.html"
-               >Simulation guide</a>.</span>
+               >Run mode guide</a>.</span>
         </footer>
     </main>
 </div>

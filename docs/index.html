@@ -617,8 +617,8 @@
                 <div class="nav__group-label"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></div>
                 <a href="index.html" aria-current="page"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
                 <a href="installation.html"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
-                <a href="editor-guide.html"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
-                <a href="visualizer-guide.html"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
+                <a href="editor-guide.html"><span class="i18n-ko">3. Edit 모드 가이드</span><span class="i18n-en">3. Edit mode guide</span></a>
+                <a href="visualizer-guide.html"><span class="i18n-ko">4. Run 모드 가이드</span><span class="i18n-en">4. Run mode guide</span></a>
                 <span class="doc-set__parent"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></span>
                 <div class="doc-set__sub">
                     <a href="nextci-guide.html"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></a>
@@ -652,11 +652,18 @@
             <p class="i18n-ko">NextSIM은 KAIST AIxMobility Lab에서 개발한 <strong>하이브리드 교통 시뮬레이터</strong>입니다.
                 하나의 네트워크 안에서 링크마다 미시(micro)·중시(meso) 모형을 골라 쓸 수 있어, 분석이 필요한
                 구간만 차량 단위로 정밀하게 보면서 나머지는 빠르게 돌릴 수 있습니다.
-                이 문서는 NextSIM 의 구조를 소개하고, <a href="installation.html">설치</a>와 도구별 사용법은 이어지는 가이드에서 다룹니다.</p>
+                이 문서는 NextSIM 의 구조를 소개하고, <a href="installation.html">설치</a>와 도구별 사용법은 이어지는 가이드에서 다룹니다.
+                입력 편집과 시뮬레이션 실행·결과 재생은 브라우저의 <strong>NextSIM</strong> 화면(<code>/nextsim/</code>) 한 곳에서
+                합니다 — 실행·결과 재생을 맡는 <strong>Run 모드</strong>와 입력 편집을 맡는 <strong>Edit 모드</strong>를
+                상단바에서 오가며 씁니다.</p>
             <p class="i18n-en">NextSIM is a <strong>hybrid traffic simulator</strong> from the KAIST AIxMobility Lab.
                 Within one network each link can run under a microscopic or mesoscopic model, so you can study the
                 stretch you care about vehicle by vehicle while the rest runs cheaply. This page explains how
-                NextSIM fits together; <a href="installation.html">installation</a> and the tool guides follow on from it.</p>
+                NextSIM fits together; <a href="installation.html">installation</a> and the tool guides follow on from it.
+                Editing the inputs and running and replaying simulations all happen on one browser page,
+                <strong>NextSIM</strong> (<code>/nextsim/</code>), with two modes you switch between in the top bar:
+                <strong>Run mode</strong> for running simulations and replaying results, and <strong>Edit mode</strong>
+                for editing the inputs.</p>
             <div class="meta">
                 <span class="chip"><span class="i18n-ko">2026-08 기준</span><span class="i18n-en">As of 2026-08</span></span>
                 <span class="chip">C++17 · Python 3</span>
@@ -674,20 +681,22 @@
                 <span class="go"><span class="i18n-ko">설치 가이드 →</span><span class="i18n-en">Installation guide →</span></span>
             </a>
             <a class="toolcard" href="editor-guide.html" style="--tc: var(--ws-network)">
-                <h3>📘 Editor</h3>
-                <code>/editor</code>
+                <h3>📘 <span class="i18n-ko">NextSIM · Edit 모드</span><span class="i18n-en">NextSIM · Edit mode</span></h3>
+                <code>/nextsim/?mode=edit</code>
                 <p class="i18n-ko">네트워크·수요·신호·대중교통·이벤트 등 시뮬레이션 <strong>입력</strong>을 지도 위에서
                     만들고 편집합니다.</p>
                 <p class="i18n-en">Build and edit the simulation <strong>inputs</strong> — network, demand, signals,
                     transit, events — directly on the map.</p>
-                <span class="go"><span class="i18n-ko">Editor 가이드 →</span><span class="i18n-en">Editor guide →</span></span>
+                <span class="go"><span class="i18n-ko">Edit 모드 가이드 →</span><span class="i18n-en">Edit mode guide →</span></span>
             </a>
             <a class="toolcard" href="visualizer-guide.html" style="--tc: var(--ws-signal)">
-                <h3>🎬 Simulation</h3>
-                <code>/simulation</code>
-                <p class="i18n-ko">시뮬레이션을 실행하고 <strong>결과</strong>를 시간축을 따라 재생·분석합니다.</p>
-                <p class="i18n-en">Run a simulation and replay and analyse the <strong>result</strong> along the time axis.</p>
-                <span class="go"><span class="i18n-ko">Simulation 가이드 →</span><span class="i18n-en">Simulation guide →</span></span>
+                <h3>🎬 <span class="i18n-ko">NextSIM · Run 모드</span><span class="i18n-en">NextSIM · Run mode</span></h3>
+                <code>/nextsim/</code>
+                <p class="i18n-ko">시뮬레이션을 실행하고 <strong>결과</strong>를 시간축을 따라 재생·분석합니다.
+                    NextSIM 화면은 이 모드로 열립니다.</p>
+                <p class="i18n-en">Run a simulation and replay and analyse the <strong>result</strong> along the time axis.
+                    The NextSIM page opens in this mode.</p>
+                <span class="go"><span class="i18n-ko">Run 모드 가이드 →</span><span class="i18n-en">Run mode guide →</span></span>
             </a>
             <a class="toolcard" href="nextci-guide.html" style="--tc: var(--ws-scenario)">
                 <h3>NextCI</h3>
@@ -731,10 +740,10 @@
             <h2><span class="i18n-ko">하이브리드 시뮬레이션</span><span class="i18n-en">Hybrid simulation</span></h2>
             <p class="i18n-ko">두 모형은 <strong>상태를 표현하는 방식</strong>과 <strong>갱신 주기</strong>가 다릅니다.
                 어느 링크를 어느 모형으로 돌릴지는 <span class="mono">mode.xml</span> 이 기간별로 정합니다
-                (Editor의 Mode 워크스페이스).</p>
+                (Edit 모드의 Mode 워크스페이스).</p>
             <p class="i18n-en">The two models differ in <strong>how they represent state</strong> and
                 <strong>how often they update</strong>. Which link runs under which model is set per period in
-                <span class="mono">mode.xml</span> (the Mode workspace in the Editor).</p>
+                <span class="mono">mode.xml</span> (the Mode workspace in Edit mode).</p>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th></th><th>Micro (미시)</th><th>Meso (중시)</th></tr>
                 <tr><td>상태</td><td>차량 개별 위치·속도·가속도, 차로 단위</td><td>링크를 셀로 나눠 셀별 <em>대수</em></td></tr>
@@ -779,7 +788,7 @@
                 <tr><td class="mono">UnitTestsAPI</td><td>실행 파일</td>
                     <td>NextCI TCP 제어 서버. Python <span class="mono">nextci</span> 클라이언트가 이 바이너리에 붙습니다. <a href="nextci-guide.html">NextCI 가이드</a> 참고.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>Flask 서버</td>
-                    <td>Editor·Simulation 웹 UI를 서빙하고, 입력 파일 편집 API와 시뮬레이션 실행을 중계합니다.</td></tr>
+                    <td>NextSIM 웹 화면(Run · Edit 모드)을 서빙하고, 입력 파일 편집 API와 시뮬레이션 실행을 중계합니다.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Component</th><th>What it is</th><th>Role</th></tr>
@@ -797,7 +806,7 @@
                 <tr><td class="mono">UnitTestsAPI</td><td>executable</td>
                     <td>The NextCI TCP control server; the Python <span class="mono">nextci</span> client attaches to it. See the <a href="nextci-guide.html">NextCI guide</a>.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>Flask server</td>
-                    <td>Serves the Editor and Simulation, exposes the input-editing API, and drives simulation runs.</td></tr>
+                    <td>Serves the NextSIM page (Run and Edit modes), exposes the input-editing API, and drives simulation runs.</td></tr>
             </table></div>
             <div class="tip i18n-ko"><strong>배포판에 든 것.</strong> Windows 설치 파일과 Linux · WSL ZIP 에는 앞의 세 실행 파일만
                 들어 있습니다. ZIP 에서는 이름이 <span class="mono">nextsim</span>, <span class="mono">route-generator</span>,
@@ -835,7 +844,7 @@
                 <tr><td class="mono">Captain/</td><td>C++17 시뮬레이션 엔진. <span class="mono">Sources/</span>·<span class="mono">Includes/</span> 가 엔진 본체, <span class="mono">Tests/</span> 가 실행 파일 5개, <span class="mono">Libraries/</span> 가 서브모듈 4개.</td></tr>
                 <tr><td class="mono">SimulationInput/</td><td>모든 입력. <span class="mono">config.txt</span>(활성 네트워크 지정) + <span class="mono">networks/</span>(네트워크 폴더들) + <span class="mono">nodelink/</span>·<span class="mono">osm/</span>(가져오기 원본).</td></tr>
                 <tr><td class="mono">SimulationOutput/</td><td>실행 결과. 결과 DB와 궤적 청크 DB, <span class="mono">SimulationInfo.xml</span>, 그리고 웹 재생용 <span class="mono">visualization_data/</span>.</td></tr>
-                <tr><td class="mono">Visualizer/WebVisualization/</td><td>브라우저 도구 일체 — <span class="mono">editor/</span>, <span class="mono">visualizer/</span>, <span class="mono">js/</span>, 그리고 이 <span class="mono">docs/</span>.</td></tr>
+                <tr><td class="mono">Visualizer/WebVisualization/</td><td>브라우저 도구 일체 — <span class="mono">nextsim/</span>(NextSIM 화면), <span class="mono">editor/</span>(Edit 모드), <span class="mono">visualizer/</span>(Run 모드), <span class="mono">js/</span>, 그리고 이 <span class="mono">docs/</span>.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>통합 Flask 서버 (웹 UI + 편집 API + 실행 중계).</td></tr>
                 <tr><td class="mono">NextCI/</td><td>외부 제어용 Python 클라이언트 패키지. 스텝 단위 제어·상태 조회·체크포인트.</td></tr>
                 <tr><td class="mono">Scripts/</td><td>전처리·CI 스크립트 (보행 네트워크 생성, 철도역 정렬 등).</td></tr>
@@ -848,7 +857,7 @@
                 <tr><td class="mono">Captain/</td><td>The C++17 engine. <span class="mono">Sources/</span> and <span class="mono">Includes/</span> are the engine itself, <span class="mono">Tests/</span> holds the five executables, <span class="mono">Libraries/</span> the four submodules.</td></tr>
                 <tr><td class="mono">SimulationInput/</td><td>Every input. <span class="mono">config.txt</span> (which network is active) plus <span class="mono">networks/</span> (one folder per network) and <span class="mono">nodelink/</span> / <span class="mono">osm/</span> (raw import sources).</td></tr>
                 <tr><td class="mono">SimulationOutput/</td><td>Run output: the result DB and trajectory chunk DBs, <span class="mono">SimulationInfo.xml</span>, and <span class="mono">visualization_data/</span> for web replay.</td></tr>
-                <tr><td class="mono">Visualizer/WebVisualization/</td><td>All the browser tooling — <span class="mono">editor/</span>, <span class="mono">visualizer/</span>, <span class="mono">js/</span>, and this <span class="mono">docs/</span>.</td></tr>
+                <tr><td class="mono">Visualizer/WebVisualization/</td><td>All the browser tooling — <span class="mono">nextsim/</span> (the NextSIM page), <span class="mono">editor/</span> (Edit mode), <span class="mono">visualizer/</span> (Run mode), <span class="mono">js/</span>, and this <span class="mono">docs/</span>.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>The unified Flask server (web UI, editing API, run orchestration).</td></tr>
                 <tr><td class="mono">NextCI/</td><td>Python client package for external control: stepping, state queries, checkpoints.</td></tr>
                 <tr><td class="mono">Scripts/</td><td>Preprocessing and CI scripts (footpath network builder, rail station alignment, and so on).</td></tr>
@@ -874,16 +883,20 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># 이
 <pre class="cmd i18n-en">SimulationInput/networks/&lt;network&gt;/                  <span class="c"># network inputs</span>
 SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># this network's parameters</span></pre>
             <p class="i18n-ko">네트워크 폴더에 <span class="mono">parameter_xml/</span> 이 없으면
-                <span class="mono">SimulationInput/parameter_xml/</span> 을 공용 기본값으로 씁니다. Editor 에서 새 네트워크를
-                만들면 기본 <span class="mono">parameter_xml/</span> 이 함께 복사됩니다.
-                Simulation·Editor 에서 폴더를 고르면 config.txt 가 자동으로 갱신되므로 직접 편집할 일은 거의 없습니다.
-                예전 구조(<span class="mono">datasets/&lt;branch&gt;/network_xml_&lt;이름&gt;/</span>)의 패키지는 서버가 시작할 때
+                <span class="mono">SimulationInput/parameter_xml/</span> 을 공용 기본값으로 씁니다. NextSIM 에서 새 네트워크를
+                만들거나 <span class="mono">parameter_xml/</span> 이 없는 네트워크 패키지를 가져오면 기본
+                <span class="mono">parameter_xml/</span> 이 함께 복사됩니다.
+                NextSIM 에서 시뮬레이션을 실행하면(<strong>Run Selected Network</strong>) config.txt 가 그 네트워크로 갱신되므로
+                직접 편집할 일은 거의 없습니다.
+                예전 구조(<span class="mono">datasets/&lt;branch&gt;/network_xml_&lt;이름&gt;/</span>)의 네트워크 폴더는 서버가 시작할 때
                 <span class="mono">networks/&lt;이름&gt;/</span> 으로 자동으로 옮기고, 무엇을 옮겼는지
                 <span class="mono">networks/MIGRATION.txt</span> 에 남깁니다.</p>
             <p class="i18n-en">If a network folder has no <span class="mono">parameter_xml/</span>,
                 <span class="mono">SimulationInput/parameter_xml/</span> is used as the shared default. A network created in
-                the Editor gets a default <span class="mono">parameter_xml/</span> copied in. Choosing a folder in the
-                Editor or Simulation rewrites config.txt for you, so you rarely touch it. Packages in the old layout
+                NextSIM, or imported from a network package that has no <span class="mono">parameter_xml/</span>, gets a
+                default <span class="mono">parameter_xml/</span> copied in. Running a simulation from NextSIM
+                (<strong>Run Selected Network</strong>) rewrites config.txt for that network, so you rarely touch it.
+                Network folders in the old layout
                 (<span class="mono">datasets/&lt;branch&gt;/network_xml_&lt;name&gt;/</span>) are moved to
                 <span class="mono">networks/&lt;name&gt;/</span> when the server starts; the moves are listed in
                 <span class="mono">networks/MIGRATION.txt</span>.</p>
@@ -909,42 +922,42 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
             <h3><span class="i18n-ko">네트워크 입력 — networks/&lt;name&gt;/</span><span class="i18n-en">Network inputs — networks/&lt;name&gt;/</span></h3>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>파일</th><th>내용</th><th>편집</th></tr>
-                <tr><td class="mono">network.xml</td><td>도로망 — 노드·링크·차로·커넥션</td><td>Editor · Network</td></tr>
-                <tr><td class="mono">odmatrix.xml</td><td>차량 수요 — 기·종점 쌍과 시간대별 교통량</td><td>Editor · OD Matrix</td></tr>
-                <tr><td class="mono">mode.xml</td><td><strong>링크별 micro/meso 배정</strong> (기간별)</td><td>Editor · Mode</td></tr>
-                <tr><td class="mono">config_scenario.json</td><td>시나리오 — 시작 시각·길이, 쓸 OD/TOD, 기능 토글</td><td>Editor · Scenario</td></tr>
-                <tr><td class="mono">signal.xml · signalTOD.xml</td><td>신호 현시·플랜과 시간대 배정</td><td>Editor · Signal</td></tr>
-                <tr><td class="mono">roadStation.xml · railStation.xml</td><td>버스 정류장, 철도역과 출구</td><td>Editor · Station</td></tr>
-                <tr><td class="mono">roadPTline.xml · railPTline.xml</td><td>버스/TRT/트램 노선, 철도 노선과 시각표</td><td>Editor · PT Line</td></tr>
-                <tr><td class="mono">detector.xml</td><td>검지기 E1·E2·E3</td><td>Editor · Infrastructure</td></tr>
-                <tr><td class="mono">events.xml</td><td>돌발상황·공사·속도제한 이벤트</td><td>Editor · Events</td></tr>
+                <tr><td class="mono">network.xml</td><td>도로망 — 노드·링크·차로·커넥션</td><td>Edit 모드 · Network</td></tr>
+                <tr><td class="mono">odmatrix.xml</td><td>차량 수요 — 기·종점 쌍과 시간대별 교통량</td><td>Edit 모드 · OD Matrix</td></tr>
+                <tr><td class="mono">mode.xml</td><td><strong>링크별 micro/meso 배정</strong> (기간별)</td><td>Edit 모드 · Mode</td></tr>
+                <tr><td class="mono">config_scenario.json</td><td>시나리오 — 시작 시각·길이, 쓸 OD/TOD, 기능 토글</td><td>Edit 모드 · Scenario</td></tr>
+                <tr><td class="mono">signal.xml · signalTOD.xml</td><td>신호 현시·플랜과 시간대 배정</td><td>Edit 모드 · Signal</td></tr>
+                <tr><td class="mono">roadStation.xml · railStation.xml</td><td>버스 정류장, 철도역과 출구</td><td>Edit 모드 · Station</td></tr>
+                <tr><td class="mono">roadPTline.xml · railPTline.xml</td><td>버스/TRT/트램 노선, 철도 노선과 시각표</td><td>Edit 모드 · PT Line</td></tr>
+                <tr><td class="mono">detector.xml</td><td>검지기 E1·E2·E3</td><td>Edit 모드 · Infrastructure</td></tr>
+                <tr><td class="mono">events.xml</td><td>돌발상황·공사·속도제한 이벤트</td><td>Edit 모드 · Events</td></tr>
                 <tr><td class="mono">passenger.xml</td><td>대중교통 승객 수요 (역 쌍 단위)</td><td>—</td></tr>
                 <tr><td class="mono">agents.xml</td><td>경로가 지정된 개별 차량 (OD 대신 쓰는 선택 입력)</td><td>—</td></tr>
                 <tr><td class="mono">backgroundTraffic.xml</td><td>시작 시점 링크별 배경 교통량</td><td>생성 도구</td></tr>
                 <tr><td class="mono">footpathNetwork.xml</td><td>보행 네트워크 (역·정류장 접근)</td><td>Scripts</td></tr>
                 <tr><td class="mono">Route.json · PTRoute.json · LinkRangeMap.json</td><td><strong>RouteGenerator 가 생성</strong> — 경로와 공간 색인</td><td>자동</td></tr>
                 <tr><td class="mono">PaxRoute.json</td><td><strong>PaxRouteGenerator 가 생성</strong> — 승객 역쌍 경로</td><td>자동</td></tr>
-                <tr><td class="mono">basemap.json</td><td>위성 배경 좌표 정합 (웹 도구 전용, 엔진은 안 읽음)</td><td>Editor · Display</td></tr>
+                <tr><td class="mono">basemap.json</td><td>위성 배경 좌표 정합 (웹 도구 전용, 엔진은 안 읽음)</td><td>Edit 모드 · Display</td></tr>
                 <tr><td class="mono">.backups/</td><td>편집기가 저장 직전 파일을 자동 보관 (파일별 최근 10개)</td><td>자동</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>File</th><th>Contents</th><th>Edited in</th></tr>
-                <tr><td class="mono">network.xml</td><td>Road network — nodes, links, lanes, connections</td><td>Editor · Network</td></tr>
-                <tr><td class="mono">odmatrix.xml</td><td>Vehicle demand — origin/destination pairs and flows per time slice</td><td>Editor · OD Matrix</td></tr>
-                <tr><td class="mono">mode.xml</td><td><strong>Per-link micro/meso assignment</strong>, per period</td><td>Editor · Mode</td></tr>
-                <tr><td class="mono">config_scenario.json</td><td>Scenarios — start and length, which OD/TOD to use, feature toggles</td><td>Editor · Scenario</td></tr>
-                <tr><td class="mono">signal.xml · signalTOD.xml</td><td>Signal phases and plans, and their time-of-day assignment</td><td>Editor · Signal</td></tr>
-                <tr><td class="mono">roadStation.xml · railStation.xml</td><td>Bus stops; rail stations and their exits</td><td>Editor · Station</td></tr>
-                <tr><td class="mono">roadPTline.xml · railPTline.xml</td><td>Bus/TRT/tram lines; rail lines with timetables</td><td>Editor · PT Line</td></tr>
-                <tr><td class="mono">detector.xml</td><td>E1, E2, and E3 detectors</td><td>Editor · Infrastructure</td></tr>
-                <tr><td class="mono">events.xml</td><td>Incidents, work zones, and speed-limit events</td><td>Editor · Events</td></tr>
+                <tr><td class="mono">network.xml</td><td>Road network — nodes, links, lanes, connections</td><td>Edit mode · Network</td></tr>
+                <tr><td class="mono">odmatrix.xml</td><td>Vehicle demand — origin/destination pairs and flows per time slice</td><td>Edit mode · OD Matrix</td></tr>
+                <tr><td class="mono">mode.xml</td><td><strong>Per-link micro/meso assignment</strong>, per period</td><td>Edit mode · Mode</td></tr>
+                <tr><td class="mono">config_scenario.json</td><td>Scenarios — start and length, which OD/TOD to use, feature toggles</td><td>Edit mode · Scenario</td></tr>
+                <tr><td class="mono">signal.xml · signalTOD.xml</td><td>Signal phases and plans, and their time-of-day assignment</td><td>Edit mode · Signal</td></tr>
+                <tr><td class="mono">roadStation.xml · railStation.xml</td><td>Bus stops; rail stations and their exits</td><td>Edit mode · Station</td></tr>
+                <tr><td class="mono">roadPTline.xml · railPTline.xml</td><td>Bus/TRT/tram lines; rail lines with timetables</td><td>Edit mode · PT Line</td></tr>
+                <tr><td class="mono">detector.xml</td><td>E1, E2, and E3 detectors</td><td>Edit mode · Infrastructure</td></tr>
+                <tr><td class="mono">events.xml</td><td>Incidents, work zones, and speed-limit events</td><td>Edit mode · Events</td></tr>
                 <tr><td class="mono">passenger.xml</td><td>Transit passenger demand between station pairs</td><td>—</td></tr>
                 <tr><td class="mono">agents.xml</td><td>Individually scripted vehicles with fixed routes (optional, instead of OD)</td><td>—</td></tr>
                 <tr><td class="mono">backgroundTraffic.xml</td><td>Initial per-link vehicle loading at t=0</td><td>generator tool</td></tr>
                 <tr><td class="mono">footpathNetwork.xml</td><td>Walking network for station access</td><td>Scripts</td></tr>
                 <tr><td class="mono">Route.json · PTRoute.json · LinkRangeMap.json</td><td><strong>Generated by RouteGenerator</strong> — routes and a spatial index</td><td>automatic</td></tr>
                 <tr><td class="mono">PaxRoute.json</td><td><strong>Generated by PaxRouteGenerator</strong> — station-pair passenger routes</td><td>automatic</td></tr>
-                <tr><td class="mono">basemap.json</td><td>Satellite basemap georeference (web tooling only; the engine never reads it)</td><td>Editor · Display</td></tr>
+                <tr><td class="mono">basemap.json</td><td>Satellite basemap georeference (web tooling only; the engine never reads it)</td><td>Edit mode · Display</td></tr>
                 <tr><td class="mono">.backups/</td><td>The editor's automatic pre-save copies (10 most recent per file)</td><td>automatic</td></tr>
             </table></div>
         </section>
@@ -1009,11 +1022,13 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
                 localhost, ports) are covered under <a href="installation.html#troubleshooting">install troubleshooting</a>.</p>
 
             <h3><span class="i18n-ko">이전 실행 결과가 사라졌습니다</span><span class="i18n-en">My previous result disappeared</span></h3>
-            <p class="i18n-ko">엔진은 시작할 때 <span class="mono">SimulationOutput/</span> 의 이전 결과 DB를 지웁니다.
-                의도된 동작이니, 남겨야 하는 결과는 실행 전에 복사해 두세요.</p>
-            <p class="i18n-en">The engine clears the earlier result databases in
-                <span class="mono">SimulationOutput/</span> on startup. That is by design — copy anything you need to
-                keep before starting a new run.</p>
+            <p class="i18n-ko">실행이 끝까지 돌면 그 결과가 <span class="mono">SimulationOutput/</span> 의 이전 결과를
+                대신합니다. 의도된 동작이니, 남겨야 하는 결과는 실행 전에 복사해 두세요. 취소하거나 실패한 실행은 이전
+                결과를 되돌려 둡니다 — Run 모드의 <strong>Simulation › Load last result</strong> 로 다시 열 수 있습니다.</p>
+            <p class="i18n-en">A run that finishes replaces the previous result in
+                <span class="mono">SimulationOutput/</span>. That is by design — copy anything you need to keep before
+                starting a new run. A cancelled or failed run puts the previous result back; open it again from
+                <strong>Simulation › Load last result</strong> in Run mode.</p>
 
             <h3><span class="i18n-ko">시뮬레이션에 차량이 하나도 안 나옵니다</span><span class="i18n-en">The simulation produces no vehicles</span></h3>
             <p class="i18n-ko">시나리오의 <span class="mono">odMatrixID</span> 가 실제로 수요가 들어 있는 매트릭스를
@@ -1054,7 +1069,8 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
         <footer>
             NextSIM Documentation · KAIST AIxMobility Lab —
             <a href="installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a> ·
-            <a href="editor-guide.html">Editor</a> · <a href="visualizer-guide.html">Simulation</a>
+            <a href="editor-guide.html"><span class="i18n-ko">Edit 모드</span><span class="i18n-en">Edit mode</span></a> ·
+            <a href="visualizer-guide.html"><span class="i18n-ko">Run 모드</span><span class="i18n-en">Run mode</span></a>
         </footer>
     </main>
 </div>

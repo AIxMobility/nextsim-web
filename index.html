@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>NextSIM — Hybrid Traffic Simulation</title>
-<meta name="description" content="NextSIM is a hybrid mesoscopic–microscopic traffic simulator from the KAIST AIxMobility Lab, with a browser-based Editor and Simulation.">
+<meta name="description" content="NextSIM is a hybrid mesoscopic–microscopic traffic simulator from the KAIST AIxMobility Lab. Its browser screen has an Edit mode for building inputs and a Run mode for running and replaying simulations.">
 <meta name="theme-color" content="#05060f">
 <link rel="canonical" href="https://aixmobility.github.io/nextsim-web/">
 <meta property="og:url" content="https://aixmobility.github.io/nextsim-web/">
@@ -283,16 +283,17 @@
 <section class="section" id="tools">
     <div class="wrap">
         <header class="section__head">
-            <h2 class="display"><span class="i18n-ko">Editor와 Simulation</span><span class="i18n-en">Editor and Simulation</span></h2>
-            <p class="i18n-ko">Editor에서 입력을 만들고 Run을 누르면 차량·승객 경로 계산(RouteGenerator)과 시뮬레이션이 차례로 실행됩니다.
-                결과는 Simulation에서 재생하며 살펴봅니다.</p>
-            <p class="i18n-en">Build the inputs in the Editor and press Run: route calculation (RouteGenerator) and the simulation run one after
-                the other. Then replay and inspect the result in Simulation.</p>
+            <h2 class="display"><span class="i18n-ko">Edit 모드와 Run 모드</span><span class="i18n-en">Edit mode and Run mode</span></h2>
+            <p class="i18n-ko">NextSIM 화면 하나에서 상단의 Edit과 Run으로 모드를 바꿉니다. Edit 모드에서 입력을 만들어 저장하고
+                Run 모드에서 실행하면 차량·승객 경로 계산(RouteGenerator)과 시뮬레이션이 차례로 돌고, 결과도 같은 화면에서 재생합니다.</p>
+            <p class="i18n-en">One NextSIM screen, switched between Edit and Run at the top. Build and save the inputs in Edit mode, then run
+                them in Run mode: route calculation (RouteGenerator) and the simulation run one after the other, and the result
+                replays on the same screen.</p>
         </header>
 
         <div class="tool">
             <div class="tool__text">
-                <h3 class="display display--sm">Editor</h3>
+                <h3 class="display display--sm"><span class="i18n-ko">Edit 모드</span><span class="i18n-en">Edit mode</span></h3>
                 <p class="tool__lede i18n-ko">시뮬레이션 입력을 지도 위에서 만들고 고칩니다. 입력 파일의 형식은 몰라도 됩니다.</p>
                 <p class="tool__lede i18n-en">Create and edit simulation inputs on the map, without learning the file formats.</p>
                 <ul class="list i18n-ko">
@@ -300,24 +301,26 @@
                     <li>OD 수요와 시간대별 micro/meso 설정</li>
                     <li>신호(현시·계획·TOD), 정류장, 대중교통 노선, 돌발 상황 편집</li>
                     <li>저장할 때마다 자동 백업, 언제든 이전 상태로 복원</li>
+                    <li>네트워크를 ZIP 패키지로 내보내고 가져오기, 다른 이름으로 저장</li>
                 </ul>
                 <ul class="list i18n-en">
                     <li>Roads, lanes, and junction connections; import from node-link data or OSM</li>
                     <li>OD demand and micro/meso settings per time period</li>
                     <li>Signals (phases, plans, TOD), stops, transit lines, and incidents</li>
                     <li>An automatic backup on every save, restorable at any time</li>
+                    <li>Export and import a network as a ZIP package, or save it under another name</li>
                 </ul>
-                <a class="textlink" href="docs/editor-guide.html"><span class="i18n-ko">Editor 가이드</span><span class="i18n-en">Editor guide</span> →</a>
+                <a class="textlink" href="docs/editor-guide.html"><span class="i18n-ko">Edit 모드 가이드</span><span class="i18n-en">Edit mode guide</span> →</a>
             </div>
             <figure class="tool__media">
-                <img src="assets/img/editor.webp" alt="NextSIM Editor, Mode workspace" loading="lazy" width="1600" height="1000">
-                <figcaption><span class="i18n-ko">Editor의 Mode 화면. 링크마다 micro/meso를 정합니다.</span><span class="i18n-en">The Editor's Mode workspace, where each link is set to micro or meso.</span></figcaption>
+                <img src="assets/img/editor.webp" alt="NextSIM in Edit mode, Mode workspace" loading="lazy" width="1600" height="1000">
+                <figcaption><span class="i18n-ko">Edit 모드의 Mode 화면. 링크마다 micro/meso를 정합니다.</span><span class="i18n-en">The Mode workspace in Edit mode, where each link is set to micro or meso.</span></figcaption>
             </figure>
         </div>
 
         <div class="tool tool--flip">
             <div class="tool__text">
-                <h3 class="display display--sm">Simulation</h3>
+                <h3 class="display display--sm"><span class="i18n-ko">Run 모드</span><span class="i18n-en">Run mode</span></h3>
                 <p class="tool__lede i18n-ko">시뮬레이션을 실행하고, 결과를 지도 위에서 시간에 따라 재생하며 살펴봅니다.</p>
                 <p class="tool__lede i18n-en">Run a simulation, then replay the result on the map and inspect it over time.</p>
                 <ul class="list i18n-ko">
@@ -332,11 +335,11 @@
                     <li>Click a vehicle, link, or stop for details; scenario summary statistics</li>
                     <li>Bus information (BIMS): waiting, boarding, alighting, and on-board passengers per stop</li>
                 </ul>
-                <a class="textlink" href="docs/visualizer-guide.html"><span class="i18n-ko">Simulation 가이드</span><span class="i18n-en">Simulation guide</span> →</a>
+                <a class="textlink" href="docs/visualizer-guide.html"><span class="i18n-ko">Run 모드 가이드</span><span class="i18n-en">Run mode guide</span> →</a>
             </div>
             <figure class="tool__media">
-                <img src="assets/img/visualizer.webp" alt="NextSIM Simulation, links coloured by congestion" loading="lazy" width="1600" height="1000">
-                <figcaption><span class="i18n-ko">Simulation에서 링크 혼잡도를 색으로 표시한 화면 (08:08:00)</span><span class="i18n-en">Links coloured by congestion in Simulation, at 08:08:00.</span></figcaption>
+                <img src="assets/img/visualizer.webp" alt="NextSIM in Run mode, links coloured by congestion" loading="lazy" width="1600" height="1000">
+                <figcaption><span class="i18n-ko">Run 모드에서 링크 혼잡도를 색으로 표시한 화면 (08:08:00)</span><span class="i18n-en">Links coloured by congestion in Run mode, at 08:08:00.</span></figcaption>
             </figure>
         </div>
     </div>
@@ -347,15 +350,15 @@
     <div class="wrap">
         <header class="section__head">
             <h2 class="display"><span class="i18n-ko">설치</span><span class="i18n-en">Install</span></h2>
-            <p class="i18n-ko">설치 방법은 네 가지이고, 어떤 방법으로 설치해도 브라우저에서 같은 Editor와 Simulation을 씁니다. Windows를 쓴다면 설치 파일이 가장 간단합니다.</p>
-            <p class="i18n-en">There are four ways to install, and all of them give you the same Editor and Simulation in the browser. On Windows, the installer is the simplest.</p>
+            <p class="i18n-ko">설치 방법은 네 가지이고, 어떤 방법으로 설치해도 브라우저에서 쓰는 NextSIM은 같습니다. Windows를 쓴다면 설치 파일이 가장 간단합니다.</p>
+            <p class="i18n-en">There are four ways to install, and all of them run the same NextSIM in the browser. On Windows, the installer is the simplest.</p>
         </header>
         <div class="installs">
             <div class="install">
                 <h3><a href="docs/installation.html#windows"><span class="i18n-ko">Windows 설치 파일</span><span class="i18n-en">Windows installer</span></a></h3>
                 <p class="i18n-ko">Windows 10/11 64비트용입니다. 설치 프로그램만 따라가면 되고, Python·WSL·Docker는 따로 설치하지 않아도 됩니다.</p>
                 <p class="i18n-en">For 64-bit Windows 10 and 11. Follow the installer; no Python, WSL, or Docker needed.</p>
-                <code>NextSim-Setup-v1.1.exe</code>
+                <code>NextSim-Setup-v1.2.exe</code>
             </div>
             <div class="install">
                 <h3><a href="docs/installation.html#docker">Docker</a></h3>
@@ -384,8 +387,8 @@
             <ol class="guide__steps">
                 <li><a href="docs/index.html"><b>1</b><strong><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></strong><span><span class="i18n-ko">구성과 입력 데이터</span><span class="i18n-en">How the parts fit together</span></span></a></li>
                 <li><a href="docs/installation.html"><b>2</b><strong><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></strong><span><span class="i18n-ko">네 가지 설치 방법과 처음 실행하기</span><span class="i18n-en">Four ways to install, first run</span></span></a></li>
-                <li><a href="docs/editor-guide.html"><b>3</b><strong>Editor</strong><span><span class="i18n-ko">입력 만들기와 편집</span><span class="i18n-en">Building the inputs</span></span></a></li>
-                <li><a href="docs/visualizer-guide.html"><b>4</b><strong>Simulation</strong><span><span class="i18n-ko">실행과 결과 분석</span><span class="i18n-en">Running and analysis</span></span></a></li>
+                <li><a href="docs/editor-guide.html"><b>3</b><strong><span class="i18n-ko">Edit 모드</span><span class="i18n-en">Edit mode</span></strong><span><span class="i18n-ko">입력 만들기와 편집</span><span class="i18n-en">Building the inputs</span></span></a></li>
+                <li><a href="docs/visualizer-guide.html"><b>4</b><strong><span class="i18n-ko">Run 모드</span><span class="i18n-en">Run mode</span></strong><span><span class="i18n-ko">실행과 결과 분석</span><span class="i18n-en">Running and analysis</span></span></a></li>
                 <li><a href="docs/nextci-guide.html"><b>5</b><strong>NextCI</strong><span><span class="i18n-ko">Python에서 시뮬레이션 제어하기</span><span class="i18n-en">Controlling the simulation from Python</span></span></a></li>
             </ol>
         </div>

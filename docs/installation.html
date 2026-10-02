@@ -646,8 +646,8 @@
                 <div class="nav__group-label"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></div>
                 <a href="index.html"><span class="i18n-ko">1. 개요</span><span class="i18n-en">1. Overview</span></a>
                 <a href="installation.html" aria-current="page"><span class="i18n-ko">2. 설치</span><span class="i18n-en">2. Installation</span></a>
-                <a href="editor-guide.html" style="--dot: var(--ws-network)"><span class="i18n-ko">3. Editor 가이드</span><span class="i18n-en">3. Editor guide</span></a>
-                <a href="visualizer-guide.html" style="--dot: var(--ws-signal)"><span class="i18n-ko">4. Simulation 가이드</span><span class="i18n-en">4. Simulation guide</span></a>
+                <a href="editor-guide.html" style="--dot: var(--ws-network)"><span class="i18n-ko">3. Edit 모드 가이드</span><span class="i18n-en">3. Edit mode guide</span></a>
+                <a href="visualizer-guide.html" style="--dot: var(--ws-signal)"><span class="i18n-ko">4. Run 모드 가이드</span><span class="i18n-en">4. Run mode guide</span></a>
                 <span class="doc-set__parent"><span class="i18n-ko">5. NextCI 가이드</span><span class="i18n-en">5. NextCI guide</span></span>
                 <div class="doc-set__sub">
                     <a href="nextci-guide.html"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></a>
@@ -675,14 +675,14 @@
     <main class="content">
         <div class="masthead">
             <h1><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></h1>
-            <p class="i18n-ko">NextSIM 은 시뮬레이션 엔진과 브라우저 도구(Editor · Simulation)를 한 번에 설치합니다.
+            <p class="i18n-ko">NextSIM 은 시뮬레이션 엔진과 브라우저 도구(NextSIM 화면 — Run · Edit 모드)를 한 번에 설치합니다.
                 설치 방법은 네 가지이고, 어느 방법이든 끝나면 브라우저에서 같은 화면이 열립니다.
                 사용 환경에 맞는 방법 <strong>하나</strong>만 고르면 됩니다.</p>
-            <p class="i18n-en">Installing NextSIM gives you the simulation engine and the browser tools (Editor and
-                Simulation) together. There are four ways to install; every one of them ends with the same screen in
+            <p class="i18n-en">Installing NextSIM gives you the simulation engine and the browser tool (the NextSIM page,
+                with its Run and Edit modes) together. There are four ways to install; every one of them ends with the same screen in
                 your browser, so pick <strong>one</strong> that fits your machine.</p>
             <div class="meta">
-                <span class="chip">v1.1</span>
+                <span class="chip">v1.2</span>
                 <span class="chip">Windows 10/11 · Linux · WSL2 · Docker</span>
                 <span class="chip"><span class="i18n-ko">x86-64 + AVX2 CPU</span><span class="i18n-en">x86-64 CPU with AVX2</span></span>
             </div>
@@ -734,11 +734,11 @@
         <!-- ================================================== Windows -->
         <section id="windows">
             <h2><span class="i18n-ko">Windows 설치 파일</span><span class="i18n-en">Windows installer</span></h2>
-            <p class="section-files"><span class="file-chip">NextSim-Setup-v1.1.exe</span>
+            <p class="section-files"><span class="file-chip">NextSim-Setup-v1.2.exe</span>
                 <span class="i18n-ko">Windows 10/11 64비트 · Edge 또는 Chrome</span><span class="i18n-en">Windows 10/11 64-bit · Edge or Chrome</span></p>
             <ol class="steps i18n-ko">
                 <li><a class="download-link" href="https://github.com/AIxMobility/nextsim-web/releases/latest">릴리스 페이지</a>에서
-                    <span class="mono">NextSim-Setup-v1.1.exe</span> 를 내려받습니다.</li>
+                    <span class="mono">NextSim-Setup-v1.2.exe</span> 를 내려받습니다.</li>
                 <li>설치 파일을 실행하고 안내에 따라 설치합니다. Python 과 시뮬레이터가 모두 들어 있어
                     따로 설치할 것은 없습니다.</li>
                 <li>시작 메뉴나 바탕 화면의 <strong>NextSim</strong> 을 실행합니다. 검은 콘솔 창이 열리고 몇 초 뒤
@@ -746,7 +746,7 @@
                 <li><a href="#first-run">첫 시뮬레이션</a>으로 넘어갑니다.</li>
             </ol>
             <ol class="steps i18n-en">
-                <li>Download <span class="mono">NextSim-Setup-v1.1.exe</span> from the
+                <li>Download <span class="mono">NextSim-Setup-v1.2.exe</span> from the
                     <a class="download-link" href="https://github.com/AIxMobility/nextsim-web/releases/latest">releases page</a>.</li>
                 <li>Run it and follow the installer. Python and the simulator are bundled, so there is nothing else
                     to install.</li>
@@ -826,7 +826,7 @@ WEB_PORT=8100 docker compose up  <span class="c"># on another port</span></pre>
         <!-- ================================================== ZIP -->
         <section id="zip">
             <h2><span class="i18n-ko">Linux · WSL 배포판</span><span class="i18n-en">Linux · WSL package</span></h2>
-            <p class="section-files"><span class="file-chip">nextsim-linux-x64-v1.1.zip</span>
+            <p class="section-files"><span class="file-chip">nextsim-linux-x64-v1.2.zip</span>
                 <span class="i18n-ko">Linux x86-64 또는 Windows + WSL2 · Python 3.9+</span><span class="i18n-en">Linux x86-64 or Windows + WSL2 · Python 3.9+</span></p>
             <p class="i18n-ko">미리 빌드된 실행 파일과 예제 네트워크를 묶은 ZIP 입니다. 실행 파일이 완전 정적 링크되어 있어
                 리눅스 배포판 버전을 가리지 않으며, git·cmake·컴파일러·Docker 가 필요 없습니다.</p>
@@ -834,14 +834,14 @@ WEB_PORT=8100 docker compose up  <span class="c"># on another port</span></pre>
                 linked, so any Linux distribution works, and you need no git, cmake, compiler, or Docker.</p>
             <ol class="steps i18n-ko">
                 <li><a class="download-link" href="https://github.com/AIxMobility/nextsim-web/releases/latest">릴리스 페이지</a>에서
-                    <span class="mono">nextsim-linux-x64-v1.1.zip</span> 을 내려받아 풉니다. WSL 이라면 Windows 폴더
+                    <span class="mono">nextsim-linux-x64-v1.2.zip</span> 을 내려받아 풉니다. WSL 이라면 Windows 폴더
                     (<span class="mono">/mnt/c/...</span>)보다 <strong>WSL 홈(<span class="mono">~/</span>) 안</strong>에 푸는 것이 몇 배 빠릅니다.</li>
                 <li>Python 이 없다면 설치합니다 (Ubuntu/WSL: <span class="mono">sudo apt install python3 python3-venv</span>).</li>
                 <li>실행 권한을 주고 시작 스크립트를 실행합니다. 처음에는 Flask 를 내려받느라 1~2분 걸리고,
                     다음부터는 바로 뜹니다. 브라우저가 자동으로 열립니다.</li>
             </ol>
             <ol class="steps i18n-en">
-                <li>Download <span class="mono">nextsim-linux-x64-v1.1.zip</span> from the
+                <li>Download <span class="mono">nextsim-linux-x64-v1.2.zip</span> from the
                     <a class="download-link" href="https://github.com/AIxMobility/nextsim-web/releases/latest">releases page</a> and unpack it.
                     On WSL, unpacking <strong>inside your WSL home (<span class="mono">~/</span>)</strong> is several
                     times faster than under a Windows folder (<span class="mono">/mnt/c/...</span>).</li>
@@ -849,7 +849,7 @@ WEB_PORT=8100 docker compose up  <span class="c"># on another port</span></pre>
                 <li>Mark the scripts executable and run the start script. The first run spends a minute or two
                     fetching Flask; after that it starts immediately. Your browser opens on its own.</li>
             </ol>
-<pre class="cmd">cd nextsim-linux-x64-v1.1
+<pre class="cmd">cd nextsim-linux-x64-v1.2
 chmod +x start_web.sh scripts/*.sh Captain/build/bin/*
 ./start_web.sh</pre>
             <p class="i18n-ko">Windows 에서는 <span class="mono">start_web.bat</span> 을 더블클릭하면 WSL 안에서
@@ -955,10 +955,10 @@ cmake --preset release --fresh -S Captain
 cmake --build build/captain/release -j</pre>
             <p class="i18n-ko">결과 바이너리는 <span class="mono">build/captain/release/bin/</span> 에 생깁니다.
                 <strong>웹 서버가 기본으로 찾는 위치가 바로 여기</strong>이므로, 이 경로로 빌드하면 별도 설정 없이
-                Simulation 의 실행 버튼이 동작합니다.</p>
+                Run 모드의 실행 버튼(<strong>Run Selected Network</strong>)이 동작합니다.</p>
             <p class="i18n-en">The binaries land in <span class="mono">build/captain/release/bin/</span>.
                 <strong>That is exactly where the web server looks by default</strong>, so building this way makes
-                the Simulation's run button work with no further configuration.</p>
+                the run button in Run mode (<strong>Run Selected Network</strong>) work with no further configuration.</p>
             <p class="i18n-ko">프리셋은 <span class="mono">debug</span>, <span class="mono">release</span>,
                 <span class="mono">relwithdebinfo</span> 세 가지입니다. 특정 바이너리만 필요하면 타깃을 지정하세요:</p>
             <p class="i18n-en">Three presets exist: <span class="mono">debug</span>,
@@ -990,11 +990,11 @@ cmake --build build/captain/release -j</pre>
                 직접 실행하려면 <span class="mono">python3 web_server.py</span> 도 됩니다.</p>
             <p class="i18n-en">The script installs Flask if it is missing and, if the port is busy, scans upward for a
                 free one. You can also run <span class="mono">python3 web_server.py</span> directly.</p>
-            <div class="warn i18n-ko"><strong>웹 UI 는 엔진을 빌드하지 않습니다.</strong> Simulation 의 실행 버튼은
+            <div class="warn i18n-ko"><strong>웹 UI 는 엔진을 빌드하지 않습니다.</strong> Run 모드의 실행 버튼은
                 이미 빌드된 바이너리를 쓸 뿐이며, 없으면 그 사실을 알리고 멈춥니다. 소스를 고쳤다면 직접 다시
                 빌드하세요 — 또는 <span class="mono">NEXTSIM_WEB_BUILD=1</span> 로 자동 빌드를 켜면 됩니다.</div>
-            <div class="warn i18n-en"><strong>The web UI does not build the engine.</strong> The Simulation's run
-                button uses the binaries that are already there and stops with a message if one is missing. Rebuild
+            <div class="warn i18n-en"><strong>The web UI does not build the engine.</strong> The run button in Run
+                mode uses the binaries that are already there and stops with a message if one is missing. Rebuild
                 yourself after changing the source — or set <span class="mono">NEXTSIM_WEB_BUILD=1</span> to have it
                 build first.</div>
         </section>
@@ -1008,22 +1008,21 @@ cmake --build build/captain/release -j</pre>
             <p class="i18n-en">However you installed, from here on it is the same. Once the server is up, these addresses are live.</p>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>주소</th><th>내용</th></tr>
-                <tr><td class="mono">http://localhost:8000/editor</td><td>Editor — 입력 편집</td></tr>
-                <tr><td class="mono">http://localhost:8000/visualizer</td><td>Simulation — 실행·결과 재생</td></tr>
+                <tr><td class="mono">http://localhost:8000/nextsim/</td><td>NextSIM — Run 모드(실행·결과 재생) / Edit 모드(입력 편집, <span class="mono">?mode=edit</span>)</td></tr>
                 <tr><td class="mono">http://localhost:8000/docs/</td><td>이 사용자 가이드 (오프라인)</td></tr>
                 <tr><td class="mono">http://localhost:8000/health</td><td>서버 상태 JSON</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>URL</th><th>What it serves</th></tr>
-                <tr><td class="mono">http://localhost:8000/editor</td><td>Editor — authoring inputs</td></tr>
-                <tr><td class="mono">http://localhost:8000/visualizer</td><td>Simulation — running and replaying</td></tr>
+                <tr><td class="mono">http://localhost:8000/nextsim/</td><td>NextSIM — Run mode (running and replaying) / Edit mode (authoring inputs, <span class="mono">?mode=edit</span>)</td></tr>
                 <tr><td class="mono">http://localhost:8000/docs/</td><td>This user guide, offline</td></tr>
                 <tr><td class="mono">http://localhost:8000/health</td><td>Server status as JSON</td></tr>
             </table></div>
             <ol class="steps i18n-ko">
-                <li>Simulation 에서 <strong>Inputs</strong> 를 열고 예제 네트워크 <span class="mono">test</span> 를 고릅니다.
-                    지도에 도로망이 그려집니다.</li>
-                <li><strong>Run</strong> 패널에서 <strong>Target scenario</strong> 를 고르고
+                <li>NextSIM 을 엽니다 — 홈 화면의 <strong>NextSIM</strong> 카드를 누르거나 <span class="mono">http://localhost:8000/nextsim/</span>
+                    로 들어가면 Run 모드로 열립니다. 상단바의 네트워크 버튼(폴더 아이콘, 처음에는 <em>Select network</em>)을 눌러
+                    예제 네트워크 <span class="mono">test</span> 를 고릅니다. 지도에 도로망이 그려집니다.</li>
+                <li><strong>Simulation</strong> 패널에서 <strong>Target scenario</strong> 를 고르고
                     <strong>Run Selected Network</strong> 를 누릅니다. 경로 생성부터 결과 적재까지 자동으로 진행되고,
                     작은 예제라 몇 초 안에 끝납니다.</li>
                 <li><kbd>Space</kbd> 로 재생하고 슬라이더로 원하는 시각을 찾아 봅니다.</li>
@@ -1031,34 +1030,36 @@ cmake --build build/captain/release -j</pre>
                     — 시나리오에 따라 수 분에서 수십 분 걸립니다.</li>
             </ol>
             <ol class="steps i18n-en">
-                <li>In the Simulation, open <strong>Inputs</strong> and pick the example network
-                    <span class="mono">test</span>. The road network appears on the map.</li>
-                <li>In the <strong>Run</strong> panel choose a <strong>Target scenario</strong> and press
+                <li>Open NextSIM — the <strong>NextSIM</strong> card on the home page, or
+                    <span class="mono">http://localhost:8000/nextsim/</span>; it opens in Run mode. Click the network
+                    button in the top bar (folder icon; it reads <em>Select network</em> at first) and pick the example
+                    network <span class="mono">test</span>. The road network appears on the map.</li>
+                <li>In the <strong>Simulation</strong> panel choose a <strong>Target scenario</strong> and press
                     <strong>Run Selected Network</strong>. Route generation through result loading runs on its own;
                     this small example finishes in seconds.</li>
                 <li>Press <kbd>Space</kbd> to play and scrub with the slider.</li>
                 <li>For a city-scale run, try <span class="mono">bucheon</span> — minutes to tens of minutes
                     depending on the scenario.</li>
             </ol>
-            <div class="warn i18n-ko"><strong>새로 실행하면 이전 결과가 지워집니다.</strong> 엔진은 시작할 때
-                <span class="mono">SimulationOutput/</span> 의 이전 결과 DB를 모두 삭제합니다. 보관하고 싶은
-                결과는 실행 전에 다른 곳으로 복사해 두세요.</div>
-            <div class="warn i18n-en"><strong>A new run deletes the previous result.</strong> On startup the engine
-                removes the earlier result databases in <span class="mono">SimulationOutput/</span>. Copy anything
-                you want to keep somewhere else before running again.</div>
+            <div class="warn i18n-ko"><strong>실행이 끝나면 이전 결과는 새 결과로 바뀝니다.</strong>
+                <span class="mono">SimulationOutput/</span> 에는 마지막 결과 하나만 남습니다 (취소하거나 실패한 실행은
+                이전 결과를 그대로 되돌려 둡니다). 보관하고 싶은 결과는 실행 전에 다른 곳으로 복사해 두세요.</div>
+            <div class="warn i18n-en"><strong>A finished run replaces the previous result.</strong>
+                <span class="mono">SimulationOutput/</span> keeps only the latest result (a cancelled or failed run puts
+                the previous one back). Copy anything you want to keep somewhere else before running again.</div>
 
             <div class="toolgrid">
                 <a class="toolcard" href="editor-guide.html" style="--tc: var(--ws-network)">
-                    <h3><span class="i18n-ko">다음: Editor 가이드</span><span class="i18n-en">Next: the Editor guide</span></h3>
+                    <h3><span class="i18n-ko">다음: Edit 모드 가이드</span><span class="i18n-en">Next: the Edit mode guide</span></h3>
                     <p class="i18n-ko">네트워크·수요·신호·대중교통을 직접 만들고 고치는 방법.</p>
                     <p class="i18n-en">Building and editing networks, demand, signals, and transit yourself.</p>
-                    <span class="go">Editor →</span>
+                    <span class="go"><span class="i18n-ko">Edit 모드 →</span><span class="i18n-en">Edit mode →</span></span>
                 </a>
                 <a class="toolcard" href="visualizer-guide.html" style="--tc: var(--ws-signal)">
-                    <h3><span class="i18n-ko">다음: Simulation 가이드</span><span class="i18n-en">Next: the Simulation guide</span></h3>
+                    <h3><span class="i18n-ko">다음: Run 모드 가이드</span><span class="i18n-en">Next: the Run mode guide</span></h3>
                     <p class="i18n-ko">재생 컨트롤, 혼잡 표시, BIMS, 객체 조회 등 결과를 읽는 방법.</p>
                     <p class="i18n-en">Playback, congestion display, BIMS, and inspecting what happened.</p>
-                    <span class="go">Simulation →</span>
+                    <span class="go"><span class="i18n-ko">Run 모드 →</span><span class="i18n-en">Run mode →</span></span>
                 </a>
             </div>
         </section>
@@ -1181,7 +1182,8 @@ cmake --build build/captain/release -j</pre>
         <footer>
             NextSIM · KAIST AIxMobility Lab —
             <a href="index.html"><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></a> ·
-            <a href="editor-guide.html">Editor</a> · <a href="visualizer-guide.html">Simulation</a>
+            <a href="editor-guide.html"><span class="i18n-ko">Edit 모드</span><span class="i18n-en">Edit mode</span></a> ·
+            <a href="visualizer-guide.html"><span class="i18n-ko">Run 모드</span><span class="i18n-en">Run mode</span></a>
         </footer>
     </main>
 </div>
