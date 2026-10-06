@@ -675,8 +675,8 @@
     <main class="content">
         <div class="masthead">
             <h1><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></h1>
-            <p class="i18n-ko">NextSIM 은 시뮬레이션 엔진과 브라우저 도구(NextSIM 화면 — Run · Edit 모드)를 한 번에 설치합니다.
-                설치 방법은 네 가지이고, 어느 방법이든 끝나면 브라우저에서 같은 화면이 열립니다.
+            <p class="i18n-ko">NextSIM을 설치하면 시뮬레이션 엔진과 브라우저 도구(Run · Edit 모드를 갖춘 NextSIM 화면)가 함께 설치됩니다.
+                설치 방법은 네 가지이고, 어느 방법으로 설치하든 브라우저에서 같은 화면이 열립니다.
                 사용 환경에 맞는 방법 <strong>하나</strong>만 고르면 됩니다.</p>
             <p class="i18n-en">Installing NextSIM gives you the simulation engine and the browser tool (the NextSIM page,
                 with its Run and Edit modes) together. There are four ways to install; every one of them ends with the same screen in
@@ -702,27 +702,27 @@
                 <a class="methodcard" href="#docker" style="--tc: var(--ws-od)">
                     <span class="methodcard__tag"><span class="i18n-ko">모든 OS</span><span class="i18n-en">Any OS</span></span>
                     <h3>Docker</h3>
-                    <p class="i18n-ko">명령 한 줄로 엔진 빌드부터 웹 서버까지 컨테이너 안에서 올라갑니다.</p>
+                    <p class="i18n-ko">명령 한 줄로 컨테이너 안에서 엔진을 빌드하고 웹 서버까지 실행합니다.</p>
                     <p class="i18n-en">One command builds the engine and starts the web server inside a container.</p>
                     <span class="methodcard__need">Docker Desktop · Git · <span class="i18n-ko">저장소 권한</span><span class="i18n-en">repo access</span></span>
                 </a>
                 <a class="methodcard" href="#zip" style="--tc: var(--ws-station)">
                     <span class="methodcard__tag"><span class="i18n-ko">컴파일 불필요</span><span class="i18n-en">No compiler</span></span>
                     <h3><span class="i18n-ko">Linux · WSL 배포판</span><span class="i18n-en">Linux · WSL package</span></h3>
-                    <p class="i18n-ko">미리 빌드된 실행 파일이 든 ZIP. 풀고 스크립트 하나만 실행합니다.</p>
+                    <p class="i18n-ko">미리 빌드된 실행 파일이 들어 있는 ZIP 파일입니다. 압축을 풀고 스크립트 하나만 실행하면 됩니다.</p>
                     <p class="i18n-en">A ZIP of prebuilt binaries. Unpack it and run one script.</p>
                     <span class="methodcard__need">Linux x86-64 / WSL2 · Python 3.9+</span>
                 </a>
                 <a class="methodcard" href="#source" style="--tc: var(--ws-scenario)">
                     <span class="methodcard__tag"><span class="i18n-ko">개발자용</span><span class="i18n-en">For developers</span></span>
                     <h3><span class="i18n-ko">소스에서 빌드</span><span class="i18n-en">Build from source</span></h3>
-                    <p class="i18n-ko">엔진을 직접 수정하거나 NextCI 로 외부에서 제어하려면 이 방법을 씁니다.</p>
+                    <p class="i18n-ko">엔진을 직접 수정하거나 NextCI로 외부에서 제어하려면 이 방법을 씁니다.</p>
                     <p class="i18n-en">For changing the engine itself or driving it externally through NextCI.</p>
                     <span class="methodcard__need">C++17 · CMake 3.21+ · <span class="i18n-ko">저장소 권한</span><span class="i18n-en">repo access</span></span>
                 </a>
             </div>
-            <div class="tip i18n-ko"><strong>공통 요구 사항: AVX2 를 지원하는 x86-64 CPU.</strong>
-                2013년(Intel Haswell) 이후의 인텔·AMD CPU 는 대부분 해당합니다. ARM 기기(Apple Silicon Mac,
+            <div class="tip i18n-ko"><strong>공통 요구 사항: AVX2를 지원하는 x86-64 CPU.</strong>
+                2013년(Intel Haswell) 이후의 인텔·AMD CPU는 대부분 해당합니다. ARM 기기(Apple Silicon Mac,
                 Snapdragon 노트북 등)에서는 현재 실행되지 않습니다.</div>
             <div class="tip i18n-en"><strong>Every method needs an x86-64 CPU with AVX2.</strong> Almost every Intel
                 or AMD CPU since 2013 (Intel Haswell) qualifies. ARM machines — Apple Silicon Macs, Snapdragon
@@ -738,10 +738,10 @@
                 <span class="i18n-ko">Windows 10/11 64비트 · Edge 또는 Chrome</span><span class="i18n-en">Windows 10/11 64-bit · Edge or Chrome</span></p>
             <ol class="steps i18n-ko">
                 <li><a class="download-link" href="https://github.com/AIxMobility/nextsim-web/releases/latest">릴리스 페이지</a>에서
-                    <span class="mono">NextSim-Setup-v1.2.exe</span> 를 내려받습니다.</li>
-                <li>설치 파일을 실행하고 안내에 따라 설치합니다. Python 과 시뮬레이터가 모두 들어 있어
-                    따로 설치할 것은 없습니다.</li>
-                <li>시작 메뉴나 바탕 화면의 <strong>NextSim</strong> 을 실행합니다. 검은 콘솔 창이 열리고 몇 초 뒤
+                    <span class="mono">NextSim-Setup-v1.2.exe</span>를 내려받습니다.</li>
+                <li>설치 파일을 실행하고 안내에 따라 설치합니다. Python과 시뮬레이터가 모두 들어 있으므로
+                    따로 설치할 것이 없습니다.</li>
+                <li>시작 메뉴나 바탕 화면의 <strong>NextSim</strong>을 실행합니다. 검은 콘솔 창이 열리고 몇 초 뒤
                     NextSim 창(브라우저)이 뜹니다.</li>
                 <li><a href="#first-run">첫 시뮬레이션</a>으로 넘어갑니다.</li>
             </ol>
@@ -754,15 +754,15 @@
                     and a few seconds later the NextSim window (your browser) appears.</li>
                 <li>Continue with <a href="#first-run">your first simulation</a>.</li>
             </ol>
-            <div class="warn i18n-ko"><strong>콘솔 창이 곧 서버입니다.</strong> 이 창을 닫으면 NextSim 이 종료됩니다.
-                서버는 이 PC 안에서만 접속할 수 있고(<span class="mono">http://127.0.0.1:8000/</span>, 사용 중이면
+            <div class="warn i18n-ko"><strong>콘솔 창이 곧 서버입니다.</strong> 이 창을 닫으면 NextSim이 종료됩니다.
+                서버는 이 PC 안에서만 접속할 수 있고(<span class="mono">http://127.0.0.1:8000/</span>, 이 포트가 사용 중이면
                 다음 빈 포트), 실제 주소는 콘솔 창 상단에 표시됩니다.</div>
             <div class="warn i18n-en"><strong>The console window is the server.</strong> Closing it quits NextSim.
                 The server only accepts connections from this PC
                 (<span class="mono">http://127.0.0.1:8000/</span>, or the next free port), and the address it
                 settled on is printed at the top of the console.</div>
-            <div class="tip i18n-ko"><strong>"Windows 의 PC 보호" 창이 뜨면</strong> <em>추가 정보 → 실행</em>을
-                누르세요. 서명되지 않은 설치 파일에 Windows SmartScreen 이 보이는 경고입니다.</div>
+            <div class="tip i18n-ko"><strong>"Windows의 PC 보호" 창이 뜨면</strong> <em>추가 정보 → 실행</em>을
+                누르세요. 서명되지 않은 설치 파일을 실행할 때 Windows SmartScreen이 표시하는 경고입니다.</div>
             <div class="tip i18n-en"><strong>If "Windows protected your PC" appears,</strong> choose
                 <em>More info → Run anyway</em>. It is SmartScreen's warning for an unsigned installer.</div>
 
@@ -777,7 +777,7 @@
                 <tr><td class="mono">Documents\NextSim\SimulationInput</td><td>Network inputs (<span class="mono">networks\&lt;name&gt;</span>)</td></tr>
                 <tr><td class="mono">Documents\NextSim\SimulationOutput</td><td>Run results</td></tr>
             </table></div>
-            <p class="i18n-ko">다른 폴더를 쓰려면 환경 변수 <span class="mono">NEXTSIM_WORKSPACE</span> 에 경로를 넣고 실행합니다.
+            <p class="i18n-ko">다른 폴더를 쓰려면 환경 변수 <span class="mono">NEXTSIM_WORKSPACE</span>에 폴더 경로를 지정한 뒤 실행합니다.
                 프로그램을 제거해도 이 폴더는 남습니다.</p>
             <p class="i18n-en">To use a different folder, set <span class="mono">NEXTSIM_WORKSPACE</span> to its path
                 before launching. Uninstalling the program leaves these folders in place.</p>
@@ -789,14 +789,14 @@
             <p class="section-files"><span class="file-chip">Dockerfile</span><span class="file-chip">docker-compose.yml</span>
                 <span class="i18n-ko">Windows · macOS(Intel) · Linux</span><span class="i18n-en">Windows · macOS (Intel) · Linux</span></p>
             <p class="i18n-ko"><a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a>
-                만 있으면 컴파일러 없이 저장소에서 바로 띄울 수 있습니다. 첫 실행은 엔진을 컨테이너 안에서
+                만 있으면 컴파일러 없이 저장소에서 바로 실행할 수 있습니다. 처음 실행할 때는 엔진을 컨테이너 안에서
                 빌드하므로 몇 분 걸립니다.</p>
             <p class="i18n-en">With <a href="https://www.docker.com/products/docker-desktop/" target="_blank" rel="noopener">Docker Desktop</a>
                 you can start straight from the repository without a local compiler. The first start builds the
                 engine inside the container, so it takes a few minutes.</p>
-            <div class="warn i18n-ko"><strong>소스 저장소 접근 권한이 필요합니다.</strong> NextSIM 소스 저장소는 현재 비공개라,
-                아래 <span class="mono">git clone</span> 은 권한을 받은 계정에서만 됩니다. 권한 없이 쓰려면
-                <a href="#windows">Windows 설치 파일</a>이나 <a href="#zip">Linux · WSL 배포판</a>을 쓰거나,
+            <div class="warn i18n-ko"><strong>소스 저장소 접근 권한이 필요합니다.</strong> NextSIM 소스 저장소는 현재 비공개이므로,
+                아래 <span class="mono">git clone</span>은 권한을 받은 계정에서만 실행할 수 있습니다. 권한이 없다면
+                <a href="#windows">Windows 설치 파일</a>이나 <a href="#zip">Linux · WSL 배포판</a>을 사용하거나,
                 <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">연구실</a>로 문의해 주세요.</div>
             <div class="warn i18n-en"><strong>Requires access to the source repository.</strong> The NextSIM source repository is
                 private for now, so the <span class="mono">git clone</span> below only works for accounts that have been granted
@@ -813,10 +813,10 @@ cd NextSim
 docker compose up --build        <span class="c"># http://localhost:8000/</span>
 
 WEB_PORT=8100 docker compose up  <span class="c"># on another port</span></pre>
-            <p class="i18n-ko">데이터는 호스트의 <span class="mono">./workspace/</span> 에 남습니다
+            <p class="i18n-ko">데이터는 호스트의 <span class="mono">./workspace/</span>에 저장됩니다
                 (<span class="mono">SimulationInput/</span>, <span class="mono">SimulationOutput/</span>). 컨테이너를
-                처음 띄울 때 예제 네트워크가 채워지고, 다른 위치를 쓰려면
-                <span class="mono">NEXTSIM_WORKSPACE=~/nextsim-data docker compose up</span> 처럼 지정합니다.</p>
+                처음 실행할 때 예제 네트워크가 이 폴더에 복사됩니다. 다른 위치를 쓰려면
+                <span class="mono">NEXTSIM_WORKSPACE=~/nextsim-data docker compose up</span>처럼 지정합니다.</p>
             <p class="i18n-en">Data stays on the host in <span class="mono">./workspace/</span>
                 (<span class="mono">SimulationInput/</span>, <span class="mono">SimulationOutput/</span>). The demo
                 networks are copied in the first time the container starts; to use another location run
@@ -828,17 +828,17 @@ WEB_PORT=8100 docker compose up  <span class="c"># on another port</span></pre>
             <h2><span class="i18n-ko">Linux · WSL 배포판</span><span class="i18n-en">Linux · WSL package</span></h2>
             <p class="section-files"><span class="file-chip">nextsim-linux-x64-v1.2.zip</span>
                 <span class="i18n-ko">Linux x86-64 또는 Windows + WSL2 · Python 3.9+</span><span class="i18n-en">Linux x86-64 or Windows + WSL2 · Python 3.9+</span></p>
-            <p class="i18n-ko">미리 빌드된 실행 파일과 예제 네트워크를 묶은 ZIP 입니다. 실행 파일이 완전 정적 링크되어 있어
-                리눅스 배포판 버전을 가리지 않으며, git·cmake·컴파일러·Docker 가 필요 없습니다.</p>
+            <p class="i18n-ko">미리 빌드된 실행 파일과 예제 네트워크를 묶은 ZIP 파일입니다. 실행 파일이 완전히 정적으로 링크되어 있어
+                리눅스 배포판의 종류나 버전에 관계없이 동작하며, git·cmake·컴파일러·Docker가 필요 없습니다.</p>
             <p class="i18n-en">A ZIP of prebuilt binaries and example networks. The binaries are fully statically
                 linked, so any Linux distribution works, and you need no git, cmake, compiler, or Docker.</p>
             <ol class="steps i18n-ko">
                 <li><a class="download-link" href="https://github.com/AIxMobility/nextsim-web/releases/latest">릴리스 페이지</a>에서
-                    <span class="mono">nextsim-linux-x64-v1.2.zip</span> 을 내려받아 풉니다. WSL 이라면 Windows 폴더
-                    (<span class="mono">/mnt/c/...</span>)보다 <strong>WSL 홈(<span class="mono">~/</span>) 안</strong>에 푸는 것이 몇 배 빠릅니다.</li>
-                <li>Python 이 없다면 설치합니다 (Ubuntu/WSL: <span class="mono">sudo apt install python3 python3-venv</span>).</li>
-                <li>실행 권한을 주고 시작 스크립트를 실행합니다. 처음에는 Flask 를 내려받느라 1~2분 걸리고,
-                    다음부터는 바로 뜹니다. 브라우저가 자동으로 열립니다.</li>
+                    <span class="mono">nextsim-linux-x64-v1.2.zip</span>을 내려받아 압축을 풉니다. WSL을 사용한다면 Windows 폴더
+                    (<span class="mono">/mnt/c/...</span>)보다 <strong>WSL 홈(<span class="mono">~/</span>) 안</strong>에 압축을 푸는 것이 몇 배 빠릅니다.</li>
+                <li>Python이 없다면 설치합니다 (Ubuntu/WSL: <span class="mono">sudo apt install python3 python3-venv</span>).</li>
+                <li>실행 권한을 부여하고 시작 스크립트를 실행합니다. 처음 실행할 때는 Flask를 내려받느라 1~2분 걸리고,
+                    그다음부터는 바로 시작됩니다. 브라우저는 자동으로 열립니다.</li>
             </ol>
             <ol class="steps i18n-en">
                 <li>Download <span class="mono">nextsim-linux-x64-v1.2.zip</span> from the
@@ -852,17 +852,17 @@ WEB_PORT=8100 docker compose up  <span class="c"># on another port</span></pre>
 <pre class="cmd">cd nextsim-linux-x64-v1.2
 chmod +x start_web.sh scripts/*.sh Captain/build/bin/*
 ./start_web.sh</pre>
-            <p class="i18n-ko">Windows 에서는 <span class="mono">start_web.bat</span> 을 더블클릭하면 WSL 안에서
-                <span class="mono">start_web.sh</span> 가 실행됩니다. WSL 이 없다면 PowerShell(관리자)에서
-                <span class="mono">wsl --install</span> 후 재부팅하고, Ubuntu 를 한 번 열어 초기 설정을 마친 뒤 다시 실행하세요.
-                종료는 터미널에서 <kbd>Ctrl</kbd>+<kbd>C</kbd>.</p>
+            <p class="i18n-ko">Windows에서는 <span class="mono">start_web.bat</span>을 더블클릭하면 WSL 안에서
+                <span class="mono">start_web.sh</span>가 실행됩니다. WSL이 없다면 PowerShell(관리자)에서
+                <span class="mono">wsl --install</span>을 실행한 뒤 재부팅하고, Ubuntu를 한 번 열어 초기 설정을 마친 다음 다시 실행하세요.
+                서버를 종료하려면 터미널에서 <kbd>Ctrl</kbd>+<kbd>C</kbd>를 누릅니다.</p>
             <p class="i18n-en">On Windows, double-click <span class="mono">start_web.bat</span> to run
                 <span class="mono">start_web.sh</span> inside WSL. Without WSL, run
                 <span class="mono">wsl --install</span> in an administrator PowerShell, reboot, open Ubuntu once to
                 finish its setup, then try again. Stop the server with <kbd>Ctrl</kbd>+<kbd>C</kbd> in the terminal.</p>
 
             <h3><span class="i18n-ko">데이터를 배포판 밖에 두기</span><span class="i18n-en">Keeping data outside the package</span></h3>
-            <p class="i18n-ko">데이터 폴더를 따로 두면 새 버전 ZIP 으로 갈아타도 네트워크와 결과가 그대로 남습니다.</p>
+            <p class="i18n-ko">데이터 폴더를 따로 두면 새 버전 ZIP으로 업그레이드해도 네트워크와 결과가 그대로 유지됩니다.</p>
             <p class="i18n-en">With a separate data folder, your networks and results survive an upgrade to a newer ZIP.</p>
 <pre class="cmd i18n-ko">mkdir -p ~/nextsim-data
 cp -r SimulationInput ~/nextsim-data/          <span class="c"># 예제로 시작하려면</span>
@@ -871,14 +871,14 @@ NEXTSIM_WORKSPACE=~/nextsim-data ./start_web.sh</pre>
 cp -r SimulationInput ~/nextsim-data/          <span class="c"># to start from the examples</span>
 NEXTSIM_WORKSPACE=~/nextsim-data ./start_web.sh</pre>
 
-            <h3><span class="i18n-ko">웹 없이 터미널에서만</span><span class="i18n-en">Terminal only, without the web UI</span></h3>
+            <h3><span class="i18n-ko">웹 화면 없이 터미널에서 실행하기</span><span class="i18n-en">Terminal only, without the web UI</span></h3>
 <pre class="cmd i18n-ko">./scripts/generate_routes.sh            <span class="c"># Route.json, PTRoute.json 생성 (새 네트워크일 때)</span>
 ./scripts/generate_routes.sh --with-pax <span class="c"># PaxRoute.json 까지</span>
 ./scripts/run_sim.sh                    <span class="c"># Offline 시뮬레이션</span></pre>
 <pre class="cmd i18n-en">./scripts/generate_routes.sh            <span class="c"># Route.json, PTRoute.json (for a new network)</span>
 ./scripts/generate_routes.sh --with-pax <span class="c"># PaxRoute.json as well</span>
 ./scripts/run_sim.sh                    <span class="c"># offline simulation</span></pre>
-            <p class="i18n-ko">어떤 네트워크를 돌릴지는 <span class="mono">SimulationInput/config.txt</span> 의
+            <p class="i18n-ko">어떤 네트워크를 실행할지는 <span class="mono">SimulationInput/config.txt</span>의
                 <span class="mono">network</span> 한 줄로 정합니다 (<span class="mono">SimulationInput/networks/&lt;network&gt;/</span>).</p>
             <p class="i18n-en">Which network runs is set by the single <span class="mono">network</span> line in
                 <span class="mono">SimulationInput/config.txt</span> (<span class="mono">SimulationInput/networks/&lt;network&gt;/</span>).</p>
@@ -887,9 +887,9 @@ NEXTSIM_WORKSPACE=~/nextsim-data ./start_web.sh</pre>
         <!-- ================================================== 소스 빌드 -->
         <section id="source">
             <h2><span class="i18n-ko">소스에서 빌드</span><span class="i18n-en">Building from source</span></h2>
-            <div class="warn i18n-ko"><strong>소스 저장소 접근 권한이 필요합니다.</strong> NextSIM 소스 저장소는 현재 비공개라,
-                아래 <span class="mono">git clone</span> 은 권한을 받은 계정에서만 됩니다. 권한 없이 쓰려면
-                <a href="#windows">Windows 설치 파일</a>이나 <a href="#zip">Linux · WSL 배포판</a>을 쓰거나,
+            <div class="warn i18n-ko"><strong>소스 저장소 접근 권한이 필요합니다.</strong> NextSIM 소스 저장소는 현재 비공개이므로,
+                아래 <span class="mono">git clone</span>은 권한을 받은 계정에서만 실행할 수 있습니다. 권한이 없다면
+                <a href="#windows">Windows 설치 파일</a>이나 <a href="#zip">Linux · WSL 배포판</a>을 사용하거나,
                 <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">연구실</a>로 문의해 주세요.</div>
             <div class="warn i18n-en"><strong>Requires access to the source repository.</strong> The NextSIM source repository is
                 private for now, so the <span class="mono">git clone</span> below only works for accounts that have been granted
@@ -901,14 +901,14 @@ NEXTSIM_WORKSPACE=~/nextsim-data ./start_web.sh</pre>
                 <tr><th>항목</th><th>요구</th><th>비고</th></tr>
                 <tr><td>OS</td><td>Linux 또는 WSL</td><td>개발·검증이 이 환경에서 이뤄집니다.</td></tr>
                 <tr><td>CPU</td><td><strong>AVX2 지원 x86-64</strong></td>
-                    <td>빌드 옵션에 <span class="mono">-mavx -mavx2</span> 가 강제되어 있습니다.
+                    <td>빌드 옵션에 <span class="mono">-mavx -mavx2</span>가 고정되어 있습니다.
                         Haswell(2013) 이전 CPU나 ARM에서는 그대로 빌드되지 않습니다.</td></tr>
                 <tr><td>컴파일러</td><td>C++17 + OpenMP (g++ / clang++)</td>
-                    <td><span class="mono">-Wall -Werror</span> 가 기본이라 경고도 빌드를 멈춥니다.</td></tr>
+                    <td><span class="mono">-Wall -Werror</span>가 기본으로 켜져 있어 경고가 나도 빌드가 멈춥니다.</td></tr>
                 <tr><td>CMake</td><td><strong>3.21 이상</strong></td><td>아래 프리셋(<span class="mono">--preset</span>)을 쓰려면 필요합니다.</td></tr>
-                <tr><td>Git</td><td>서브모듈 포함</td><td>4개 서브모듈이 실제로 빌드에 필요합니다.</td></tr>
+                <tr><td>Git</td><td>서브모듈 포함</td><td>서브모듈 4개가 실제로 빌드에 필요합니다.</td></tr>
                 <tr><td>Python</td><td>3.10 이상 권장</td>
-                    <td>웹 서버만 쓰면 3.8+ 로도 동작하지만, <span class="mono">nextci</span> 클라이언트가 3.10+ 를 요구합니다.</td></tr>
+                    <td>웹 서버만 쓴다면 3.8 이상에서도 동작하지만, <span class="mono">nextci</span> 클라이언트는 3.10 이상이 필요합니다.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Item</th><th>Requirement</th><th>Notes</th></tr>
@@ -924,7 +924,7 @@ NEXTSIM_WORKSPACE=~/nextsim-data ./start_web.sh</pre>
                     <td>The web server alone works on 3.8+, but the <span class="mono">nextci</span> client needs 3.10+.</td></tr>
             </table></div>
             <p class="i18n-ko">Python 의존성은 <strong>Flask 하나뿐</strong>입니다
-                (<span class="mono">Visualizer/WebVisualization/requirements.txt</span>). 시작 스크립트가 없으면
+                (<span class="mono">Visualizer/WebVisualization/requirements.txt</span>). Flask가 없으면 시작 스크립트가
                 자동으로 설치합니다.</p>
             <p class="i18n-en">The only Python dependency is <strong>Flask</strong>
                 (<span class="mono">Visualizer/WebVisualization/requirements.txt</span>); the startup script installs
@@ -953,7 +953,7 @@ git submodule update --init --recursive
 <span class="c"># 2. Build, from the repository root</span>
 cmake --preset release --fresh -S Captain
 cmake --build build/captain/release -j</pre>
-            <p class="i18n-ko">결과 바이너리는 <span class="mono">build/captain/release/bin/</span> 에 생깁니다.
+            <p class="i18n-ko">결과 바이너리는 <span class="mono">build/captain/release/bin/</span>에 생성됩니다.
                 <strong>웹 서버가 기본으로 찾는 위치가 바로 여기</strong>이므로, 이 경로로 빌드하면 별도 설정 없이
                 Run 모드의 실행 버튼(<strong>Run Selected Network</strong>)이 동작합니다.</p>
             <p class="i18n-en">The binaries land in <span class="mono">build/captain/release/bin/</span>.
@@ -965,18 +965,18 @@ cmake --build build/captain/release -j</pre>
                 <span class="mono">release</span>, and <span class="mono">relwithdebinfo</span>. To build just one
                 binary, name the target:</p>
 <pre class="cmd">cmake --build build/captain/release --target UnitTestsSimulation -j</pre>
-            <div class="warn i18n-ko"><strong>README 의 빌드 방법은 오래됐습니다.</strong>
-                <span class="mono">cd Captain &amp;&amp; cmake . &amp;&amp; make</span> 는 소스 트리 안에 빌드
-                산출물을 만들고(<span class="mono">Captain/bin/</span>), 웹 서버는 그 경로를 보지 않습니다.
-                위의 프리셋 방식을 쓰세요.</div>
+            <div class="warn i18n-ko"><strong>README의 빌드 방법은 최신 내용이 아닙니다.</strong>
+                <span class="mono">cd Captain &amp;&amp; cmake . &amp;&amp; make</span>는 소스 트리 안에 빌드
+                산출물을 만들고(<span class="mono">Captain/bin/</span>), 웹 서버는 그 경로를 확인하지 않습니다.
+                위의 프리셋 방식을 사용하세요.</div>
             <div class="warn i18n-en"><strong>The README's build recipe is out of date.</strong>
                 <span class="mono">cd Captain &amp;&amp; cmake . &amp;&amp; make</span> builds in-source into
                 <span class="mono">Captain/bin/</span>, which the web server never reads. Use the preset workflow above.</div>
-            <div class="tip i18n-ko"><strong>서브모듈 주의.</strong> <span class="mono">NextSim_io</span> 는
-                <span class="mono">.gitmodules</span> 에 <span class="mono">main</span> 으로 적혀 있지만 실제 고정된
-                커밋은 <span class="mono">publictransit</span> 브랜치에 있습니다. 그래서
-                <span class="mono">git submodule update --remote</span> 는 쓰지 마세요 — 잘못된 브랜치를 가져옵니다.
-                <span class="mono">--init --recursive</span> 로 고정된 커밋을 그대로 받으면 됩니다.</div>
+            <div class="tip i18n-ko"><strong>서브모듈 주의.</strong> <span class="mono">NextSim_io</span>는
+                <span class="mono">.gitmodules</span>에 <span class="mono">main</span>으로 적혀 있지만 실제로 고정된
+                커밋은 <span class="mono">publictransit</span> 브랜치에 있습니다. 따라서
+                <span class="mono">git submodule update --remote</span>는 쓰지 마세요. 이 명령은 잘못된 브랜치를 가져옵니다.
+                <span class="mono">--init --recursive</span>로 고정된 커밋을 그대로 받으면 됩니다.</div>
             <div class="tip i18n-en"><strong>A submodule caveat.</strong> <span class="mono">.gitmodules</span> lists
                 <span class="mono">main</span> for <span class="mono">NextSim_io</span>, but the pinned commit lives
                 on <span class="mono">publictransit</span>. Avoid
@@ -986,13 +986,13 @@ cmake --build build/captain/release -j</pre>
             <h3><span class="i18n-ko">웹 서버 실행</span><span class="i18n-en">Running the web server</span></h3>
 <pre class="cmd">cd NextSim
 ./start_visualizer.sh</pre>
-            <p class="i18n-ko">Flask 가 없으면 스크립트가 설치하고, 포트가 사용 중이면 비어 있는 포트를 찾아 올립니다.
-                직접 실행하려면 <span class="mono">python3 web_server.py</span> 도 됩니다.</p>
+            <p class="i18n-ko">Flask가 없으면 스크립트가 설치하고, 포트가 사용 중이면 비어 있는 포트를 찾아 서버를 실행합니다.
+                <span class="mono">python3 web_server.py</span>로 직접 실행할 수도 있습니다.</p>
             <p class="i18n-en">The script installs Flask if it is missing and, if the port is busy, scans upward for a
                 free one. You can also run <span class="mono">python3 web_server.py</span> directly.</p>
-            <div class="warn i18n-ko"><strong>웹 UI 는 엔진을 빌드하지 않습니다.</strong> Run 모드의 실행 버튼은
-                이미 빌드된 바이너리를 쓸 뿐이며, 없으면 그 사실을 알리고 멈춥니다. 소스를 고쳤다면 직접 다시
-                빌드하세요 — 또는 <span class="mono">NEXTSIM_WEB_BUILD=1</span> 로 자동 빌드를 켜면 됩니다.</div>
+            <div class="warn i18n-ko"><strong>웹 UI는 엔진을 빌드하지 않습니다.</strong> Run 모드의 실행 버튼은
+                이미 빌드된 바이너리를 사용할 뿐이며, 바이너리가 없으면 그 사실을 알리고 멈춥니다. 소스를 고쳤다면 직접 다시
+                빌드하세요. 또는 <span class="mono">NEXTSIM_WEB_BUILD=1</span>로 자동 빌드를 켜도 됩니다.</div>
             <div class="warn i18n-en"><strong>The web UI does not build the engine.</strong> The run button in Run
                 mode uses the binaries that are already there and stops with a message if one is missing. Rebuild
                 yourself after changing the source — or set <span class="mono">NEXTSIM_WEB_BUILD=1</span> to have it
@@ -1004,11 +1004,11 @@ cmake --build build/captain/release -j</pre>
         <!-- ================================================== 첫 실행 -->
         <section id="first-run">
             <h2><span class="i18n-ko">첫 시뮬레이션</span><span class="i18n-en">Your first simulation</span></h2>
-            <p class="i18n-ko">어떤 방법으로 설치했든 여기서부터는 같습니다. 서버가 뜨면 아래 주소가 열립니다.</p>
+            <p class="i18n-ko">어떤 방법으로 설치했든 여기서부터는 같습니다. 서버가 실행되면 아래 주소로 접속할 수 있습니다.</p>
             <p class="i18n-en">However you installed, from here on it is the same. Once the server is up, these addresses are live.</p>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>주소</th><th>내용</th></tr>
-                <tr><td class="mono">http://localhost:8000/nextsim/</td><td>NextSIM — Run 모드(실행·결과 재생) / Edit 모드(입력 편집, <span class="mono">?mode=edit</span>)</td></tr>
+                <tr><td class="mono">http://localhost:8000/nextsim/</td><td>NextSIM: Run 모드(실행·결과 재생) / Edit 모드(입력 편집, <span class="mono">?mode=edit</span>)</td></tr>
                 <tr><td class="mono">http://localhost:8000/docs/</td><td>이 사용자 가이드 (오프라인)</td></tr>
                 <tr><td class="mono">http://localhost:8000/health</td><td>서버 상태 JSON</td></tr>
             </table></div>
@@ -1019,15 +1019,15 @@ cmake --build build/captain/release -j</pre>
                 <tr><td class="mono">http://localhost:8000/health</td><td>Server status as JSON</td></tr>
             </table></div>
             <ol class="steps i18n-ko">
-                <li>NextSIM 을 엽니다 — 홈 화면의 <strong>NextSIM</strong> 카드를 누르거나 <span class="mono">http://localhost:8000/nextsim/</span>
-                    로 들어가면 Run 모드로 열립니다. 상단바의 네트워크 버튼(폴더 아이콘, 처음에는 <em>Select network</em>)을 눌러
-                    예제 네트워크 <span class="mono">test</span> 를 고릅니다. 지도에 도로망이 그려집니다.</li>
-                <li><strong>Simulation</strong> 패널에서 <strong>Target scenario</strong> 를 고르고
-                    <strong>Run Selected Network</strong> 를 누릅니다. 경로 생성부터 결과 적재까지 자동으로 진행되고,
-                    작은 예제라 몇 초 안에 끝납니다.</li>
-                <li><kbd>Space</kbd> 로 재생하고 슬라이더로 원하는 시각을 찾아 봅니다.</li>
-                <li>실제 도시 규모를 보고 싶다면 <span class="mono">bucheon</span> 을 돌려 보세요
-                    — 시나리오에 따라 수 분에서 수십 분 걸립니다.</li>
+                <li>NextSIM을 엽니다. 홈 화면의 <strong>NextSIM</strong> 카드를 누르거나 <span class="mono">http://localhost:8000/nextsim/</span>로
+                    접속하면 Run 모드로 열립니다. 상단바의 네트워크 버튼(폴더 아이콘, 처음에는 <em>Select network</em>)을 눌러
+                    예제 네트워크 <span class="mono">test</span>를 선택합니다. 지도에 도로망이 그려집니다.</li>
+                <li><strong>Simulation</strong> 패널에서 <strong>Target scenario</strong>를 고르고
+                    <strong>Run Selected Network</strong>를 누릅니다. 경로 생성부터 결과 적재까지 자동으로 진행되며,
+                    작은 예제이므로 몇 초 안에 끝납니다.</li>
+                <li><kbd>Space</kbd>로 재생하고, 슬라이더로 원하는 시각으로 이동해 봅니다.</li>
+                <li>실제 도시 규모의 시뮬레이션을 보고 싶다면 <span class="mono">bucheon</span>을 실행해 보세요.
+                    시나리오에 따라 수 분에서 수십 분이 걸립니다.</li>
             </ol>
             <ol class="steps i18n-en">
                 <li>Open NextSIM — the <strong>NextSIM</strong> card on the home page, or
@@ -1042,8 +1042,8 @@ cmake --build build/captain/release -j</pre>
                     depending on the scenario.</li>
             </ol>
             <div class="warn i18n-ko"><strong>실행이 끝나면 이전 결과는 새 결과로 바뀝니다.</strong>
-                <span class="mono">SimulationOutput/</span> 에는 마지막 결과 하나만 남습니다 (취소하거나 실패한 실행은
-                이전 결과를 그대로 되돌려 둡니다). 보관하고 싶은 결과는 실행 전에 다른 곳으로 복사해 두세요.</div>
+                <span class="mono">SimulationOutput/</span>에는 마지막 결과 하나만 남습니다(실행을 취소하거나 실행이 실패하면
+                이전 결과가 그대로 복원됩니다). 보관하고 싶은 결과는 실행 전에 다른 곳으로 복사해 두세요.</div>
             <div class="warn i18n-en"><strong>A finished run replaces the previous result.</strong>
                 <span class="mono">SimulationOutput/</span> keeps only the latest result (a cancelled or failed run puts
                 the previous one back). Copy anything you want to keep somewhere else before running again.</div>
@@ -1068,22 +1068,22 @@ cmake --build build/captain/release -j</pre>
         <section id="options">
             <h2><span class="i18n-ko">포트와 환경 변수</span><span class="i18n-en">Ports and environment variables</span></h2>
             <p class="i18n-ko">시작 스크립트(<span class="mono">start_web.sh</span>, <span class="mono">start_visualizer.sh</span>)가 읽는 변수입니다.
-                Windows 설치판은 포트·workspace 를 스스로 정하므로 <span class="mono">WEB_PORT</span>, <span class="mono">NEXTSIM_WORKSPACE</span>, <span class="mono">NEXTSIM_KEEP_EVENT_DBS</span> 정도만 의미가 있습니다.</p>
+                Windows 설치판은 포트와 workspace를 스스로 정하므로 <span class="mono">WEB_PORT</span>, <span class="mono">NEXTSIM_WORKSPACE</span>, <span class="mono">NEXTSIM_KEEP_EVENT_DBS</span> 정도만 효과가 있습니다.</p>
             <p class="i18n-en">These are read by the start scripts (<span class="mono">start_web.sh</span>, <span class="mono">start_visualizer.sh</span>).
                 The Windows build picks its own port and workspace, so only <span class="mono">WEB_PORT</span>, <span class="mono">NEXTSIM_WORKSPACE</span>, and <span class="mono">NEXTSIM_KEEP_EVENT_DBS</span> matter there.</p>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>변수</th><th>기본값</th><th>의미</th></tr>
-                <tr><td class="mono">WEB_PORT</td><td>8000</td><td>서버 포트. <span class="mono">PORT</span> 로도 지정할 수 있고 그쪽이 우선합니다.</td></tr>
-                <tr><td class="mono">AUTO_PORT</td><td>1</td><td>포트가 사용 중이면 다음 빈 포트를 찾습니다. <span class="mono">0</span> 이면 오류로 종료.</td></tr>
-                <tr><td class="mono">PORT_SCAN_RANGE</td><td>100</td><td>빈 포트를 몇 개까지 훑을지.</td></tr>
-                <tr><td class="mono">NEXTSIM_WORKSPACE</td><td>설치 폴더</td><td><span class="mono">SimulationInput/</span>, <span class="mono">SimulationOutput/</span> 을 둘 폴더.</td></tr>
-                <tr><td class="mono">NEXTSIM_OPEN_BROWSER</td><td>1</td><td><span class="mono">0</span> 이면 브라우저를 자동으로 열지 않습니다.</td></tr>
+                <tr><td class="mono">WEB_PORT</td><td>8000</td><td>서버 포트. <span class="mono">PORT</span>로도 지정할 수 있으며, 두 값이 모두 있으면 PORT 값이 우선합니다.</td></tr>
+                <tr><td class="mono">AUTO_PORT</td><td>1</td><td>포트가 사용 중이면 다음 빈 포트를 찾습니다. <span class="mono">0</span>이면 오류를 내고 종료합니다.</td></tr>
+                <tr><td class="mono">PORT_SCAN_RANGE</td><td>100</td><td>빈 포트를 찾을 때 검사할 포트 수.</td></tr>
+                <tr><td class="mono">NEXTSIM_WORKSPACE</td><td>설치 폴더</td><td><span class="mono">SimulationInput/</span>, <span class="mono">SimulationOutput/</span>을 둘 폴더.</td></tr>
+                <tr><td class="mono">NEXTSIM_OPEN_BROWSER</td><td>1</td><td><span class="mono">0</span>이면 브라우저를 자동으로 열지 않습니다.</td></tr>
                 <tr><td class="mono">NEXTSIM_BUILD_DIR</td><td>build/captain/release</td><td>실행할 바이너리가 <span class="mono">bin/</span> 아래에 있는 빌드 트리.</td></tr>
-                <tr><td class="mono">NEXTSIM_BIN_DIR</td><td>—</td><td>실행 파일 폴더를 직접 지정 (<span class="mono">NEXTSIM_BUILD_DIR</span> 보다 우선).</td></tr>
-                <tr><td class="mono">NEXTSIM_WEB_BUILD</td><td>0</td><td><span class="mono">1</span> 이면 실행 전에 <span class="mono">cmake --build</span> 를 한 번 돌립니다 (소스 빌드 전용).</td></tr>
+                <tr><td class="mono">NEXTSIM_BIN_DIR</td><td>—</td><td>실행 파일 폴더를 직접 지정합니다(<span class="mono">NEXTSIM_BUILD_DIR</span>보다 우선).</td></tr>
+                <tr><td class="mono">NEXTSIM_WEB_BUILD</td><td>0</td><td><span class="mono">1</span>이면 시뮬레이션 실행 전에 <span class="mono">cmake --build</span>를 한 번 실행합니다(소스 빌드 전용).</td></tr>
                 <tr><td class="mono">NEXTSIM_RUN_TIMEOUT_SECONDS</td><td>1800</td><td>파이프라인 각 단계의 제한 시간(초).</td></tr>
-                <tr><td class="mono">NEXTSIM_KEEP_EVENT_DBS</td><td>0</td><td><span class="mono">1</span> 이면 실행 후 원본 궤적 DB(<span class="mono">vehicle_events_*.db</span>)를 지우지 않고 남깁니다.</td></tr>
-                <tr><td class="mono">AUTO_FIX_LOCALHOST_FORWARDING</td><td>1</td><td>WSL 에서 localhost 접속이 안 되면 포워딩 설정을 자동으로 고칩니다.</td></tr>
+                <tr><td class="mono">NEXTSIM_KEEP_EVENT_DBS</td><td>0</td><td><span class="mono">1</span>이면 실행 후 원본 궤적 DB(<span class="mono">vehicle_events_*.db</span>)를 지우지 않고 남깁니다.</td></tr>
+                <tr><td class="mono">AUTO_FIX_LOCALHOST_FORWARDING</td><td>1</td><td>WSL에서 localhost로 접속되지 않으면 포워딩 설정을 자동으로 고칩니다.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Variable</th><th>Default</th><th>Meaning</th></tr>
@@ -1105,23 +1105,23 @@ cmake --build build/captain/release -j</pre>
         <section id="troubleshooting">
             <h2><span class="i18n-ko">설치 문제 해결</span><span class="i18n-en">Install troubleshooting</span></h2>
 
-            <h3><span class="i18n-ko">"Illegal instruction" 이 나거나 실행 파일이 바로 죽습니다</span><span class="i18n-en">"Illegal instruction", or the engine dies immediately</span></h3>
-            <p class="i18n-ko">CPU 가 AVX2 를 지원하지 않는 경우입니다. Linux 에서는
-                <span class="mono">grep -o 'avx2' /proc/cpuinfo | head -1</span> 로 확인할 수 있습니다.
-                소스 빌드라면 이 플래그는 <span class="mono">Captain/CMake/CompileOptions.cmake</span> 에 고정되어 있어
-                직접 손봐야 합니다.</p>
+            <h3><span class="i18n-ko">"Illegal instruction" 오류가 나거나 실행 파일이 바로 종료됩니다</span><span class="i18n-en">"Illegal instruction", or the engine dies immediately</span></h3>
+            <p class="i18n-ko">CPU가 AVX2를 지원하지 않는 경우입니다. Linux에서는
+                <span class="mono">grep -o 'avx2' /proc/cpuinfo | head -1</span> 명령으로 확인할 수 있습니다.
+                소스에서 빌드한다면 이 플래그가 <span class="mono">Captain/CMake/CompileOptions.cmake</span>에 고정되어 있으므로
+                이 파일을 직접 수정해야 합니다.</p>
             <p class="i18n-en">Your CPU lacks AVX2; on Linux check with
                 <span class="mono">grep -o 'avx2' /proc/cpuinfo | head -1</span>. For a source build the flag is
                 hard-coded in <span class="mono">Captain/CMake/CompileOptions.cmake</span>, so you have to edit that
                 file yourself.</p>
 
-            <h3><span class="i18n-ko">Run 이 "실행 파일이 없습니다" 로 실패합니다</span><span class="i18n-en">Run fails with "executable not found"</span></h3>
+            <h3><span class="i18n-ko">Run이 "실행 파일이 없습니다" 오류로 실패합니다</span><span class="i18n-en">Run fails with "executable not found"</span></h3>
             <p class="i18n-ko"><strong>Windows:</strong> 설치 폴더의 <span class="mono">engine\</span> 안에 exe 3개가 있는지,
                 백신이 격리하지 않았는지 확인하세요.
-                <strong>ZIP:</strong> <span class="mono">Captain/build/bin/</span> 에 실행 파일 3개가 있고 실행 권한이 있는지
-                확인하세요. <strong>소스 빌드:</strong> 웹 UI 는 엔진을 빌드하지 않습니다. 결과가
-                <span class="mono">build/captain/release/bin/</span> 에 있는지 보고, 다른 곳에 빌드했다면
-                <span class="mono">NEXTSIM_BIN_DIR</span> 로 알려 주세요.</p>
+                <strong>ZIP:</strong> <span class="mono">Captain/build/bin/</span>에 실행 파일 3개가 있고 실행 권한이 있는지
+                확인하세요. <strong>소스 빌드:</strong> 웹 UI는 엔진을 빌드하지 않습니다. 빌드 결과가
+                <span class="mono">build/captain/release/bin/</span>에 있는지 확인하고, 다른 곳에 빌드했다면
+                <span class="mono">NEXTSIM_BIN_DIR</span>로 그 위치를 지정하세요.</p>
             <p class="i18n-en"><strong>Windows:</strong> check that the three exe files are in the install folder's
                 <span class="mono">engine\</span> and that antivirus has not quarantined them.
                 <strong>ZIP:</strong> check that the three binaries are in <span class="mono">Captain/build/bin/</span>
@@ -1134,47 +1134,47 @@ cmake --build build/captain/release -j</pre>
 
             <h3><span class="i18n-ko"><span class="mono">python3: command not found</span> 또는 가상환경을 만들 수 없습니다</span><span class="i18n-en"><span class="mono">python3: command not found</span>, or no virtual environment</span></h3>
 <pre class="cmd">sudo apt update &amp;&amp; sudo apt install python3 python3-venv</pre>
-            <p class="i18n-ko">Flask 가 이미 있는 Python 을 쓰려면 <span class="mono">NEXTSIM_PYTHON=/path/to/python ./start_web.sh</span>.</p>
+            <p class="i18n-ko">Flask가 이미 설치된 Python을 사용하려면 <span class="mono">NEXTSIM_PYTHON=/path/to/python ./start_web.sh</span>처럼 실행합니다.</p>
             <p class="i18n-en">To use a Python that already has Flask: <span class="mono">NEXTSIM_PYTHON=/path/to/python ./start_web.sh</span>.</p>
 
-            <h3><span class="i18n-ko">WSL 에서 localhost 로 접속이 안 됩니다</span><span class="i18n-en">localhost doesn't work on WSL</span></h3>
-            <p class="i18n-ko">시작 스크립트가 기동 시 이를 감지해 WSL 포워딩 설정을 자동으로 고치려 시도합니다. 그래도 안 되면
-                터미널에 표시된 <span class="mono">http://&lt;IP&gt;:8000/</span> 주소로 접속하거나, Windows 쪽에서
-                <span class="mono">wsl --shutdown</span> 후 다시 시작하세요.</p>
+            <h3><span class="i18n-ko">WSL에서 localhost로 접속되지 않습니다</span><span class="i18n-en">localhost doesn't work on WSL</span></h3>
+            <p class="i18n-ko">시작 스크립트가 실행될 때 이 문제를 감지하고 WSL 포워딩 설정을 자동으로 고치려고 시도합니다. 그래도 접속되지 않으면
+                터미널에 표시된 <span class="mono">http://&lt;IP&gt;:8000/</span> 주소로 접속하거나, Windows에서
+                <span class="mono">wsl --shutdown</span>을 실행한 뒤 다시 시작하세요.</p>
             <p class="i18n-en">The start script detects this and tries to repair WSL's forwarding configuration. If it
                 persists, use the <span class="mono">http://&lt;IP&gt;:8000/</span> address printed in the terminal, or
                 run <span class="mono">wsl --shutdown</span> from Windows and start again.</p>
 
-            <h3><span class="i18n-ko">WSL 에서 너무 느립니다</span><span class="i18n-en">It is very slow on WSL</span></h3>
-            <p class="i18n-ko">NextSIM 폴더가 <span class="mono">/mnt/c/...</span> 아래에 있으면 파일 I/O 가 매우 느립니다.
+            <h3><span class="i18n-ko">WSL에서 너무 느립니다</span><span class="i18n-en">It is very slow on WSL</span></h3>
+            <p class="i18n-ko">NextSIM 폴더가 <span class="mono">/mnt/c/...</span> 아래에 있으면 파일 I/O가 매우 느립니다.
                 <span class="mono">~/</span> 아래로 옮기세요.</p>
             <p class="i18n-en">File I/O under <span class="mono">/mnt/c/...</span> is very slow. Move the NextSIM
                 folder under <span class="mono">~/</span>.</p>
 
-            <h3><span class="i18n-ko">포트 8000 이 이미 사용 중입니다</span><span class="i18n-en">Port 8000 is already in use</span></h3>
-            <p class="i18n-ko">기본 설정이면 빈 포트를 자동으로 찾아 올라가고, 실제 주소는 기동 로그에 표시됩니다.
-                포트를 직접 정하려면 <span class="mono">WEB_PORT=8100 ./start_web.sh</span>.</p>
+            <h3><span class="i18n-ko">포트 8000이 이미 사용 중입니다</span><span class="i18n-en">Port 8000 is already in use</span></h3>
+            <p class="i18n-ko">기본 설정에서는 서버가 빈 포트를 자동으로 찾아 실행되고, 실제 주소는 시작 로그에 표시됩니다.
+                포트를 직접 정하려면 <span class="mono">WEB_PORT=8100 ./start_web.sh</span>처럼 실행합니다.</p>
             <p class="i18n-en">By default it scans for a free port and prints the address it settled on. To choose
                 one yourself: <span class="mono">WEB_PORT=8100 ./start_web.sh</span>.</p>
 
             <h3><span class="i18n-ko">경고 때문에 빌드가 멈춥니다 (소스 빌드)</span><span class="i18n-en">A warning stops the build (source build)</span></h3>
-            <p class="i18n-ko"><span class="mono">-Werror</span> 가 기본이라 경고가 곧 오류입니다. 컴파일러 버전이
-                달라 새 경고가 나는 경우라면 CMake 옵션
-                <span class="mono">CUBBYFLOW_WARNINGS_AS_ERRORS=OFF</span> 로 끌 수 있습니다.</p>
+            <p class="i18n-ko"><span class="mono">-Werror</span>가 기본으로 켜져 있어 경고도 오류로 처리됩니다. 컴파일러 버전이
+                달라서 새 경고가 발생한다면 CMake 옵션
+                <span class="mono">CUBBYFLOW_WARNINGS_AS_ERRORS=OFF</span>로 이 설정을 끌 수 있습니다.</p>
             <p class="i18n-en">Warnings are errors by default. If a different compiler version raises new ones, turn
                 it off with the CMake option
                 <span class="mono">CUBBYFLOW_WARNINGS_AS_ERRORS=OFF</span>.</p>
 
-            <h3><span class="i18n-ko"><span class="mono">NextSim_io</span> 를 못 찾는다고 나옵니다 (소스 빌드)</span><span class="i18n-en">It can't find <span class="mono">NextSim_io</span> (source build)</span></h3>
+            <h3><span class="i18n-ko"><span class="mono">NextSim_io</span>를 찾을 수 없다는 오류가 나옵니다 (소스 빌드)</span><span class="i18n-en">It can't find <span class="mono">NextSim_io</span> (source build)</span></h3>
             <p class="i18n-ko">서브모듈을 받지 않은 상태입니다.
-                <span class="mono">git submodule update --init --recursive</span> 를 실행하세요.
-                <span class="mono">--remote</span> 는 쓰지 마세요 — 고정된 커밋이 아니라 다른 브랜치를 가져옵니다.</p>
+                <span class="mono">git submodule update --init --recursive</span>를 실행하세요.
+                <span class="mono">--remote</span>는 쓰지 마세요. 이 옵션을 쓰면 고정된 커밋이 아니라 다른 브랜치를 가져옵니다.</p>
             <p class="i18n-en">The submodules are not checked out. Run
                 <span class="mono">git submodule update --init --recursive</span>. Do not add
                 <span class="mono">--remote</span>; it would fetch a different branch instead of the pinned commit.</p>
 
-            <p class="i18n-ko">시뮬레이션 자체의 문제(차량이 안 나옴, 결과가 사라짐 등)는
-                <a href="index.html#troubleshooting">개요의 문제 해결</a>을 보세요.</p>
+            <p class="i18n-ko">차량이 나타나지 않거나 결과가 사라지는 등 시뮬레이션 자체의 문제는
+                <a href="index.html#troubleshooting">개요의 문제 해결</a>을 참고하세요.</p>
             <p class="i18n-en">For problems with the simulation itself — no vehicles, a vanished result — see
                 <a href="index.html#troubleshooting">troubleshooting in the overview</a>.</p>
         </section>

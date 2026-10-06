@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NextSIM — Features</title>
+<meta name="description" content="Hybrid microscopic–mesoscopic simulation, public transit, signals, virtual detectors, network import, DTA, NextCI, and checkpoints in NextSIM.">
+<meta name="theme-color" content="#05060f">
+<meta property="og:title" content="NextSIM — Features">
+<meta property="og:description" content="NextSIM의 하이브리드 계산 방식과 대중교통, 신호, 가상 검지기, 도로망 가져오기, DTA, NextCI, 체크포인트 기능을 소개합니다.">
+<meta property="og:image" content="assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+<script>
+    /* 언어를 body 파싱 전에 정해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       사용자 가이드(docs/)와 같은 키를 써서 사이트 전체에서 선택이 유지된다.
+       우선순위: ?lang= → 저장된 선택 → 브라우저 언어 → 한국어 */
+    (function () {
+        var root = document.documentElement;
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') lang = q;
+            if (!lang) {
+                var saved = window.localStorage.getItem('nextsim-doc-lang');
+                if (saved === 'en' || saved === 'ko') lang = saved;
+            }
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+        if (!lang) lang = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        root.setAttribute('data-lang', lang);
+        root.setAttribute('lang', lang);
+    })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span class="i18n-ko">본문으로 건너뛰기</span><span class="i18n-en">Skip to content</span></a>
+
+<!-- ============================================================ 헤더 (index · features · research 가 같은 헤더를 쓴다) -->
+<header class="topbar" id="top">
+    <div class="topbar__inner wrap">
+        <a class="brand" href="index.html">
+            <img src="assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="107" height="30">
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">
+            <span class="i18n-ko">메뉴</span><span class="i18n-en">Menu</span>
+        </button>
+        <nav class="sitenav" id="siteNav" aria-label="Site">
+            <a href="features.html" aria-current="page"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+            <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+            <a href="index.html#start"><span class="i18n-ko">시작하기</span><span class="i18n-en">Get started</span></a>
+            <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+            <div class="sitenav__end">
+                <div class="lang-switch" role="group" aria-label="Language / 언어">
+                    <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+                    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+                <a class="btn btn--accent btn--sm" href="docs/installation.html"><span class="i18n-ko">설치하기</span><span class="i18n-en">Install</span></a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+<header class="page-head">
+    <div class="wrap">
+        <h1 class="display display--xl"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></h1>
+        <p class="i18n-ko">NextSIM이 제공하는 계산 방식과 기능을 소개합니다. 화면 사용 방법은 사용자 가이드에서 자세히 안내합니다.
+            ‘소스 빌드’ 표시가 있는 기능은 Windows 설치 파일과 ZIP 배포판에 포함되어 있지 않으므로, 소스 코드를 직접 빌드해야 사용할 수 있습니다.</p>
+        <p class="i18n-en">What NextSIM computes and what it can do. The user guide explains how to use each screen.
+            Features marked “source build” are not in the Windows installer or the ZIP package; build from source to use them.</p>
+        <nav class="toc" aria-label="On this page">
+            <a href="#hybrid"><span class="i18n-ko">하이브리드 계산</span><span class="i18n-en">Hybrid simulation</span></a>
+            <a href="#transit"><span class="i18n-ko">대중교통</span><span class="i18n-en">Transit</span></a>
+            <a href="#signals"><span class="i18n-ko">신호</span><span class="i18n-en">Signals</span></a>
+            <a href="#detectors"><span class="i18n-ko">검지기</span><span class="i18n-en">Detectors</span></a>
+            <a href="#networks"><span class="i18n-ko">도로망</span><span class="i18n-en">Networks</span></a>
+            <a href="#dta">DTA</a>
+            <a href="#nextci">NextCI</a>
+            <a href="#checkpoints"><span class="i18n-ko">체크포인트</span><span class="i18n-en">Checkpoints</span></a>
+            <a href="#screens"><span class="i18n-ko">화면</span><span class="i18n-en">Screens</span></a>
+            <a href="#platforms"><span class="i18n-ko">지원 환경</span><span class="i18n-en">Platforms</span></a>
+        </nav>
+    </div>
+</header>
+
+<!-- ============================================================ 하이브리드 -->
+<section class="section section--first" id="hybrid">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">필요한 곳만 차량 단위로 계산합니다</span><span class="i18n-en">Vehicle-level detail only where it matters</span></h2>
+            <p class="i18n-ko">링크와 시간대마다 적용할 모형을 따로 지정할 수 있으며, 두 모형이 만나는 경계에서는 엔진이 차량을 한 모형에서 다른 모형으로 자동으로 옮깁니다.
+                NextCI를 사용하면 시뮬레이션 도중에도 링크의 모형을 바꿀 수 있습니다.</p>
+            <p class="i18n-en">Choose the model per link and per time period; at the boundary the engine moves vehicles from one model to
+                the other. With NextCI you can also switch a link's model while the simulation runs.</p>
+        </header>
+        <div class="compare">
+            <article>
+                <figure class="compare__figure" aria-hidden="true">
+                    <svg viewBox="0 0 520 220">
+                        <defs>
+                            <linearGradient id="trail" x1="0" x2="1">
+                                <stop offset="0" stop-color="#d1e4fa" stop-opacity=".45"/>
+                                <stop offset="1" stop-color="#d1e4fa" stop-opacity="0"/>
+                            </linearGradient>
+                        </defs>
+                        <rect class="svg-road" x="0" y="66" width="520" height="88"/>
+                        <rect class="svg-road" x="446" y="0" width="74" height="220"/>
+                        <path class="svg-lane" d="M0 88 H446 M0 132 H446"/>
+                        <path class="svg-center" d="M0 110 H446"/>
+                        <path class="svg-stop" d="M440 112 V154"/>
+                        <circle class="svg-signal" cx="440" cy="162" r="4"/>
+                        <!-- 서쪽 방향: 자유 주행 (뒤로 속도 꼬리) -->
+                        <g class="svg-trails" fill="url(#trail)">
+                            <rect x="84" y="76" width="40" height="2"/><rect x="202" y="76" width="40" height="2"/>
+                            <rect x="320" y="76" width="40" height="2"/><rect x="146" y="98" width="40" height="2"/>
+                            <rect x="268" y="98" width="40" height="2"/><rect x="392" y="98" width="40" height="2"/>
+                        </g>
+                        <g class="svg-cars">
+                            <rect x="64" y="72" width="20" height="10" rx="3"/>
+                            <rect x="182" y="72" width="20" height="10" rx="3"/>
+                            <rect x="300" y="72" width="20" height="10" rx="3"/>
+                            <rect x="126" y="94" width="20" height="10" rx="3"/>
+                            <rect x="248" y="94" width="20" height="10" rx="3"/>
+                            <rect x="372" y="94" width="20" height="10" rx="3"/>
+                        </g>
+                        <!-- 동행 방향: 적색 신호 앞 대기행렬 -->
+                        <g class="svg-cars svg-cars--queued">
+                            <rect x="414" y="116" width="20" height="10" rx="3"/>
+                            <rect x="389" y="116" width="20" height="10" rx="3"/>
+                            <rect x="364" y="116" width="20" height="10" rx="3"/>
+                            <rect x="339" y="116" width="20" height="10" rx="3"/>
+                            <rect x="414" y="138" width="20" height="10" rx="3"/>
+                            <rect x="389" y="138" width="20" height="10" rx="3"/>
+                            <rect x="336" y="137" width="48" height="12" rx="3" class="svg-bus"/>
+                            <rect x="250" y="116" width="20" height="10" rx="3"/>
+                        </g>
+                    </svg>
+                </figure>
+                <h3>Micro <small><span class="i18n-ko">미시 모형</span><span class="i18n-en">microscopic</span></small></h3>
+                <dl class="spec">
+                    <dt><span class="i18n-ko">계산 대상</span><span class="i18n-en">Represents</span></dt>
+                    <dd><span class="i18n-ko">차로를 주행하는 각 차량의 위치·속도·가속도</span><span class="i18n-en">Each vehicle's position, speed, and acceleration on its lane</span></dd>
+                    <dt><span class="i18n-ko">모형</span><span class="i18n-en">Models</span></dt>
+                    <dd><span class="i18n-ko">차량 추종 모형, 차로 변경 모형</span><span class="i18n-en">Car following, lane changing</span></dd>
+                    <dt><span class="i18n-ko">계산 주기</span><span class="i18n-en">Time step</span></dt>
+                    <dd><span class="i18n-ko">0.1초</span><span class="i18n-en">0.1 s</span></dd>
+                    <dt><span class="i18n-ko">결과</span><span class="i18n-en">Output</span></dt>
+                    <dd><span class="i18n-ko">차량 궤적과 차로별 주행 상태</span><span class="i18n-en">Vehicle trajectories, lane-level detail</span></dd>
+                </dl>
+            </article>
+
+            <article>
+                <figure class="compare__figure" aria-hidden="true">
+                    <svg viewBox="0 0 520 220">
+                        <rect class="svg-road" x="0" y="80" width="520" height="60"/>
+                        <g class="svg-cells">
+                            <rect x="6"   y="86" width="57" height="48" rx="4" style="--c: var(--cg-1)"/>
+                            <rect x="69"  y="86" width="57" height="48" rx="4" style="--c: var(--cg-1)"/>
+                            <rect x="132" y="86" width="57" height="48" rx="4" style="--c: var(--cg-2)"/>
+                            <rect x="195" y="86" width="57" height="48" rx="4" style="--c: var(--cg-3)"/>
+                            <rect x="258" y="86" width="57" height="48" rx="4" style="--c: var(--cg-5)"/>
+                            <rect x="321" y="86" width="57" height="48" rx="4" style="--c: var(--cg-4)"/>
+                            <rect x="384" y="86" width="57" height="48" rx="4" style="--c: var(--cg-3)"/>
+                            <rect x="447" y="86" width="57" height="48" rx="4" style="--c: var(--cg-2)"/>
+                        </g>
+                        <g class="svg-counts">
+                            <text x="34" y="116">3</text><text x="97" y="116">4</text><text x="160" y="116">7</text>
+                            <text x="223" y="116">11</text><text x="286" y="116">16</text><text x="349" y="116">14</text>
+                            <text x="412" y="116">10</text><text x="475" y="116">6</text>
+                        </g>
+                        <g class="svg-flow">
+                            <path d="M30 58 H490"/><path d="M482 52 L492 58 L482 64"/>
+                        </g>
+                    </svg>
+                </figure>
+                <h3>Meso <small><span class="i18n-ko">중시 모형</span><span class="i18n-en">mesoscopic</span></small></h3>
+                <dl class="spec">
+                    <dt><span class="i18n-ko">계산 대상</span><span class="i18n-en">Represents</span></dt>
+                    <dd><span class="i18n-ko">링크를 여러 셀로 나눈 뒤, 각 셀에 있는 차량 대수</span><span class="i18n-en">Links are split into cells; each cell keeps only a vehicle count</span></dd>
+                    <dt><span class="i18n-ko">모형</span><span class="i18n-en">Models</span></dt>
+                    <dd><span class="i18n-ko">셀 사이의 유입·유출 흐름, 확률적 차로 변경</span><span class="i18n-en">Flow between cells, probabilistic lane changing</span></dd>
+                    <dt><span class="i18n-ko">계산 주기</span><span class="i18n-en">Time step</span></dt>
+                    <dd><span class="i18n-ko">5초</span><span class="i18n-en">5 s</span></dd>
+                    <dt><span class="i18n-ko">결과</span><span class="i18n-en">Output</span></dt>
+                    <dd><span class="i18n-ko">적은 계산량으로 구한 링크 단위 교통 상태</span><span class="i18n-en">Link-level traffic state at a low cost</span></dd>
+                </dl>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ 기능별 설명 -->
+<section class="section">
+    <div class="wrap">
+        <div class="rows">
+        <section class="row" id="transit">
+            <h2 class="row__title"><span class="i18n-ko">대중교통</span><span class="i18n-en">Public transit</span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">버스·TRT·트램·철도 노선을 도로 교통과 같은 네트워크에서 계산합니다. 승객 수요를 입력하면 승객이 정류장에서 기다렸다가 차량에 타고 내리는 과정까지 시뮬레이션합니다.</p>
+                <p class="i18n-ko">Run 모드의 BIMS 화면에서는 정류장마다 기다리는 승객 수, 승하차 인원, 차내 인원이 시간에 따라 어떻게 변하는지 확인할 수 있습니다.</p>
+                <p class="i18n-en">Bus, TRT, tram, and rail lines run in the same network as road traffic. With passenger demand, passengers wait at stops and board and alight vehicles.</p>
+                <p class="i18n-en">The BIMS view in Run mode shows how waiting, boarding, alighting, and on-board passengers change over time at each stop.</p>
+                <a class="textlink" href="docs/visualizer-guide.html"><span class="i18n-ko">Run 모드 가이드</span><span class="i18n-en">Run mode guide</span> →</a>
+            </div>
+        </section>
+        <section class="row" id="signals">
+            <h2 class="row__title"><span class="i18n-ko">신호</span><span class="i18n-en">Signals</span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">교차로마다 신호 현시와 신호 계획을 정의하고, 시간대별 운영 계획(TOD)으로 시간대에 따라 다른 계획을 적용합니다.</p>
+                <p class="i18n-ko">결과를 재생할 때는 실행에 사용한 시나리오를 기준으로 신호 상태를 표시합니다.</p>
+                <p class="i18n-en">Define phases and signal plans per junction, and apply different plans by time of day with TOD schedules.</p>
+                <p class="i18n-en">Replays show signal states for the scenario that produced the result.</p>
+                <a class="textlink" href="docs/editor-guide.html"><span class="i18n-ko">Edit 모드 가이드</span><span class="i18n-en">Edit mode guide</span> →</a>
+            </div>
+        </section>
+        <section class="row" id="detectors">
+            <h2 class="row__title"><span class="i18n-ko">가상 검지기</span><span class="i18n-en">Virtual detectors</span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">E1(지점)·E2(구간)·E3(영역) 검지기를 네트워크에 설치하면 교통량, 점유율, 통행시간을 현장 관측 자료와 같은 형식으로 기록합니다.</p>
+                <p class="i18n-ko">시뮬레이션 결과를 실측 자료와 비교하거나, 대안별 지표를 같은 기준으로 집계할 때 사용할 수 있습니다.</p>
+                <p class="i18n-en">E1 (point), E2 (section), and E3 (area) detectors record flow, occupancy, and travel time in the same form as field data,</p>
+                <p class="i18n-en">so results can be compared with measurements, or alternatives can be scored on the same terms.</p>
+            </div>
+        </section>
+        <section class="row" id="networks">
+            <h2 class="row__title"><span class="i18n-ko">실제 도로망 가져오기</span><span class="i18n-en">Real road networks</span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">국가표준 노드링크 데이터나 OpenStreetMap 데이터에서 도로망을 불러와 네트워크를 만든 뒤, 차로와 교차로 연결을 바로 편집할 수 있습니다.</p>
+                <p class="i18n-ko">테스트용 무작위 네트워크를 생성할 수도 있고, 네트워크를 ZIP 패키지로 내보내 다른 사람과 공유할 수도 있습니다.</p>
+                <p class="i18n-en">Build a network from Korea's standard node-link data or OpenStreetMap, then edit lanes and junction connections right away.</p>
+                <p class="i18n-en">You can also generate a random network for testing and export a network as a ZIP package to share it.</p>
+                <a class="textlink" href="docs/editor-guide.html"><span class="i18n-ko">Edit 모드 가이드</span><span class="i18n-en">Edit mode guide</span> →</a>
+            </div>
+        </section>
+        <section class="row" id="dta">
+            <h2 class="row__title"><span class="i18n-ko">동적 통행 배정(DTA)</span><span class="i18n-en">Dynamic traffic assignment (DTA)</span> <span class="tag"><span class="i18n-ko">미리보기</span><span class="i18n-en">preview</span></span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">시뮬레이션을 반복 실행하면서 기점과 종점 사이의 경로 선택 비율이 수렴할 때까지 통행을 배정합니다.</p>
+                <p class="i18n-ko">반복할 때마다 수렴 지표가 어떻게 변하는지, 링크별·경로별 결과가 어떻게 달라지는지 웹 화면에서 확인할 수 있습니다.</p>
+                <p class="i18n-en">Repeat the simulation until route shares between origins and destinations converge.</p>
+                <p class="i18n-en">The browser shows how the convergence measure and the link and route results change from one iteration to the next.</p>
+            </div>
+        </section>
+        <section class="row" id="nextci">
+            <h2 class="row__title"><span class="i18n-ko">NextCI</span><span class="i18n-en">NextCI</span> <span class="tag"><span class="i18n-ko">소스 빌드</span><span class="i18n-en">source build</span></span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">NextCI는 TCP 통신으로 시뮬레이션을 외부에서 제어하는 인터페이스입니다. Python 클라이언트로 시뮬레이션을 한 스텝씩 진행하면서 링크·차로·셀·검지기 상태를 조회하고, 링크의 계산 단계를 micro와 meso 사이에서 바꿀 수 있습니다.</p>
+                <p class="i18n-ko">강화학습 환경을 구성하거나 다른 시뮬레이터와 연동하는 실험에 사용할 수 있습니다. 함수 88개를 레퍼런스로 정리했고, 따라 해 볼 수 있는 튜토리얼 4편을 제공합니다.</p>
+                <p class="i18n-en">NextCI controls the simulation from outside over TCP. With the Python client you step the simulation, query links, lanes, cells, and detectors, and switch links between micro and meso.</p>
+                <p class="i18n-en">Use it to build reinforcement-learning environments or to couple NextSIM with other simulators. The reference covers 88 functions, and four tutorials walk through common tasks.</p>
+                <a class="textlink" href="docs/nextci-guide.html"><span class="i18n-ko">NextCI 가이드</span><span class="i18n-en">NextCI guide</span> →</a>
+            </div>
+        </section>
+        <section class="row" id="checkpoints">
+            <h2 class="row__title"><span class="i18n-ko">체크포인트</span><span class="i18n-en">Checkpoints</span> <span class="tag"><span class="i18n-ko">소스 빌드</span><span class="i18n-en">source build</span></span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">원하는 시점의 시뮬레이션 상태를 저장해 두고 언제든 그 시점으로 되돌아갈 수 있습니다. 같은 시점에서 여러 제어안을 각각 실행하여 결과를 비교할 수 있습니다.</p>
+                <p class="i18n-ko">체크포인트는 난수 상태를 저장하지 않으므로, 되돌아간 뒤의 결과는 실행할 때마다 조금씩 다를 수 있습니다.</p>
+                <p class="i18n-en">Save the simulation state at any moment and return to it later, so several control strategies can be run from the same point and compared.</p>
+                <p class="i18n-en">Checkpoints do not store the random-number state, so runs after a restore may differ slightly.</p>
+                <a class="textlink" href="docs/nextci-tutorials.html#replications"><span class="i18n-ko">NextCI 튜토리얼</span><span class="i18n-en">NextCI tutorial</span> →</a>
+            </div>
+        </section>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ 화면 -->
+<section class="section" id="screens">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">브라우저에서 쓰는 화면</span><span class="i18n-en">The browser screens</span></h2>
+            <p class="i18n-ko">입력 데이터를 만드는 Edit 모드와 시뮬레이션을 실행하고 결과를 재생하는 Run 모드를 하나의 화면에서 전환하며 사용합니다.
+                화면별 사용 방법은 사용자 가이드에서 확인할 수 있습니다.</p>
+            <p class="i18n-en">One screen switches between Edit mode, where you build the inputs, and Run mode, where you run the
+                simulation and replay the result. The user guide explains each screen.</p>
+        </header>
+        <div class="shots">
+            <figure class="tool__media">
+                <img src="assets/img/editor.webp" alt="NextSIM in Edit mode, Mode workspace" loading="lazy" width="1600" height="1000">
+                <figcaption><span class="i18n-ko">Edit 모드의 Mode 화면입니다. 이 화면에서 링크마다 micro 또는 meso를 지정합니다.</span><span class="i18n-en">The Mode workspace in Edit mode, where each link is set to micro or meso.</span>
+                    <a href="docs/editor-guide.html"><span class="i18n-ko">Edit 모드 가이드</span><span class="i18n-en">Edit mode guide</span> →</a></figcaption>
+            </figure>
+            <figure class="tool__media">
+                <img src="assets/img/visualizer.webp" alt="NextSIM in Run mode, links coloured by congestion" loading="lazy" width="1600" height="1000">
+                <figcaption><span class="i18n-ko">Run 모드에서 08:08:00 시점의 링크 혼잡도를 색으로 표시한 화면입니다.</span><span class="i18n-en">Links coloured by congestion in Run mode, at 08:08:00.</span>
+                    <a href="docs/visualizer-guide.html"><span class="i18n-ko">Run 모드 가이드</span><span class="i18n-en">Run mode guide</span> →</a></figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ 지원 환경 -->
+<section class="section section--last" id="platforms">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">지원 환경</span><span class="i18n-en">Platforms</span></h2>
+            <p class="i18n-ko">시뮬레이션 엔진은 C++17과 OpenMP로 작성되어 여러 CPU 코어를 사용합니다. 어떤 방법으로 설치하든 <strong>AVX2를 지원하는 x86-64 CPU</strong>가 필요합니다.</p>
+            <p class="i18n-en">The engine is written in C++17 with OpenMP and uses several CPU cores. Every install method needs an <strong>x86-64 CPU with AVX2</strong>.</p>
+        </header>
+        <dl class="spec spec--wide">
+            <dt><span class="i18n-ko">Windows 설치 파일</span><span class="i18n-en">Windows installer</span></dt>
+            <dd><span class="i18n-ko">Windows 10/11 64비트. Python, WSL, Docker를 따로 설치할 필요가 없습니다.</span><span class="i18n-en">64-bit Windows 10 and 11. No Python, WSL, or Docker needed.</span></dd>
+            <dt><span class="i18n-ko">Linux·WSL 배포판</span><span class="i18n-en">Linux and WSL package</span></dt>
+            <dd><span class="i18n-ko">미리 빌드된 ZIP 파일의 압축을 풀고 스크립트 하나만 실행하면 됩니다.</span><span class="i18n-en">Unpack the prebuilt ZIP and run one script.</span></dd>
+            <dt>Docker</dt>
+            <dd><span class="i18n-ko">Docker가 설치되어 있다면 운영체제와 관계없이 사용할 수 있습니다. 소스 저장소 접근 권한이 필요합니다.</span><span class="i18n-en">Anywhere Docker runs. Needs access to the source repository.</span></dd>
+            <dt><span class="i18n-ko">소스 빌드</span><span class="i18n-en">Build from source</span></dt>
+            <dd><span class="i18n-ko">엔진을 수정하거나 NextCI를 사용할 때 선택합니다. 소스 저장소 접근 권한이 필요합니다.</span><span class="i18n-en">To change the engine or use NextCI. Needs access to the source repository.</span></dd>
+        </dl>
+        <p class="more"><a class="textlink" href="docs/installation.html"><span class="i18n-ko">설치 가이드</span><span class="i18n-en">Installation guide</span> →</a></p>
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer__row">
+            <span>NextSIM · KAIST AIxMobility Lab</span>
+            <nav aria-label="Footer">
+                <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+                <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+                <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+                <a href="docs/installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a>
+                <a href="https://github.com/AIxMobility/nextsim-web/releases/latest" target="_blank" rel="noopener"><span class="i18n-ko">다운로드</span><span class="i18n-en">Downloads</span></a>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

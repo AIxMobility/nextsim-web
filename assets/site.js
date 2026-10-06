@@ -352,3 +352,30 @@
     }
     start();
 })();
+
+// ---------------------------------------------------------------- 홍보 영상 자리
+// <div class="video" data-youtube="영상 ID"> 또는 data-src="assets/video/x.mp4" 이면 그 자리에 플레이어를 넣는다.
+// 둘 다 비어 있으면 "준비 중" 안내를 그대로 둔다.
+(function () {
+    document.querySelectorAll('.video').forEach((box) => {
+        const id = (box.dataset.youtube || '').trim();
+        const src = (box.dataset.src || '').trim();
+        if (id) {
+            const frame = document.createElement('iframe');
+            frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?rel=0`;
+            frame.title = 'NextSIM';
+            frame.loading = 'lazy';
+            frame.allow = 'accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen';
+            frame.allowFullscreen = true;
+            box.replaceChildren(frame);
+        } else if (src) {
+            const video = document.createElement('video');
+            video.src = src;
+            video.controls = true;
+            video.preload = 'metadata';
+            video.playsInline = true;
+            if (box.dataset.poster) video.poster = box.dataset.poster;
+            box.replaceChildren(video);
+        }
+    });
+})();

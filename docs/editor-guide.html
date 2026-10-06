@@ -608,8 +608,8 @@
     <main class="content">
         <div class="masthead">
             <h1><span class="i18n-ko">NextSIM Edit 모드 사용자 가이드</span><span class="i18n-en">NextSIM Edit Mode User Guide</span></h1>
-            <p class="i18n-ko">NextSIM 화면의 <strong>Edit 모드</strong>에서 NextSIM 하이브리드 교통 시뮬레이터의 입력 데이터를
-                브라우저에서 시각적으로 만들고 편집합니다. 도로 네트워크부터 수요(OD), 신호, 대중교통, 이벤트, 시나리오까지 —
+            <p class="i18n-ko">NextSIM 화면의 <strong>Edit 모드</strong>에서는 NextSIM 하이브리드 교통 시뮬레이터의 입력 데이터를
+                브라우저에서 시각적으로 만들고 편집할 수 있습니다. 도로 네트워크부터 수요(OD), 신호, 대중교통, 이벤트, 시나리오까지,
                 시뮬레이션에 필요한 모든 입력 파일을 하나의 지도 위에서 다룹니다. 시뮬레이션 실행과 결과 재생은
                 같은 화면의 <strong>Run 모드</strong>가 맡습니다.</p>
             <p class="i18n-en"><strong>Edit mode</strong> of the NextSIM page is where you build and edit the input data
@@ -636,8 +636,8 @@
                 the bundle of input files one simulation needs, and each <strong>workspace</strong> in Edit mode
                 owns one of those files. Every workspace shares the same map canvas.</p>
             <p class="i18n-ko">NextSIM 화면에는 <strong>Run 모드</strong>(실행·결과 재생)와 <strong>Edit 모드</strong>(입력 편집)가
-                있고, 둘은 동시에 켜지지 않습니다. 상단바의 <strong>Run | Edit</strong> 전환으로 오가며, 두 모드는 같은
-                네트워크 폴더를 엽니다 — 전환할 때의 규칙은 <a href="#switch-to-run">Run 모드로 전환</a>을 보세요.</p>
+                있고, 두 모드가 동시에 켜지지는 않습니다. 상단바의 <strong>Run | Edit</strong> 전환으로 두 모드를 오가며, 두 모드는 같은
+                네트워크 폴더를 엽니다. 전환할 때 적용되는 규칙은 <a href="#switch-to-run">Run 모드로 전환</a>을 참고하세요.</p>
             <p class="i18n-en">The NextSIM page has two modes that are never on at the same time: <strong>Run mode</strong>
                 (running and replaying) and <strong>Edit mode</strong> (editing inputs). The <strong>Run | Edit</strong>
                 switch in the top bar moves between them, and both work on the same network folder — see
@@ -645,19 +645,19 @@
 
             <h3><span class="i18n-ko">화면 구성</span><span class="i18n-en">Layout</span></h3>
             <ul class="i18n-ko">
-                <li><strong>상단바</strong> — 좌측에 NextSIM 로고, <strong>Run | Edit</strong> 모드 전환,
-                    <strong>네트워크 버튼</strong>(폴더 아이콘과 지금 네트워크 이름 — 누르면 <strong>Network</strong> 창:
-                    네트워크 선택·추가·패키지 내보내기·다른 이름으로 저장·백업)과
-                    워크스페이스 선택 스트립(Scenario ~ Events)이, <strong>우측 끝에</strong>
+                <li><strong>상단바</strong>: 좌측에는 NextSIM 로고, <strong>Run | Edit</strong> 모드 전환,
+                    <strong>네트워크 버튼</strong>(폴더 아이콘과 현재 네트워크 이름이 표시되며, 누르면 <strong>Network</strong> 창이 열립니다.
+                    이 창에서 네트워크 선택·추가·패키지 내보내기·다른 이름으로 저장·백업을 할 수 있습니다)과
+                    워크스페이스 선택 스트립(Scenario ~ Events)이 있고, <strong>우측 끝에는</strong>
                     <strong>Save XML</strong>(현재 워크스페이스용) · <strong>Display</strong>(표시 옵션) ·
-                    <strong>Help</strong> 가 모여 있습니다.</li>
-                <li><strong>도구 패널</strong> — 상단바 바로 아래 중앙에 뜨는 플로팅 패널로,
+                    <strong>Help</strong>가 모여 있습니다.</li>
+                <li><strong>도구 패널</strong>: 상단바 바로 아래 중앙에 떠 있는 플로팅 패널로,
                     현재 워크스페이스의 편집 버튼(Add/Reload 등)이 여기에 모여 있습니다.
                     워크스페이스를 바꾸면 패널 내용도 함께 바뀝니다.</li>
-                <li><strong>지도(캔버스)</strong> — 편집 대상 네트워크가 그려지는 중앙 영역.
+                <li><strong>지도(캔버스)</strong>: 편집할 네트워크가 그려지는 중앙 영역입니다.
                     Network 워크스페이스에서는 좌측에 세로 도구 레일이 추가로 나타납니다.</li>
-                <li><strong>에디터 패널</strong> — 속성 표·인스펙터가 담긴 패널.
-                    워크스페이스에 따라 우측 도킹(Network·Signal·Station 등) 또는
+                <li><strong>에디터 패널</strong>: 속성 표와 인스펙터가 담긴 패널입니다.
+                    워크스페이스에 따라 우측에 도킹된 패널(Network·Signal·Station 등) 또는
                     지도를 덮는 반투명 오버레이(OD·Scenario)로 열립니다.</li>
             </ul>
             <ul class="i18n-en">
@@ -678,7 +678,7 @@
             </ul>
 
             <div class="tip i18n-ko"><strong>상태 메시지는 팝업으로.</strong> 저장 완료·검증 경고·오류 같은 실시간
-                피드백은 패널 안이 아니라 <strong>화면 우측 상단 토스트</strong>로 뜹니다. 같은 메시지가 연달아
+                피드백은 패널 안이 아니라 <strong>화면 우측 상단 토스트</strong>로 표시됩니다. 같은 메시지가 연달아
                 발생하면 한 번만 표시됩니다.</div>
             <div class="tip i18n-en"><strong>Status shows as a toast.</strong> Live feedback — save confirmations,
                 validation warnings, errors — appears as a <strong>toast in the top-right corner</strong>, not
@@ -687,7 +687,7 @@
             <div class="filegrid">
                 <div class="filecard"><span class="ws-badge" style="--ws: var(--ws-network)">Network</span>
                     <div class="files"><span class="file-chip">network.xml</span></div>
-                    <p class="i18n-ko">노드·링크·차로·커넥션 — 도로망 기하와 위상</p>
+                    <p class="i18n-ko">노드·링크·차로·커넥션: 도로망의 기하 구조와 위상</p>
                     <p class="i18n-en">Nodes, links, lanes, connections — road geometry and topology</p></div>
                 <div class="filecard"><span class="ws-badge" style="--ws: var(--ws-od)">OD Matrix</span>
                     <div class="files"><span class="file-chip">odmatrix.xml</span></div>
@@ -699,11 +699,11 @@
                     <p class="i18n-en">Per-period simulation method for each link (micro / meso)</p></div>
                 <div class="filecard"><span class="ws-badge" style="--ws: var(--ws-scenario)">Scenario</span>
                     <div class="files"><span class="file-chip">config_scenario.json</span></div>
-                    <p class="i18n-ko">시뮬레이션 실행 단위 — 시간 범위, 참조 입력, 기능 토글</p>
+                    <p class="i18n-ko">시뮬레이션 실행 단위: 시간 범위, 참조 입력, 기능 토글</p>
                     <p class="i18n-en">The unit of a simulation run — time range, referenced inputs, feature toggles</p></div>
                 <div class="filecard"><span class="ws-badge" style="--ws: var(--ws-signal)">Signal</span>
                     <div class="files"><span class="file-chip">signal.xml</span> <span class="file-chip">signalTOD.xml</span></div>
-                    <p class="i18n-ko">교차로 신호 — 현시(turn/phase), 플랜, 시간대(TOD) 배정</p>
+                    <p class="i18n-ko">교차로 신호: 현시(turn/phase), 플랜, 시간대(TOD) 배정</p>
                     <p class="i18n-en">Intersection signals — turns, phases, plans, time-of-day assignment</p></div>
                 <div class="filecard"><span class="ws-badge" style="--ws: var(--ws-station)">Station</span>
                     <div class="files"><span class="file-chip">roadStation.xml</span> <span class="file-chip">railStation.xml</span></div>
@@ -715,7 +715,7 @@
                     <p class="i18n-en">Bus / TRT / tram lines and rail lines with timetables</p></div>
                 <div class="filecard"><span class="ws-badge" style="--ws: var(--ws-infra)">Infrastructure</span>
                     <div class="files"><span class="file-chip">detector.xml</span></div>
-                    <p class="i18n-ko">도로 검지기 — E1(단면) · E2(구간) · E3(영역)</p>
+                    <p class="i18n-ko">도로 검지기: E1(단면) · E2(구간) · E3(영역)</p>
                     <p class="i18n-en">Road detectors — E1 (point), E2 (section), E3 (area)</p></div>
                 <div class="filecard"><span class="ws-badge" style="--ws: var(--ws-events)">Events</span>
                     <div class="files"><span class="file-chip">events.xml</span></div>
@@ -725,10 +725,10 @@
 
             <h3><span class="i18n-ko">저장 모델</span><span class="i18n-en">How saving works</span></h3>
             <p class="i18n-ko">편집 내용은 워크스페이스별로 우측 상단의 <strong>Save XML</strong> 버튼을 눌러야 파일에
-                기록됩니다. 저장 전의 변경은 브라우저 안에만 있으며, 다른 워크스페이스로 이동하려고 하면
+                기록됩니다. 저장하기 전의 변경 사항은 브라우저 안에만 남아 있으며, 다른 워크스페이스로 이동하려고 하면
                 <strong>저장 / 저장 안 함 / 취소</strong>를 묻는 창이 뜹니다. "저장 안 함"을 고르면 서버에
                 저장된 파일을 다시 불러와 편집 전 상태로 되돌립니다. 폴더를 바꾸거나 페이지를 닫을 때도
-                같은 보호가 걸리며, <strong>Events 워크스페이스도 여기에 포함됩니다</strong>.
+                같은 확인 절차가 적용되며, <strong>Events 워크스페이스도 여기에 포함됩니다</strong>.
                 Run 모드로 전환할 때는 저장하지 않은 워크스페이스를 한 창에 모아 묻습니다
                 (<a href="#switch-to-run">Run 모드로 전환</a>).
                 저장할 때마다 이전 파일이 자동으로 백업되므로(<a href="#backups">저장 백업과 복원</a>)
@@ -753,13 +753,13 @@
         <section id="getting-started">
             <h2><span class="i18n-ko">설치와 첫 실행</span><span class="i18n-en">Install and first run</span></h2>
             <ol class="steps i18n-ko">
-                <li>NextSIM 을 설치하고 서버를 띄웁니다 — 방법은 <a href="installation.html">설치 가이드</a>를 보세요
-                    (소스 저장소라면 루트에서 <code>./start_visualizer.sh</code>).</li>
-                <li>브라우저에서 <code>http://localhost:8000/nextsim/?mode=edit</code> 를 엽니다.
-                    <code>/nextsim/</code> 은 Run 모드로 열리므로, 상단바의 <strong>Edit</strong> 를 눌러 전환해도 됩니다.
+                <li>NextSIM을 설치하고 서버를 실행합니다. 방법은 <a href="installation.html">설치 가이드</a>를 참고하세요
+                    (소스 저장소라면 루트에서 <code>./start_visualizer.sh</code>를 실행합니다).</li>
+                <li>브라우저에서 <code>http://localhost:8000/nextsim/?mode=edit</code>를 엽니다.
+                    <code>/nextsim/</code>은 Run 모드로 열리므로, 상단바의 <strong>Edit</strong>을 눌러 전환해도 됩니다.
                     홈 화면(<code>/</code>)의 네트워크 카드에서 <strong>편집</strong>을 누르면 그 네트워크가 Edit 모드로 열립니다.
-                    네트워크까지 정해 열려면 <code>/nextsim/?mode=edit&amp;folder=SimulationInput/networks/&lt;이름&gt;</code>
-                    처럼 씁니다. 예전 주소 <code>/editor/</code> 는 <code>/nextsim/?mode=edit</code> 로 넘어갑니다(쿼리는 그대로).</li>
+                    특정 네트워크를 바로 열려면 <code>/nextsim/?mode=edit&amp;folder=SimulationInput/networks/&lt;이름&gt;</code>
+                    처럼 주소를 입력합니다. 예전 주소인 <code>/editor/</code>로 접속하면 <code>/nextsim/?mode=edit</code>로 이동하며, 쿼리는 그대로 유지됩니다.</li>
                 <li>상단바의 네트워크 버튼(폴더 아이콘, 처음에는 <em>Select network</em>)을 눌러
                     <strong>Network</strong> 창의 목록에서 네트워크 폴더를 선택합니다. <code>SimulationInput/networks/</code> 아래의
                     네트워크 폴더들이 이름으로 나열됩니다.</li>
@@ -781,24 +781,24 @@
 
             <h3><span class="i18n-ko">새 네트워크 추가하기</span><span class="i18n-en">Adding a network</span></h3>
             <p class="i18n-ko"><strong>Network → Add network</strong>를 누르면(네트워크를 고르기 전 빈 화면의
-                <strong>Add network</strong> 버튼도 같습니다) 만드는 방법을 고르는 <em>Add a network</em> 창이 뜹니다.
-                Run 모드에서 누르면 먼저 Edit 모드로 전환하며, 실행 중이거나 결과가 열려 있으면 전환 경고가 먼저 뜹니다.</p>
+                <strong>Add network</strong> 버튼도 같습니다) 네트워크를 만드는 방법을 고르는 <em>Add a network</em> 창이 뜹니다.
+                Run 모드에서 누르면 먼저 Edit 모드로 전환되며, 시뮬레이션이 실행 중이거나 결과가 열려 있으면 전환 경고가 먼저 뜹니다.</p>
             <ul class="i18n-ko">
-                <li><strong>New network folder</strong> — 이름을 입력하면 빈 템플릿 파일 세트(기본
-                    <span class="mono">parameter_xml/</span> 포함)가 든 폴더가 생깁니다. 빈 지도에서 Network
+                <li><strong>New network folder</strong>: 이름을 입력하면 빈 템플릿 파일 세트(기본
+                    <span class="mono">parameter_xml/</span> 포함)가 든 폴더가 만들어집니다. 빈 지도에서 Network
                     워크스페이스로 도로를 그리기 시작하면 됩니다.</li>
-                <li><strong>Import OpenStreetMap</strong> — 위경도 bbox 로 OSM 도로망을 가져옵니다
+                <li><strong>Import OpenStreetMap</strong>: 위경도 bbox로 지정한 영역의 OSM 도로망을 가져옵니다
                     (<a href="#import-osm">OpenStreetMap 가져오기</a>).</li>
-                <li><strong>Import Korean node-link</strong> — 국가표준노드링크 SHP 에서 영역을 잘라 만듭니다
+                <li><strong>Import Korean node-link</strong>: 국가표준노드링크 SHP에서 영역을 잘라 네트워크를 만듭니다
                     (<a href="#import-nodelink">표준노드링크 가져오기</a>). 실제 한국 도로망에서 시작하려면 이쪽이 훨씬 빠릅니다.</li>
-                <li><strong>Random network</strong> — 간선·곡선·제거 블록이 섞인 도시형 격자망을 만듭니다. 격자 크기·블록 길이·
-                    흔들림·곡률·일방통행 비율과 <em>Entry roads every n-th edge road</em>(가장자리 도로 n 개마다 바깥으로
-                    나가는 진출입로 — 그 끝이 수요가 드나드는 terminal 노드가 됩니다, 0 = 없음)를 정합니다. 같은 seed 와
-                    설정이면 항상 같은 망이 나오며, 수요는 만든 뒤 OD Matrix 워크스페이스에서 넣습니다.</li>
-                <li><strong>Import network package</strong> — 받은 네트워크 패키지(<span class="mono">.zip</span>)로 추가합니다
+                <li><strong>Random network</strong>: 간선·곡선·제거 블록이 섞인 도시형 격자망을 만듭니다. 격자 크기·블록 길이·
+                    흔들림·곡률·일방통행 비율과 <em>Entry roads every n-th edge road</em>(가장자리 도로 n개마다 바깥으로
+                    나가는 진출입로를 만들며, 그 끝이 수요가 드나드는 terminal 노드가 됩니다. 0이면 만들지 않습니다)를 정합니다. 같은 seed와
+                    설정이면 항상 같은 망이 만들어지며, 수요는 망을 만든 뒤 OD Matrix 워크스페이스에서 입력합니다.</li>
+                <li><strong>Import network package</strong>: 전달받은 네트워크 패키지(<span class="mono">.zip</span>)로 네트워크를 추가합니다
                     (<a href="#packages">패키지와 다른 이름으로 저장</a>).</li>
             </ul>
-            <p class="i18n-ko">새로 추가한 네트워크를 돌려 보려면 Edit 모드에서 저장한 뒤 Run 모드로 전환해 실행합니다.</p>
+            <p class="i18n-ko">새로 추가한 네트워크를 실행해 보려면 Edit 모드에서 저장한 뒤 Run 모드로 전환해 실행합니다.</p>
             <p class="i18n-en"><strong>Network → Add network</strong> (or the <strong>Add network</strong> button on the
                 empty screen shown before a network is picked) opens the <em>Add a network</em> chooser. Pressed in Run
                 mode, it switches to Edit mode first — with the switch warning if a run is in progress or a result
@@ -831,17 +831,17 @@
         <!-- ================================================== Run 모드로 전환 -->
         <section id="switch-to-run">
             <h2><span class="i18n-ko">Run 모드로 전환</span><span class="i18n-en">Switching to Run mode</span></h2>
-            <p class="i18n-ko">상단바의 <strong>Run</strong> 을 누르면 같은 네트워크가 Run 모드로 열립니다. 저장하지 않은 변경이
-                없으면 바로 넘어가고, 있으면 그 워크스페이스들을 나열한 <strong>Unsaved changes</strong> 창이 뜹니다.</p>
+            <p class="i18n-ko">상단바의 <strong>Run</strong>을 누르면 같은 네트워크가 Run 모드로 열립니다. 저장하지 않은 변경 사항이
+                없으면 바로 전환되고, 있으면 해당 워크스페이스들을 나열한 <strong>Unsaved changes</strong> 창이 뜹니다.</p>
             <p class="i18n-en"><strong>Run</strong> in the top bar opens the same network in Run mode. With nothing
                 unsaved it switches straight away; otherwise an <strong>Unsaved changes</strong> dialog lists the
                 workspaces with unsaved edits.</p>
             <ul class="i18n-ko">
-                <li><strong>Discard</strong> — 변경을 버리고 넘어갑니다. Run 모드는 마지막으로 저장된 네트워크를 씁니다.</li>
-                <li><strong>Save &amp; switch</strong> — 저장하지 않은 워크스페이스를 모두 저장한 뒤(Network 먼저) 넘어갑니다.
-                    하나라도 저장에 실패하면(검증 오류 등) Edit 모드에 남습니다 — 그 패널에 표시된 문제를 고친 뒤 다시 전환하세요.</li>
-                <li>오른쪽 위 <strong>X</strong> 또는 <kbd>Esc</kbd> — 창을 닫고 Edit 모드에 남습니다. 저장할 곳을 알려 주려고
-                    지금 보이는 <strong>Save XML</strong> 버튼이 잠깐 깜빡입니다.</li>
+                <li><strong>Discard</strong>: 변경 사항을 버리고 전환합니다. Run 모드는 마지막으로 저장된 네트워크를 사용합니다.</li>
+                <li><strong>Save &amp; switch</strong>: 저장하지 않은 워크스페이스를 모두 저장한 뒤(Network를 가장 먼저 저장) 전환합니다.
+                    하나라도 저장에 실패하면(검증 오류 등) Edit 모드에 남습니다. 해당 패널에 표시된 문제를 고친 뒤 다시 전환하세요.</li>
+                <li>오른쪽 위의 <strong>X</strong> 또는 <kbd>Esc</kbd>: 창을 닫고 Edit 모드에 남습니다. 어디에서 저장하면 되는지 알려 주기 위해
+                    현재 보이는 <strong>Save XML</strong> 버튼이 잠깐 깜빡입니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>Discard</strong> — drop the changes and switch; Run mode uses the network as last saved.</li>
@@ -851,10 +851,10 @@
                 <li><strong>X</strong> (top right) or <kbd>Esc</kbd> — close the dialog and stay in Edit mode. The
                     visible <strong>Save XML</strong> button pulses briefly to show where to save.</li>
             </ul>
-            <p class="i18n-ko">모드를 바꿀 때마다 지금 네트워크 폴더를 서버에서 다시 읽으므로, Run 모드에는 Edit 모드에서 저장한
+            <p class="i18n-ko">모드를 바꿀 때마다 현재 네트워크 폴더를 서버에서 다시 읽으므로, Run 모드에는 Edit 모드에서 저장한
                 내용이 그대로 보입니다. 지도 위치(화면)는 전환해도 유지됩니다. 편집을 저장하고 Run 모드로 넘어가면
                 <em>Your edits are saved. Run the simulation again to see their effect.</em> 알림이 뜹니다.
-                <span class="mono">network.xml</span> 을 고쳤다면 편집 전에 만든 결과를 열 때 네트워크가 바뀌었다는 경고가 뜨니,
+                <span class="mono">network.xml</span>을 고쳤다면 편집 전에 만든 결과를 열 때 네트워크가 바뀌었다는 경고가 뜨므로
                 다시 실행하세요 (<a class="doc-cross" href="visualizer-guide.html#switch-to-edit"
                 data-local="visualizer-guide.html#switch-to-edit"
                >Run 모드 가이드</a>).</p>
@@ -874,12 +874,12 @@
 
             <h3><span class="i18n-ko">화면 이동과 확대</span><span class="i18n-en">Pan and zoom</span></h3>
             <ul class="i18n-ko">
-                <li><strong>확대/축소</strong> — 마우스 휠 (커서 위치 기준)</li>
-                <li><strong>화면 이동(팬)</strong> — <kbd>Space</kbd>를 누른 채 왼쪽 버튼 드래그 (트랙패드도 같음),
-                    또는 마우스 가운데 버튼 드래그. Space 없이 하는 좌클릭 드래그는 워크스페이스별 편집 동작(박스 선택 등)에 쓰입니다.</li>
-                <li><strong>미니맵</strong> — 좌측 하단의 개요 지도. 현재 화면 위치가 사각형으로
+                <li><strong>확대/축소</strong>: 마우스 휠을 굴립니다(커서 위치 기준).</li>
+                <li><strong>화면 이동(팬)</strong>: <kbd>Space</kbd>를 누른 채 왼쪽 버튼으로 드래그하거나(트랙패드에서도 같습니다),
+                    마우스 가운데 버튼으로 드래그합니다. Space를 누르지 않은 좌클릭 드래그는 워크스페이스별 편집 동작(박스 선택 등)에 쓰입니다.</li>
+                <li><strong>미니맵</strong>: 좌측 하단에 있는 개요 지도입니다. 현재 화면 위치가 사각형으로
                     표시되고, 미니맵을 클릭·드래그하면 그 지점으로 이동합니다. ▾ 버튼으로 접을 수 있습니다.</li>
-                <li><strong>축척 막대</strong> — 좌측 하단에 현재 배율 기준 거리가 표시됩니다.</li>
+                <li><strong>축척 막대</strong>: 좌측 하단에 현재 배율을 기준으로 한 거리가 표시됩니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>Zoom</strong> — mouse wheel, centred on the cursor.</li>
@@ -893,42 +893,42 @@
             <h3><span class="i18n-ko">전역 검색</span><span class="i18n-en">Global search</span> <kbd>Ctrl</kbd>+<kbd>K</kbd></h3>
             <p class="i18n-ko">노드·링크·정류장·PT 노선·철도역·철도노선을 ID나 이름으로 찾습니다. 결과를 선택하면
                 해당 워크스페이스로 전환되고 지도가 그 위치로 이동하며 객체가 선택됩니다.
-                <kbd>↑</kbd><kbd>↓</kbd>로 이동, <kbd>Enter</kbd>로 확정, <kbd>Esc</kbd>로 닫기.</p>
+                <kbd>↑</kbd><kbd>↓</kbd>로 결과 사이를 이동하고, <kbd>Enter</kbd>로 확정하며, <kbd>Esc</kbd>로 검색 창을 닫습니다.</p>
             <p class="i18n-en">Finds nodes, links, stations, transit lines, rail stations, and rail lines by ID or
                 name. Choosing a result switches to the owning workspace, moves the map there, and selects the
                 object. <kbd>↑</kbd><kbd>↓</kbd> to move, <kbd>Enter</kbd> to confirm, <kbd>Esc</kbd> to close.</p>
 
             <h3><span class="i18n-ko">거리 측정</span><span class="i18n-en">Measuring distance</span></h3>
-            <p class="i18n-ko">좌측 하단 <strong>📏 Measure</strong> 버튼을 켜면 지도 클릭이 측정점 추가로 바뀝니다.
-                점을 이어 찍으면 총 거리(m/km)가 표시됩니다. 우클릭은 마지막 점 삭제,
-                <kbd>Esc</kbd> 또는 버튼 재클릭으로 종료합니다. 모든 워크스페이스에서 쓸 수 있습니다.</p>
+            <p class="i18n-ko">좌측 하단의 <strong>📏 Measure</strong> 버튼을 켜면 지도를 클릭할 때마다 측정점이 추가됩니다.
+                점을 이어서 찍으면 총 거리(m/km)가 표시됩니다. 우클릭하면 마지막 점이 삭제되고,
+                <kbd>Esc</kbd>를 누르거나 버튼을 다시 클릭하면 측정이 끝납니다. 모든 워크스페이스에서 쓸 수 있습니다.</p>
             <p class="i18n-en">Turning on <strong>📏 Measure</strong> at bottom left makes map clicks add measuring
                 points; the running total (m/km) is displayed. Right-click removes the last point;
                 <kbd>Esc</kbd> or clicking the button again exits. Available in every workspace.</p>
 
             <h3><span class="i18n-ko">표시 옵션</span><span class="i18n-en">Display options</span></h3>
-            <p class="i18n-ko">상단바 우측의 <strong>Display</strong> 버튼을 누르면 표시 옵션 패널이 열립니다:
-                <strong>Node IDs / Link IDs</strong> 라벨, <strong>Rail</strong>(철도 레이어) 표시,
+            <p class="i18n-ko">상단바 우측의 <strong>Display</strong> 버튼을 누르면 표시 옵션 패널이 열립니다. 이 패널에서
+                <strong>Node IDs / Link IDs</strong> 라벨과 <strong>Rail</strong>(철도 레이어)의 표시 여부,
                 그리고 <strong>캔버스 배경색</strong>을 바꿀 수 있습니다.
-                ID 라벨은 화면에 보이는 것만 그리며, 너무 축소해 라벨이 600개를 넘으면 표시를 보류합니다
-                — 확대하면 다시 나타납니다.</p>
+                ID 라벨은 화면에 보이는 것만 그리며, 너무 축소해서 라벨이 600개를 넘으면 라벨을 표시하지 않습니다.
+                확대하면 다시 나타납니다.</p>
             <p class="i18n-en">The <strong>Display</strong> button at the right of the top bar opens the display
                 panel: <strong>Node IDs / Link IDs</strong> labels, the <strong>Rail</strong> layer, and the
                 <strong>canvas background color</strong>. Only on-screen ID labels are drawn, and past about 600
                 they are withheld until you zoom in.</p>
 
             <h3><span class="i18n-ko">위성 배경</span><span class="i18n-en">Satellite basemap</span></h3>
-            <p class="i18n-ko">같은 <strong>Display</strong> 패널의 <strong>Satellite basemap</strong> 에서 네트워크 아래에
-                위성/항공사진을 깔 수 있습니다. 실제 도로 위에 링크를 그리거나 노드 위치를 맞출 때 씁니다.</p>
+            <p class="i18n-ko">같은 <strong>Display</strong> 패널의 <strong>Satellite basemap</strong>에서 네트워크 아래에
+                위성/항공사진을 배경으로 표시할 수 있습니다. 실제 도로 위에 링크를 그리거나 노드 위치를 맞출 때 사용합니다.</p>
             <p class="i18n-en">The <strong>Satellite basemap</strong> group in the same <strong>Display</strong>
                 panel puts satellite or aerial imagery under the network — for drawing links over real roads or
                 lining nodes up with them.</p>
             <ul class="i18n-ko">
-                <li><strong>Esri Satellite</strong> — 키 없이 바로 쓸 수 있는 전 세계 위성영상.</li>
-                <li><strong>VWorld Aerial</strong> — 국내 최고 해상도 항공영상.
-                    <a href="https://www.vworld.kr" target="_blank" rel="noopener">vworld.kr</a> 에서 무료 인증키를
-                    발급받아(사용 도메인에 접속 주소 등록) <strong>Key</strong> 칸에 넣으면 됩니다.</li>
-                <li><strong>Opacity</strong> — 배경이 진하면 도로 폴리곤이 묻히므로 슬라이더로 조절합니다.</li>
+                <li><strong>Esri Satellite</strong>: 인증키 없이 바로 쓸 수 있는 전 세계 위성영상입니다.</li>
+                <li><strong>VWorld Aerial</strong>: 국내에서 해상도가 가장 높은 항공영상입니다.
+                    <a href="https://www.vworld.kr" target="_blank" rel="noopener">vworld.kr</a>에서 무료 인증키를
+                    발급받아(사용 도메인에 접속 주소를 등록합니다) <strong>Key</strong> 칸에 입력하면 됩니다.</li>
+                <li><strong>Opacity</strong>: 배경이 진하면 도로 폴리곤이 잘 보이지 않으므로 슬라이더로 불투명도를 조절합니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>Esri Satellite</strong> — worldwide imagery, no key required.</li>
@@ -937,18 +937,18 @@
                     the address you serve from) and paste it into the <strong>Key</strong> field.</li>
                 <li><strong>Opacity</strong> — dial the imagery back so the road polygons stay readable.</li>
             </ul>
-            <p class="i18n-ko">네트워크 좌표는 원점이 bbox 남서 모서리인 <em>국소 미터 좌표</em>라 그 자체로는 지구상 위치를
-                알 수 없습니다. 그래서 배경을 깔려면 좌표 정합(georeference)이 필요하고, 에디터가 아래 순서로 자동
-                탐색합니다 — 결과는 패널 아래 상태줄에 표시됩니다.</p>
+            <p class="i18n-ko">네트워크 좌표는 bbox의 남서 모서리를 원점으로 하는 <em>국소 미터 좌표</em>이므로 그 자체로는 지구상 위치를
+                알 수 없습니다. 그래서 배경을 표시하려면 좌표 정합(georeference)이 필요하며, 에디터는 정합 정보를 아래 순서로 자동
+                탐색합니다. 탐색 결과는 패널 아래의 상태줄에 표시됩니다.</p>
             <p class="i18n-en">Network coordinates are <em>local metric</em> with the origin at the bounding box's
                 south-west corner, so they carry no earth position on their own. A georeference is therefore needed
                 before imagery can line up, and the editor looks for one in this order — the result is reported in
                 the status line under the panel.</p>
             <ol class="i18n-ko">
                 <li>네트워크 폴더의 <span class="mono">basemap.json</span> (직접 정합해 저장한 값)</li>
-                <li><span class="mono">osm_import.json</span> — OSM 임포트 네트워크는 임포터와 같은 투영이라 정확히 일치</li>
+                <li><span class="mono">osm_import.json</span>: OSM에서 가져온 네트워크는 임포터와 같은 투영을 쓰므로 정확히 일치합니다</li>
                 <li><span class="mono">network.xml</span> 노드에 남은 <span class="mono">osm_lat/osm_lon</span> 태그</li>
-                <li><span class="mono">nodelink_import.json</span> — 표준노드링크(EPSG:5186) 원점을 위경도로 환산</li>
+                <li><span class="mono">nodelink_import.json</span>: 표준노드링크(EPSG:5186) 원점을 위경도로 환산한 값</li>
             </ol>
             <ol class="i18n-en">
                 <li><span class="mono">basemap.json</span> in the network folder — an alignment you saved yourself.</li>
@@ -969,13 +969,13 @@
                 <em>imagery</em>; network.xml is never touched. <strong>Save</strong> writes
                 <span class="mono">basemap.json</span> into the network folder so it is restored next time.</p>
             <div class="tip i18n-ko"><strong>Tip.</strong> 제공자·불투명도·인증키는 브라우저에 저장되어 네트워크를 바꿔도
-                유지되고, 정합값은 네트워크의 성질이라 폴더마다 따로 보관됩니다.</div>
+                유지되고, 정합값은 네트워크마다 고유한 값이므로 폴더별로 따로 보관됩니다.</div>
             <div class="tip i18n-en"><strong>Tip.</strong> Provider, opacity, and key live in the browser and survive
                 a folder change; the alignment is a property of the network, so it is stored per folder.</div>
 
             <h3><span class="i18n-ko">실행 취소</span><span class="i18n-en">Undo</span></h3>
-            <p class="i18n-ko">모든 워크스페이스에서 <kbd>Ctrl</kbd>+<kbd>Z</kbd> 실행 취소,
-                <kbd>Ctrl</kbd>+<kbd>Y</kbd> 다시 실행이 동작합니다. 히스토리는 워크스페이스별로
+            <p class="i18n-ko">모든 워크스페이스에서 <kbd>Ctrl</kbd>+<kbd>Z</kbd>로 실행을 취소하고,
+                <kbd>Ctrl</kbd>+<kbd>Y</kbd>로 다시 실행할 수 있습니다. 실행 기록은 워크스페이스별로
                 따로 관리됩니다 (저장 이후의 변경도 저장 전까지는 되돌릴 수 있습니다).</p>
             <p class="i18n-en"><kbd>Ctrl</kbd>+<kbd>Z</kbd> undoes and <kbd>Ctrl</kbd>+<kbd>Y</kbd> redoes in every
                 workspace. History is kept per workspace.</p>
@@ -989,8 +989,8 @@
             <div class="section-files"><span class="i18n-ko">담당 파일:</span><span class="i18n-en">File:</span> <span class="file-chip">network.xml</span></div>
             <p class="i18n-ko">도로망의 노드(교차로)·링크(도로)·차로·커넥션(교차로 내 회전 연결)을 편집합니다.
                 <strong>좌측 세로 도구 레일</strong>에서 편집 모드를 고르고 지도에서 직접 작업합니다.
-                상단 중앙의 <strong>Network tools</strong> 패널에는 일괄 편집·병합·복사·실행취소·검증이,
-                우측 패널의 표(Nodes / Links / Connections / Lanes 탭)에는 수치 속성 편집이 있습니다.</p>
+                상단 중앙의 <strong>Network tools</strong> 패널에는 일괄 편집·병합·복사·실행취소·검증 기능이 있고,
+                우측 패널의 표(Nodes / Links / Connections / Lanes 탭)에서는 수치 속성을 편집합니다.</p>
             <p class="i18n-en">Edits the road network's nodes (intersections), links (roads), lanes, and
                 connections (turning movements inside an intersection). Pick an edit mode from the
                 <strong>vertical tool rail on the left</strong> and work directly on the map. The
@@ -1002,40 +1002,40 @@
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>도구</th><th>키</th><th>사용법</th></tr>
                 <tr><td><strong>Select</strong></td><td><kbd>V</kbd></td>
-                    <td>노드·링크 클릭 선택(클릭할 때마다 추가/해제). 빈 곳에서 <strong>드래그하면 박스 선택</strong>
-                        — 사각형에 걸친 링크와 노드를 한 번에 선택하고, <kbd>Shift</kbd>+드래그는 기존 선택에 추가합니다.
-                        링크 선택 상태에서 <kbd>1</kbd>–<kbd>9</kbd>를 누르면 차로 수가 바뀝니다.</td></tr>
+                    <td>노드·링크를 클릭해 선택합니다(클릭할 때마다 추가/해제). 빈 곳에서 <strong>드래그하면 박스 선택</strong>으로
+                        사각형에 걸친 링크와 노드를 한 번에 선택하고, <kbd>Shift</kbd>+드래그하면 기존 선택에 추가합니다.
+                        링크를 선택한 상태에서 <kbd>1</kbd>–<kbd>9</kbd>를 누르면 차로 수가 바뀝니다.</td></tr>
                 <tr><td><strong>Node</strong></td><td><kbd>N</kbd></td>
-                    <td>세 갈래로 동작합니다 — <strong>노드를 2개 이상 선택</strong>해 뒀으면 병합,
-                        <strong>링크를 선택</strong>해 뒀으면 그 끝점들을 묶어 교차로 노드 생성,
-                        선택이 없으면 노드 생성 모드. 선택과 무관하게 링크 기반 생성만 하려면
+                    <td>선택 상태에 따라 세 가지로 동작합니다. <strong>노드를 2개 이상 선택</strong>해 두었으면 노드를 병합하고,
+                        <strong>링크를 선택</strong>해 두었으면 그 끝점들을 묶어 교차로 노드를 만들며,
+                        선택한 것이 없으면 노드 생성 모드로 들어갑니다. 선택과 관계없이 링크 기반 생성만 하려면 다음 단축키를 누릅니다:
                         <kbd>Ctrl</kbd>+<kbd>N</kbd>.</td></tr>
                 <tr><td><strong>Link</strong></td><td><kbd>L</kbd></td>
-                    <td>좌클릭으로 중심선 점을 찍고 <strong>우클릭으로 완료</strong>합니다. 그리는 중
-                        <kbd>1</kbd>–<kbd>9</kbd>로 차로 수를 정합니다(기본 2차로). 완료 후에도 링크 모드가
-                        유지되어 연속으로 그릴 수 있습니다. 끝점이 기존 노드 근처(12&nbsp;m)에 오면 자동으로 붙습니다.</td></tr>
+                    <td>좌클릭으로 중심선 점을 찍고 <strong>우클릭으로 완료</strong>합니다. 그리는 중에
+                        <kbd>1</kbd>–<kbd>9</kbd>로 차로 수를 정합니다(기본 2차로). 완료한 뒤에도 링크 모드가
+                        유지되므로 연속으로 그릴 수 있습니다. 끝점이 기존 노드 근처(12&nbsp;m 이내)에 오면 그 노드에 자동으로 연결됩니다.</td></tr>
                 <tr><td><strong>Move</strong></td><td><kbd>M</kbd></td>
                     <td>Select로 선택해 둔 노드/링크를 드래그해 이동합니다. 노드를 옮기면 연결된 링크 끝점과
-                        교차로 커넥션이 함께 갱신됩니다. <kbd>Esc</kbd>로 드래그 취소.</td></tr>
+                        교차로 커넥션이 함께 갱신됩니다. <kbd>Esc</kbd>를 누르면 드래그가 취소됩니다.</td></tr>
                 <tr><td><strong>Shape</strong></td><td><kbd>E</kbd></td>
                     <td>링크를 클릭해 중심선 편집 대상으로 지정하고, 핸들을 드래그해 선형을 다듬습니다.
-                        선분을 클릭하면 중간점이 추가되고, 점 선택 후 <kbd>Del</kbd>로 삭제합니다.
+                        선분을 클릭하면 중간점이 추가되고, 점을 선택한 뒤 <kbd>Del</kbd>을 누르면 삭제됩니다.
                         끝점을 노드 근처로 끌면 해당 노드에 스냅됩니다.</td></tr>
                 <tr><td><strong>Conn</strong></td><td><kbd>C</kbd></td>
                     <td>교차로 커넥션을 차로 단위로 편집합니다. 먼저 진입(in) 차로를 클릭해 출발지로 지정하고,
                         이어서 진출(out) 차로를 클릭할 때마다 커넥션이 생성/삭제(토글)됩니다.
-                        그 차로의 편집이 끝나면 <kbd>Enter</kbd>(또는 같은 차로를 다시 클릭)로 출발지 지정을 풀고
+                        그 차로의 편집이 끝나면 <kbd>Enter</kbd>를 누르거나 같은 차로를 다시 클릭해 출발지 지정을 풀고
                         다음 진입 차로를 고릅니다.</td></tr>
                 <tr><td><strong>Split</strong></td><td><kbd>X</kbd></td>
                     <td>링크 위 클릭 지점에 노드를 삽입해 링크를 둘로 나눕니다. 앞쪽 절반은 기존 링크 ID를
                         유지하고 뒤쪽 절반이 새 ID를 받습니다. 이 모드에서는 커서가 <strong>가위 모양</strong>으로 바뀝니다.</td></tr>
                 <tr><td><strong>Stop line</strong></td><td><kbd>S</kbd></td>
-                    <td>링크을 클릭해 그 지점에 정지선 위치(<span class="mono">stop_line</span>)를 지정합니다.</td></tr>
+                    <td>링크를 클릭해 그 지점에 정지선 위치(<span class="mono">stop_line</span>)를 지정합니다.</td></tr>
                 <tr><td><strong>Delete</strong></td><td><kbd>D</kbd></td>
                     <td>클릭한 오브젝트를 삭제하는 모드입니다. 선택해 둔 항목을 지울 때는 <kbd>Del</kbd> 키가 더 빠릅니다.</td></tr>
                 <tr><td><strong>Conflict</strong></td><td><kbd>W</kbd></td>
-                    <td>상충·통행우선권 편집기. 교차로 노드를 클릭하면 전용 패널이 열립니다 —
-                        <a href="#conflict">아래 절 참고</a>.</td></tr>
+                    <td>상충·통행우선권 편집기입니다. 교차로 노드를 클릭하면 전용 패널이 열립니다.
+                        자세한 내용은 <a href="#conflict">아래 절</a>을 참고하세요.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Tool</th><th>Key</th><th>How to use it</th></tr>
@@ -1077,8 +1077,8 @@
                         <a href="#conflict">see below</a>.</td></tr>
             </table></div>
 
-            <div class="tip i18n-ko"><strong><kbd>Esc</kbd> 의 우선순위.</strong> 입력칸에 커서가 있으면 포커스만 풀고,
-                모달이 떠 있으면 모달 닫기에 양보합니다. 그 밖에는 <em>단축키 팝오버 → 겹침 피커 → 박스 선택 취소 →
+            <div class="tip i18n-ko"><strong><kbd>Esc</kbd>의 우선순위.</strong> 입력칸에 커서가 있으면 포커스만 풀고,
+                모달이 떠 있으면 모달을 닫는 동작이 먼저 실행됩니다. 그 밖에는 <em>단축키 팝오버 → 겹침 피커 → 박스 선택 취소 →
                 이동 드래그 취소 → 검증 마커 숨기기 → 도구·선택 해제</em> 순으로 하나씩 되돌립니다.</div>
             <div class="tip i18n-en"><strong><kbd>Esc</kbd> priority.</strong> Inside an input it only removes focus;
                 with a modal open it lets the modal close. Otherwise it unwinds one step at a time:
@@ -1087,22 +1087,22 @@
 
             <h3><span class="i18n-ko">여러 링크·노드 한 번에 다루기</span><span class="i18n-en">Working on many objects at once</span></h3>
             <ul class="i18n-ko">
-                <li><strong>일괄 편집(Bulk edit)</strong> — 링크 여러 개를 선택한 뒤 Network tools
-                    패널에서 필드(ffSpd / width / lane count)와 값 입력 후 <strong>Apply</strong>.</li>
-                <li><strong>Merge nodes</strong> — 노드 여러 개를 선택해 하나의 교차로로 병합합니다
-                    (<kbd>N</kbd> 키와 동일). 연결 링크와 커넥션이 자동 재구성됩니다.</li>
-                <li><strong>Join</strong> (<kbd>J</kbd>) — 일렬로 이어진 링크들을 하나로 합칩니다.
-                    Split 의 반대 동작으로, 중간 노드가 다른 곳에 쓰이지 않으면 함께 제거됩니다.</li>
-                <li><strong>Reverse</strong> (<kbd>R</kbd>) — 선택한 링크의 역방향 링크를 자동 생성합니다.
-                    우측통행 기준으로 원본 왼쪽에 도로 폭만큼 나란히 배치되며, 이미 역방향이 있으면 건너뜁니다.</li>
+                <li><strong>일괄 편집(Bulk edit)</strong>: 링크 여러 개를 선택한 뒤 Network tools
+                    패널에서 필드(ffSpd / width / lane count)를 고르고 값을 입력한 다음 <strong>Apply</strong>를 누릅니다.</li>
+                <li><strong>Merge nodes</strong>: 노드 여러 개를 선택해 하나의 교차로로 병합합니다
+                    (<kbd>N</kbd> 키와 같습니다). 연결된 링크와 커넥션은 자동으로 재구성됩니다.</li>
+                <li><strong>Join</strong> (<kbd>J</kbd>): 일렬로 이어진 링크들을 하나로 합칩니다.
+                    Split의 반대 동작으로, 중간 노드가 다른 곳에 쓰이지 않으면 함께 제거됩니다.</li>
+                <li><strong>Reverse</strong> (<kbd>R</kbd>): 선택한 링크의 역방향 링크를 자동으로 생성합니다.
+                    우측통행을 기준으로 원본의 왼쪽에 도로 폭만큼 떨어져 나란히 배치되며, 이미 역방향 링크가 있으면 건너뜁니다.</li>
                 <li><strong>Copy props / Paste props</strong> (<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> /
-                    <kbd>V</kbd>) — 한 링크의 속성(차로 수·속도·폭·도로 유형·차로 통행제한 등)을 복사해
-                    선택한 다른 링크들에 한 번에 입힙니다.</li>
-                <li><strong>복사·붙여넣기</strong> (<kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>V</kbd>) — 선택한
-                    노드·링크를 통째로 복제합니다. 새 ID가 부여되고 원본에서 조금 옮겨 놓이며, 반복해서
-                    붙여넣으면 그만큼 더 밀려 배치됩니다. 선택 안에서 서로 이어진 연결만 함께 복사됩니다.</li>
-                <li><strong>Junction…</strong> — 4지/3지 신호교차로 템플릿. 접근로 차로 수·길이·속도를 정하면
-                    화면 중앙에 노드 + 방향별 진입·진출 링크 + 자동 커넥션이 생성되고, 원하면 기본 신호
+                    <kbd>V</kbd>): 한 링크의 속성(차로 수·속도·폭·도로 유형·차로 통행제한 등)을 복사해
+                    선택한 다른 링크들에 한 번에 적용합니다.</li>
+                <li><strong>복사·붙여넣기</strong> (<kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>V</kbd>): 선택한
+                    노드·링크를 통째로 복제합니다. 복제본은 새 ID를 받고 원본에서 조금 떨어진 위치에 놓이며, 반복해서
+                    붙여넣을 때마다 조금씩 더 떨어져 배치됩니다. 선택 범위 안에서 서로 이어진 연결만 함께 복사됩니다.</li>
+                <li><strong>Junction…</strong>: 4지/3지 신호교차로 템플릿입니다. 접근로의 차로 수·길이·속도를 정하면
+                    화면 중앙에 노드와 방향별 진입·진출 링크, 자동 커넥션이 생성되고, 원하면 기본 신호
                     플랜(Signal 워크스페이스에 추가됨)까지 만들어 줍니다.</li>
             </ul>
             <ul class="i18n-en">
@@ -1128,26 +1128,26 @@
             </ul>
 
             <h3><span class="i18n-ko">커넥션과 터미널 노드</span><span class="i18n-en">Connections and terminal nodes</span></h3>
-            <p class="i18n-ko">노드를 선택하고 <strong>Generate connections</strong>를 누르면 연결된 링크들의 기하로부터
+            <p class="i18n-ko">노드를 선택하고 <strong>Generate connections</strong>를 누르면 연결된 링크들의 기하 구조로부터
                 회전 방향(좌/직/우/유턴)을 추정해 커넥션을 자동 생성합니다. 노드나 링크를 옮기면 관련
                 커넥션은 자동으로 다시 계산됩니다.</p>
             <p class="i18n-en">Select a node and press <strong>Generate connections</strong> to infer turn
                 directions (left/through/right/U-turn) from the attached links' geometry and create the
                 connections. Moving a node or link recomputes the affected connections automatically.</p>
-            <p class="i18n-ko">어느 노드에도 연결되지 않은 링크 끝점은 <strong>저장할 때 자동으로 터미널(terminal) 노드가
+            <p class="i18n-ko">어느 노드에도 연결되지 않은 링크 끝점에는 <strong>저장할 때 자동으로 터미널(terminal) 노드가
                 만들어져</strong> 연결됩니다. 터미널 노드는 차량이 네트워크에 들어오고 나가는 지점으로,
-                OD Matrix의 기·종점이 됩니다. 터미널의 포트 방향이 곧 역할을 정합니다 —
-                <span class="mono">out</span> 포트면 출발지(source), <span class="mono">in</span> 포트면 도착지(sink).</p>
+                OD Matrix의 기·종점이 됩니다. 터미널의 역할은 포트 방향으로 정해집니다.
+                <span class="mono">out</span> 포트면 출발지(source), <span class="mono">in</span> 포트면 도착지(sink)입니다.</p>
             <p class="i18n-en">Link endpoints not attached to any node get a <strong>terminal node created
                 automatically on save</strong>. Terminal nodes are where vehicles enter and leave the network and
                 serve as the origins and destinations in the OD Matrix. The port direction decides the role: an
                 <span class="mono">out</span> port makes it a source, an <span class="mono">in</span> port a sink.</p>
 
             <h3><span class="i18n-ko">검증</span><span class="i18n-en">Validation</span></h3>
-            <p class="i18n-ko"><strong>Validate</strong> 버튼은 누락된 참조, 잘못된 기하 등을 검사해 목록으로 보여줍니다.
-                항목을 클릭하면 해당 위치로 이동하고, 자동 수정 가능한 문제는 한 번에 고칠 수 있습니다.
-                결과 요약은 도구 패널의 배지에 남고(검사 전에는 <em>Not validated</em>), 지도 위 검증 마커는
-                배지 옆 <strong>×</strong> 또는 <kbd>Esc</kbd> 로 숨길 수 있습니다. 저장 전에는
+            <p class="i18n-ko"><strong>Validate</strong> 버튼은 누락된 참조, 잘못된 기하 구조 등을 검사해 목록으로 보여 줍니다.
+                항목을 클릭하면 해당 위치로 이동하고, 자동으로 수정할 수 있는 문제는 한 번에 고칠 수 있습니다.
+                결과 요약은 도구 패널의 배지에 남고(검사 전에는 <em>Not validated</em>), 지도 위의 검증 마커는
+                배지 옆의 <strong>×</strong> 또는 <kbd>Esc</kbd>로 숨길 수 있습니다. 저장 전에는
                 <strong>save preview</strong>로 어떤 항목이 추가·수정·삭제되는지 미리 확인할 수 있습니다.</p>
             <p class="i18n-en">The <strong>Validate</strong> button checks for missing references, bad geometry,
                 and so on, and lists what it finds. Clicking an entry moves the map there, and auto-fixable
@@ -1156,8 +1156,8 @@
                 <strong>×</strong> beside the badge or <kbd>Esc</kbd>. Before saving, the
                 <strong>save preview</strong> shows exactly what will be added, changed, or removed.</p>
 
-            <div class="tip i18n-ko"><strong>Tip.</strong> 지도 우측 하단 <strong>Shortcuts</strong> 버튼을 누르면
-                Network 단축키 목록이 항상 떠 있는 팝오버로 열립니다.</div>
+            <div class="tip i18n-ko"><strong>Tip.</strong> 지도 우측 하단의 <strong>Shortcuts</strong> 버튼을 누르면
+                Network 단축키 목록이 화면에 계속 떠 있는 팝오버로 열립니다.</div>
             <div class="tip i18n-en"><strong>Tip.</strong> The <strong>Shortcuts</strong> button at bottom right
                 opens a pinned popover listing the Network shortcuts.</div>
         </section>
@@ -1166,22 +1166,22 @@
         <section id="conflict">
             <h2><span class="ws-badge" style="--ws: var(--ws-network)">Network</span> <span class="i18n-ko">상충 · 통행우선권 편집기</span><span class="i18n-en">Conflict / Right-of-Way editor</span></h2>
             <p class="i18n-ko">도구 레일의 <strong>Conflict</strong>(<kbd>W</kbd>)를 켜고 교차로 노드를 클릭하면
-                전용 패널이 열립니다. 편집 중에는 해당 교차로 외의 지도가 흐려져 대상에 집중할 수 있습니다.
-                결과는 network.xml 의 노드 안에 <span class="mono">&lt;conflict&gt;</span> 요소로 저장되며,
+                전용 패널이 열립니다. 편집 중에는 해당 교차로 이외의 지도 영역이 흐려지므로 대상에 집중할 수 있습니다.
+                결과는 network.xml의 노드 안에 <span class="mono">&lt;conflict&gt;</span> 요소로 저장되며,
                 엔진은 이 요소를 무시하므로 기존 시뮬레이션에 영향을 주지 않습니다.</p>
             <p class="i18n-en">Enable <strong>Conflict</strong> (<kbd>W</kbd>) on the tool rail and click an
                 intersection node to open its panel. While editing, the rest of the map dims so you can focus on
                 that junction. Results are stored as <span class="mono">&lt;conflict&gt;</span> elements inside the
                 node in network.xml; the engine ignores them, so existing simulations are unaffected.</p>
             <ul class="i18n-ko">
-                <li><strong>이동류(movement)</strong> — 같은 (진입 링크 → 진출 링크) 조합의 커넥션 묶음입니다.
-                    별도 데이터가 아니라 기존 커넥션에서 파생되며, 신호의 <span class="mono">turn</span> 과 1:1로 대응합니다.
-                    회전 종류(직진/좌/우/유턴)는 기하로 자동 분류되고 필요하면 직접 바꿀 수 있습니다.</li>
-                <li><strong>Detect</strong> — 이동류 간 상충을 자동 판정합니다:
-                    <strong>Crossing</strong>(교차 — 동시 녹색 불가), <strong>Merging</strong>(합류 — 양보),
-                    <strong>Diverging</strong>(분기 — 신호 상충 아님).</li>
-                <li><strong>Auto</strong> — 도로 등급·회전 종류로 통행우선권(우선순위, 정지/양보 의무)을 일괄 부여합니다.</li>
-                <li><strong>Validate</strong> — 우선순위 모순(순환 등)을 검사합니다.</li>
+                <li><strong>이동류(movement)</strong>: (진입 링크 → 진출 링크) 조합이 같은 커넥션들의 묶음입니다.
+                    별도의 데이터가 아니라 기존 커넥션에서 파생되며, 신호의 <span class="mono">turn</span>과 1:1로 대응합니다.
+                    회전 종류(직진/좌/우/유턴)는 기하 구조에 따라 자동으로 분류되며, 필요하면 직접 바꿀 수 있습니다.</li>
+                <li><strong>Detect</strong>: 이동류 사이의 상충을 자동으로 판정합니다:
+                    <strong>Crossing</strong>(교차, 동시에 녹색을 줄 수 없음), <strong>Merging</strong>(합류, 양보),
+                    <strong>Diverging</strong>(분기, 신호 상충이 아님).</li>
+                <li><strong>Auto</strong>: 도로 등급과 회전 종류에 따라 통행우선권(우선순위, 정지/양보 의무)을 일괄 부여합니다.</li>
+                <li><strong>Validate</strong>: 우선순위의 모순(순환 등)을 검사합니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>Movements</strong> — the group of connections sharing one (from-link → to-link) pair.
@@ -1195,8 +1195,8 @@
                     and turn kind.</li>
                 <li><strong>Validate</strong> — checks for contradictory priorities such as cycles.</li>
             </ul>
-            <div class="tip i18n-ko"><strong>Tip.</strong> 상충 판정은 Signal 워크스페이스의
-                <strong>Auto phases</strong> 가 그대로 사용합니다 — 교차 상충이 없는 이동류들이 한 현시로 묶입니다.</div>
+            <div class="tip i18n-ko"><strong>Tip.</strong> 상충 판정 결과는 Signal 워크스페이스의
+                <strong>Auto phases</strong>에서 그대로 사용됩니다. 교차 상충이 없는 이동류들이 한 현시로 묶입니다.</div>
             <div class="tip i18n-en"><strong>Tip.</strong> The Signal workspace's <strong>Auto phases</strong> reuses
                 these conflicts directly — movements without a crossing conflict are grouped into one phase.</div>
         </section>
@@ -1215,10 +1215,10 @@
             <h3><span class="i18n-ko">차종</span><span class="i18n-en">Vehicle types</span></h3>
             <p class="i18n-ko">엔진이 OD로 표현할 수 있는 차종은 <span class="mono">nv</span>(일반차),
                 <span class="mono">av</span>(자율차), <span class="mono">tr</span>(화물차),
-                <span class="mono">cav</span>(연결 자율차) 넷이며, 각각 odmatrix.xml 안의 별도 매트릭스입니다.
+                <span class="mono">cav</span>(연결 자율차) 넷이며, 차종마다 odmatrix.xml 안에 별도의 매트릭스가 있습니다.
                 <strong>Vehicle type</strong> 드롭다운은 그중 <em>이 프로젝트의
-                <span class="mono">parameter_xml/vehicletypes.xml</span> 에 실제로 정의된 차종</em>만 보여줍니다
-                — 정의되지 않은 차종으로 수요를 만들면 엔진이 차종 조회에 실패하기 때문입니다.</p>
+                <span class="mono">parameter_xml/vehicletypes.xml</span>에 실제로 정의된 차종</em>만 보여 줍니다.
+                정의되지 않은 차종으로 수요를 만들면 엔진이 차종을 조회하지 못하기 때문입니다.</p>
             <p class="i18n-en">The engine can express four vehicle types in an OD matrix —
                 <span class="mono">nv</span> (normal), <span class="mono">av</span> (autonomous),
                 <span class="mono">tr</span> (truck), <span class="mono">cav</span> (connected autonomous) — each
@@ -1228,15 +1228,15 @@
                 type would make the engine fail its type lookup.</p>
 
             <h3><span class="i18n-ko">에디터 열기·닫기</span><span class="i18n-en">Opening and closing the panel</span></h3>
-            <p class="i18n-ko">OD 편집기는 지도를 덮는 전체 화면 오버레이입니다. 우측 상단 <strong>Close</strong>로 닫으면
-                지도가 온전히 보이며, 화면 우측 가장자리의 <strong>OD</strong> 탭으로 다시 엽니다.
-                닫힌 상태에서도 지도 클릭 편집이 동작하고, 안내는 우측 상단 토스트로 표시됩니다.</p>
+            <p class="i18n-ko">OD 편집기는 지도를 덮는 전체 화면 오버레이입니다. 우측 상단의 <strong>Close</strong>로 닫으면
+                지도 전체가 보이며, 화면 우측 가장자리의 <strong>OD</strong> 탭을 누르면 다시 열립니다.
+                닫힌 상태에서도 지도를 클릭해 편집할 수 있고, 안내는 우측 상단 토스트로 표시됩니다.</p>
             <p class="i18n-en">The OD editor is a full-screen overlay across the map. <strong>Close</strong> at the
                 top right reveals the map; the <strong>OD</strong> tab on the right edge reopens it. Map-click
                 editing keeps working while it is closed, with feedback as top-right toasts.</p>
 
             <h3><span class="i18n-ko">도구 패널</span><span class="i18n-en">Tools panel</span></h3>
-            <p class="i18n-ko">상단 중앙 <strong>OD tools</strong> 패널에는 <strong>Reload</strong>(파일 다시 불러오기),
+            <p class="i18n-ko">상단 중앙의 <strong>OD tools</strong> 패널에는 <strong>Reload</strong>(파일 다시 불러오기),
                 <strong>Add row</strong>(빈 수요 행 추가), 그리고 <strong>Origin sources</strong> 그룹
                 (<strong>Select source links</strong> · <strong>Clear</strong> · 현재 제약 상태 배지)이 있습니다.</p>
             <p class="i18n-en">The central <strong>OD tools</strong> panel holds <strong>Reload</strong>,
@@ -1246,12 +1246,12 @@
 
             <h3><span class="i18n-ko">매트릭스(시간대) 관리</span><span class="i18n-en">Managing time-slice matrices</span></h3>
             <ul class="i18n-ko">
-                <li><strong>New</strong> — <a href="#od-new">새 매트릭스 창</a>을 엽니다 (빈 매트릭스 또는 랜덤 생성).</li>
-                <li><strong>Duplicate</strong> — 현재 매트릭스를 복제해 다음 시간대 슬라이스로 추가합니다.
+                <li><strong>New</strong>: <a href="#od-new">새 매트릭스 창</a>을 엽니다(빈 매트릭스 또는 랜덤 생성).</li>
+                <li><strong>Duplicate</strong>: 현재 매트릭스를 복제해 다음 시간대 슬라이스로 추가합니다.
                     첨두/비첨두 프로파일을 만들 때 편리합니다.</li>
-                <li><strong>Delete</strong> — 현재 매트릭스를 삭제합니다 (저장 전이면 <kbd>Ctrl</kbd>+<kbd>Z</kbd> 로 복구).</li>
-                <li><strong>Start time / Duration(min)</strong> — 각 매트릭스의 적용 구간.</li>
-                <li><strong>Filter</strong> — source/sink ID로 표를 걸러 봅니다 (행이 수만 개일 때 유용).</li>
+                <li><strong>Delete</strong>: 현재 매트릭스를 삭제합니다. 저장하기 전이라면 <kbd>Ctrl</kbd>+<kbd>Z</kbd>로 복구할 수 있습니다.</li>
+                <li><strong>Start time / Duration(min)</strong>: 각 매트릭스가 적용되는 시간 구간입니다.</li>
+                <li><strong>Filter</strong>: source/sink ID로 표를 걸러 봅니다. 행이 수만 개일 때 유용합니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>New</strong> — opens the <a href="#od-new">new-matrix dialog</a> (empty or randomly generated).</li>
@@ -1262,9 +1262,9 @@
                 <li><strong>Filter</strong> — narrows the table by source/sink ID; useful with tens of thousands of rows.</li>
             </ul>
 
-            <div class="warn i18n-ko"><strong>시뮬레이션은 매트릭스 하나만 씁니다.</strong> 어떤 매트릭스를 쓸지는
-                Scenario 워크스페이스의 <span class="mono">odMatrixID</span> 가 정합니다 — 새로 만든 매트릭스로
-                돌리려면 그 값을 새 ID로 바꿔 주세요.</div>
+            <div class="warn i18n-ko"><strong>시뮬레이션에는 매트릭스 하나만 사용됩니다.</strong> 어떤 매트릭스를 쓸지는
+                Scenario 워크스페이스의 <span class="mono">odMatrixID</span> 값으로 정해집니다. 새로 만든 매트릭스로
+                시뮬레이션을 실행하려면 그 값을 새 ID로 바꿔 주세요.</div>
             <div class="warn i18n-en"><strong>A run uses exactly one matrix.</strong> Which one is decided by
                 <span class="mono">odMatrixID</span> in the Scenario workspace — point it at the new matrix's ID to
                 simulate what you just built.</div>
@@ -1272,9 +1272,9 @@
             <h3><span class="i18n-ko">지도에서 OD 쌍 추가</span><span class="i18n-en">Adding an OD pair from the map</span></h3>
             <ol class="steps i18n-ko">
                 <li>에디터를 <strong>Close</strong>로 닫습니다.</li>
-                <li>기점 쪽 <strong>경계 링크</strong>(터미널 노드에 연결된 링크)를 클릭합니다 —
-                    그 링크에 연결된 터미널 노드가 origin으로 잡힙니다.</li>
-                <li>종점 쪽 경계 링크를 클릭하면 OD 행이 추가됩니다. flow는 0으로 들어오므로
+                <li>기점 쪽 <strong>경계 링크</strong>(터미널 노드에 연결된 링크)를 클릭합니다.
+                    그 링크에 연결된 터미널 노드가 origin으로 지정됩니다.</li>
+                <li>종점 쪽 경계 링크를 클릭하면 OD 행이 추가됩니다. flow는 0으로 입력되므로
                     표에서 값을 입력하세요.</li>
             </ol>
             <ol class="steps i18n-en">
@@ -1285,26 +1285,26 @@
                     in the table.</li>
             </ol>
             <div class="warn i18n-ko"><strong>주의.</strong> 터미널 노드에 연결되지 않은 내부 링크는 선택되지 않습니다.
-                Allowed Source 제약이 걸려 있다면, 허용 목록에 없는 source 로 시작하는 링크도 거부됩니다.</div>
+                Allowed Source 제약이 설정되어 있으면 허용 목록에 없는 source에서 시작하는 링크도 거부됩니다.</div>
             <div class="warn i18n-en"><strong>Note.</strong> Interior links not attached to a terminal node cannot
                 be picked. With an Allowed Sources constraint in place, links leaving a source outside the list are
                 refused too.</div>
 
-            <h3 id="od-sources"><span class="i18n-ko">Allowed Sources — 수요 진입점 제한</span><span class="i18n-en">Allowed Sources — restricting where demand enters</span></h3>
-            <p class="i18n-ko">네트워크의 모든 터미널 source 를 다 쓰지 않고 <strong>일부 진입점에서만</strong> 수요가
-                들어오게 하고 싶을 때 씁니다. 이 설정은 랜덤 생성 전용 옵션이 아니라
-                <strong>해당 odmatrix.xml 전체에 걸리는 제약</strong>이며 파일에 함께 저장됩니다.</p>
+            <h3 id="od-sources"><span class="i18n-ko">Allowed Sources: 수요 진입점 제한</span><span class="i18n-en">Allowed Sources — restricting where demand enters</span></h3>
+            <p class="i18n-ko">네트워크의 터미널 source를 모두 쓰지 않고 <strong>일부 진입점에서만</strong> 수요가
+                들어오게 하려는 경우에 사용합니다. 이 설정은 랜덤 생성 전용 옵션이 아니라
+                <strong>해당 odmatrix.xml 전체에 적용되는 제약</strong>이며 파일에 함께 저장됩니다.</p>
             <p class="i18n-en">Use this when demand should enter through <strong>only some</strong> of the network's
                 terminal sources. It is not a one-off generation option — it is a
                 <strong>constraint on the whole odmatrix.xml</strong> and is saved with the file.</p>
             <ol class="steps i18n-ko">
-                <li>OD tools 의 <strong>Select source links</strong> 를 누릅니다 — 사이드바가 접히고 화면 아래에
-                    선택 모드 바가 뜹니다.</li>
-                <li>지도에서 <strong>터미널 source 에서 나오는 링크</strong>를 클릭할 때마다 그 source 가
-                    추가/해제됩니다. Source 가 없는 링크는 무시되고 아래 바에 이유가 표시됩니다.
-                    (선택된 source 의 링크는 지도에 강조됩니다.)</li>
-                <li><kbd>Esc</kbd> 또는 <strong>Done</strong> 으로 마칩니다. 같은 버튼이 선택 중에는
-                    <strong>Done picking</strong> 으로 바뀝니다.</li>
+                <li>OD tools의 <strong>Select source links</strong>를 누릅니다. 사이드바가 접히고 화면 아래에
+                    선택 모드 바가 나타납니다.</li>
+                <li>지도에서 <strong>터미널 source에서 나오는 링크</strong>를 클릭할 때마다 그 source가
+                    추가되거나 해제됩니다. Source가 없는 링크는 무시되며, 아래 바에 그 이유가 표시됩니다.
+                    (선택된 source의 링크는 지도에 강조 표시됩니다.)</li>
+                <li><kbd>Esc</kbd>를 누르거나 <strong>Done</strong>을 눌러 선택을 마칩니다. 선택하는 동안에는 같은 버튼이
+                    <strong>Done picking</strong>으로 바뀝니다.</li>
             </ol>
             <ol class="steps i18n-en">
                 <li>Press <strong>Select source links</strong> in the OD tools panel — the sidebar collapses and a
@@ -1315,14 +1315,14 @@
                 <li>Finish with <kbd>Esc</kbd> or <strong>Done</strong> — the same button reads
                     <strong>Done picking</strong> while picking.</li>
             </ol>
-            <p class="i18n-ko">선택하고 나면 사이드바에 <strong>Allowed Sources: N</strong> 목록이 나타나고
-                (칩을 클릭하면 지도가 그 위치로, × 로 해제), 다음이 적용됩니다:</p>
+            <p class="i18n-ko">선택을 마치면 사이드바에 <strong>Allowed Sources: N</strong> 목록이 나타나고
+                (칩을 클릭하면 지도가 그 위치로 이동하고, ×를 누르면 해제됩니다) 다음 규칙이 적용됩니다:</p>
             <p class="i18n-en">Once sources are chosen, the sidebar shows an <strong>Allowed Sources: N</strong>
                 list (click a chip to focus it on the map, × to remove it) and the following applies:</p>
             <ul class="i18n-ko">
-                <li>허용 목록 밖 origin 의 행은 <strong>흐리게 표시되고 flow 입력이 잠깁니다</strong>.</li>
-                <li>랜덤 생성·수요 스케일링·지도 클릭 추가 모두 허용된 source 만 대상으로 합니다.</li>
-                <li>허용되지 않은 source 에 flow 가 남아 있으면 <strong>저장이 거부됩니다</strong>.</li>
+                <li>허용 목록 밖에 있는 origin의 행은 <strong>흐리게 표시되고 flow 입력이 잠깁니다</strong>.</li>
+                <li>랜덤 생성, 수요 스케일링, 지도를 클릭해 행을 추가하는 기능은 모두 허용된 source만 대상으로 합니다.</li>
+                <li>허용되지 않은 source에 flow가 남아 있으면 <strong>저장이 거부됩니다</strong>.</li>
             </ul>
             <ul class="i18n-en">
                 <li>Rows whose origin is outside the list are <strong>dimmed and their flow becomes read-only</strong>.</li>
@@ -1330,40 +1330,40 @@
                 <li><strong>Saving is refused</strong> while any non-allowed source still carries flow.</li>
             </ul>
             <div class="warn i18n-ko"><strong>기존 수요는 자동으로 지워지지 않습니다.</strong> 이미 수요가 들어 있는
-                파일에 제약을 새로 걸면, 제약 밖 source 의 기존 flow 가 그대로 남아 저장이 막힙니다. 선택을 마칠 때
-                "0으로 만들까요?" 확인창이 뜨고, 거절했다면 Allowed Sources 바의 경고줄에 있는
-                <strong>Set to 0</strong> 버튼으로 언제든 한 번에 정리할 수 있습니다
-                (<kbd>Ctrl</kbd>+<kbd>Z</kbd> 로 되돌릴 수 있습니다).</div>
+                파일에 제약을 새로 설정하면, 제약 밖 source의 기존 flow가 그대로 남아 있어 저장할 수 없습니다. 선택을 마칠 때
+                "0으로 만들까요?" 확인창이 뜨며, 거절했더라도 Allowed Sources 바의 경고줄에 있는
+                <strong>Set to 0</strong> 버튼으로 언제든 한 번에 0으로 정리할 수 있습니다
+                (<kbd>Ctrl</kbd>+<kbd>Z</kbd>로 되돌릴 수 있습니다).</div>
             <div class="warn i18n-en"><strong>Existing demand is not cleared for you.</strong> Applying the
                 constraint to a file that already has demand leaves flows from now-disallowed sources in place, and
                 saving stays blocked. You are offered a "set them to 0?" confirmation when you finish picking; if
                 you decline, the <strong>Set to 0</strong> button in the Allowed Sources warning row does it at any
                 time (undoable with <kbd>Ctrl</kbd>+<kbd>Z</kbd>).</div>
 
-            <h3 id="od-new"><span class="i18n-ko">새 매트릭스 — 빈 매트릭스 / 랜덤 생성</span><span class="i18n-en">New matrix — empty or random</span></h3>
-            <p class="i18n-ko"><strong>New</strong> 를 누르면 생성 방식을 고르는 창이 열립니다.
-                <strong>Empty Matrix</strong> 는 빈 시간대 슬라이스를 추가하고,
-                <strong>Random Matrix</strong> 는 아래 설정으로 수요를 만들어 넣습니다.</p>
+            <h3 id="od-new"><span class="i18n-ko">새 매트릭스: 빈 매트릭스 / 랜덤 생성</span><span class="i18n-en">New matrix — empty or random</span></h3>
+            <p class="i18n-ko"><strong>New</strong>를 누르면 생성 방식을 고르는 창이 열립니다.
+                <strong>Empty Matrix</strong>는 빈 시간대 슬라이스를 추가하고,
+                <strong>Random Matrix</strong>는 아래 설정에 따라 수요를 생성합니다.</p>
             <p class="i18n-en"><strong>New</strong> opens a dialog to choose how to create the matrix.
                 <strong>Empty Matrix</strong> adds a blank time slice; <strong>Random Matrix</strong> fills one in
                 using the settings below.</p>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>설정</th><th>의미</th></tr>
                 <tr><td><strong>Generation mode</strong></td>
-                    <td><span class="mono">Total Demand</span> — 총량을 정해 OD 쌍에 배분 /
-                        <span class="mono">Demand Range</span> — 쌍마다 Min~Max 에서 독립 추출</td></tr>
+                    <td><span class="mono">Total Demand</span>: 총량을 정해 OD 쌍에 배분 /
+                        <span class="mono">Demand Range</span>: 쌍마다 Min~Max에서 독립적으로 추출</td></tr>
                 <tr><td><strong>Distribution</strong></td>
-                    <td><span class="mono">Uniform</span> 평탄 · <span class="mono">Normal</span> 평균 근처 집중 ·
-                        <span class="mono">Sparse</span> 대부분 소량 + 소수 대량</td></tr>
-                <tr><td><strong>Active OD ratio (%)</strong></td><td>후보 쌍 중 실제로 수요를 넣을 비율</td></tr>
-                <tr><td><strong>Random seed</strong></td><td>같은 seed 는 같은 결과 (비우면 새 seed 를 만들어 알려줍니다)</td></tr>
-                <tr><td><strong>Allow intra-zone trips</strong></td><td>기점 = 종점 쌍 허용 여부</td></tr>
+                    <td><span class="mono">Uniform</span>: 고르게 분포 · <span class="mono">Normal</span>: 평균 근처에 집중 ·
+                        <span class="mono">Sparse</span>: 대부분 소량, 소수만 대량</td></tr>
+                <tr><td><strong>Active OD ratio (%)</strong></td><td>후보 쌍 가운데 실제로 수요를 배정할 비율</td></tr>
+                <tr><td><strong>Random seed</strong></td><td>같은 seed를 쓰면 같은 결과가 나옵니다(비워 두면 새 seed를 만들어 알려 줍니다).</td></tr>
+                <tr><td><strong>Allow intra-zone trips</strong></td><td>기점과 종점이 같은 쌍의 허용 여부</td></tr>
                 <tr><td><strong>Vehicle type mix</strong></td>
-                    <td>각 OD 쌍의 수요를 차종별로 나눌 비율. <strong>합이 정확히 100%</strong> 여야 생성됩니다.
-                        쌍 단위로 정확히 나뉘므로 <em>차종 매트릭스 합 = 총 수요</em> 가 항상 성립합니다.</td></tr>
+                    <td>각 OD 쌍의 수요를 차종별로 나누는 비율입니다. <strong>합이 정확히 100%</strong>여야 생성됩니다.
+                        쌍 단위로 정확히 나뉘므로 <em>차종 매트릭스 합 = 총 수요</em>가 항상 성립합니다.</td></tr>
                 <tr><td><strong>Origin sources</strong></td>
-                    <td>이 창에서도 진입점을 고르거나 해제할 수 있습니다 — 위의
-                        <a href="#od-sources">Allowed Sources</a> 와 같은 설정입니다.</td></tr>
+                    <td>이 창에서도 진입점을 고르거나 해제할 수 있습니다. 위의
+                        <a href="#od-sources">Allowed Sources</a>와 같은 설정입니다.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Setting</th><th>Meaning</th></tr>
@@ -1384,9 +1384,9 @@
                     <td>You can pick or clear entry points from here too — it is the same
                         <a href="#od-sources">Allowed Sources</a> setting.</td></tr>
             </table></div>
-            <div class="tip i18n-ko"><strong>Tip.</strong> <span class="mono">Route.json</span> 이 있으면 실제로 경로가
-                존재하는 쌍만 후보가 됩니다. OSM 임포트 네트워크는 도달 불가능한 터미널 쌍이 흔해서, 이 필터가 없으면
-                시뮬레이터가 그냥 건너뛰는 수요를 잔뜩 만들게 됩니다.</div>
+            <div class="tip i18n-ko"><strong>Tip.</strong> <span class="mono">Route.json</span>이 있으면 실제로 경로가
+                존재하는 쌍만 후보가 됩니다. OSM에서 가져온 네트워크에는 도달할 수 없는 터미널 쌍이 많아서, 이 필터가 없으면
+                시뮬레이터가 실행하지 않고 건너뛰는 수요가 대량으로 만들어집니다.</div>
             <div class="tip i18n-en"><strong>Tip.</strong> When <span class="mono">Route.json</span> exists, only
                 pairs that actually have a route become candidates. OSM-imported networks often have unreachable
                 terminal pairs, and without this filter you would generate demand the simulator simply skips.</div>
@@ -1394,17 +1394,17 @@
             <h3><span class="i18n-ko">수요 스케일링</span><span class="i18n-en">Scaling demand</span></h3>
             <p class="i18n-ko"><strong>Demand scaling</strong> 그룹에서 범위(All flows / Selected rows / By source / By
                 sink)를 고르고 배율을 입력한 뒤 <strong>Scale</strong>을 누르면 해당 flow에 배율이
-                곱해집니다. 민감도 분석이나 관측 교통량 보정에 사용합니다. Allowed Source 제약이 걸려 있으면
-                허용되지 않은 source 의 행은 건너뜁니다.</p>
+                곱해집니다. 민감도 분석이나 관측 교통량 보정에 사용합니다. Allowed Source 제약이 설정되어 있으면
+                허용되지 않은 source의 행은 건너뜁니다.</p>
             <p class="i18n-en">In the <strong>Demand scaling</strong> group choose a scope (All flows / Selected
                 rows / By source / By sink), enter a factor, and press <strong>Scale</strong>. Useful for
                 sensitivity analysis and calibrating against counts. Rows from non-allowed sources are skipped when
                 the Allowed Sources constraint is active.</p>
 
             <h3><span class="i18n-ko">경로 시각화</span><span class="i18n-en">Route visualization</span></h3>
-            <p class="i18n-ko">표에서 행을 선택하면 그 수요가 지나는 경로가 지도에 교통량 비례 색으로 표시됩니다
+            <p class="i18n-ko">표에서 행을 선택하면 그 수요가 지나는 경로가 지도에 교통량에 비례한 색으로 표시됩니다
                 (Route.json 필요). Route source/sink를 지정하면 해당 기·종점의 대안 경로 목록이 화면
-                상단 바에 나타나고, 클릭으로 경로 선호를 지정할 수 있습니다.</p>
+                상단 바에 나타나고, 목록의 경로를 클릭해 선호 경로를 지정할 수 있습니다.</p>
             <p class="i18n-en">Selecting a row colours the route that demand takes, scaled by flow (requires
                 Route.json). Setting Route source/sink lists the alternative routes for that pair in a bar at the
                 top, where you can click to set route preference.</p>
@@ -1415,8 +1415,8 @@
             <h2><span class="ws-badge" style="--ws: var(--ws-mode)">Workspace</span> Mode</h2>
             <div class="section-files"><span class="i18n-ko">담당 파일:</span><span class="i18n-en">File:</span> <span class="file-chip">mode.xml</span></div>
             <p class="i18n-ko">NextSIM은 하나의 네트워크 안에서 링크별로 <strong>미시(micro)</strong> /
-                <strong>중시(meso)</strong> 시뮬레이션을 섞어 돌릴 수 있는 하이브리드 시뮬레이터입니다.
-                Mode 워크스페이스에서 <strong>기간(period)별로 어떤 링크를 어느 방식으로 돌릴지</strong>
+                <strong>중시(meso)</strong> 시뮬레이션을 섞어 실행할 수 있는 하이브리드 시뮬레이터입니다.
+                Mode 워크스페이스에서는 <strong>기간(period)별로 어떤 링크를 어느 방식으로 시뮬레이션할지</strong>
                 지정합니다.</p>
             <p class="i18n-en">NextSIM is a hybrid simulator: within one network, each link can run in
                 <strong>micro</strong> or <strong>meso</strong> mode. The Mode workspace assigns
@@ -1424,7 +1424,7 @@
             <ol class="steps i18n-ko">
                 <li>기간을 선택하거나 추가하고 적용 시간 범위를 정합니다.</li>
                 <li>지도에서 링크를 클릭할 때마다 micro ↔ meso가 토글됩니다.
-                    micro 링크는 <strong>하늘색</strong>, meso 링크는 <strong>주황색</strong>으로 칠해집니다.</li>
+                    micro 링크는 <strong>하늘색</strong>, meso 링크는 <strong>주황색</strong>으로 표시됩니다.</li>
                 <li>도구 패널의 <strong>All micro / All meso</strong> 버튼으로 현재 기간의 모든 링크를
                     한 번에 지정할 수 있습니다.</li>
                 <li>패널의 표에서 기간별 지정 현황을 확인하고 저장합니다.</li>
@@ -1437,7 +1437,7 @@
                 <li>Review the assignment table in the panel and save.</li>
             </ol>
             <div class="tip i18n-ko"><strong>Tip.</strong> 관심 구간(예: 분석 대상 교차로 일대)만 micro로 두고
-                외곽은 meso로 두면 정확도와 계산 속도를 함께 잡을 수 있습니다. 검지기는 micro 링크에서만
+                외곽은 meso로 두면 정확도와 계산 속도를 함께 확보할 수 있습니다. 검지기는 micro 링크에서만
                 기록되므로 Infrastructure 워크스페이스와 함께 확인하세요.</div>
             <div class="tip i18n-en"><strong>Tip.</strong> Keeping the area of interest (say, the junctions you are
                 studying) in micro and the rest in meso buys accuracy and speed together. Detectors only record on
@@ -1462,7 +1462,7 @@
                 <tr><td class="mono">startTime</td><td>시뮬레이션 시작 시각 (HH:MM:SS)</td></tr>
                 <tr><td class="mono">duration</td><td>본 시뮬레이션 길이 (분)</td></tr>
                 <tr><td class="mono">BGTduration</td><td>배경교통 예열(warm-up) 길이 (분)</td></tr>
-                <tr><td class="mono">odMatrixID</td><td>사용할 OD 매트릭스 ID — <strong>여러 매트릭스 중 실제로 돌릴 하나</strong></td></tr>
+                <tr><td class="mono">odMatrixID</td><td>사용할 OD 매트릭스 ID: <strong>여러 매트릭스 가운데 실제로 실행할 하나</strong></td></tr>
                 <tr><td class="mono">todID</td><td>사용할 신호 TOD 스케줄 ID</td></tr>
                 <tr><td class="mono">signalControlActive / Interval</td><td>실시간 신호제어 사용 여부와 주기</td></tr>
                 <tr><td class="mono">v2xActive / Interval</td><td>V2X 통신 사용 여부와 주기</td></tr>
@@ -1496,25 +1496,25 @@
             <h2><span class="ws-badge" style="--ws: var(--ws-signal)">Workspace</span> Signal</h2>
             <div class="section-files"><span class="i18n-ko">담당 파일:</span><span class="i18n-en">Files:</span> <span class="file-chip">signal.xml</span> <span class="file-chip">signalTOD.xml</span></div>
             <p class="i18n-ko">교차로 신호를 편집합니다. 지도에서 노드를 클릭하거나 노드 선택 상자에서 골라 대상
-                교차로를 정한 뒤, 세 단계로 구성합니다. 추가 버튼(<strong>Add turn / Add plan /
+                교차로를 정한 뒤, 아래 세 단계로 신호를 구성합니다. 추가 버튼(<strong>Add turn / Add plan /
                 Add phase / Add TOD</strong>), <strong>Reload</strong>, 그리고
-                <strong>Auto phases</strong> 가 상단 도구 패널에 있습니다:</p>
+                <strong>Auto phases</strong>는 상단 도구 패널에 있습니다.</p>
             <p class="i18n-en">Edits intersection signals. Pick the target junction by clicking a node on the map
                 or choosing it from the node selector, then build it in three layers. The add buttons
                 (<strong>Add turn / Add plan / Add phase / Add TOD</strong>), <strong>Reload</strong>, and
                 <strong>Auto phases</strong> live in the tools panel:</p>
             <ol class="steps i18n-ko">
-                <li><strong>Turn</strong> — 함께 신호를 받는 커넥션 묶음(이동류)입니다.
+                <li><strong>Turn</strong>: 함께 신호를 받는 커넥션 묶음(이동류)입니다.
                     Turn을 선택하면 지도에서 해당 교차로의 커넥션들이 강조되고,
-                    <strong>커넥션을 클릭해 이 Turn에 넣거나 뺄 수 있습니다</strong> (선택된 커넥션은 초록색).
+                    <strong>커넥션을 클릭해 이 Turn에 넣거나 뺄 수 있습니다</strong>(선택된 커넥션은 초록색으로 표시됩니다).
                     회전 종류(L/S/R)와 RTOR(적신호 우회전) 같은 타입을 지정합니다.</li>
-                <li><strong>Plan → Phase</strong> — Plan은 주기(cycle)·옵셋(offset)을 갖고, 그 안의
+                <li><strong>Plan → Phase</strong>: Plan에는 주기(cycle)와 옵셋(offset)이 있고, 그 안의
                     Phase들이 순서대로 진행됩니다. 각 Phase에 지속시간과 녹색을 받는 Turn 목록을
                     지정합니다. <strong>+ Clearance</strong> 버튼은 3초짜리 전이(clearance) 현시를 추가합니다
-                    — 우회전(RTOR)은 이 현시에서도 녹색으로 유지됩니다.
+                    우회전(RTOR)은 이 현시에서도 녹색으로 유지됩니다.
                     Phase 타임라인 그래프에서 현시 구성을 한눈에 확인할 수 있고, 타임라인이나 표에서 현시를
                     클릭하면 그 현시에 녹색인 커넥션이 지도에 표시됩니다.</li>
-                <li><strong>TOD</strong> — 하루를 구간으로 나눠 시간대별로 어떤 Plan을 쓸지
+                <li><strong>TOD</strong>: 하루를 구간으로 나눠 시간대별로 어떤 Plan을 쓸지
                     배정합니다 (예: 첨두 Plan / 비첨두 Plan).</li>
             </ol>
             <ol class="steps i18n-en">
@@ -1531,23 +1531,23 @@
                     off-peak plan, and so on).</li>
             </ol>
 
-            <h3><span class="i18n-ko">Auto phases — 현시 자동 생성</span><span class="i18n-en">Auto phases — generating a plan</span></h3>
+            <h3><span class="i18n-ko">Auto phases: 현시 자동 생성</span><span class="i18n-en">Auto phases — generating a plan</span></h3>
             <p class="i18n-ko">교차로의 이동류와 <a href="#conflict">상충 판정</a>으로부터 현시를 자동으로 만듭니다.
-                <strong>Auto phases</strong> 를 누르면 설정 창이 열립니다.</p>
+                <strong>Auto phases</strong>를 누르면 설정 창이 열립니다.</p>
             <p class="i18n-en">Builds phases automatically from a junction's movements and its
                 <a href="#conflict">conflicts</a>. <strong>Auto phases</strong> opens the settings dialog.</p>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>설정</th><th>의미</th></tr>
                 <tr><td><strong>대상</strong></td>
                     <td>현재 교차로 / <strong>Network 워크스페이스에서 선택해 둔 노드들</strong>(일괄 생성) /
-                        신호가 없는 모든 교차로 — 셋 중에서 고릅니다.</td></tr>
-                <tr><td><strong>Cycle length</strong></td><td>주기 길이(초). 생성된 현시 시간의 합이 이 값이 됩니다.</td></tr>
-                <tr><td><strong>Yellow</strong></td><td>녹색현시 사이에 넣을 황색현시 길이(기본 3초).</td></tr>
-                <tr><td><strong>Min green</strong></td><td>녹색현시 최소 길이. 짧아진 현시는 이 값까지 보정됩니다.</td></tr>
-                <tr><td><strong>Overwrite</strong></td><td>이미 신호가 있는 교차로도 덮어쓸지 여부.</td></tr>
+                        신호가 없는 모든 교차로, 이 세 가지 중에서 고릅니다.</td></tr>
+                <tr><td><strong>Cycle length</strong></td><td>주기 길이(초)입니다. 생성된 현시 시간의 합이 이 값이 됩니다.</td></tr>
+                <tr><td><strong>Yellow</strong></td><td>녹색현시 사이에 넣을 황색현시의 길이입니다(기본 3초).</td></tr>
+                <tr><td><strong>Min green</strong></td><td>녹색현시의 최소 길이입니다. 이보다 짧아진 현시는 이 값까지 보정됩니다.</td></tr>
+                <tr><td><strong>Overwrite</strong></td><td>이미 신호가 있는 교차로도 덮어쓸지를 정합니다.</td></tr>
                 <tr><td><strong>Strict geometry</strong></td>
-                    <td>대향 좌회전을 같은 현시로 묶는 관례를 끄고 기하 판정만 따릅니다. 형상이 부정확한
-                        임포트 네트워크에서 결과가 이상할 때만 씁니다.</td></tr>
+                    <td>대향 좌회전을 같은 현시로 묶는 관례를 끄고 기하 판정만 따릅니다. 외부에서 가져온 네트워크의
+                        형상이 부정확해 결과가 이상할 때만 사용합니다.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Setting</th><th>Meaning</th></tr>
@@ -1570,7 +1570,7 @@
                 <li><strong>우회전은 신호 대상에서 빠져</strong> <span class="mono">RTOR</span> 타입으로
                     <strong>모든 현시에 녹색으로 포함</strong>됩니다.</li>
                 <li>녹색현시마다 뒤에 <strong>황색현시가 하나씩</strong> 삽입됩니다. 예를 들어 4현시라면
-                    signal.xml 상 현시는 8개가 됩니다.</li>
+                    signal.xml에 기록되는 현시는 8개가 됩니다.</li>
                 <li>현시 시간은 <strong>임계 차로 수에 비례</strong>해 배분되고, 최소녹색시간으로 보정됩니다.</li>
             </ul>
             <ul class="i18n-en">
@@ -1585,8 +1585,8 @@
                     against the minimum green time.</li>
             </ul>
             <div class="tip i18n-ko"><strong>Tip.</strong> Network 워크스페이스의 <strong>Junction…</strong>
-                템플릿으로 교차로를 만들면 기본 신호가 함께 생성됩니다. 임포트한 네트워크에는
-                <strong>Auto phases</strong> 의 "신호가 없는 모든 교차로" 대상이 편합니다.</div>
+                템플릿으로 교차로를 만들면 기본 신호가 함께 생성됩니다. 외부에서 가져온 네트워크에는
+                <strong>Auto phases</strong>의 "신호가 없는 모든 교차로" 대상을 쓰면 편리합니다.</div>
             <div class="tip i18n-en"><strong>Tip.</strong> The <strong>Junction…</strong> template in the Network
                 workspace creates a starter signal along with the junction. For an imported network, the "every
                 intersection without a signal" target of <strong>Auto phases</strong> is the quick path.</div>
@@ -1597,20 +1597,20 @@
             <h2><span class="ws-badge" style="--ws: var(--ws-station)">Workspace</span> Station</h2>
             <div class="section-files"><span class="i18n-ko">담당 파일:</span><span class="i18n-en">Files:</span> <span class="file-chip">roadStation.xml</span> <span class="file-chip">railStation.xml</span></div>
             <p class="i18n-ko">정류장·철도역을 편집합니다. 패널의 <strong>Road | Rail</strong> 서브탭으로 도로(버스)와
-                철도를 오갑니다.</p>
+                철도 편집 화면을 전환합니다.</p>
             <p class="i18n-en">Edits bus stops and rail stations. The <strong>Road | Rail</strong> sub-tabs in the
                 panel switch between them.</p>
 
-            <h3><span class="i18n-ko">Road — 버스 정류장</span><span class="i18n-en">Road — bus stops</span></h3>
+            <h3><span class="i18n-ko">Road: 버스 정류장</span><span class="i18n-en">Road — bus stops</span></h3>
             <ol class="steps i18n-ko">
                 <li>도구 패널의 <strong>Add station</strong>을 누른 뒤 지도에서 정류장을 놓을 링크를 클릭합니다.
                     클릭 지점에서 가장 가까운 차로에 스냅되어 정차면이 생성됩니다.</li>
-                <li>정류장을 클릭하면 우측 패널이 열리며 속성을 편집합니다 —
+                <li>정류장을 클릭하면 우측 패널이 열리고, 다음 속성을 편집할 수 있습니다:
                     <span class="mono">linkRef/laneRef</span>(위치한 링크·차로),
-                    <span class="mono">pos</span>(링크 상 위치),
+                    <span class="mono">pos</span>(링크 위의 위치),
                     <span class="mono">parkingLots</span>(동시 정차면 수, 최소 1).
                     Lots 수를 바꾸면 지도에 즉시 반영됩니다.</li>
-                <li>정류장은 드래그로 링크를 따라 이동할 수 있습니다. 정차면이 링크 밖으로 벗어나는
+                <li>정류장은 드래그해서 링크를 따라 이동할 수 있습니다. 정차면이 링크 밖으로 벗어나는
                     Lot은 그려지지 않습니다.</li>
             </ol>
             <ol class="steps i18n-en">
@@ -1624,14 +1624,14 @@
                 <li>Stops can be dragged along their link. Lots that would fall off the end of the link are not drawn.</li>
             </ol>
 
-            <h3><span class="i18n-ko">Rail — 철도역과 출구</span><span class="i18n-en">Rail — stations and exits</span></h3>
+            <h3><span class="i18n-ko">Rail: 철도역과 출구</span><span class="i18n-en">Rail — stations and exits</span></h3>
             <ul class="i18n-ko">
-                <li><strong>Add rail station</strong> — 지도 클릭 위치에 철도역을 만듭니다. 역은 도로와
-                    독립적으로 배치되며 이름·운영 모드(지하철 등)를 지정합니다.</li>
-                <li><strong>Add exit</strong> — 역을 선택한 상태에서 도로 링크를 클릭하면 그 링크
+                <li><strong>Add rail station</strong>: 지도에서 클릭한 위치에 철도역을 만듭니다. 역은 도로와
+                    독립적으로 배치되며, 이름과 운영 모드(지하철 등)를 지정합니다.</li>
+                <li><strong>Add exit</strong>: 역을 선택한 상태에서 도로 링크를 클릭하면 그 링크의
                     <strong>진행방향 오른쪽 보도 위치</strong>에 출구가 생성됩니다. 출구는 역과 도로망(보행
-                    접근)을 잇는 지점으로, <span class="mono">offset</span>(링크 상 위치)과
-                    <span class="mono">accessTime</span>(역까지 도보 시간)을 갖습니다.</li>
+                    접근)을 잇는 지점이며, <span class="mono">offset</span>(링크 위의 위치)과
+                    <span class="mono">accessTime</span>(역까지 걷는 시간) 속성이 있습니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>Add rail station</strong> — places a station at the clicked point. Stations sit
@@ -1641,7 +1641,7 @@
                     the road network for walking access and carries an <span class="mono">offset</span> (position
                     along the link) and <span class="mono">accessTime</span> (walk time to the station).</li>
             </ul>
-            <div class="tip i18n-ko"><strong>Tip.</strong> 철도 레이어가 안 보이면 상단바 <strong>Display</strong> 패널의
+            <div class="tip i18n-ko"><strong>Tip.</strong> 철도 레이어가 보이지 않으면 상단바 <strong>Display</strong> 패널에서
                 <strong>Rail</strong> 토글을 확인하세요.</div>
             <div class="tip i18n-en"><strong>Tip.</strong> If the rail layer is invisible, check the
                 <strong>Rail</strong> toggle in the <strong>Display</strong> panel.</div>
@@ -1652,18 +1652,18 @@
             <h2><span class="ws-badge" style="--ws: var(--ws-ptline)">Workspace</span> PT Line</h2>
             <div class="section-files"><span class="i18n-ko">담당 파일:</span><span class="i18n-en">Files:</span> <span class="file-chip">roadPTline.xml</span> <span class="file-chip">railPTline.xml</span></div>
             <p class="i18n-ko">대중교통 노선을 편집합니다. <strong>Road | Rail</strong> 서브탭으로 버스류 노선과 철도
-                노선을 오갑니다.</p>
+                노선 편집 화면을 전환합니다.</p>
             <p class="i18n-en">Edits transit lines. The <strong>Road | Rail</strong> sub-tabs switch between
                 bus-type lines and rail lines.</p>
 
-            <h3><span class="i18n-ko">Road — 버스 · TRT · 트램 노선</span><span class="i18n-en">Road — bus, TRT, and tram lines</span></h3>
+            <h3><span class="i18n-ko">Road: 버스 · TRT · 트램 노선</span><span class="i18n-en">Road — bus, TRT, and tram lines</span></h3>
             <ol class="steps i18n-ko">
-                <li>도구 패널의 <strong>Add PT line</strong>을 누르면 작성 창이 열립니다 — 노선 ID,
+                <li>도구 패널의 <strong>Add PT line</strong>을 누르면 작성 창이 열립니다. 노선 ID,
                     요금 <span class="mono">Fee (KRW)</span>, 배차 간격 <span class="mono">Interval (min)</span>,
-                    유형(<span class="mono">Bus / TRT / Tram</span>)을 입력하고 Add.</li>
-                <li>그대로 지도에서 링크를 <strong>운행 순서대로 클릭</strong>하면 노선 경로(link
+                    유형(<span class="mono">Bus / TRT / Tram</span>)을 입력한 뒤 Add를 누릅니다.</li>
+                <li>이어서 지도에서 링크를 <strong>운행 순서대로 클릭</strong>하면 노선 경로(link
                     sequence)에 추가됩니다. 직전 링크와 직접 이어지거나 노드를 통해 연결된 링크만 선택할
-                    수 있고, 이미 포함된 링크는 다시 넣을 수 없습니다 — 조건에 맞지 않으면 우측 상단에 경고가
+                    수 있고, 이미 포함된 링크는 다시 넣을 수 없습니다. 조건에 맞지 않으면 우측 상단에 경고가
                     잠시 표시됩니다.</li>
                 <li>경로 표의 각 링크에서 <strong>PT lane</strong>(버스전용차로 주행 여부)과 경유 정류장을
                     지정할 수 있습니다. 선택한 노선은 지도에 색으로 강조됩니다.</li>
@@ -1679,20 +1679,20 @@
                     bus lane) and the stop it serves. The selected line is highlighted in colour on the map.</li>
             </ol>
 
-            <h3><span class="i18n-ko">Rail — 철도 노선</span><span class="i18n-en">Rail — rail lines</span></h3>
+            <h3><span class="i18n-ko">Rail: 철도 노선</span><span class="i18n-en">Rail — rail lines</span></h3>
             <p class="i18n-ko">철도 노선은 링크가 아니라 <strong>역 순서(stationSeq)</strong>로 정의합니다. 노선을
-                선택한 뒤 지도에서 철도역을 클릭하면 순서에 추가되고, 표에서 순서 이동·삭제와 역별
-                <span class="mono">timeOffset</span>(기점 출발 후 도달 시간)을 편집합니다.
-                <strong>Departure times</strong>에 출발 시각 목록(HH:MM, 줄바꿈 구분)을 넣으면
-                시각표 기반으로 운행됩니다. 노선의 역 연결은 지도에 선으로 표시됩니다.</p>
+                선택한 뒤 지도에서 철도역을 클릭하면 순서에 추가되고, 표에서는 역의 순서를 옮기거나 삭제하고 역별
+                <span class="mono">timeOffset</span>(기점에서 출발한 뒤 그 역에 도달하기까지 걸리는 시간)을 편집할 수 있습니다.
+                <strong>Departure times</strong>에 출발 시각 목록(HH:MM, 줄바꿈으로 구분)을 입력하면
+                시각표에 따라 운행됩니다. 노선의 역 연결은 지도에 선으로 표시됩니다.</p>
             <p class="i18n-en">A rail line is defined by a <strong>station sequence</strong> rather than links.
                 With a line selected, clicking a rail station appends it; the table lets you reorder, remove, and
                 set each station's <span class="mono">timeOffset</span> (time from the first departure).
                 Putting a list of departure times into <strong>Departure times</strong> (HH:MM, one per line) runs
                 the line on a timetable. The line's station chain is drawn on the map.</p>
 
-            <div class="warn i18n-ko"><strong>주의.</strong> 버스 노선은 현재 배차 간격(Interval) 기반으로만
-                운행됩니다. 시각표 기반 버스 운행은 엔진 확장이 필요한 항목입니다.</div>
+            <div class="warn i18n-ko"><strong>주의.</strong> 현재 버스 노선은 배차 간격(Interval)에 따라서만
+                운행됩니다. 시각표에 따른 버스 운행을 지원하려면 엔진을 확장해야 합니다.</div>
             <div class="warn i18n-en"><strong>Note.</strong> Bus lines currently run on headway (Interval) only.
                 Timetable-based bus operation needs an engine extension.</div>
         </section>
@@ -1704,7 +1704,7 @@
             <p class="i18n-ko">도로에 설치하는 <strong>검지기(detector)</strong>를 정의합니다. 시뮬레이션이 끝나면 각
                 검지기가 <code>freq</code> 주기마다 교통량·속도·점유율 등을 집계해 기록합니다.
                 검지기는 <strong>micro 링크에서만 동작</strong>하므로, 대상 링크가 Mode 워크스페이스에서
-                micro 로 지정되어 있는지 함께 확인하세요.</p>
+                micro로 지정되어 있는지 함께 확인하세요.</p>
             <p class="i18n-en">Defines road <strong>detectors</strong>. During a run each detector aggregates flow,
                 speed, occupancy, and so on every <code>freq</code> seconds. Detectors
                 <strong>only work on micro links</strong>, so check that the target link is set to micro in the
@@ -1722,9 +1722,9 @@
                 <tr><td><strong>E3</strong></td><td>An area bounded by entry and exit points</td><td>Travel time through the area, vehicles inside</td></tr>
             </table></div>
             <ol class="steps i18n-ko">
-                <li><strong>Add E1</strong> 누르고 지도의 차로를 클릭하면 그 자리에 E1이 생깁니다.</li>
+                <li><strong>Add E1</strong>을 누르고 지도의 차로를 클릭하면 그 자리에 E1이 생깁니다.</li>
                 <li><strong>Add E1 (all lanes)</strong>는 클릭한 <strong>단면을 지나는 모든 차로</strong>에
-                    E1을 하나씩 깝니다. VDS·측면 레이더처럼 단면 전체를 재는 장비를 모사할 때 씁니다.
+                    E1을 하나씩 배치합니다. VDS·측면 레이더처럼 단면 전체를 측정하는 장비를 모사할 때 사용합니다.
                     ID는 <code>e1_1_l0</code>, <code>e1_1_l1</code> … 처럼 같은 접두어를 공유하므로
                     나중에 합산하기 쉽습니다. 곡선 구간에서도 차로마다 위치를 따로 투영하며,
                     차로가 끊긴(lane drop) 구간은 자동으로 건너뜁니다.</li>
@@ -1732,12 +1732,12 @@
                 <li><strong>Add E3</strong>를 누르면 바로 안내 모드로 들어갑니다. 도구 스트립에
                     <span class="mono">in 0 → out 0</span> 단계 표시가 뜨고, 지도를 클릭할 때마다
                     현재 단계의 점이 추가됩니다. <kbd>Tab</kbd>으로 진입 ↔ 진출 단계를 오가고
-                    <kbd>Enter</kbd> 또는 <strong>Done</strong>으로 마칩니다.
-                    <kbd>Esc</kbd>로 취소하면 점을 하나도 찍지 않은 빈 E3는 자동으로 정리됩니다.</li>
-                <li>클릭 위치는 해당 <strong>차로 시작점 기준 거리(m)</strong>로 저장되며, 상세 폼에서
+                    <kbd>Enter</kbd>를 누르거나 <strong>Done</strong>을 눌러 마칩니다.
+                    <kbd>Esc</kbd>로 취소하면 점을 하나도 찍지 않은 빈 E3는 자동으로 삭제됩니다.</li>
+                <li>클릭한 위치는 해당 <strong>차로의 시작점으로부터 잰 거리(m)</strong>로 저장되며, 상세 폼에서
                     링크 ID·차로 인덱스·위치를 직접 수정할 수도 있습니다.</li>
                 <li>집계 주기(<code>freq</code>), 동작 구간(<code>begin</code>/<code>end</code>),
-                    차종 한정(<code>vTypes</code>)을 지정하고 <strong>Save XML</strong>.</li>
+                    대상 차종(<code>vTypes</code>)을 지정한 뒤 <strong>Save XML</strong>을 누릅니다.</li>
             </ol>
             <ol class="steps i18n-en">
                 <li><strong>Add E1</strong>, then click a lane on the map to place an E1 there.</li>
@@ -1757,17 +1757,17 @@
                     (<code>begin</code>/<code>end</code>), and any vehicle-type restriction
                     (<code>vTypes</code>), then <strong>Save XML</strong>.</li>
             </ol>
-            <p class="i18n-ko">지도에는 E1이 <strong>하늘색</strong> 단면, E2가 <strong>보라색</strong> 구간, E3의
-                진입점이 <strong>초록</strong>, 진출점이 <strong>빨강</strong>으로 표시됩니다. 표에서 행을
-                클릭하면 해당 검지기로 카메라가 이동합니다. 시뮬레이션 후에는 Run 모드에서 검지기 표시를
+            <p class="i18n-ko">지도에서 E1은 <strong>하늘색</strong> 단면으로, E2는 <strong>보라색</strong> 구간으로 표시되고, E3의
+                진입점은 <strong>초록</strong>, 진출점은 <strong>빨강</strong>으로 표시됩니다. 표에서 행을
+                클릭하면 해당 검지기 위치로 화면이 이동합니다. 시뮬레이션이 끝난 뒤에는 Run 모드에서 검지기 표시를
                 클릭해 수집된 값을 그래프·표로 볼 수 있습니다.</p>
             <p class="i18n-en">On the map, E1 appears as a <strong>light blue</strong> cross-section, E2 as a
                 <strong>purple</strong> section, and E3's entry points in <strong>green</strong> with exits in
                 <strong>red</strong>. Clicking a table row moves the camera to that detector. After a run you can
                 click a detector in Run mode to chart and tabulate what it recorded.</p>
             <div class="warn i18n-ko"><strong>주의.</strong> 링크 ID가 네트워크에 없거나, 차로 인덱스가 범위를
-                벗어나거나, 위치가 차로 길이를 넘으면 표에 경고 색으로 표시되고 저장이 막힙니다.
-                <code>friendlyPos</code>를 켜두면 엔진이 위치를 차로 범위 안으로 보정합니다.</div>
+                벗어나거나, 위치가 차로 길이를 넘으면 표에 경고 색으로 표시되고 저장할 수 없습니다.
+                <code>friendlyPos</code>를 켜 두면 엔진이 위치를 차로 범위 안으로 보정합니다.</div>
             <div class="warn i18n-en"><strong>Note.</strong> A link ID that is not in the network, a lane index out
                 of range, or a position past the lane's length is flagged in the table and blocks saving. With
                 <code>friendlyPos</code> enabled the engine clamps the position into the lane instead.</div>
@@ -1777,17 +1777,17 @@
         <section id="ws-events">
             <h2><span class="ws-badge" style="--ws: var(--ws-events)">Workspace</span> Events</h2>
             <div class="section-files"><span class="i18n-ko">담당 파일:</span><span class="i18n-en">File:</span> <span class="file-chip">events.xml</span></div>
-            <p class="i18n-ko">링크 위에서 벌어지는 상황 — 돌발상황(Incident), 공사/차로 차단(Work zone),
-                기상/노면(Weather), 교통통제(Traffic control) — 을 정의합니다.</p>
+            <p class="i18n-ko">링크 위에서 벌어지는 상황인 돌발상황(Incident), 공사/차로 차단(Work zone),
+                기상/노면(Weather), 교통통제(Traffic control)를 정의합니다.</p>
             <p class="i18n-en">Defines what happens on a link — incidents, work zones and lane closures, weather
                 and road-surface conditions, and traffic control.</p>
             <ol class="steps i18n-ko">
                 <li>지도에서 이벤트를 배치할 링크를 클릭하면 우측 패널이 열립니다.</li>
-                <li>도구 패널의 <strong>Add event</strong>로 이벤트를 만들고 유형, 시작·종료 시각, 링크 상
-                    시작·끝 위치(구간), 영향 차로, 심각도(severity), 우회율(detour ratio), 메모를
-                    입력한 뒤 <strong>Save event</strong>.</li>
-                <li>비슷한 이벤트는 <strong>Duplicate</strong>로 복제해 시간·위치만 바꾸면 빠릅니다.</li>
-                <li>모두 정리했으면 상단바의 <strong>Save XML</strong> 로 파일에 기록합니다.</li>
+                <li>도구 패널의 <strong>Add event</strong>로 이벤트를 만들고 유형, 시작·종료 시각, 링크 위의
+                    시작·끝 위치(구간), 영향을 받는 차로, 심각도(severity), 우회율(detour ratio), 메모를
+                    입력한 뒤 <strong>Save event</strong>를 누릅니다.</li>
+                <li>비슷한 이벤트는 <strong>Duplicate</strong>로 복제한 뒤 시간과 위치만 바꾸면 빠르게 만들 수 있습니다.</li>
+                <li>모두 정리했으면 상단바의 <strong>Save XML</strong>로 파일에 기록합니다.</li>
             </ol>
             <ol class="steps i18n-en">
                 <li>Click the link to place the event on; the right panel opens.</li>
@@ -1797,17 +1797,17 @@
                 <li>For a similar event, <strong>Duplicate</strong> it and change only the time or position.</li>
                 <li>When you are done, write the file with <strong>Save XML</strong> in the top bar.</li>
             </ol>
-            <p class="i18n-ko">화면의 <strong>이벤트 타임라인</strong>에 모든 이벤트가 유형별 색 막대로 표시되어 하루 중
+            <p class="i18n-ko">화면의 <strong>이벤트 타임라인</strong>에 모든 이벤트가 유형별 색 막대로 표시되므로 하루 동안의
                 분포를 한눈에 볼 수 있습니다. 진행 중인 이벤트는 지도의 해당 링크 구간 위에 패턴
                 오버레이로 표시됩니다.</p>
             <p class="i18n-en">The <strong>event timeline</strong> shows every event as a colour bar by type, so
                 you can see the day's distribution at a glance. Active events are drawn as a hatched overlay on
                 their link section.</p>
-            <div class="warn i18n-ko"><strong>시각은 시나리오 시작 기준입니다.</strong> events.xml 의 시작 시각은
-                재생·시뮬레이션 시 <em>선택된 시나리오의 시작 시각 기준 오프셋</em>으로 해석됩니다.
-                08:00 시작 시나리오에서 08:05 이벤트는 재생 300초 지점에 나타납니다.
-                이 워크스페이스도 다른 워크스페이스와 똑같이 <strong>미저장 변경 보호</strong>를 받습니다 —
-                저장하지 않고 탭·폴더를 옮기거나 페이지를 닫으면 확인창이 뜹니다.</div>
+            <div class="warn i18n-ko"><strong>시각은 시나리오 시작 시각을 기준으로 합니다.</strong> events.xml의 시작 시각은
+                재생하거나 시뮬레이션할 때 <em>선택된 시나리오의 시작 시각을 기준으로 한 오프셋</em>으로 해석됩니다.
+                08:00에 시작하는 시나리오에서 08:05 이벤트는 재생 300초 지점에 나타납니다.
+                이 워크스페이스에도 다른 워크스페이스와 똑같이 <strong>저장하지 않은 변경 사항 보호</strong>가 적용됩니다.
+                저장하지 않고 탭이나 폴더를 바꾸거나 페이지를 닫으면 확인창이 뜹니다.</div>
             <div class="warn i18n-en"><strong>Times are relative to the scenario start.</strong> A start time in
                 events.xml is interpreted as an <em>offset from the selected scenario's start</em> during
                 simulation and replay: in a scenario starting at 08:00, an 08:05 event appears 300 s into
@@ -1820,25 +1820,25 @@
         <section id="import-nodelink">
             <h2><span class="i18n-ko">표준노드링크 가져오기</span><span class="i18n-en">Importing standard node-link data</span></h2>
             <p class="i18n-ko">국가표준노드링크(ITS 표준 노드·링크 체계)의 SHP 파일에서 원하는 영역만 잘라
-                NextSIM 네트워크를 자동 생성합니다. OSM보다 국내 도로망 정확도가 높아 한국 지역
-                네트워크의 출발점으로 권장합니다.</p>
+                NextSIM 네트워크를 자동 생성합니다. OSM보다 국내 도로망의 정확도가 높으므로 한국 지역
+                네트워크를 만들 때 출발점으로 권장합니다.</p>
             <ol class="steps i18n-ko">
                 <li>ITS 국가교통정보센터(its.go.kr)에서 표준노드링크 SHP를 내려받아
                     <code>SimulationInput/nodelink/&lt;이름&gt;/</code> 폴더에
                     <span class="mono">MOCT_NODE.shp/.dbf</span>, <span class="mono">MOCT_LINK.shp/.dbf</span>
-                    4개 파일을 둡니다.</li>
-                <li>상단바 <strong>Network → Add network → Import Korean node-link</strong> → <strong>SHP set</strong>에서 폴더를
+                    4개 파일을 넣어 둡니다.</li>
+                <li>상단바의 <strong>Network → Add network → Import Korean node-link</strong> → <strong>SHP set</strong>에서 폴더를
                     선택하면 노드·링크 수와 전체 범위가 표시됩니다.</li>
                 <li><strong>Extent</strong>에 잘라낼 영역의 좌표(EPSG:5186, m)를 입력하거나
                     <strong>Use full extent</strong>로 전체를 지정합니다.</li>
-                <li><strong>Preview</strong>로 실제 생성 없이 포함될 노드·링크 수를 확인하고,
-                    폴더 이름을 정한 뒤 <strong>Import</strong> — 새 네트워크 폴더가 만들어지고 바로
+                <li><strong>Preview</strong>로 네트워크를 실제로 만들지 않고 포함될 노드·링크 수를 확인하고,
+                    폴더 이름을 정한 뒤 <strong>Import</strong>를 누릅니다. 새 네트워크 폴더가 만들어지고 바로
                     편집을 시작할 수 있습니다.</li>
             </ol>
             <p class="i18n-ko">가져오는 동안 차로 수(LANES)·제한속도(MAX_SPD)·도로명 등의 속성이 매핑되고, 차로 기하와
                 교차로 커넥션은 Network 편집기와 같은 규칙으로 자동 생성됩니다.</p>
             <div class="tip i18n-ko"><strong>Tip.</strong> 시·도 단위 전체 SHP에서도 bbox로 잘라내면 수 초 안에
-                끝납니다. 우선 작은 영역으로 Preview 해보고 범위를 넓혀 가세요.</div>
+                끝납니다. 먼저 작은 영역으로 Preview를 실행해 보고 범위를 넓혀 가세요.</div>
             <ol class="steps i18n-en">
                 <li>Download the standard node-link SHP set from ITS (its.go.kr) and put the four files
                     <span class="mono">MOCT_NODE.shp/.dbf</span> and <span class="mono">MOCT_LINK.shp/.dbf</span>
@@ -1861,70 +1861,70 @@
         <!-- ================================================== OSM -->
         <section id="import-osm">
             <h2><span class="i18n-ko">OpenStreetMap 가져오기</span><span class="i18n-en">Importing OpenStreetMap</span></h2>
-            <p class="i18n-ko">전 세계 어디든 위경도 bbox 만으로 도로망을 가져올 수 있습니다. 표준노드링크가 없는
-                해외 지역이나, 빠르게 시험용 네트워크가 필요할 때 씁니다.</p>
+            <p class="i18n-ko">전 세계 어디든 위경도 bbox만으로 도로망을 가져올 수 있습니다. 표준노드링크가 없는
+                해외 지역이나 시험용 네트워크가 빨리 필요할 때 사용합니다.</p>
             <ol class="steps i18n-ko">
-                <li>상단바 <strong>Network &#8594; Add network &#8594; Import OpenStreetMap</strong>.</li>
-                <li><strong>Mode</strong> 선택 &#8212;
-                    <strong>Overpass API</strong> 는 bbox 만 넣으면 서버가 직접 내려받고,
-                    <strong>Local .osm file</strong> 은 <code>SimulationInput/osm/</code> 에 둔
-                    <span class="mono">.osm</span> 파일을 씁니다
-                    (<strong>Use file extent</strong> 로 bbox 자동 입력).</li>
-                <li><strong>Extent</strong> 는 <strong>WGS84 위경도</strong>입니다 &#8212; 표준노드링크가 미터 좌표인 것과 다릅니다.
-                    좌표를 모르면 <strong>Pick on osm.org</strong> 로 지도를 열어 읽으세요.
+                <li>상단바에서 <strong>Network &#8594; Add network &#8594; Import OpenStreetMap</strong>을 엽니다.</li>
+                <li><strong>Mode</strong>를 선택합니다.
+                    <strong>Overpass API</strong>는 bbox만 입력하면 서버가 데이터를 직접 내려받고,
+                    <strong>Local .osm file</strong>은 <code>SimulationInput/osm/</code>에 둔
+                    <span class="mono">.osm</span> 파일을 사용합니다
+                    (<strong>Use file extent</strong>를 누르면 bbox가 자동으로 입력됩니다).</li>
+                <li><strong>Extent</strong>는 <strong>WGS84 위경도</strong>로 입력합니다. 미터 좌표를 쓰는 표준노드링크와 다릅니다.
+                    좌표를 모르면 <strong>Pick on osm.org</strong>로 지도를 열어 좌표를 확인하세요.
                     면적은 0.25 deg&#178;(대략 55 &#215; 55 km) 이하로 유지합니다.</li>
-                <li><strong>Road classes</strong> 로 어디까지 가져올지 정합니다. 기본값은
-                    <em>+ Residential / unclassified</em> &#8212; 이면도로까지 포함하되 주차장 통로&#183;진입로
+                <li><strong>Road classes</strong>로 어떤 등급의 도로까지 가져올지 정합니다. 기본값은
+                    <em>+ Residential / unclassified</em>입니다. 이 설정은 이면도로까지 포함하되 주차장 통로&#183;진입로
                     (<span class="mono">service</span>)는 제외합니다.</li>
-                <li><strong>Preview</strong> 로 규모를 확인하고, 이름을 정한 뒤 <strong>Import</strong>.</li>
+                <li><strong>Preview</strong>로 규모를 확인하고, 이름을 정한 뒤 <strong>Import</strong>를 누릅니다.</li>
             </ol>
 
             <h3><span class="i18n-ko">변환 규칙</span><span class="i18n-en">Conversion rules</span></h3>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>항목</th><th>처리</th></tr>
                 <tr><td>대상 도로</td><td><code>highway</code> 화이트리스트(motorway~service). 보행로&#183;자전거도로&#183;계단&#183;건설중&#183;<code>area=yes</code>&#183;통행제한(<code>access=no</code>/<code>private</code>)은 제외</td></tr>
-                <tr><td>링크 분할</td><td>way 를 <strong>교차점에서만</strong> 분할. 중간 정점은 링크 형상으로 남아 곡선이 유지됩니다</td></tr>
+                <tr><td>링크 분할</td><td>way를 <strong>교차점에서만</strong> 분할합니다. 중간 정점은 링크 형상으로 남아 곡선이 유지됩니다</td></tr>
                 <tr><td>방향</td><td>양방향 &#8594; 좌우로 갈라진 차도 2개, 일방통행 &#8594; 1개, <code>oneway=-1</code> &#8594; 형상 반전</td></tr>
                 <tr><td>차로 수</td><td><code>lanes:forward/backward</code> &#8594; <code>lanes</code>(양방향 합계를 절반씩) &#8594; 도로 등급별 기본값</td></tr>
                 <tr><td>속도</td><td><code>maxspeed</code>(mph&#183;구역명 포함) &#8594; 등급별 기본값</td></tr>
                 <tr><td>교차로</td><td>링크 끝을 노드 중심에서 물러나게 해 교차로 면적을 만듭니다</td></tr>
-                <tr><td>터미널</td><td>네트워크 경계(링크 하나만 붙은 지점)를 <strong>terminal 노드</strong>로 만듭니다 &#8212; 시뮬레이션의 출발&#183;도착지가 됩니다</td></tr>
-                <tr><td>커넥션</td><td>교차로 연결을 자동 생성합니다 (아래 규칙)</td></tr>
+                <tr><td>터미널</td><td>네트워크 경계(링크 하나만 연결된 지점)를 <strong>terminal 노드</strong>로 만듭니다. 이 노드가 시뮬레이션의 출발&#183;도착지가 됩니다</td></tr>
+                <tr><td>커넥션</td><td>아래 규칙에 따라 교차로 연결을 자동으로 생성합니다</td></tr>
             </table></div>
 
             <h3><span class="i18n-ko">교차로 커넥션 자동 생성 규칙</span><span class="i18n-en">How intersection connections are generated</span></h3>
-            <p class="i18n-ko">접근로와 유출로의 진행 방향 각도로 회전을 분류한 뒤, 실제 NextSIM 네트워크에서 측정한
-                차로 배정 규약을 그대로 적용합니다 (전 데이터셋의 좌회전은 최좌측 차로에서,
-                우회전은 최우측 차로에서 나가고, 직진은 차로 인덱스가 대응됩니다).</p>
+            <p class="i18n-ko">접근로와 유출로의 진행 방향 각도를 기준으로 회전을 분류한 뒤, 실제 NextSIM 네트워크에서 측정한
+                차로 배정 규약을 그대로 적용합니다(모든 데이터셋에서 좌회전은 최좌측 차로에서,
+                우회전은 최우측 차로에서 나가고, 직진은 차로 인덱스끼리 대응합니다).</p>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>회전</th><th>판정</th><th>출발 차로 &#8594; 도착 차로</th><th>개수</th></tr>
-                <tr><td><strong>S</strong> 직진</td><td>각도차 45&#176; 이내</td><td>우측 정렬로 인덱스 대응. 진출로가 더 넓으면 최좌측 차로가 남는 좌측 출구도 함께 담당</td><td>대체로 min(N, M)</td></tr>
+                <tr><td><strong>S</strong> 직진</td><td>각도차 45&#176; 이내</td><td>우측 정렬로 인덱스를 대응시킵니다. 진출로가 더 넓으면 최좌측 차로가 남는 좌측 출구까지 함께 담당합니다</td><td>대체로 min(N, M)</td></tr>
                 <tr><td><strong>L</strong> 좌회전</td><td>45&#176;~150&#176; 좌측</td><td>최좌측 lane 0 &#8594; lane 0</td><td>1</td></tr>
                 <tr><td><strong>R</strong> 우회전</td><td>45&#176;~150&#176; 우측</td><td>최우측 lane N&#8722;1 &#8594; lane M&#8722;1</td><td>1</td></tr>
                 <tr><td><strong>T</strong> 유턴</td><td>150&#176; 이상</td><td colspan="2"><strong>생성하지 않습니다</strong></td></tr>
             </table></div>
             <div class="warn i18n-ko"><strong>통과할 수 없는 지점은 경계가 됩니다.</strong> 유턴을 만들지 않으므로,
-                막다른 회차 지점이나 서로 마주보게 그려진 way 처럼 모든 이동이 유턴인 곳에서는
+                막다른 회차 지점이나 서로 마주 보게 그려진 way처럼 모든 이동이 유턴인 곳에서는
                 해당 링크 끝이 <strong>terminal 노드</strong>로 분리됩니다. 그대로 두면 진입한 차량이
                 빠져나갈 수 없을 뿐 아니라, 커넥션이 하나도 없는 출구 링크 때문에 엔진이
-                <span class="mono">std::out_of_range</span> 로 죽습니다
-                (<span class="mono">NetInitializer.cpp</span> 의 교차로 초기화).</div>
-            <p class="i18n-ko">커넥션 형상은 직진이 직선, 좌&#183;우회전이 두 접선의 교점을 제어점으로 한 곡선입니다.
-                커넥션 id 는 노드별 0부터이며 (from_link, 회전 순서 L&#8594;S&#8594;R, from_lane) 로 정렬해
-                결정적으로 부여합니다 &#8212; signal.xml 의 <span class="mono">connList</span> 가 이 번호를 참조하기 때문입니다.</p>
+                <span class="mono">std::out_of_range</span> 오류로 비정상 종료됩니다
+                (<span class="mono">NetInitializer.cpp</span>의 교차로 초기화 단계).</div>
+            <p class="i18n-ko">커넥션 형상은 직진이면 직선이고, 좌&#183;우회전이면 두 접선의 교점을 제어점으로 하는 곡선입니다.
+                커넥션 id는 노드마다 0부터 시작하며, (from_link, 회전 순서 L&#8594;S&#8594;R, from_lane) 순으로 정렬해
+                항상 같은 번호가 나오도록 부여합니다. signal.xml의 <span class="mono">connList</span>가 이 번호를 참조하기 때문입니다.</p>
 
-            <div class="warn i18n-ko"><strong>좌표계 주의.</strong> 내부적으로 국소 횡축 메르카토르로 미터 변환하고
-                bbox 남서 모서리를 원점으로 둡니다. 서로 다른 bbox 로 두 번 가져오면 원점이 달라
-                좌표가 맞지 않으니, 범위를 넓히려면 처음부터 큰 bbox 로 다시 가져오세요.</div>
+            <div class="warn i18n-ko"><strong>좌표계 주의.</strong> 내부적으로 국소 횡축 메르카토르 투영을 써서 좌표를 미터 단위로 변환하고,
+                bbox의 남서 모서리를 원점으로 둡니다. 서로 다른 bbox로 두 번 가져오면 원점이 달라져
+                좌표가 맞지 않으므로, 범위를 넓히려면 처음부터 큰 bbox로 다시 가져오세요.</div>
 
-            <div class="tip i18n-ko"><strong>Tip.</strong> Overpass 공개 서버는 혼잡할 때 502/504 를 자주 냅니다.
-                임포터가 미러를 돌며 재시도하지만 계속 실패하면 잠시 뒤 다시 시도하거나,
-                <a href="https://extract.bbbike.org/" target="_blank" rel="noopener">BBBike</a> 에서
-                <span class="mono">.osm</span> 을 받아 <code>SimulationInput/osm/</code> 에 두고 파일 모드로 쓰세요.</div>
+            <div class="tip i18n-ko"><strong>Tip.</strong> Overpass 공개 서버는 혼잡할 때 502/504 오류를 자주 반환합니다.
+                임포터가 여러 미러 서버로 차례로 재시도하지만, 계속 실패하면 잠시 뒤 다시 시도하거나
+                <a href="https://extract.bbbike.org/" target="_blank" rel="noopener">BBBike</a>에서
+                <span class="mono">.osm</span> 파일을 받아 <code>SimulationInput/osm/</code>에 넣고 파일 모드로 가져오세요.</div>
 
-            <p class="i18n-ko">커넥션까지 자동으로 채워지므로 가져온 직후 <strong>Validate</strong> 가 에러 0 &#183; 경고 0 으로 통과합니다.
-                OSM 데이터는 <strong>ODbL 1.0</strong> 이며 출처 표기가 네트워크 폴더의
-                <span class="mono">osm_import.json</span> 에 기록됩니다.</p>
+            <p class="i18n-ko">커넥션까지 자동으로 채워지므로 가져온 직후에 <strong>Validate</strong>를 실행하면 오류 0 &#183; 경고 0으로 통과합니다.
+                OSM 데이터의 라이선스는 <strong>ODbL 1.0</strong>이며, 출처 표기는 네트워크 폴더의
+                <span class="mono">osm_import.json</span>에 기록됩니다.</p>
             <p class="i18n-en"><strong>In short:</strong> <strong>Network → Add network → Import OpenStreetMap</strong>,
                 choose <strong>Overpass API</strong> (the server downloads from a bbox) or
                 <strong>Local .osm file</strong> (a file you placed in <code>SimulationInput/osm/</code>), give the
@@ -1962,16 +1962,16 @@
         <!-- ================================================== Backups -->
         <section id="backups">
             <h2><span class="i18n-ko">저장 백업과 복원</span><span class="i18n-en">Backups and restore</span></h2>
-            <p class="i18n-ko">어떤 워크스페이스든 저장할 때마다 덮어쓰기 직전의 파일이 폴더 안 <code>.backups/</code>에
-                자동 보관됩니다 (파일별 최근 10개, 내용이 같으면 중복 저장 안 함).</p>
+            <p class="i18n-ko">어떤 워크스페이스든 저장할 때마다 덮어쓰기 직전의 파일이 폴더 안의 <code>.backups/</code>에
+                자동으로 보관됩니다(파일별로 최근 10개까지 보관하며, 내용이 같으면 중복해서 저장하지 않습니다).</p>
             <ol class="steps i18n-ko">
-                <li>상단바 <strong>Network → Backups</strong>(Edit 모드)를 누르면 파일별 백업 목록이 시각·크기와
+                <li>상단바의 <strong>Network → Backups</strong>(Edit 모드)를 누르면 파일별 백업 목록이 시각·크기와
                     함께 표시됩니다. 현재 파일과 내용이 같은 백업은 "= current"로 표시됩니다.</li>
-                <li><strong>Diff</strong> — 그 백업과 현재 파일의 차이(추가/삭제 줄 수와 상세 diff)를
-                    미리 봅니다.</li>
-                <li><strong>Restore</strong> — 해당 시점으로 되돌립니다. 복원 직전의 현재 파일도
-                    백업으로 남으므로 복원 자체를 다시 되돌릴 수 있습니다. 복원 후 폴더가 자동으로
-                    다시 로드됩니다.</li>
+                <li><strong>Diff</strong>: 선택한 백업과 현재 파일의 차이(추가/삭제 줄 수와 상세 diff)를
+                    미리 보여 줍니다.</li>
+                <li><strong>Restore</strong>: 파일을 해당 시점으로 되돌립니다. 복원 직전의 현재 파일도
+                    백업으로 남으므로 복원 자체를 다시 되돌릴 수 있습니다. 복원한 뒤에는 폴더를 자동으로
+                    다시 불러옵니다.</li>
             </ol>
             <p class="i18n-en">Every save, in any workspace, first copies the file it is about to overwrite into
                 <code>.backups/</code> inside the folder (the 10 most recent per file; identical content is not
@@ -1989,21 +1989,21 @@
         <!-- ================================================== Packages -->
         <section id="packages">
             <h2><span class="i18n-ko">네트워크 패키지와 다른 이름으로 저장</span><span class="i18n-en">Network packages and Save as</span></h2>
-            <p class="i18n-ko"><strong>네트워크 패키지</strong>는 네트워크 폴더 하나를 묶은 <span class="mono">.zip</span> 입니다.
-                네트워크를 다른 사람에게 보내거나 다른 PC 로 옮길 때 씁니다.</p>
+            <p class="i18n-ko"><strong>네트워크 패키지</strong>는 네트워크 폴더 하나를 묶은 <span class="mono">.zip</span> 파일입니다.
+                네트워크를 다른 사람에게 보내거나 다른 PC로 옮길 때 사용합니다.</p>
             <p class="i18n-en">A <strong>network package</strong> is a <span class="mono">.zip</span> of one network
                 folder — the way to send a network to someone or move it to another machine.</p>
 
-            <h3><span class="i18n-ko">내보내기 — Export package</span><span class="i18n-en">Export package</span></h3>
+            <h3><span class="i18n-ko">내보내기(Export package)</span><span class="i18n-en">Export package</span></h3>
             <ul class="i18n-ko">
-                <li><strong>Network → Export package</strong>는 <span class="mono">&lt;이름&gt;.nextsim.zip</span> 을 내려받습니다.
-                    zip 루트에 매니페스트 <span class="mono">nextsim-package.json</span> 이 있고, 네트워크 파일은
-                    <span class="mono">&lt;이름&gt;/</span> 아래에 들어갑니다. Run 모드와 Edit 모드 어디서나 쓸 수 있습니다.</li>
+                <li><strong>Network → Export package</strong>는 <span class="mono">&lt;이름&gt;.nextsim.zip</span> 파일을 내려받습니다.
+                    zip 파일의 루트에는 매니페스트 <span class="mono">nextsim-package.json</span>이 있고, 네트워크 파일은
+                    <span class="mono">&lt;이름&gt;/</span> 아래에 들어갑니다. 이 메뉴는 Run 모드와 Edit 모드 어디서나 사용할 수 있습니다.</li>
                 <li>생성 파일(<span class="mono">Route.json</span>, <span class="mono">PTRoute.json</span>,
                     <span class="mono">LinkRangeMap.json</span>, <span class="mono">PaxRoute.json</span>,
-                    <span class="mono">dta/</span> 폴더)과 <span class="mono">.backups</span> 는 넣지 않습니다 —
-                    실행할 때 RouteGenerator 가 다시 만듭니다.</li>
-                <li>Edit 모드에서 저장하지 않은 편집은 들어가지 않습니다. 저장된 파일이 내보내지므로, 편집을 넣으려면 먼저 저장하세요.</li>
+                    <span class="mono">dta/</span> 폴더)과 <span class="mono">.backups</span>는 넣지 않습니다.
+                    생성 파일은 실행할 때 RouteGenerator가 다시 만듭니다.</li>
+                <li>Edit 모드에서 저장하지 않은 편집 내용은 패키지에 포함되지 않습니다. 저장된 파일을 내보내므로, 편집 내용을 포함하려면 먼저 저장하세요.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>Network → Export package</strong> downloads <span class="mono">&lt;name&gt;.nextsim.zip</span>:
@@ -2016,13 +2016,13 @@
                 <li>Unsaved edits in Edit mode are not exported; the saved files are. Save first to include your edits.</li>
             </ul>
 
-            <h3><span class="i18n-ko">가져오기 — Import network package</span><span class="i18n-en">Import network package</span></h3>
+            <h3><span class="i18n-ko">가져오기(Import network package)</span><span class="i18n-en">Import network package</span></h3>
             <ol class="steps i18n-ko">
                 <li><strong>Network → Add network → Import network package</strong>.</li>
-                <li><strong>Package file (.zip)</strong> 에서 패키지를 고릅니다 — NextSIM 에서 내보낸 것, 또는
-                    <code>SimulationInput/networks/&lt;이름&gt;</code> 폴더를 그대로 zip 으로 묶은 것.</li>
-                <li><strong>Network name</strong> 은 파일 이름으로 채워지며 바꿀 수 있습니다. <strong>Import</strong> 를 누르면
-                    <code>SimulationInput/networks/&lt;이름&gt;/</code> 이 만들어지고 그 네트워크가 열립니다.</li>
+                <li><strong>Package file (.zip)</strong>에서 패키지를 고릅니다. NextSIM에서 내보낸 패키지나
+                    <code>SimulationInput/networks/&lt;이름&gt;</code> 폴더를 그대로 zip으로 묶은 파일을 쓸 수 있습니다.</li>
+                <li><strong>Network name</strong>은 파일 이름으로 자동으로 채워지며, 바꿀 수 있습니다. <strong>Import</strong>를 누르면
+                    <code>SimulationInput/networks/&lt;이름&gt;/</code> 폴더가 만들어지고 그 네트워크가 열립니다.</li>
             </ol>
             <ol class="steps i18n-en">
                 <li><strong>Network → Add network → Import network package</strong>.</li>
@@ -2033,11 +2033,11 @@
                     network.</li>
             </ol>
             <div class="warn i18n-ko"><strong>가져오기 규칙.</strong>
-                이미 있는 이름은 쓸 수 없으며, 오류 문구가 비어 있는 이름(예: <span class="mono">name_2</span>)을 알려 줍니다.
-                절대 경로·<span class="mono">..</span>·심볼릭 링크가 든 zip, zip 이 아닌 파일, <span class="mono">network.xml</span> 이
+                이미 있는 이름은 쓸 수 없으며, 이때 오류 문구에서 사용할 수 있는 이름(예: <span class="mono">name_2</span>)을 알려 줍니다.
+                절대 경로·<span class="mono">..</span>·심볼릭 링크가 든 zip, zip이 아닌 파일, <span class="mono">network.xml</span>이
                 없는 패키지는 거부합니다. <span class="mono">.xml · .json · .txt · .csv · .md</span> 파일만 가져오고 나머지는
-                건너뜁니다. <span class="mono">parameter_xml</span> 이 없는 패키지에는 기본 <span class="mono">parameter_xml</span> 을
-                넣습니다. 크기 한도는 기본 1024&nbsp;MB 이며 환경 변수 <span class="mono">NEXTSIM_MAX_PACKAGE_MB</span> 로 바꿉니다.</div>
+                건너뜁니다. <span class="mono">parameter_xml</span>이 없는 패키지에는 기본 <span class="mono">parameter_xml</span>을
+                넣습니다. 크기 한도는 기본 1024&nbsp;MB이며, 환경 변수 <span class="mono">NEXTSIM_MAX_PACKAGE_MB</span>로 바꿀 수 있습니다.</div>
             <div class="warn i18n-en"><strong>Import rules.</strong>
                 The name must not exist yet; the error suggests a free one (such as <span class="mono">name_2</span>).
                 Zips with absolute paths, <span class="mono">..</span> or symbolic links, files that are not zips, and
@@ -2047,10 +2047,10 @@
                 <span class="mono">parameter_xml</span>. The size limit is 1024&nbsp;MB by default; change it with the
                 environment variable <span class="mono">NEXTSIM_MAX_PACKAGE_MB</span>.</div>
 
-            <h3><span class="i18n-ko">다른 이름으로 저장 — Save as new network…</span><span class="i18n-en">Save as new network…</span></h3>
-            <p class="i18n-ko">Edit 모드의 <strong>Network → Save as new network…</strong>는 지금 네트워크를 새 폴더로 복사하고
-                (<span class="mono">.backups</span> 와 생성 파일 제외), 저장하지 않은 워크스페이스를 모두 새 폴더에 저장한 뒤
-                새 네트워크를 이어서 편집합니다. 원래 네트워크는 바뀌지 않습니다. 새 이름도 가져오기처럼 이미 있는 이름은 쓸 수 없습니다.</p>
+            <h3><span class="i18n-ko">다른 이름으로 저장(Save as new network…)</span><span class="i18n-en">Save as new network…</span></h3>
+            <p class="i18n-ko">Edit 모드의 <strong>Network → Save as new network…</strong>는 현재 네트워크를 새 폴더로 복사하고
+                (<span class="mono">.backups</span>와 생성 파일은 제외), 저장하지 않은 워크스페이스를 모두 새 폴더에 저장한 뒤
+                새 네트워크에서 편집을 이어 갑니다. 원래 네트워크는 바뀌지 않습니다. 가져오기와 마찬가지로 이미 있는 이름은 새 이름으로 쓸 수 없습니다.</p>
             <p class="i18n-en"><strong>Network → Save as new network…</strong> (Edit mode) copies the current network to a
                 new folder (without <span class="mono">.backups</span> and generated files), saves every unsaved workspace
                 into the new folder, and carries on editing the new network. The original network is not changed. As
@@ -2066,7 +2066,7 @@
                 <tr><th>키</th><th>동작</th></tr>
                 <tr><td><kbd>Ctrl</kbd>+<kbd>K</kbd></td><td>전역 검색 (노드·링크·정류장·노선)</td></tr>
                 <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>실행 취소 / 다시 실행 (워크스페이스별)</td></tr>
-                <tr><td><kbd>Esc</kbd></td><td>현재 모드·선택 해제 — 입력칸 안에서는 포커스만, 모달이 떠 있으면 모달 닫기</td></tr>
+                <tr><td><kbd>Esc</kbd></td><td>현재 모드·선택 해제(입력칸 안에서는 포커스만 해제, 모달이 떠 있으면 모달 닫기)</td></tr>
                 <tr><td>휠 / <kbd>Space</kbd>+드래그 · 가운데 버튼 드래그</td><td>확대·축소 / 화면 이동</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
@@ -2080,24 +2080,24 @@
             <h3><span class="i18n-ko">Network 워크스페이스</span><span class="i18n-en">Network workspace</span></h3>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>키</th><th>동작</th></tr>
-                <tr><td><kbd>V</kbd></td><td>Select — 클릭 선택, 드래그 박스 선택 (<kbd>Shift</kbd> 추가)</td></tr>
+                <tr><td><kbd>V</kbd></td><td>Select: 클릭 선택, 드래그 박스 선택(<kbd>Shift</kbd>를 누르면 기존 선택에 추가)</td></tr>
                 <tr><td><kbd>N</kbd></td><td>노드 2개 이상 선택 시 병합 / 링크 선택 시 교차로 노드 생성 / 그 외 노드 생성 모드</td></tr>
-                <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>선택 링크에서 교차로 노드 생성 (항상)</td></tr>
-                <tr><td><kbd>L</kbd></td><td>링크 그리기 (좌클릭 점 · 우클릭 완료)</td></tr>
-                <tr><td><kbd>M</kbd></td><td>선택 객체 이동 (드래그)</td></tr>
+                <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd></td><td>선택한 링크에서 교차로 노드 생성(항상)</td></tr>
+                <tr><td><kbd>L</kbd></td><td>링크 그리기(좌클릭으로 점 추가 · 우클릭으로 완료)</td></tr>
+                <tr><td><kbd>M</kbd></td><td>선택한 객체 이동(드래그)</td></tr>
                 <tr><td><kbd>E</kbd></td><td>링크 선형(shape) 편집</td></tr>
-                <tr><td><kbd>C</kbd></td><td>차로 단위 커넥션 편집 (<kbd>Enter</kbd>: 고른 차로 편집 끝)</td></tr>
+                <tr><td><kbd>C</kbd></td><td>차로 단위 커넥션 편집(<kbd>Enter</kbd>: 고른 차로의 편집 마치기)</td></tr>
                 <tr><td><kbd>X</kbd></td><td>링크 분할 (클릭 지점에 노드 삽입)</td></tr>
-                <tr><td><kbd>S</kbd></td><td>정지선 배치 (링크 클릭 지점)</td></tr>
+                <tr><td><kbd>S</kbd></td><td>정지선 배치(링크에서 클릭한 지점)</td></tr>
                 <tr><td><kbd>D</kbd></td><td>삭제 모드 (클릭한 오브젝트 제거)</td></tr>
                 <tr><td><kbd>W</kbd></td><td>상충·통행우선권 편집기 (교차로 노드 클릭)</td></tr>
-                <tr><td><kbd>J</kbd></td><td>선택한 연속 링크 합치기 (Split 의 반대)</td></tr>
-                <tr><td><kbd>R</kbd></td><td>선택 링크의 역방향 링크 생성</td></tr>
-                <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>V</kbd></td><td>선택 노드·링크 복사 / 붙여넣기 (반복할수록 더 밀림)</td></tr>
-                <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> / <kbd>V</kbd></td><td>링크 속성 복사 / 선택 링크에 적용</td></tr>
-                <tr><td><kbd>1</kbd>–<kbd>9</kbd></td><td>차로 수 지정 (선택 링크 / 그리는 중 링크)</td></tr>
-                <tr><td><kbd>Del</kbd></td><td>선택 항목 삭제 (shape 편집 중엔 선택 점 삭제)</td></tr>
-                <tr><td><kbd>Esc</kbd></td><td>단축키 팝오버 → 겹침 피커 → 박스 선택 → 이동 드래그 → 검증 마커 → 도구 해제 순으로 하나씩</td></tr>
+                <tr><td><kbd>J</kbd></td><td>선택한 연속 링크 합치기(Split의 반대)</td></tr>
+                <tr><td><kbd>R</kbd></td><td>선택한 링크의 역방향 링크 생성</td></tr>
+                <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd> / <kbd>V</kbd></td><td>선택한 노드·링크 복사 / 붙여넣기(반복할수록 원본에서 더 떨어져 배치)</td></tr>
+                <tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>C</kbd> / <kbd>V</kbd></td><td>링크 속성 복사 / 선택한 링크에 적용</td></tr>
+                <tr><td><kbd>1</kbd>–<kbd>9</kbd></td><td>차로 수 지정(선택한 링크 / 그리는 중인 링크)</td></tr>
+                <tr><td><kbd>Del</kbd></td><td>선택한 항목 삭제(shape 편집 중에는 선택한 점 삭제)</td></tr>
+                <tr><td><kbd>Esc</kbd></td><td>단축키 팝오버 → 겹침 피커 → 박스 선택 → 이동 드래그 → 검증 마커 → 도구 순으로 하나씩 해제</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Key</th><th>Action</th></tr>
@@ -2131,12 +2131,12 @@
                 <tr><td><kbd>Esc</kbd></td><td>Leave origin-source pick mode (same as <strong>Done</strong>)</td></tr>
             </table></div>
 
-            <h3><span class="i18n-ko">Infrastructure 워크스페이스 — 검지기 배치 중</span><span class="i18n-en">Infrastructure workspace — while placing a detector</span></h3>
+            <h3><span class="i18n-ko">Infrastructure 워크스페이스: 검지기 배치 중</span><span class="i18n-en">Infrastructure workspace — while placing a detector</span></h3>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>키</th><th>동작</th></tr>
                 <tr><td><kbd>Tab</kbd></td><td>E3 진입점 ↔ 진출점 단계 전환</td></tr>
                 <tr><td><kbd>Enter</kbd></td><td>E3 배치 마치기</td></tr>
-                <tr><td><kbd>Esc</kbd></td><td>배치 취소 (빈 E3는 자동 정리)</td></tr>
+                <tr><td><kbd>Esc</kbd></td><td>배치 취소(빈 E3는 자동으로 삭제)</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Key</th><th>Action</th></tr>
@@ -2150,7 +2150,7 @@
         <section id="faq">
             <h2><span class="i18n-ko">FAQ · 문제 해결</span><span class="i18n-en">FAQ &amp; troubleshooting</span></h2>
 
-            <h3><span class="i18n-ko">이 워크스페이스에서 뭐가 클릭되나요?</span><span class="i18n-en">What is clickable in each workspace?</span></h3>
+            <h3><span class="i18n-ko">워크스페이스마다 무엇을 클릭할 수 있나요?</span><span class="i18n-en">What is clickable in each workspace?</span></h3>
             <p class="i18n-ko">워크스페이스마다 그곳에서 쓰는 오브젝트만 클릭·호버에 반응합니다. 다른 오브젝트를
                 편집하려면 해당 워크스페이스로 이동하세요.</p>
             <p class="i18n-en">Each workspace responds only to the objects it uses. To edit something else, switch
@@ -2171,71 +2171,71 @@
                 <tr><td>Infrastructure</td><td class="center no">–</td><td class="center yes">✓</td><td class="center no">–</td><td class="center no">–</td><td class="center no">–</td></tr>
                 <tr><td>Events</td><td class="center no">–</td><td class="center yes">✓</td><td class="center no">–</td><td class="center no">–</td><td class="center no">–</td></tr>
             </table></div>
-            <p class="i18n-ko">같은 워크스페이스 안에서도 활성 도구가 대상을 더 좁힙니다 — Network 의
-                <strong>Conflict</strong>(<kbd>W</kbd>) 는 교차로 노드만 받고, OD 의 <strong>source 선택 모드</strong>
-                에서는 링크 클릭이 OD 행 추가가 아니라 진입점 토글로 동작합니다.</p>
+            <p class="i18n-ko">같은 워크스페이스 안에서도 활성화된 도구에 따라 대상이 더 좁아집니다. Network의
+                <strong>Conflict</strong>(<kbd>W</kbd>)는 교차로 노드만 클릭할 수 있고, OD의 <strong>source 선택 모드</strong>가 켜져 있을 때는
+                링크를 클릭하면 OD 행이 추가되지 않고 진입점이 토글됩니다.</p>
             <p class="i18n-en">The active tool narrows it further within a workspace — Network's
                 <strong>Conflict</strong> (<kbd>W</kbd>) accepts intersection nodes only, and in OD's
                 <strong>source pick mode</strong> a link click toggles an entry point instead of adding an OD row.</p>
 
             <h3><span class="i18n-ko">큰 네트워크를 열면 느리지 않나요?</span><span class="i18n-en">Is a large network slow to work with?</span></h3>
-            <p class="i18n-ko">네트워크는 <strong>규모와 무관하게 항상 캔버스로</strong> 그려집니다. 뷰포트 컬링과
-                배율별 LOD 를 쓰기 때문에 그리는 양이 화면 크기에만 비례하고, 수만 링크 규모까지 부드럽게
-                동작합니다. (예전에는 링크 800개를 기준으로 SVG/캔버스를 갈랐지만, 그 아래 규모에서도
-                DOM 요소가 수천 개라 버벅여서 기준을 없앴습니다.)</p>
+            <p class="i18n-ko">네트워크는 <strong>규모와 관계없이 항상 캔버스로</strong> 그려집니다. 뷰포트 컬링과
+                배율별 LOD를 사용하므로 그리는 양이 화면 크기에만 비례하고, 링크가 수만 개인 규모까지 부드럽게
+                동작합니다. (예전에는 링크 800개를 기준으로 SVG와 캔버스 중 하나를 골랐지만, 그보다 작은 규모에서도
+                DOM 요소가 수천 개에 이르러 화면이 끊겼기 때문에 이 기준을 없앴습니다.)</p>
             <p class="i18n-en">The network is <strong>always drawn on canvas, regardless of size</strong>. With
                 viewport culling and zoom-based level of detail, the amount drawn scales with the screen rather than
                 the network, and it stays smooth into the tens of thousands of links. (There used to be an
                 800-link SVG/canvas threshold, but even below it a few thousand DOM elements stuttered, so the
                 threshold was removed.)</p>
             <p class="i18n-ko">렌더 차이를 확인해야 할 때만 브라우저 콘솔에서
-                <code>localStorage.setItem('nextsim-network-canvas','off')</code> 로 예전 SVG 경로를 켤 수 있습니다.
-                <span class="mono">'on'</span> 을 넣는 것은 이제 의미가 없습니다 — 기본이 이미 캔버스입니다.</p>
+                <code>localStorage.setItem('nextsim-network-canvas','off')</code>로 예전 SVG 렌더링 방식을 켤 수 있습니다.
+                <span class="mono">'on'</span>을 설정하는 것은 이제 의미가 없습니다. 기본값이 이미 캔버스이기 때문입니다.</p>
             <p class="i18n-en">For debugging a rendering difference you can force the old SVG path from the console
                 with <code>localStorage.setItem('nextsim-network-canvas','off')</code>. Setting it to
                 <span class="mono">'on'</span> does nothing now — canvas is already the default.</p>
 
             <h3><span class="i18n-ko">편집할 때 화면이 깜빡이지 않나요?</span><span class="i18n-en">Does the map flicker while editing?</span></h3>
             <p class="i18n-ko">아닙니다. 예전에는 링크·노드를 고칠 때마다 렌더러를 통째로 다시 만들어 화면이 잠깐
-                비었지만, 지금은 카메라를 유지한 채 <strong>제자리에서 갱신</strong>합니다 — 캔버스는 기존 그림을
-                그대로 둔 채 한 프레임에 새 그림으로 덮고, 줌·위성 배경·이벤트 바인딩은 살아 있습니다.
-                결과적으로 큰 네트워크에서 편집 반영도 빨라졌습니다.</p>
+                비었지만, 지금은 카메라를 유지한 채 <strong>제자리에서 갱신</strong>합니다. 캔버스는 기존 그림을
+                그대로 둔 채 한 프레임 안에 새 그림으로 덮어 그리며, 줌·위성 배경·이벤트 바인딩도 그대로 유지됩니다.
+                그 결과 큰 네트워크에서도 편집 내용이 더 빠르게 반영됩니다.</p>
             <p class="i18n-en">No. Editing used to rebuild the whole renderer, briefly blanking the map; now it
                 <strong>refreshes in place</strong> with the camera intact — the canvas keeps its current pixels
                 until the new frame overwrites them, and the zoom, basemap, and event bindings stay alive. Edits
                 also apply faster on large networks as a result.</p>
 
             <h3><span class="i18n-ko">저장·오류 메시지는 어디에 뜨나요?</span><span class="i18n-en">Where do save and error messages appear?</span></h3>
-            <p class="i18n-ko">모두 <strong>화면 우측 상단 토스트</strong>로 뜹니다. 패널 안에는 실시간 상태 문구를
-                표시하지 않으며, 같은 메시지가 반복되면 한 번만 보여줍니다. 다만 위성 배경의 정합 상태는
-                예외로 Display 패널 안에 남아 있습니다.</p>
+            <p class="i18n-ko">모두 <strong>화면 우측 상단 토스트</strong>로 표시됩니다. 패널 안에는 실시간 상태 문구를
+                표시하지 않으며, 같은 메시지가 반복되면 한 번만 보여 줍니다. 다만 위성 배경의 정합 상태는
+                예외적으로 Display 패널 안에 표시됩니다.</p>
             <p class="i18n-en">All of them as a <strong>toast in the top-right corner</strong>. The panels no longer
                 carry a live status line, and repeats of the same message are shown once. The one exception is the
                 basemap georeference status, which stays inside the Display panel.</p>
 
             <h3><span class="i18n-ko">에디터에 없는 XML 속성은 저장하면 사라지나요?</span><span class="i18n-en">Are XML attributes the editor doesn't show lost on save?</span></h3>
             <p class="i18n-ko">아니요. <span class="mono">qmax</span>, <span class="mono">wave_spd</span>처럼 에디터
-                화면에 노출되지 않는 속성도 저장 시 원본 그대로 보존됩니다.</p>
+                화면에 노출되지 않는 속성도 저장할 때 원본 그대로 보존됩니다.</p>
             <p class="i18n-en">No. Attributes that never appear in the UI — <span class="mono">qmax</span>,
                 <span class="mono">wave_spd</span>, and the like — are preserved verbatim on save.</p>
 
             <h3><span class="i18n-ko">워크스페이스끼리 참조가 어긋나면?</span><span class="i18n-en">What if references between workspaces break?</span></h3>
             <p class="i18n-ko">저장할 때 다른 워크스페이스가 참조하는 ID(예: PT 노선이 참조하는 링크, 신호가 참조하는
-                노드)가 사라지면 경고 알림으로 알려줍니다. 삭제·분할 후에는 관련 워크스페이스를 한 번
-                확인하는 습관을 권합니다.</p>
+                노드)가 사라지면 경고 알림을 표시합니다. 삭제나 분할을 한 뒤에는 관련 워크스페이스를 한 번
+                확인하는 것이 좋습니다.</p>
             <p class="i18n-en">Saving warns you when an ID another workspace references disappears — a link a PT
                 line uses, a node a signal points at. After deleting or splitting, it is worth checking the related
                 workspaces once.</p>
 
-            <h3><span class="i18n-ko">지도가 이동이 안 돼요 / 클릭이 이상해요</span><span class="i18n-en">The map won't pan, or clicks behave oddly</span></h3>
+            <h3><span class="i18n-ko">지도가 이동하지 않거나 클릭이 이상하게 동작합니다</span><span class="i18n-en">The map won't pan, or clicks behave oddly</span></h3>
             <ul class="i18n-ko">
-                <li>화면 이동은 <kbd>Space</kbd>를 누른 채 왼쪽 드래그(또는 가운데 버튼 드래그)입니다 — Space 없이 하는 좌클릭 드래그는 편집
-                    동작(박스 선택 등)에 배정되어 있습니다. 지도 위에 마우스가 있을 때 Space 를 누르세요.</li>
-                <li>측정 도구(📏)가 켜져 있으면 모든 클릭이 측정점 추가로 동작합니다. <kbd>Esc</kbd>로 끄세요.</li>
-                <li>Network의 편집 모드가 걸려 있으면 <kbd>Esc</kbd>로 해제 후 Select(<kbd>V</kbd>)로
+                <li>화면을 이동하려면 <kbd>Space</kbd>를 누른 채 왼쪽 버튼으로 드래그(또는 가운데 버튼으로 드래그)합니다. Space를 누르지 않은 좌클릭 드래그는 편집
+                    동작(박스 선택 등)에 배정되어 있습니다. 마우스가 지도 위에 있을 때 Space를 누르세요.</li>
+                <li>측정 도구(📏)가 켜져 있으면 클릭할 때마다 측정점이 추가됩니다. <kbd>Esc</kbd>로 측정 도구를 끄세요.</li>
+                <li>Network의 편집 모드가 켜져 있으면 <kbd>Esc</kbd>로 해제한 뒤 Select(<kbd>V</kbd>)로
                     돌아오세요.</li>
-                <li>OD 에서 <strong>source 선택 모드</strong>가 켜져 있으면 링크 클릭이 진입점 토글로 동작합니다 —
-                    아래쪽 바의 <strong>Done</strong> 또는 <kbd>Esc</kbd>로 끝내세요.</li>
+                <li>OD에서 <strong>source 선택 모드</strong>가 켜져 있으면 링크를 클릭할 때 진입점이 토글됩니다.
+                    아래쪽 바의 <strong>Done</strong>을 누르거나 <kbd>Esc</kbd>를 눌러 선택 모드를 끝내세요.</li>
             </ul>
             <ul class="i18n-en">
                 <li>Pan by holding <kbd>Space</kbd> and left-dragging (or with the middle button) — left-drag without Space is bound to editing (box select and so on). Press Space while the pointer is over the map.</li>
@@ -2245,11 +2245,11 @@
                     <strong>Done</strong> in the bottom bar or <kbd>Esc</kbd>.</li>
             </ul>
 
-            <h3><span class="i18n-ko">편집 결과로 시뮬레이션을 돌리려면?</span><span class="i18n-en">How do I run a simulation with my edits?</span></h3>
-            <p class="i18n-ko">상단바의 <strong>Run</strong> 으로 전환합니다 — 저장하지 않은 변경이 있으면
-                <strong>Save &amp; switch</strong> 로 저장하며 넘어갑니다(<a href="#switch-to-run">Run 모드로 전환</a>).
+            <h3><span class="i18n-ko">편집한 내용으로 시뮬레이션을 실행하려면?</span><span class="i18n-en">How do I run a simulation with my edits?</span></h3>
+            <p class="i18n-ko">상단바의 <strong>Run</strong>을 눌러 전환합니다. 저장하지 않은 변경 사항이 있으면
+                <strong>Save &amp; switch</strong>로 저장하면서 전환합니다(<a href="#switch-to-run">Run 모드로 전환</a>).
                 같은 네트워크가 Run 모드로 열리면 <strong>Simulation</strong> 패널에서 시나리오를 고르고
-                <strong>Run Selected Network</strong>를 실행하면 됩니다. 결과
+                <strong>Run Selected Network</strong>를 누르면 됩니다. 결과
                 재생·분석 방법은 <a class="doc-cross" href="visualizer-guide.html"
                 data-local="visualizer-guide.html"
                >Run 모드 가이드</a>를 보세요.</p>
@@ -2264,7 +2264,7 @@
 
         <footer>
             NextSIM Edit Mode Guide · KAIST AIxMobility Lab —
-            <span class="i18n-ko">실행과 결과 재생은 <a class="doc-cross" href="visualizer-guide.html"
+            <span class="i18n-ko">실행과 결과 재생 방법은 <a class="doc-cross" href="visualizer-guide.html"
                 data-local="visualizer-guide.html"
                >Run 모드 가이드</a>를 보세요.</span>
             <span class="i18n-en">For running and replaying, see the <a class="doc-cross" href="visualizer-guide.html"

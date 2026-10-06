@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NextSIM — Research</title>
+<meta name="description" content="NextSIM is built on research into dynamic multi-level (micro–meso) traffic simulation for urban networks, published in IEEE T-ITS.">
+<meta name="theme-color" content="#05060f">
+<meta property="og:title" content="NextSIM — Research">
+<meta property="og:description" content="NextSIM은 도시 네트워크를 위한 동적 다단계 교통 시뮬레이션 연구를 바탕으로 개발되었습니다. 연구 내용과 활용 분야, 인용 방법을 소개합니다.">
+<meta property="og:image" content="assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+<script>
+    /* 언어를 body 파싱 전에 정해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       사용자 가이드(docs/)와 같은 키를 써서 사이트 전체에서 선택이 유지된다.
+       우선순위: ?lang= → 저장된 선택 → 브라우저 언어 → 한국어 */
+    (function () {
+        var root = document.documentElement;
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') lang = q;
+            if (!lang) {
+                var saved = window.localStorage.getItem('nextsim-doc-lang');
+                if (saved === 'en' || saved === 'ko') lang = saved;
+            }
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+        if (!lang) lang = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        root.setAttribute('data-lang', lang);
+        root.setAttribute('lang', lang);
+    })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span class="i18n-ko">본문으로 건너뛰기</span><span class="i18n-en">Skip to content</span></a>
+
+<!-- ============================================================ 헤더 (index · features · research 가 같은 헤더를 쓴다) -->
+<header class="topbar" id="top">
+    <div class="topbar__inner wrap">
+        <a class="brand" href="index.html">
+            <img src="assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="107" height="30">
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">
+            <span class="i18n-ko">메뉴</span><span class="i18n-en">Menu</span>
+        </button>
+        <nav class="sitenav" id="siteNav" aria-label="Site">
+            <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+            <a href="research.html" aria-current="page"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+            <a href="index.html#start"><span class="i18n-ko">시작하기</span><span class="i18n-en">Get started</span></a>
+            <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+            <div class="sitenav__end">
+                <div class="lang-switch" role="group" aria-label="Language / 언어">
+                    <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+                    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+                <a class="btn btn--accent btn--sm" href="docs/installation.html"><span class="i18n-ko">설치하기</span><span class="i18n-en">Install</span></a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+<header class="page-head">
+    <div class="wrap">
+        <h1 class="display display--xl"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></h1>
+        <p class="i18n-ko">NextSIM은 도시 네트워크를 위한 동적 다단계 교통 시뮬레이션 연구를 바탕으로 개발되었습니다.
+            이 페이지에서는 연구 내용과 NextSIM을 활용할 수 있는 연구 주제, 인용 방법을 소개합니다.</p>
+        <p class="i18n-en">NextSIM is built on research into dynamic multi-level traffic simulation for urban networks. This page
+            summarises the research, suggests topics NextSIM can support, and explains how to cite it.</p>
+    </div>
+</header>
+
+<!-- ============================================================ 논문 -->
+<section class="section section--first" id="paper">
+    <div class="wrap">
+        <blockquote class="paper-card paper-card--wide">
+            <p class="paper-card__journal">IEEE Transactions on Intelligent Transportation Systems · vol. 27, no. 7, pp. 8564–8578, 2026</p>
+            <p class="paper-card__title">NextSim: Multi-Level Traffic Simulation for Urban Networks Using Dynamic Level Assignment</p>
+            <p class="paper-card__authors">Yeeun Kim, Seongjin Choi, Sujae Jeon, Hwasoo Yeo</p>
+            <p class="paper-card__doi"><a href="https://doi.org/10.1109/TITS.2026.3671220" target="_blank" rel="noopener">doi:10.1109/TITS.2026.3671220 <span aria-hidden="true">↗</span></a></p>
+        </blockquote>
+
+        <div class="rows">
+            <section class="row">
+                <h2 class="row__title"><span class="i18n-ko">연구 배경</span><span class="i18n-en">Background</span></h2>
+                <div class="row__body">
+                    <p class="i18n-ko">교통 시뮬레이션의 대상이 대규모 도시 지역으로 넓어지면서, 높은 정확도와 계산 효율을 함께 얻기가 점점 어려워지고 있습니다.
+                        미시(micro) 시뮬레이션은 교통 흐름을 가장 자세하고 정확하게 표현하지만, 계산 비용이 커서 대규모 도시 네트워크에 적용하기 어렵습니다.</p>
+                    <p class="i18n-ko">그래서 여러 시뮬레이션 단계를 하나의 프레임워크에 결합하는 다단계(multi-level) 교통 시뮬레이션이 대안으로 연구되어 왔습니다.
+                        도시 네트워크에는 micro와 meso를 결합하는 방식이 적합하며, 최근 연구에서는 시간에 따라 변하는 교통 상황에 맞추어 도로 구간의 시뮬레이션 단계를 조정하는 동적 특성이 중요하다고 보고 있습니다.</p>
+                    <p class="i18n-en">As traffic simulation moves to large urban areas, achieving both high accuracy and computational efficiency
+                        becomes harder. Microscopic simulation represents traffic dynamics in the most detail, but its cost keeps it from
+                        large urban networks.</p>
+                    <p class="i18n-en">Multi-level simulation combines several levels in one framework; micro–meso hybrids suit urban networks,
+                        and recent studies stress dynamic properties that adjust the level of each road segment as traffic changes over time.</p>
+                </div>
+            </section>
+            <section class="row">
+                <h2 class="row__title"><span class="i18n-ko">방법</span><span class="i18n-en">Approach</span></h2>
+                <div class="row__body">
+                    <p class="i18n-ko">이 연구는 미시 시뮬레이션과 중시 시뮬레이션을 결합한 도시 네트워크용 동적 다단계 교통 시뮬레이션을 제안합니다.
+                        서로 다른 시뮬레이션 단계 사이의 호환성과 일관성을 보장하기 위해 통합 시뮬레이션 프레임워크와 데이터 구조를 설계했습니다.</p>
+                    <p class="i18n-ko">또한 시간적·공간적 인터페이스를 설계하여, 단계가 바뀌어도 차량 정보가 보존되고 교통 흐름이 일관되게 이어지는지 검증했습니다.
+                        평가에서는 micro와 meso 단계를 동적으로 결정하는 여러 방법을 다양한 수요 시나리오에서 계산 비용과 정확도 측면으로 비교했습니다.</p>
+                    <p class="i18n-en">The study proposes a dynamic multi-level simulation for urban networks that combines microscopic and
+                        mesoscopic simulation, with a unified framework and data structure that keep the levels compatible and consistent.</p>
+                    <p class="i18n-en">Temporal and spatial interfaces were designed and verified to preserve vehicle information and keep
+                        traffic dynamics consistent. Several methods for choosing micro and meso levels dynamically were evaluated for
+                        computational cost and accuracy under various demand scenarios.</p>
+                </div>
+            </section>
+            <section class="row">
+                <h2 class="row__title"><span class="i18n-ko">주요 결과</span><span class="i18n-en">Findings</span></h2>
+                <div class="row__body">
+                    <ul class="list i18n-ko">
+                        <li>모든 수요 시나리오에서 동적 다단계 시뮬레이션은 중시 모형보다 정확했고, 미시 모형보다 계산 비용이 적었습니다.</li>
+                        <li>단계를 고정한 다단계 시뮬레이션보다 신뢰도가 높았으며, 특히 수요가 관심 구역에 집중되지 않은 경우에 신뢰도가 더 높게 나타났습니다.</li>
+                        <li>이러한 결과는 크기가 서로 다른 여러 네트워크에서 일관되게 나타났습니다.</li>
+                    </ul>
+                    <ul class="list i18n-en">
+                        <li>Across all demand scenarios, the dynamic multi-level simulation was more accurate than the mesoscopic model and cheaper than the microscopic model.</li>
+                        <li>It was more reliable than fixed multi-level simulations, especially when demand was not focused on the region of interest.</li>
+                        <li>These results held across networks of different sizes.</li>
+                    </ul>
+                    <p class="note i18n-ko">위 내용은 논문 초록을 요약한 것입니다. 실험 조건과 수치는 논문 본문에서 확인해 주세요.</p>
+                    <p class="note i18n-en">Summarised from the paper's abstract; see the paper for the experimental setup and figures.</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ 활용 -->
+<section class="section" id="uses">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">NextSIM으로 할 수 있는 연구</span><span class="i18n-en">Research you can do with NextSIM</span></h2>
+            <p class="i18n-ko">NextSIM은 논문에서 제안한 계산 방식을 실험할 수 있을 뿐 아니라, 다음과 같은 교통 연구에도 활용할 수 있습니다.</p>
+            <p class="i18n-en">Beyond the approach in the paper, NextSIM supports work such as the following.</p>
+        </header>
+        <div class="rows">
+        <section class="row" id="use-levels">
+            <h2 class="row__title"><span class="i18n-ko">계산 단계 배정 전략</span><span class="i18n-en">Level-assignment strategies</span> <span class="tag"><span class="i18n-ko">소스 빌드</span><span class="i18n-en">source build</span></span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">NextCI로 링크 상태를 읽고 링크의 계산 단계를 바꿀 수 있으므로, 어떤 구간을 언제 micro로 계산할지 정하는 규칙을 Python으로 직접 구현하여 시험할 수 있습니다.</p>
+                <p class="i18n-ko">튜토리얼에서는 가장 붐비는 링크 5개만 micro로 두고 나머지 링크를 meso로 바꾼 뒤, 모든 링크를 micro로 계산할 때와 계산 시간과 차량 수를 비교합니다.</p>
+                <p class="i18n-en">NextCI reads link states and switches links between levels, so you can write and test your own rule for which segments to simulate in micro and when, in Python.</p>
+                <p class="i18n-en">A tutorial keeps only the five busiest links in micro, switches the rest to meso, and compares computation time and vehicle counts with an all-micro run.</p>
+                <a class="textlink" href="docs/nextci-tutorials.html#hybrid"><span class="i18n-ko">NextCI 튜토리얼</span><span class="i18n-en">NextCI tutorial</span> →</a>
+            </div>
+        </section>
+        <section class="row" id="use-alternatives">
+            <h2 class="row__title"><span class="i18n-ko">교통 운영 대안 비교</span><span class="i18n-en">Comparing operating strategies</span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">신호 계획이나 수요 시나리오를 바꿔 가며 시뮬레이션하고, 가상 검지기로 교통량·점유율·통행시간을 같은 형식으로 수집하여 비교할 수 있습니다.</p>
+                <p class="i18n-ko">소스 빌드 환경에서는 체크포인트로 같은 시점부터 여러 대안을 반복 실행할 수 있습니다.</p>
+                <p class="i18n-en">Vary signal plans or demand scenarios and compare flow, occupancy, and travel time collected by virtual detectors in the same form.</p>
+                <p class="i18n-en">In a source build, checkpoints let you rerun alternatives from the same moment.</p>
+            </div>
+        </section>
+        <section class="row" id="use-transit">
+            <h2 class="row__title"><span class="i18n-ko">대중교통 운영 분석</span><span class="i18n-en">Transit operations</span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">버스·TRT·트램·철도 노선과 승객 수요를 도로 교통과 함께 계산하므로, 도로 혼잡이 대중교통 운행과 정류장 대기에 주는 영향을 함께 분석할 수 있습니다.</p>
+                <p class="i18n-en">Transit lines and passenger demand share the network with road traffic, so the effect of congestion on transit service and waiting at stops can be studied together.</p>
+            </div>
+        </section>
+        <section class="row" id="use-dta">
+            <h2 class="row__title"><span class="i18n-ko">통행 배정</span><span class="i18n-en">Traffic assignment</span> <span class="tag"><span class="i18n-ko">미리보기</span><span class="i18n-en">preview</span></span></h2>
+            <div class="row__body">
+                <p class="i18n-ko">동적 통행 배정(DTA)으로 기점과 종점 사이의 경로 선택 비율을 반복 계산하고, 수렴 과정과 경로별 결과를 확인할 수 있습니다.</p>
+                <p class="i18n-en">Dynamic traffic assignment (DTA) iterates route shares between origins and destinations and shows the convergence and per-route results.</p>
+            </div>
+        </section>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================ 인용 -->
+<section class="section section--last" id="cite">
+    <div class="wrap">
+        <div class="about about--single">
+            <div class="about__cite">
+                <h2 class="display display--sm"><span class="i18n-ko">인용</span><span class="i18n-en">How to cite</span></h2>
+                <p class="i18n-ko">NextSIM을 연구에 활용하셨다면 아래 논문을 인용해 주세요. 공동 연구에 관한 문의는 <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">연구실 홈페이지</a>를 통해 연락해 주세요.</p>
+                <p class="i18n-en">If you use NextSIM in your research, please cite the following paper. For collaboration, contact us through the <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">lab website</a>.</p>
+                <p class="about__ref">Y. Kim, S. Choi, S. Jeon, and H. Yeo, “NextSim: Multi-Level Traffic Simulation for Urban Networks Using Dynamic Level Assignment,” <em>IEEE Transactions on Intelligent Transportation Systems</em>, vol. 27, no. 7, pp. 8564–8578, 2026, doi: <a href="https://doi.org/10.1109/TITS.2026.3671220" target="_blank" rel="noopener">10.1109/TITS.2026.3671220</a>.</p>
+                <details class="about__bib">
+                    <summary>BibTeX</summary>
+                    <pre><code>@article{kim2026nextsim,
+  author  = {Kim, Yeeun and Choi, Seongjin and Jeon, Sujae and Yeo, Hwasoo},
+  title   = {NextSim: Multi-Level Traffic Simulation for Urban Networks Using Dynamic Level Assignment},
+  journal = {IEEE Transactions on Intelligent Transportation Systems},
+  volume  = {27},
+  number  = {7},
+  pages   = {8564--8578},
+  year    = {2026},
+  doi     = {10.1109/TITS.2026.3671220}
+}</code></pre>
+                </details>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer__row">
+            <span>NextSIM · KAIST AIxMobility Lab</span>
+            <nav aria-label="Footer">
+                <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+                <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+                <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+                <a href="docs/installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a>
+                <a href="https://github.com/AIxMobility/nextsim-web/releases/latest" target="_blank" rel="noopener"><span class="i18n-ko">다운로드</span><span class="i18n-en">Downloads</span></a>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

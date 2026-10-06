@@ -651,11 +651,11 @@
             <h1><span class="i18n-ko">NextSIM 문서</span><span class="i18n-en">NextSIM Documentation</span></h1>
             <p class="i18n-ko">NextSIM은 KAIST AIxMobility Lab에서 개발한 <strong>하이브리드 교통 시뮬레이터</strong>입니다.
                 하나의 네트워크 안에서 링크마다 미시(micro)·중시(meso) 모형을 골라 쓸 수 있어, 분석이 필요한
-                구간만 차량 단위로 정밀하게 보면서 나머지는 빠르게 돌릴 수 있습니다.
-                이 문서는 NextSIM 의 구조를 소개하고, <a href="installation.html">설치</a>와 도구별 사용법은 이어지는 가이드에서 다룹니다.
-                입력 편집과 시뮬레이션 실행·결과 재생은 브라우저의 <strong>NextSIM</strong> 화면(<code>/nextsim/</code>) 한 곳에서
-                합니다 — 실행·결과 재생을 맡는 <strong>Run 모드</strong>와 입력 편집을 맡는 <strong>Edit 모드</strong>를
-                상단바에서 오가며 씁니다.</p>
+                구간만 차량 단위로 정밀하게 분석하고 나머지 구간은 빠르게 계산할 수 있습니다.
+                이 문서에서는 NextSIM의 구조를 소개하고, <a href="installation.html">설치</a> 방법과 도구별 사용법은 이어지는 가이드에서 다룹니다.
+                입력 편집과 시뮬레이션 실행·결과 재생은 모두 브라우저의 <strong>NextSIM</strong> 화면(<code>/nextsim/</code>) 한 곳에서
+                진행합니다. 상단바에서 실행·결과 재생을 맡는 <strong>Run 모드</strong>와 입력 편집을 맡는 <strong>Edit 모드</strong>를
+                전환하며 사용합니다.</p>
             <p class="i18n-en">NextSIM is a <strong>hybrid traffic simulator</strong> from the KAIST AIxMobility Lab.
                 Within one network each link can run under a microscopic or mesoscopic model, so you can study the
                 stretch you care about vehicle by vehicle while the rest runs cheaply. This page explains how
@@ -701,7 +701,7 @@
             <a class="toolcard" href="nextci-guide.html" style="--tc: var(--ws-scenario)">
                 <h3>NextCI</h3>
                 <code>UnitTestsAPI · Python nextci</code>
-                <p class="i18n-ko">Python 에서 TCP 로 시뮬레이션을 스텝 단위로 진행하고, 상태를 읽고, 체크포인트로 되돌립니다. 소스 빌드가 필요합니다.</p>
+                <p class="i18n-ko">Python에서 TCP로 시뮬레이션을 스텝 단위로 진행하고, 상태를 읽고, 체크포인트 시점으로 되돌립니다. 소스에서 빌드해야 사용할 수 있습니다.</p>
                 <p class="i18n-en">Step the simulation over TCP from Python, read its state, and rewind with checkpoints. Needs a source build.</p>
                 <span class="go"><span class="i18n-ko">NextCI 가이드 →</span><span class="i18n-en">NextCI guide →</span></span>
             </a>
@@ -712,18 +712,18 @@
             <h2><span class="i18n-ko">NextSIM이란</span><span class="i18n-en">What NextSIM is</span></h2>
             <p class="i18n-ko">NextSIM은 C++17로 작성된 교통 시뮬레이션 엔진과, 그 입력을 만들고 결과를 보는
                 브라우저 도구로 이루어져 있습니다. 도로망·수요·신호를 XML/JSON으로 정의하면 엔진이 차량의
-                움직임을 계산해 SQLite 결과 DB로 남기고, 브라우저에서 그 결과를 지도 위에 재생합니다.</p>
+                움직임을 계산해 SQLite 결과 DB에 기록하고, 브라우저에서 그 결과를 지도 위에 재생합니다.</p>
             <p class="i18n-en">NextSIM is a C++17 traffic simulation engine plus browser tooling to author its
                 inputs and inspect its output. You describe the road network, demand, and signals in XML/JSON; the
                 engine computes vehicle movement and writes it to a SQLite result database; the browser replays it
                 on the map.</p>
             <ul class="i18n-ko">
-                <li><strong>하이브리드 해상도</strong> — 링크별·시간대별로 micro/meso를 지정합니다.</li>
-                <li><strong>대중교통 통합</strong> — 버스·TRT·트램·철도 노선과 승객 수요를 함께 시뮬레이션합니다.</li>
-                <li><strong>신호 제어</strong> — 현시·플랜·시간대(TOD) 기반 신호와 실시간 제어 연동.</li>
-                <li><strong>검지기</strong> — E1(단면)·E2(구간)·E3(영역) 가상 검지기로 관측값을 수집합니다.</li>
-                <li><strong>외부 제어 (NextCI)</strong> — TCP로 스텝 단위 제어·상태 조회·체크포인트가 가능해
-                    강화학습이나 공동 시뮬레이션에 붙일 수 있습니다.</li>
+                <li><strong>하이브리드 해상도</strong>: 링크별·시간대별로 micro/meso를 지정합니다.</li>
+                <li><strong>대중교통 통합</strong>: 버스·TRT·트램·철도 노선과 승객 수요를 함께 시뮬레이션합니다.</li>
+                <li><strong>신호 제어</strong>: 현시·플랜·시간대(TOD) 기반 신호를 지원하고, 실시간 제어와 연동할 수 있습니다.</li>
+                <li><strong>검지기</strong>: E1(단면)·E2(구간)·E3(영역) 가상 검지기로 관측값을 수집합니다.</li>
+                <li><strong>외부 제어 (NextCI)</strong>: TCP로 스텝 단위 제어, 상태 조회, 체크포인트 기능을 제공하므로
+                    강화학습이나 공동 시뮬레이션에 활용할 수 있습니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>Hybrid resolution</strong> — micro/meso is chosen per link and per time period.</li>
@@ -739,17 +739,17 @@
         <section id="hybrid">
             <h2><span class="i18n-ko">하이브리드 시뮬레이션</span><span class="i18n-en">Hybrid simulation</span></h2>
             <p class="i18n-ko">두 모형은 <strong>상태를 표현하는 방식</strong>과 <strong>갱신 주기</strong>가 다릅니다.
-                어느 링크를 어느 모형으로 돌릴지는 <span class="mono">mode.xml</span> 이 기간별로 정합니다
-                (Edit 모드의 Mode 워크스페이스).</p>
+                각 링크를 어느 모형으로 계산할지는 <span class="mono">mode.xml</span>에서 기간별로 정합니다
+                (Edit 모드의 Mode 워크스페이스에서 설정합니다).</p>
             <p class="i18n-en">The two models differ in <strong>how they represent state</strong> and
                 <strong>how often they update</strong>. Which link runs under which model is set per period in
                 <span class="mono">mode.xml</span> (the Mode workspace in Edit mode).</p>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th></th><th>Micro (미시)</th><th>Meso (중시)</th></tr>
-                <tr><td>상태</td><td>차량 개별 위치·속도·가속도, 차로 단위</td><td>링크를 셀로 나눠 셀별 <em>대수</em></td></tr>
-                <tr><td>거동</td><td>차량추종·차로변경 모형 (상태 기계)</td><td>셀 간 유입·유출 흐름 + 확률적 차로변경</td></tr>
+                <tr><td>상태</td><td>차량 개별 위치·속도·가속도, 차로 단위</td><td>링크를 셀로 나눈 뒤 셀별 차량 <em>대수</em></td></tr>
+                <tr><td>거동</td><td>차량추종·차로변경 모형 (상태 기계)</td><td>셀 간 유입·유출 흐름과 확률적 차로변경</td></tr>
                 <tr><td>갱신 주기</td><td>0.1초 (교차로 내부는 1.0초)</td><td>5.0초</td></tr>
-                <tr><td>얻는 것</td><td>차량별 궤적, 차로 수준 상세</td><td>링크 단위 집계 동태, 낮은 계산 비용</td></tr>
+                <tr><td>얻는 결과</td><td>차량별 궤적, 차로 단위의 상세 정보</td><td>링크 단위로 집계한 교통 상태 변화, 낮은 계산 비용</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th></th><th>Micro</th><th>Meso</th></tr>
@@ -758,10 +758,10 @@
                 <tr><td>Update rate</td><td>0.1 s (1.0 s inside intersections)</td><td>5.0 s</td></tr>
                 <tr><td>What you get</td><td>Vehicle trajectories and lane-level detail</td><td>Aggregate link dynamics, cheaply</td></tr>
             </table></div>
-            <p class="i18n-ko">전역 틱은 0.1초이고 meso 링크는 50틱마다 갱신됩니다 — 즉 micro 는 meso 보다 50배 자주
-                계산합니다. 경계에서는 차량 표현이 자동 변환되므로, 관심 구간만 micro 로 두고 나머지를 meso 로
-                두는 것이 일반적인 사용법입니다. meso 모형의 자유속도·후방파속도·용량 값은 네트워크 폴더의
-                <span class="mono">parameter_xml/param.xml</span> 에서 옵니다.</p>
+            <p class="i18n-ko">전역 틱은 0.1초이고 meso 링크는 50틱마다 갱신됩니다. 즉 micro는 meso보다 50배 자주
+                계산합니다. 두 모형의 경계에서는 차량 표현이 자동으로 변환되므로, 관심 구간만 micro로 두고 나머지를 meso로
+                두는 것이 일반적인 사용법입니다. meso 모형의 자유속도·후방파속도·용량 값은 네트워크 폴더에 있는
+                <span class="mono">parameter_xml/param.xml</span>에서 읽어 옵니다.</p>
             <p class="i18n-en">The global tick is 0.1 s and meso links update every 50th tick — micro is computed 50×
                 more often. Vehicles convert between representations at the boundary automatically, so the usual
                 pattern is micro for the area under study and meso everywhere else. The meso model's free-flow speed,
@@ -773,22 +773,22 @@
         <section id="tools">
             <h2><span class="i18n-ko">구성 요소</span><span class="i18n-en">The pieces</span></h2>
             <div class="tablewrap i18n-ko"><table>
-                <tr><th>구성 요소</th><th>정체</th><th>역할</th></tr>
+                <tr><th>구성 요소</th><th>종류</th><th>역할</th></tr>
                 <tr><td class="mono">UnitTestsSimulation</td><td>실행 파일</td>
-                    <td><strong>시뮬레이션 본체입니다.</strong> 이름이 "UnitTests" 로 시작하지만 테스트가 아니라
-                        실제 시뮬레이션을 돌리는 바이너리입니다 — 가장 헷갈리는 부분이니 기억해 두세요.</td></tr>
+                    <td><strong>시뮬레이션 본체입니다.</strong> 이름이 "UnitTests"로 시작하지만 테스트가 아니라
+                        실제 시뮬레이션을 실행하는 바이너리입니다. 가장 헷갈리기 쉬운 부분이니 기억해 두세요.</td></tr>
                 <tr><td class="mono">RouteGenerator</td><td>실행 파일</td>
                     <td>차량·대중교통 경로를 미리 계산해 <span class="mono">Route.json</span>,
-                        <span class="mono">PTRoute.json</span>, <span class="mono">LinkRangeMap.json</span> 을 만듭니다.</td></tr>
+                        <span class="mono">PTRoute.json</span>, <span class="mono">LinkRangeMap.json</span>을 만듭니다.</td></tr>
                 <tr><td class="mono">PaxRouteGenerator</td><td>실행 파일</td>
-                    <td>대중교통 승객의 역쌍 경로(<span class="mono">PaxRoute.json</span>). PTRoute.json 을 쓰므로
-                        RouteGenerator 뒤에 돌려야 합니다.</td></tr>
+                    <td>대중교통 승객의 역 쌍별 경로(<span class="mono">PaxRoute.json</span>)를 만듭니다. PTRoute.json을 입력으로 쓰므로
+                        RouteGenerator 다음에 실행해야 합니다.</td></tr>
                 <tr><td class="mono">DTAExperiment</td><td>실행 파일</td>
-                    <td>동적 통행배정(DTA) — 시뮬레이션을 반복해 경로 선택 비율을 수렴시킵니다.</td></tr>
+                    <td>동적 통행배정(DTA)을 수행합니다. 시뮬레이션을 반복해 경로 선택 비율을 수렴시킵니다.</td></tr>
                 <tr><td class="mono">UnitTestsAPI</td><td>실행 파일</td>
-                    <td>NextCI TCP 제어 서버. Python <span class="mono">nextci</span> 클라이언트가 이 바이너리에 붙습니다. <a href="nextci-guide.html">NextCI 가이드</a> 참고.</td></tr>
+                    <td>NextCI TCP 제어 서버입니다. Python <span class="mono">nextci</span> 클라이언트가 이 바이너리에 접속합니다. 자세한 내용은 <a href="nextci-guide.html">NextCI 가이드</a>를 참고하세요.</td></tr>
                 <tr><td class="mono">web_server.py</td><td>Flask 서버</td>
-                    <td>NextSIM 웹 화면(Run · Edit 모드)을 서빙하고, 입력 파일 편집 API와 시뮬레이션 실행을 중계합니다.</td></tr>
+                    <td>NextSIM 웹 화면(Run · Edit 모드)을 제공하고, 입력 파일 편집 API와 시뮬레이션 실행을 중계합니다.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Component</th><th>What it is</th><th>Role</th></tr>
@@ -808,11 +808,11 @@
                 <tr><td class="mono">web_server.py</td><td>Flask server</td>
                     <td>Serves the NextSIM page (Run and Edit modes), exposes the input-editing API, and drives simulation runs.</td></tr>
             </table></div>
-            <div class="tip i18n-ko"><strong>배포판에 든 것.</strong> Windows 설치 파일과 Linux · WSL ZIP 에는 앞의 세 실행 파일만
-                들어 있습니다. ZIP 에서는 이름이 <span class="mono">nextsim</span>, <span class="mono">route-generator</span>,
-                <span class="mono">pax-route-generator</span> 로 바뀌어 있습니다.
+            <div class="tip i18n-ko"><strong>배포판에 포함된 파일.</strong> Windows 설치 파일과 Linux · WSL ZIP에는 앞의 세 실행 파일만
+                들어 있습니다. ZIP에서는 이름이 <span class="mono">nextsim</span>, <span class="mono">route-generator</span>,
+                <span class="mono">pax-route-generator</span>로 바뀌어 있습니다.
                 <span class="mono">DTAExperiment</span>(동적 통행배정)와 <span class="mono">UnitTestsAPI</span>(NextCI · 체크포인트)는
-                <a href="installation.html#source">소스에서 빌드</a>해야 씁니다.</div>
+                <a href="installation.html#source">소스에서 빌드</a>해야 사용할 수 있습니다.</div>
             <div class="tip i18n-en"><strong>What the packages contain.</strong> The Windows installer and the Linux · WSL ZIP
                 ship only the first three executables. In the ZIP they are renamed <span class="mono">nextsim</span>,
                 <span class="mono">route-generator</span>, and <span class="mono">pax-route-generator</span>.
@@ -841,16 +841,16 @@
             <h2><span class="i18n-ko">디렉터리 구조</span><span class="i18n-en">Directory layout</span></h2>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>경로</th><th>내용</th></tr>
-                <tr><td class="mono">Captain/</td><td>C++17 시뮬레이션 엔진. <span class="mono">Sources/</span>·<span class="mono">Includes/</span> 가 엔진 본체, <span class="mono">Tests/</span> 가 실행 파일 5개, <span class="mono">Libraries/</span> 가 서브모듈 4개.</td></tr>
-                <tr><td class="mono">SimulationInput/</td><td>모든 입력. <span class="mono">config.txt</span>(활성 네트워크 지정) + <span class="mono">networks/</span>(네트워크 폴더들) + <span class="mono">nodelink/</span>·<span class="mono">osm/</span>(가져오기 원본).</td></tr>
+                <tr><td class="mono">Captain/</td><td>C++17 시뮬레이션 엔진입니다. <span class="mono">Sources/</span>·<span class="mono">Includes/</span>는 엔진 본체, <span class="mono">Tests/</span>는 실행 파일 5개, <span class="mono">Libraries/</span>는 서브모듈 4개입니다.</td></tr>
+                <tr><td class="mono">SimulationInput/</td><td>모든 입력 파일. <span class="mono">config.txt</span>(활성 네트워크 지정), <span class="mono">networks/</span>(네트워크 폴더), <span class="mono">nodelink/</span>·<span class="mono">osm/</span>(가져오기 원본).</td></tr>
                 <tr><td class="mono">SimulationOutput/</td><td>실행 결과. 결과 DB와 궤적 청크 DB, <span class="mono">SimulationInfo.xml</span>, 그리고 웹 재생용 <span class="mono">visualization_data/</span>.</td></tr>
-                <tr><td class="mono">Visualizer/WebVisualization/</td><td>브라우저 도구 일체 — <span class="mono">nextsim/</span>(NextSIM 화면), <span class="mono">editor/</span>(Edit 모드), <span class="mono">visualizer/</span>(Run 모드), <span class="mono">js/</span>, 그리고 이 <span class="mono">docs/</span>.</td></tr>
-                <tr><td class="mono">web_server.py</td><td>통합 Flask 서버 (웹 UI + 편집 API + 실행 중계).</td></tr>
-                <tr><td class="mono">NextCI/</td><td>외부 제어용 Python 클라이언트 패키지. 스텝 단위 제어·상태 조회·체크포인트.</td></tr>
+                <tr><td class="mono">Visualizer/WebVisualization/</td><td>브라우저 도구 전체: <span class="mono">nextsim/</span>(NextSIM 화면), <span class="mono">editor/</span>(Edit 모드), <span class="mono">visualizer/</span>(Run 모드), <span class="mono">js/</span>, 그리고 이 문서(<span class="mono">docs/</span>).</td></tr>
+                <tr><td class="mono">web_server.py</td><td>통합 Flask 서버(웹 UI, 편집 API, 실행 중계).</td></tr>
+                <tr><td class="mono">NextCI/</td><td>외부 제어용 Python 클라이언트 패키지입니다. 스텝 단위 제어, 상태 조회, 체크포인트를 지원합니다.</td></tr>
                 <tr><td class="mono">Scripts/</td><td>전처리·CI 스크립트 (보행 네트워크 생성, 철도역 정렬 등).</td></tr>
-                <tr><td class="mono">background_traffic_generator/</td><td><span class="mono">backgroundTraffic.xml</span> 생성 도구 — 네트워크가 빈 상태로 시작하지 않도록 초기 교통량을 만듭니다.</td></tr>
-                <tr><td class="mono">Main/</td><td>오프라인 분석 스크립트 (numpy·pandas·geopandas 필요). 경로가 예전 구조로 하드코딩된 부분이 있어 그대로는 안 돌 수 있습니다.</td></tr>
-                <tr><td class="mono">document/</td><td>내부 설계 노트 (개발자용, 사용자 문서 아님).</td></tr>
+                <tr><td class="mono">background_traffic_generator/</td><td><span class="mono">backgroundTraffic.xml</span>을 생성하는 도구입니다. 네트워크가 빈 상태로 시작하지 않도록 초기 교통량을 만듭니다.</td></tr>
+                <tr><td class="mono">Main/</td><td>오프라인 분석 스크립트 (numpy·pandas·geopandas 필요). 경로가 예전 구조로 하드코딩된 부분이 있어 그대로는 실행되지 않을 수 있습니다.</td></tr>
+                <tr><td class="mono">document/</td><td>내부 설계 노트(개발자용이며 사용자 문서가 아닙니다).</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Path</th><th>Contents</th></tr>
@@ -871,7 +871,7 @@
         <section id="inputs">
             <h2><span class="i18n-ko">입력 데이터 모델</span><span class="i18n-en">Input data model</span></h2>
             <p class="i18n-ko">엔진은 실행 인자로 경로를 받지 않습니다. 대신
-                <span class="mono">SimulationInput/config.txt</span> 한 줄이 <strong>어느 네트워크를 돌릴지</strong>를
+                <span class="mono">SimulationInput/config.txt</span>에 적힌 한 줄이 <strong>어느 네트워크를 실행할지</strong>를
                 정합니다.</p>
             <p class="i18n-en">The binaries take no path arguments. Instead, one line in
                 <span class="mono">SimulationInput/config.txt</span> decides <strong>which network runs</strong>.</p>
@@ -882,15 +882,15 @@
 SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># 이 네트워크의 파라미터</span></pre>
 <pre class="cmd i18n-en">SimulationInput/networks/&lt;network&gt;/                  <span class="c"># network inputs</span>
 SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># this network's parameters</span></pre>
-            <p class="i18n-ko">네트워크 폴더에 <span class="mono">parameter_xml/</span> 이 없으면
-                <span class="mono">SimulationInput/parameter_xml/</span> 을 공용 기본값으로 씁니다. NextSIM 에서 새 네트워크를
-                만들거나 <span class="mono">parameter_xml/</span> 이 없는 네트워크 패키지를 가져오면 기본
-                <span class="mono">parameter_xml/</span> 이 함께 복사됩니다.
-                NextSIM 에서 시뮬레이션을 실행하면(<strong>Run Selected Network</strong>) config.txt 가 그 네트워크로 갱신되므로
+            <p class="i18n-ko">네트워크 폴더에 <span class="mono">parameter_xml/</span>이 없으면
+                <span class="mono">SimulationInput/parameter_xml/</span>을 공용 기본값으로 씁니다. NextSIM에서 새 네트워크를
+                만들거나 <span class="mono">parameter_xml/</span>이 없는 네트워크 패키지를 가져오면 기본
+                <span class="mono">parameter_xml/</span>이 함께 복사됩니다.
+                NextSIM에서 시뮬레이션을 실행하면(<strong>Run Selected Network</strong>) config.txt가 그 네트워크로 갱신되므로
                 직접 편집할 일은 거의 없습니다.
                 예전 구조(<span class="mono">datasets/&lt;branch&gt;/network_xml_&lt;이름&gt;/</span>)의 네트워크 폴더는 서버가 시작할 때
-                <span class="mono">networks/&lt;이름&gt;/</span> 으로 자동으로 옮기고, 무엇을 옮겼는지
-                <span class="mono">networks/MIGRATION.txt</span> 에 남깁니다.</p>
+                <span class="mono">networks/&lt;이름&gt;/</span>으로 자동으로 옮겨집니다. 서버는 무엇을 옮겼는지
+                <span class="mono">networks/MIGRATION.txt</span>에 기록합니다.</p>
             <p class="i18n-en">If a network folder has no <span class="mono">parameter_xml/</span>,
                 <span class="mono">SimulationInput/parameter_xml/</span> is used as the shared default. A network created in
                 NextSIM, or imported from a network package that has no <span class="mono">parameter_xml/</span>, gets a
@@ -900,17 +900,17 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
                 (<span class="mono">datasets/&lt;branch&gt;/network_xml_&lt;name&gt;/</span>) are moved to
                 <span class="mono">networks/&lt;name&gt;/</span> when the server starts; the moves are listed in
                 <span class="mono">networks/MIGRATION.txt</span>.</p>
-            <div class="warn i18n-ko"><strong>config.txt 는 시작할 때 한 번만 읽힙니다.</strong> 실행 중에 바꿔도
+            <div class="warn i18n-ko"><strong>config.txt는 시작할 때 한 번만 읽힙니다.</strong> 실행 중에 바꿔도
                 그 실행에는 반영되지 않습니다.</div>
             <div class="warn i18n-en"><strong>config.txt is read once at startup.</strong> Changing it mid-run has no
                 effect on that run.</div>
 
-            <h3><span class="i18n-ko">네트워크 파라미터 — parameter_xml/</span><span class="i18n-en">Network parameters — parameter_xml/</span></h3>
+            <h3><span class="i18n-ko">네트워크 파라미터: parameter_xml/</span><span class="i18n-en">Network parameters — parameter_xml/</span></h3>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>파일</th><th>내용</th></tr>
                 <tr><td class="mono">param.xml</td><td>meso 모형 파라미터(용량·차량길이·후방파속도)와 시뮬레이션 파라미터(micro/meso 시간 간격, 황색시간 등).</td></tr>
-                <tr><td class="mono">vehicletypes.xml</td><td>차종 정의 — 길이·가속·감속·자유속도·동력원 비율 등. OD 매트릭스의 차종이 여기를 참조합니다.</td></tr>
-                <tr><td class="mono">recordMode.xml</td><td>결과 DB에 어떤 테이블·항목을 기록할지.</td></tr>
+                <tr><td class="mono">vehicletypes.xml</td><td>차종 정의(길이·가속·감속·자유속도·동력원 비율 등). OD 매트릭스에 지정된 차종은 이 파일의 정의를 참조합니다.</td></tr>
+                <tr><td class="mono">recordMode.xml</td><td>결과 DB에 기록할 테이블과 항목.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>File</th><th>Contents</th></tr>
@@ -919,13 +919,13 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
                 <tr><td class="mono">recordMode.xml</td><td>Which tables and fields get recorded into the result database.</td></tr>
             </table></div>
 
-            <h3><span class="i18n-ko">네트워크 입력 — networks/&lt;name&gt;/</span><span class="i18n-en">Network inputs — networks/&lt;name&gt;/</span></h3>
+            <h3><span class="i18n-ko">네트워크 입력: networks/&lt;name&gt;/</span><span class="i18n-en">Network inputs — networks/&lt;name&gt;/</span></h3>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>파일</th><th>내용</th><th>편집</th></tr>
-                <tr><td class="mono">network.xml</td><td>도로망 — 노드·링크·차로·커넥션</td><td>Edit 모드 · Network</td></tr>
-                <tr><td class="mono">odmatrix.xml</td><td>차량 수요 — 기·종점 쌍과 시간대별 교통량</td><td>Edit 모드 · OD Matrix</td></tr>
+                <tr><td class="mono">network.xml</td><td>도로망(노드·링크·차로·커넥션)</td><td>Edit 모드 · Network</td></tr>
+                <tr><td class="mono">odmatrix.xml</td><td>차량 수요(기·종점 쌍과 시간대별 교통량)</td><td>Edit 모드 · OD Matrix</td></tr>
                 <tr><td class="mono">mode.xml</td><td><strong>링크별 micro/meso 배정</strong> (기간별)</td><td>Edit 모드 · Mode</td></tr>
-                <tr><td class="mono">config_scenario.json</td><td>시나리오 — 시작 시각·길이, 쓸 OD/TOD, 기능 토글</td><td>Edit 모드 · Scenario</td></tr>
+                <tr><td class="mono">config_scenario.json</td><td>시나리오(시작 시각과 길이, 사용할 OD/TOD, 기능 토글)</td><td>Edit 모드 · Scenario</td></tr>
                 <tr><td class="mono">signal.xml · signalTOD.xml</td><td>신호 현시·플랜과 시간대 배정</td><td>Edit 모드 · Signal</td></tr>
                 <tr><td class="mono">roadStation.xml · railStation.xml</td><td>버스 정류장, 철도역과 출구</td><td>Edit 모드 · Station</td></tr>
                 <tr><td class="mono">roadPTline.xml · railPTline.xml</td><td>버스/TRT/트램 노선, 철도 노선과 시각표</td><td>Edit 모드 · PT Line</td></tr>
@@ -935,10 +935,10 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
                 <tr><td class="mono">agents.xml</td><td>경로가 지정된 개별 차량 (OD 대신 쓰는 선택 입력)</td><td>—</td></tr>
                 <tr><td class="mono">backgroundTraffic.xml</td><td>시작 시점 링크별 배경 교통량</td><td>생성 도구</td></tr>
                 <tr><td class="mono">footpathNetwork.xml</td><td>보행 네트워크 (역·정류장 접근)</td><td>Scripts</td></tr>
-                <tr><td class="mono">Route.json · PTRoute.json · LinkRangeMap.json</td><td><strong>RouteGenerator 가 생성</strong> — 경로와 공간 색인</td><td>자동</td></tr>
-                <tr><td class="mono">PaxRoute.json</td><td><strong>PaxRouteGenerator 가 생성</strong> — 승객 역쌍 경로</td><td>자동</td></tr>
-                <tr><td class="mono">basemap.json</td><td>위성 배경 좌표 정합 (웹 도구 전용, 엔진은 안 읽음)</td><td>Edit 모드 · Display</td></tr>
-                <tr><td class="mono">.backups/</td><td>편집기가 저장 직전 파일을 자동 보관 (파일별 최근 10개)</td><td>자동</td></tr>
+                <tr><td class="mono">Route.json · PTRoute.json · LinkRangeMap.json</td><td><strong>RouteGenerator가 생성</strong>: 경로와 공간 색인</td><td>자동</td></tr>
+                <tr><td class="mono">PaxRoute.json</td><td><strong>PaxRouteGenerator가 생성</strong>: 승객의 역 쌍별 경로</td><td>자동</td></tr>
+                <tr><td class="mono">basemap.json</td><td>위성 배경 지도의 좌표 정합(웹 도구 전용이며 엔진은 읽지 않음)</td><td>Edit 모드 · Display</td></tr>
+                <tr><td class="mono">.backups/</td><td>편집기가 저장하기 직전의 파일을 자동으로 보관(파일별 최근 10개)</td><td>자동</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>File</th><th>Contents</th><th>Edited in</th></tr>
@@ -969,12 +969,12 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
                 <b>config.txt</b><i>→</i><b>RouteGenerator</b><i>→</i><b>PaxRouteGenerator</b><i>→</i><b>UnitTestsSimulation</b><i>→</i><b>DB load</b>
             </div>
             <ol class="steps i18n-ko">
-                <li><strong>config.txt 갱신</strong> — 고른 네트워크를 씁니다. 바이너리에 경로를 넘기는 방법은 이것뿐입니다.</li>
-                <li><strong>RouteGenerator</strong> (기본 켜짐) — <span class="mono">Route.json</span> 등 경로 파일을 만듭니다.
-                    입력을 바꾸지 않았다면 꺼서 시간을 아낄 수 있습니다.</li>
-                <li><strong>PaxRouteGenerator</strong> (기본 꺼짐) — 대중교통 승객 경로. PTRoute.json 을 쓰므로 앞 단계 뒤에 옵니다.</li>
-                <li><strong>UnitTestsSimulation</strong> — 시뮬레이션 본체. 진행률은 표준 출력의 사이클 수로 표시됩니다.</li>
-                <li><strong>DB load</strong> — 위 단계와 <em>동시에</em> 돌면서, 엔진이 마무리한 결과 조각을
+                <li><strong>config.txt 갱신</strong>: 선택한 네트워크를 config.txt에 기록합니다. 바이너리에 경로를 전달하는 방법은 이것뿐입니다.</li>
+                <li><strong>RouteGenerator</strong> (기본 켜짐): <span class="mono">Route.json</span> 등 경로 파일을 만듭니다.
+                    입력을 바꾸지 않았다면 이 단계를 꺼서 시간을 아낄 수 있습니다.</li>
+                <li><strong>PaxRouteGenerator</strong> (기본 꺼짐): 대중교통 승객 경로를 만듭니다. PTRoute.json을 입력으로 쓰므로 앞 단계 다음에 실행됩니다.</li>
+                <li><strong>UnitTestsSimulation</strong>: 시뮬레이션 본체입니다. 진행률은 표준 출력에 나오는 사이클 수로 표시됩니다.</li>
+                <li><strong>DB load</strong>: 위 단계와 <em>동시에</em> 실행되면서, 엔진이 기록을 마친 결과 조각을
                     재생용으로 색인합니다. 그래서 시뮬레이션이 끝나면 곧바로 재생할 수 있습니다.</li>
             </ol>
             <ol class="steps i18n-en">
@@ -996,9 +996,9 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
             <h3><span class="i18n-ko">결과물</span><span class="i18n-en">What a run produces</span></h3>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>파일</th><th>내용</th></tr>
-                <tr><td class="mono">simulation_output.db</td><td>주 결과 DB — 셀·유출·정류장·신호·검지기 이벤트와 차량 통계.</td></tr>
-                <tr><td class="mono">vehicle_events_&lt;시작&gt;_&lt;끝&gt;.db</td><td>차량 궤적 청크. 크기가 차면 잘라 새 파일로 넘어가므로 여러 개가 생깁니다.</td></tr>
-                <tr><td class="mono">SimulationInfo.xml</td><td>실행 요약 — 총 소요 시간, 사이클 수, 실제로 쓰인 micro/meso 링크 집합.</td></tr>
+                <tr><td class="mono">simulation_output.db</td><td>주 결과 DB: 셀·유출·정류장·신호·검지기 이벤트와 차량 통계.</td></tr>
+                <tr><td class="mono">vehicle_events_&lt;시작&gt;_&lt;끝&gt;.db</td><td>차량 궤적 청크입니다. 파일이 정해진 크기에 이르면 새 파일에 이어서 기록하므로 여러 개가 생깁니다.</td></tr>
+                <tr><td class="mono">SimulationInfo.xml</td><td>실행 요약: 총 소요 시간, 사이클 수, 실제로 쓰인 micro/meso 링크 집합.</td></tr>
                 <tr><td class="mono">visualization_data/</td><td>웹 재생용 색인 (메타데이터 + 시간·공간 타일).</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
@@ -1022,18 +1022,18 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
                 localhost, ports) are covered under <a href="installation.html#troubleshooting">install troubleshooting</a>.</p>
 
             <h3><span class="i18n-ko">이전 실행 결과가 사라졌습니다</span><span class="i18n-en">My previous result disappeared</span></h3>
-            <p class="i18n-ko">실행이 끝까지 돌면 그 결과가 <span class="mono">SimulationOutput/</span> 의 이전 결과를
-                대신합니다. 의도된 동작이니, 남겨야 하는 결과는 실행 전에 복사해 두세요. 취소하거나 실패한 실행은 이전
-                결과를 되돌려 둡니다 — Run 모드의 <strong>Simulation › Load last result</strong> 로 다시 열 수 있습니다.</p>
+            <p class="i18n-ko">실행이 끝까지 완료되면 새 결과가 <span class="mono">SimulationOutput/</span>에 있던 이전 결과를
+                대체합니다. 의도된 동작이므로, 보관해야 하는 결과는 실행 전에 복사해 두세요. 실행을 취소하거나 실행이 실패하면 이전
+                결과가 복원됩니다. 복원된 결과는 Run 모드의 <strong>Simulation › Load last result</strong>로 다시 열 수 있습니다.</p>
             <p class="i18n-en">A run that finishes replaces the previous result in
                 <span class="mono">SimulationOutput/</span>. That is by design — copy anything you need to keep before
                 starting a new run. A cancelled or failed run puts the previous result back; open it again from
                 <strong>Simulation › Load last result</strong> in Run mode.</p>
 
-            <h3><span class="i18n-ko">시뮬레이션에 차량이 하나도 안 나옵니다</span><span class="i18n-en">The simulation produces no vehicles</span></h3>
-            <p class="i18n-ko">시나리오의 <span class="mono">odMatrixID</span> 가 실제로 수요가 들어 있는 매트릭스를
-                가리키는지 먼저 확인하세요 — OD 매트릭스가 여러 개일 때 가장 흔한 원인입니다. 그리고
-                기·종점 쌍에 경로가 있어야 하므로 RouteGenerator 를 한 번은 돌려야 합니다.</p>
+            <h3><span class="i18n-ko">시뮬레이션에 차량이 하나도 나타나지 않습니다</span><span class="i18n-en">The simulation produces no vehicles</span></h3>
+            <p class="i18n-ko">시나리오의 <span class="mono">odMatrixID</span>가 실제로 수요가 들어 있는 매트릭스를
+                가리키는지 먼저 확인하세요. OD 매트릭스가 여러 개일 때 가장 흔한 원인입니다. 또한
+                기·종점 쌍마다 경로가 있어야 하므로 RouteGenerator를 한 번은 실행해야 합니다.</p>
             <p class="i18n-en">First check that the scenario's <span class="mono">odMatrixID</span> points at a
                 matrix that actually contains demand — the most common cause when a file holds several. Also, each
                 OD pair needs a route, so RouteGenerator has to have run at least once.</p>
@@ -1042,8 +1042,8 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
         <!-- ================================================== 라이선스 -->
         <section id="license">
             <h2><span class="i18n-ko">라이선스와 문의</span><span class="i18n-en">License and contact</span></h2>
-            <p class="i18n-ko">NextSIM 은 KAIST(한국과학기술원) AIxMobility Lab 에서 개발했습니다.
-                <strong>상업적 이용은 허용되지 않습니다.</strong> 자세한 문의는 연구실로 연락 주세요 —
+            <p class="i18n-ko">NextSIM은 KAIST(한국과학기술원) AIxMobility Lab에서 개발했습니다.
+                <strong>상업적 이용은 허용되지 않습니다.</strong> 자세한 사항은 연구실로 문의해 주세요:
                 <a href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">aimobility.kaist.ac.kr</a>.</p>
             <p class="i18n-en">NextSIM is developed by the AIxMobility Lab at KAIST.
                 <strong>Commercial use is not permitted.</strong> For enquiries, please contact the lab —
@@ -1051,7 +1051,7 @@ SimulationInput/networks/&lt;network&gt;/parameter_xml/    <span class="c"># thi
             <p>Copyright © 2026 KAIST AIxMobility Lab</p>
 
             <h3 id="cite"><span class="i18n-ko">연구에 사용할 때</span><span class="i18n-en">Using NextSIM in research</span></h3>
-            <p class="i18n-ko">NextSIM 을 연구에 사용하셨다면 아래 논문을 인용해 주세요.</p>
+            <p class="i18n-ko">NextSIM을 연구에 사용하셨다면 아래 논문을 인용해 주세요.</p>
             <p class="i18n-en">If you use NextSIM in your research, please cite the following paper.</p>
             <p>Y. Kim, S. Choi, S. Jeon, and H. Yeo, “NextSim: Multi-Level Traffic Simulation for Urban Networks Using Dynamic Level Assignment,” <em>IEEE Transactions on Intelligent Transportation Systems</em>, vol. 27, no. 7, pp. 8564–8578, 2026, doi: <a href="https://doi.org/10.1109/TITS.2026.3671220" target="_blank" rel="noopener">10.1109/TITS.2026.3671220</a>.</p>
 <pre class="cmd">@article{kim2026nextsim,

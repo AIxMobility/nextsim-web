@@ -581,8 +581,8 @@
             <h2><span class="i18n-ko">Run 모드 소개</span><span class="i18n-en">What Run mode is</span></h2>
             <p class="i18n-ko">NextSIM 웹 화면(<code>/nextsim/</code>)에는 두 모드가 있고, 둘은 동시에 켜지지 않습니다.
                 <strong>Edit 모드</strong>는 네트워크·수요·신호 같은 <em>입력</em>을 만들고, <strong>Run 모드</strong>는
-                시뮬레이션을 돌려 나온 <em>결과 DB</em>를 재생합니다. 상단바의 <strong>Run | Edit</strong> 전환으로 오갑니다.
-                이 문서는 Run 모드를 다룹니다 —
+                시뮬레이션을 실행해 얻은 <em>결과 DB</em>를 재생합니다. 두 모드는 상단바의 <strong>Run | Edit</strong> 전환 버튼으로 오갑니다.
+                이 문서는 Run 모드를 다룹니다.
                 입력 편집 방법은 <a class="doc-cross" href="editor-guide.html"
                 data-local="editor-guide.html"
                >Edit 모드
@@ -596,11 +596,11 @@
                 data-local="editor-guide.html"
                >Edit mode
                 guide</a>.</p>
-            <p class="i18n-ko">화면 구성: 모든 기능이 상단바에 모여 있습니다 — NextSIM 로고,
-                <strong>Run | Edit</strong> 모드 전환, <strong>네트워크 버튼</strong>(폴더 아이콘과 지금 네트워크 이름 —
+            <p class="i18n-ko">화면 구성: 모든 기능은 상단바에 모여 있습니다. 상단바에는 NextSIM 로고,
+                <strong>Run | Edit</strong> 모드 전환, <strong>네트워크 버튼</strong>(폴더 아이콘과 현재 네트워크 이름을 표시하며
                 <strong>Network</strong> 창을 엽니다), <strong>Simulation</strong>(시나리오 선택·실행·결과 로드),
                 재생 컨트롤(Play/Stop·Speed·Timestep), 검색, <strong>Display</strong>(표시 옵션), <strong>BIMS</strong>,
-                <strong>Help</strong>. 중앙 지도에서 결과가 재생되고, 링크·노드·차량·정류장을 클릭하면
+                <strong>Help</strong>가 있습니다. 결과는 중앙 지도에서 재생되고, 링크·노드·차량·정류장을 클릭하면
                 상세 정보 패널이 열립니다. 네트워크를 아직 고르지 않았다면 지도 자리에
                 <em>No network loaded</em> 카드와 <strong>Select network</strong> · <strong>Add network</strong> 버튼이 표시됩니다.</p>
             <p class="i18n-en">Layout: everything lives in the top bar — the NextSIM logo, the <strong>Run | Edit</strong>
@@ -617,15 +617,15 @@
         <section id="getting-started">
             <h2><span class="ws-badge" style="--ws: var(--hue-run)">Setup</span> <span class="i18n-ko">실행과 결과 로드</span><span class="i18n-en">Running and loading results</span></h2>
             <ol class="steps i18n-ko">
-                <li>NextSIM 을 설치해 서버를 띄운 뒤(<a href="installation.html">설치 가이드</a>)
-                    <code>http://localhost:8000/nextsim/</code> 를 엽니다 — Run 모드로 열립니다.
-                    <code>/</code> 는 홈 화면이며, 네트워크 카드의 <strong>실행</strong>을 누르면 그 네트워크가 Run 모드로 열립니다.
-                    네트워크까지 정해 열려면 <code>/nextsim/?mode=run&amp;folder=SimulationInput/networks/&lt;이름&gt;</code>
-                    처럼 씁니다. 예전 주소 <code>/simulation/</code> · <code>/visualizer/</code> 는 <code>/nextsim/?mode=run</code> 으로 넘어갑니다(쿼리는 그대로).</li>
-                <li>상단바의 네트워크 버튼(폴더 아이콘, 처음에는 <em>Select network</em>)을 눌러 <strong>Network</strong> 창의
-                    목록에서 네트워크 폴더를 선택합니다 — 지도에 네트워크가 그려집니다.</li>
-                <li>상단바 <strong>Simulation</strong> 패널을 열고 <strong>Target scenario</strong>에서 재생할
-                    시나리오를 선택합니다 — 시간 범위 등 시나리오 정보가 바로 아래 카드에 표시됩니다.
+                <li>NextSIM을 설치하고 서버를 실행한 뒤(<a href="installation.html">설치 가이드</a>)
+                    <code>http://localhost:8000/nextsim/</code>를 엽니다. 페이지는 Run 모드로 열립니다.
+                    <code>/</code>는 홈 화면이며, 네트워크 카드의 <strong>실행</strong>을 누르면 그 네트워크가 Run 모드로 열립니다.
+                    특정 네트워크를 바로 열려면 <code>/nextsim/?mode=run&amp;folder=SimulationInput/networks/&lt;이름&gt;</code>
+                    처럼 주소를 입력합니다. 예전 주소인 <code>/simulation/</code>과 <code>/visualizer/</code>는 쿼리를 유지한 채 <code>/nextsim/?mode=run</code>으로 이동합니다.</li>
+                <li>상단바의 네트워크 버튼(폴더 아이콘, 처음에는 <em>Select network</em>로 표시됨)을 눌러 <strong>Network</strong> 창의
+                    목록에서 네트워크 폴더를 선택합니다. 그러면 지도에 네트워크가 그려집니다.</li>
+                <li>상단바에서 <strong>Simulation</strong> 패널을 열고 <strong>Target scenario</strong>에서 재생할
+                    시나리오를 선택합니다. 시간 범위 등 시나리오 정보가 바로 아래 카드에 표시됩니다.
                     (시나리오 선택은 Network 창이 아니라 Simulation 패널에 있습니다.)</li>
             </ol>
             <ol class="steps i18n-en">
@@ -643,10 +643,10 @@
                     below. (Scenario selection lives in the Simulation panel, not in the Network dialog.)</li>
             </ol>
             <p class="i18n-ko"><strong>Network</strong> 창에는 네트워크 목록과 새로고침 버튼, <strong>Add network</strong>(Edit 모드로
-                전환한 뒤 만드는 방법을 고릅니다 — 실행이나 결과가 있으면 <a href="#switch-to-edit">전환 경고</a>가 먼저 뜹니다),
+                전환한 뒤 네트워크를 만드는 방법을 고릅니다. 실행 중이거나 결과가 열려 있으면 <a href="#switch-to-edit">전환 경고</a>가 먼저 뜹니다),
                 <strong>Export package</strong>(네트워크를 <span class="mono">.zip</span>
-                패키지로 내려받기), <strong>Inspect input files</strong>(<a href="#input-files">입력 파일 점검</a>)가 있습니다.
-                새로 추가한 네트워크를 돌리려면 Edit 모드에서 저장한 뒤 Run 모드로 돌아와 실행합니다. 패키지 가져오기·내보내기는
+                패키지로 내려받습니다), <strong>Inspect input files</strong>(<a href="#input-files">입력 파일 점검</a>)가 있습니다.
+                새로 추가한 네트워크를 실행하려면 Edit 모드에서 저장한 뒤 Run 모드로 돌아와 실행합니다. 패키지를 가져오고 내보내는 방법은
                 <a class="doc-cross" href="editor-guide.html#packages"
                 data-local="editor-guide.html#packages"
                >Edit 모드 가이드</a>를 보세요.</p>
@@ -661,28 +661,28 @@
                 data-local="editor-guide.html#packages"
                >Edit mode guide</a>.</p>
 
-            <div class="warn i18n-ko"><strong>시나리오 선택은 재생 전에.</strong> 이벤트의 시각은
-                <em>선택한 시나리오의 시작 시각 기준 오프셋</em>으로 해석됩니다. 시나리오를 바꾸면 이벤트가
+            <div class="warn i18n-ko"><strong>재생하기 전에 시나리오를 고르세요.</strong> 이벤트 시각은
+                <em>선택한 시나리오의 시작 시각을 기준으로 한 오프셋</em>으로 해석됩니다. 시나리오를 바꾸면 이벤트가
                 자동으로 다시 해석되므로, 재생 전에 목표 시나리오를 먼저 고르는 편이 안전합니다.</div>
             <div class="warn i18n-en"><strong>Pick the scenario before you replay.</strong> Event times are
                 resolved as an <em>offset from the selected scenario's start time</em>. Switching scenarios
                 re-resolves them automatically, so choose the target scenario first.</div>
 
-            <h3><span class="i18n-ko">방법 A — Edit 모드에서 만든 입력으로 바로 실행</span><span class="i18n-en">Option A — run straight from edited inputs</span></h3>
+            <h3><span class="i18n-ko">방법 A: Edit 모드에서 만든 입력으로 바로 실행</span><span class="i18n-en">Option A — run straight from edited inputs</span></h3>
             <p class="i18n-ko">상단바 <strong>Simulation</strong> 버튼을 누르면 Simulation 패널이 열립니다.</p>
             <p class="i18n-en">The <strong>Simulation</strong> button in the top bar opens the Simulation panel.</p>
             <ul class="i18n-ko">
-                <li><strong>Route generation</strong> — 실행 전에 경로를 생성할지 선택합니다:
-                    <strong>RouteGenerator</strong>(차량·PT 경로), <strong>PaxRouteGenerator</strong>
-                    (대중교통 승객의 역쌍 경로). 입력을 바꾸지 않았다면 꺼서 시간을 아낄 수 있습니다.</li>
-                <li><strong>Scenario time</strong> — 선택한 시나리오의 시작·종료 시각을 실행 직전에
+                <li><strong>Route generation</strong>: 실행 전에 경로를 생성할지 선택합니다.
+                    <strong>RouteGenerator</strong>는 차량·PT 경로를, <strong>PaxRouteGenerator</strong>는
+                    대중교통 승객의 역쌍 경로를 생성합니다. 입력을 바꾸지 않았다면 이 옵션을 꺼서 시간을 절약할 수 있습니다.</li>
+                <li><strong>Scenario time</strong>: 선택한 시나리오의 시작·종료 시각을 실행 직전에
                     바로 조정할 수 있습니다.</li>
-                <li><strong>Run Selected Network</strong> — 파이프라인을 실행합니다:
+                <li><strong>Run Selected Network</strong>: 다음 순서로 파이프라인을 실행합니다.
                     <strong>RouteGenerator</strong> → (<strong>PaxRouteGenerator</strong>, 켠 경우) →
                     <strong>Simulation</strong> → <strong>DB load</strong>.
                     단계별 진행 상태와 진행률 막대가 표시되고, 완료되면 결과가 자동으로 로드됩니다.
-                    (엔진 빌드는 웹 파이프라인에서 빠졌습니다 — 미리 빌드된 바이너리를 씁니다.)</li>
-                <li><strong>Cancel Run</strong> — 실행 중에만 나타나는 버튼으로, 확인을 거쳐 진행 중인 단계의
+                    (웹 파이프라인은 엔진을 빌드하지 않고, 미리 빌드된 바이너리를 사용합니다.)</li>
+                <li><strong>Cancel Run</strong>: 실행 중에만 나타나는 버튼입니다. 확인을 거친 뒤 진행 중인 단계의
                     프로세스를 즉시 종료합니다. 부분 출력은 버려지고 마지막으로 완료된 결과는 그대로 남습니다.
                     시뮬레이션이 이미 끝나 결과를 마무리하는 <strong>DB load</strong> 단계는 취소할 수 없습니다.</li>
             </ul>
@@ -704,10 +704,10 @@
                     packages an already finished simulation, cannot be cancelled.</li>
             </ul>
 
-            <p class="i18n-ko"><strong>Live preview (delayed)</strong> 를 켜 두면(기본) 시뮬레이션이 끝나기 전에도
+            <p class="i18n-ko"><strong>Live preview (delayed)</strong>를 켜 두면(기본값) 시뮬레이션이 끝나기 전에도
                 <strong>이미 디스크에 확정된 구간</strong>부터 재생할 수 있습니다. 상단바 바로 아래 지도 가운데에
                 <span class="mono">PREVIEW · playable to N s</span> 배지가 뜨고, 확정 구간이 늘어나면 슬라이더 범위도
-                따라 늘어납니다. 엔진의 실제 진행보다 이벤트 청크 하나(수십 초)만큼 늦게 따라가며, 재생이 구간 끝에
+                따라 늘어납니다. 미리보기는 엔진의 실제 진행보다 이벤트 청크 하나(수십 초)만큼 늦게 따라가며, 재생이 구간 끝에
                 닿으면 멈추지 않고 새 데이터를 기다립니다. 정류장 승객 배지는 미리보기에서는 표시되지 않고 최종 로드
                 때 나타납니다. 실행이 끝나면 최종 결과가 같은 시점에서 이어서 로드됩니다.</p>
             <p class="i18n-en">With <strong>Live preview (delayed)</strong> on (the default) you can start replaying
@@ -719,15 +719,15 @@
                 final load, which resumes at the same time position when the run completes.</p>
 
             <div class="warn i18n-ko"><strong>실행 중에는 네트워크를 바꿀 수 없습니다.</strong> Network 창의 폴더 선택은
-                실행이 끝날 때까지 잠깁니다 — 바꾸면 실행 중인 네트워크의 궤적이 다른 지도 위에 그려지기 때문입니다.
-                결과에는 네트워크 폴더·시나리오·작업 ID와 <span class="mono">network.xml</span> 의 sha256 이 함께 기록되며(스토어
-                metadata 와 결과 DB 의 <span class="mono">NextSimRunInfo</span> 테이블), 결과를 열 때 지도의 네트워크와 다르면 재생을 막고
-                알림을 띄웁니다. 그 자리에서 기록된 네트워크로 전환해 이어 열 수 있습니다. (같은 네트워크를 결과 뒤에 편집한
+                실행이 끝날 때까지 잠깁니다. 네트워크를 바꾸면 실행 중인 네트워크의 궤적이 다른 지도 위에 그려지기 때문입니다.
+                결과에는 네트워크 폴더·시나리오·작업 ID와 <span class="mono">network.xml</span>의 sha256이 함께 기록되며(스토어
+                metadata와 결과 DB의 <span class="mono">NextSimRunInfo</span> 테이블), 결과를 열 때 기록된 네트워크가 지도의 네트워크와 다르면 재생을 막고
+                알림 창을 표시합니다. 알림 창에서 바로 기록된 네트워크로 전환해 결과를 이어서 열 수 있습니다. (결과를 만든 뒤 같은 네트워크를 편집한
                 경우는 <a href="#switch-to-edit">Edit 모드로 전환</a>을 보세요.)
                 결과를 열면 그 결과를 만든 시나리오가 자동으로 적용되고, 신호 색·신호 계획·이벤트 시각은 그 시나리오
                 기준으로 계산됩니다. 결과를 연 채로 Simulation 패널에서 다음 실행용 시나리오를 바꿔도 재생 중인 신호는 바뀌지
-                않습니다. <strong>Run Selected Network</strong> 는 고른 시나리오를 그대로 돌립니다(고르지 않으면 파일의 첫 시나리오).
-                시나리오가 기록되지 않은 옛 결과는 그때 엔진이 늘 돌리던 첫 시나리오로 봅니다.</div>
+                않습니다. <strong>Run Selected Network</strong>는 고른 시나리오를 그대로 실행합니다(고르지 않으면 파일의 첫 시나리오를 실행합니다).
+                시나리오가 기록되지 않은 예전 결과는 당시 엔진이 항상 실행하던 첫 시나리오의 결과로 간주합니다.</div>
             <div class="warn i18n-en"><strong>The network cannot be changed mid-run.</strong> The folder selector in
                 the Network dialog is locked until the run finishes — switching would draw the running network's
                 trajectories on a different map. Every result records its network folder, scenario, job id and the
@@ -742,26 +742,26 @@
                 engine builds always ran. <strong>Run Selected Network</strong> simulates the scenario you pick (the
                 first one of the file when none is picked).</div>
 
-            <div class="tip i18n-ko"><strong>실행 중에 페이지를 새로고침해도 됩니다.</strong> 서버 작업은 계속 돌고,
-                Run 모드는 그 실행의 네트워크를 불러오는 순간 실행에 다시 붙습니다 — 진행률, <strong>Cancel Run</strong>,
+            <div class="tip i18n-ko"><strong>실행 중에 페이지를 새로고침해도 됩니다.</strong> 서버 작업은 계속 실행되고,
+                Run 모드는 해당 실행의 네트워크를 불러오는 즉시 그 실행에 다시 연결됩니다. 진행률, <strong>Cancel Run</strong>,
                 완료 후 자동 결과 로드가 그대로 이어집니다 (실시간 미리보기는 새 청크가 확정되면 다시 켜집니다).
-                다른 탭에서 시작한 실행도 같은 네트워크를 열면 따라갑니다. 다른 네트워크를 열면 그 실행은 보이지 않습니다.</div>
+                다른 탭에서 시작한 실행도 같은 네트워크를 열면 이어서 표시됩니다. 다른 네트워크를 열면 그 실행은 보이지 않습니다.</div>
             <div class="tip i18n-en"><strong>Reloading the page mid-run is fine.</strong> The server job keeps going, and
                 Run mode reattaches to the run as soon as the run's network is loaded — the progress display,
                 <strong>Cancel Run</strong> and the automatic result load continue (the live preview comes back once new
                 chunks are confirmed). A run started in another tab is followed too when you open the same network; it is
                 not shown while another network is open.</div>
 
-            <h3><span class="i18n-ko">방법 B — 기존 결과 열기</span><span class="i18n-en">Option B — open an existing result</span></h3>
-            <p class="i18n-ko">같은 <strong>Simulation</strong> 패널 아래쪽 <strong>Load a result</strong> 에서 엽니다.</p>
+            <h3><span class="i18n-ko">방법 B: 기존 결과 열기</span><span class="i18n-en">Option B — open an existing result</span></h3>
+            <p class="i18n-ko">같은 <strong>Simulation</strong> 패널 아래쪽의 <strong>Load a result</strong>에서 엽니다.</p>
             <p class="i18n-en">Use the <strong>Load a result</strong> section at the bottom of the same
                 <strong>Simulation</strong> panel.</p>
             <ul class="i18n-ko">
-                <li><strong>Load last result</strong> — 서버에 남아 있는 마지막 실행 결과를 다시 엽니다. Edit 모드로 전환하느라
-                    화면에서 내린 결과도 이것으로 다시 열 수 있습니다.</li>
-                <li><strong>Select DB file</strong> — 이미 갖고 있는 결과
-                    파일(<span class="mono">.db / .sqlite / .sqlite3</span>)을 선택합니다. 이 경로는 파일을
-                    <strong>통째로 읽어들인 뒤</strong> 재생이 시작되며 <strong>512&nbsp;MB</strong> 까지만 받습니다.
+                <li><strong>Load last result</strong>: 서버에 남아 있는 마지막 실행 결과를 다시 엽니다. Edit 모드로 전환하면서
+                    화면에서 내린 결과도 이 버튼으로 다시 열 수 있습니다.</li>
+                <li><strong>Select DB file</strong>: 이미 가지고 있는 결과
+                    파일(<span class="mono">.db / .sqlite / .sqlite3</span>)을 선택합니다. 이 방식은 파일을
+                    <strong>통째로 읽어들인 뒤</strong> 재생을 시작하며, 파일 크기는 <strong>512&nbsp;MB</strong>까지만 허용합니다.
                     시간 구간별 스트리밍 로드는 서버에서 직접 실행한 경우(방법 A)에만 동작합니다.</li>
             </ul>
             <ul class="i18n-en">
@@ -777,18 +777,18 @@
         <!-- ================================================== Edit 모드로 전환 -->
         <section id="switch-to-edit">
             <h2><span class="i18n-ko">Edit 모드로 전환</span><span class="i18n-en">Switching to Edit mode</span></h2>
-            <p class="i18n-ko">상단바의 <strong>Edit</strong> 를 누르면 같은 네트워크가 Edit 모드로 열립니다. 두 모드는 동시에 켜지지
+            <p class="i18n-ko">상단바의 <strong>Edit</strong>을 누르면 같은 네트워크가 Edit 모드로 열립니다. 두 모드는 동시에 켜지지
                 않으므로, 실행 중이거나 결과가 지도에 있으면 먼저 <strong>Switch to Edit mode?</strong> 경고 창이 뜹니다.
                 둘 다 없으면 바로 넘어갑니다.</p>
             <p class="i18n-en"><strong>Edit</strong> in the top bar opens the same network in Edit mode. Because the two
                 modes are never on together, a <strong>Switch to Edit mode?</strong> warning comes first when a run is in
                 progress or a result is on the map; otherwise it switches straight away.</p>
             <ul class="i18n-ko">
-                <li><strong>시뮬레이션 실행 중</strong> — 전환하면 실행이 취소되고 지도의 진행 표시가 지워진다고 알립니다.
-                    마지막으로 완료된 결과는 그대로 남습니다. 버튼은 <strong>Cancel run and switch</strong>.</li>
-                <li><strong>결과가 열려 있음</strong>(또는 Live preview 표시 중) — 지도의 결과를 내리고 네트워크만 보여 준다고
-                    알립니다. 버튼은 <strong>Clear result and switch</strong>.</li>
-                <li>오른쪽 위 <strong>X</strong> 또는 <kbd>Esc</kbd> — 창을 닫고 Run 모드에 남습니다.</li>
+                <li><strong>시뮬레이션 실행 중</strong>: 전환하면 실행이 취소되고 지도의 진행 표시가 지워진다고 알립니다.
+                    마지막으로 완료된 결과는 그대로 남습니다. 버튼 이름은 <strong>Cancel run and switch</strong>입니다.</li>
+                <li><strong>결과가 열려 있음</strong>(또는 Live preview 표시 중): 지도의 결과를 내리고 네트워크만 보여 준다고
+                    알립니다. 버튼 이름은 <strong>Clear result and switch</strong>입니다.</li>
+                <li>오른쪽 위 <strong>X</strong> 또는 <kbd>Esc</kbd>: 창을 닫고 Run 모드에 남습니다.</li>
                 <li>실행이 이미 끝나 결과를 저장하는 중(<strong>DB load</strong> 단계)이면 전환하지 않고, 잠시 뒤 다시 전환하라는
                     알림을 띄웁니다.</li>
             </ul>
@@ -802,14 +802,14 @@
                     the switch does not happen yet; a message asks you to switch again in a moment.</li>
             </ul>
             <div class="tip i18n-ko"><strong>결과 파일은 지워지지 않습니다.</strong> 결과는 화면에서만 내려갑니다. Run 모드로
-                돌아와 <strong>Simulation › Load last result</strong> 로 다시 열 수 있습니다.</div>
+                돌아와 <strong>Simulation › Load last result</strong>로 다시 열 수 있습니다.</div>
             <div class="tip i18n-en"><strong>Result files are kept.</strong> The result is only removed from the screen;
                 back in Run mode, <strong>Simulation › Load last result</strong> opens it again.</div>
-            <p class="i18n-ko">모드를 바꿀 때마다 지금 네트워크 폴더를 서버에서 다시 읽으며, 지도 위치(화면)는 그대로 유지됩니다.
-                Edit 모드에서 돌아올 때 저장하지 않은 변경이 있으면 버릴지 저장할지 묻습니다 —
+            <p class="i18n-ko">모드를 바꿀 때마다 현재 네트워크 폴더를 서버에서 다시 읽으며, 지도 위치(화면)는 그대로 유지됩니다.
+                Edit 모드에서 돌아올 때 저장하지 않은 변경이 있으면 버릴지 저장할지 묻습니다. 자세한 내용은
                 <a class="doc-cross" href="editor-guide.html#switch-to-run"
                 data-local="editor-guide.html#switch-to-run"
-               >Edit 모드 가이드</a> 참고.</p>
+               >Edit 모드 가이드</a>를 참고하세요.</p>
             <p class="i18n-en">Every mode switch reloads the current network folder from the server, and the map position
                 is kept. Coming back from Edit mode with unsaved changes asks whether to discard or save them — see the
                 <a class="doc-cross" href="editor-guide.html#switch-to-run"
@@ -817,12 +817,12 @@
                >Edit mode guide</a>.</p>
 
             <h3><span class="i18n-ko">편집한 뒤 돌아왔을 때</span><span class="i18n-en">Coming back after editing</span></h3>
-            <p class="i18n-ko">Edit 모드에서 저장한 편집을 가지고 돌아오면
+            <p class="i18n-ko">Edit 모드에서 편집을 저장하고 돌아오면
                 <em>Your edits are saved. Run the simulation again to see their effect.</em> 알림이 뜹니다.
-                실행할 때마다 결과에 <span class="mono">network.xml</span> 의 sha256 이 기록되므로, 지금 네트워크와
-                <span class="mono">network.xml</span> 이 다른 결과를 열면(<strong>Load last result</strong> 또는 DB 파일)
+                실행할 때마다 결과에 <span class="mono">network.xml</span>의 sha256이 기록되므로, 현재 네트워크와
+                <span class="mono">network.xml</span>이 다른 결과를 열면(<strong>Load last result</strong> 또는 DB 파일)
                 <strong>Result does not match the loaded network</strong> 창이 결과를 만든 뒤 네트워크가 편집되었다고 알려 줍니다.
-                <strong>Load anyway</strong> 로 그래도 열 수 있고, <strong>Cancel</strong> 을 누르면 재생하지 않습니다.
+                <strong>Load anyway</strong>를 누르면 그래도 결과를 열고, <strong>Cancel</strong>을 누르면 재생하지 않습니다.
                 바뀐 네트워크의 결과를 보려면 다시 실행하세요.</p>
             <p class="i18n-en">Coming back from Edit mode with saved edits shows
                 <em>Your edits are saved. Run the simulation again to see their effect.</em> Each run records the sha256 of
@@ -838,12 +838,12 @@
             <h2><span class="ws-badge" style="--ws: var(--hue-play)">Playback</span> <span class="i18n-ko">재생 컨트롤</span><span class="i18n-en">Playback controls</span></h2>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>컨트롤</th><th>동작</th></tr>
-                <tr><td><strong>Play / Stop</strong></td><td>재생 시작·정지. 정지하면 처음으로 돌아가지 않고 현재 시점에 멈춥니다.</td></tr>
-                <tr><td><strong>Speed</strong></td><td>재생 배속 0.5× ~ 32×. <strong>1.0× = 실시간</strong>(시뮬레이션 1초를 1초에 재생).
+                <tr><td><strong>Play / Stop</strong></td><td>재생을 시작하거나 정지합니다. 정지하면 처음으로 돌아가지 않고 현재 시점에 멈춥니다.</td></tr>
+                <tr><td><strong>Speed</strong></td><td>재생 배속을 0.5×부터 32×까지 정합니다. <strong>1.0× = 실시간</strong>(시뮬레이션 1초를 1초 동안 재생)입니다.
                         배속은 브라우저에 저장되어 결과를 다시 열어도 유지됩니다.</td></tr>
                 <tr><td><strong>Timestep 슬라이더</strong></td>
-                    <td>드래그해 원하는 시점으로 즉시 이동(스크럽). 우측 표기의 앞 숫자는 <strong>시나리오 시작 이후 경과 초</strong>
-                        이고, 결과를 열면 옆에 시나리오 시각(시작 시각 + 경과)이 회색으로 붙습니다
+                    <td>드래그해 원하는 시점으로 즉시 이동합니다(스크럽). 오른쪽에 표시되는 앞 숫자는 <strong>시나리오 시작 이후 경과한 초</strong>입니다.
+                        결과를 열면 그 옆에 시나리오 시각(시작 시각 + 경과 시간)이 회색으로 함께 표시됩니다
                         (<span class="mono">123.4s 08:02:03</span>).</td></tr>
                 <tr><td><kbd>Space</kbd></td><td>재생 / 일시정지</td></tr>
                 <tr><td><kbd>←</kbd> / <kbd>→</kbd></td><td>1초 뒤로 / 앞으로</td></tr>
@@ -865,8 +865,8 @@
             </table></div>
             <p class="i18n-ko">재생 중에는 차량이 이동하고, 신호등이 교차로 정지선 위 색 박스(적/황/녹)로 표시되며,
                 진행 중인 이벤트 구간이 링크 위에 패턴으로 나타납니다. 단축키는 입력칸에 커서가 있지 않고
-                결과 DB가 로드된 상태에서만 동작합니다. 많이 축소한 상태에서는 차량이 히트맵으로 대체되니
-                <a href="#faq">FAQ</a> 를 참고하세요.</p>
+                결과 DB가 로드된 상태에서만 동작합니다. 많이 축소하면 차량 대신 히트맵이 표시됩니다. 자세한 내용은
+                <a href="#faq">FAQ</a>를 참고하세요.</p>
             <p class="i18n-en">During playback vehicles move, signals appear as red/yellow/green boxes above each
                 intersection stop line, and any event active at that moment is drawn as a hatched band on its link.
                 The shortcuts work only with a result DB loaded and no text field focused. When zoomed far out,
@@ -876,35 +876,35 @@
         <!-- ================================================== 표시 -->
         <section id="display">
             <h2><span class="ws-badge" style="--ws: var(--hue-display)">Display</span> <span class="i18n-ko">표시 옵션</span><span class="i18n-en">Display options</span></h2>
-            <p class="i18n-ko">상단바 <strong>Display</strong> 버튼을 누르면 표시 옵션 패널이 열립니다.</p>
+            <p class="i18n-ko">상단바의 <strong>Display</strong> 버튼을 누르면 표시 옵션 패널이 열립니다.</p>
             <p class="i18n-en">The <strong>Display</strong> button in the top bar opens the display panel.</p>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>그룹</th><th>옵션</th><th>내용</th></tr>
                 <tr><td rowspan="2"><strong>Labels</strong></td>
                     <td><strong>Node IDs</strong></td><td>노드 ID 라벨</td></tr>
                 <tr><td><strong>Link IDs</strong></td>
-                    <td>링크 ID 라벨. 화면에 보이는 것만 그리며, 너무 축소해 600개가 넘으면 표시를 보류합니다 — 확대하면 다시 나타납니다.</td></tr>
+                    <td>링크 ID 라벨입니다. 화면에 보이는 라벨만 그리며, 많이 축소해 라벨이 600개를 넘으면 표시하지 않습니다. 확대하면 다시 나타납니다.</td></tr>
                 <tr><td rowspan="2"><strong>Vehicles</strong></td>
                     <td><strong>Micro / Meso vehicles</strong></td>
                     <td>미시/중시 구간 차량 표시를 각각 켜고 끕니다. 체크박스 옆 색 견본은 <em>라벨 장식</em>이며,
-                        지도 위 차량 색은 아래 <strong>Color by</strong> 만 따릅니다.</td></tr>
+                        지도 위 차량 색은 아래 <strong>Color by</strong> 설정만 따릅니다.</td></tr>
                 <tr><td><strong>Color by</strong></td>
-                    <td>차량 색 기준 — <span class="mono">Vehicle type</span> 또는 <span class="mono">Powertrain</span>. 차량 데이터가 로드되어 있으면 범례가 함께 표시됩니다.</td></tr>
+                    <td>차량 색을 정하는 기준으로, <span class="mono">Vehicle type</span> 또는 <span class="mono">Powertrain</span>을 고릅니다. 차량 데이터가 로드되어 있으면 범례가 함께 표시됩니다.</td></tr>
                 <tr><td rowspan="5"><strong>Overlays</strong></td>
                     <td><strong>Meso link state</strong></td><td>meso 구간 링크를 혼잡지수(CI)에 따라 색칠합니다. CI 범례가 함께 나타납니다.</td></tr>
                 <tr><td><strong>Link heatmap</strong></td>
-                    <td>재생 시점의 밀도(·속도) 기준으로 링크를 혼잡도 색으로 칠합니다. 데이터가 있는 링크만 칠해지며,
-                        같은 CI 범례를 씁니다.</td></tr>
+                    <td>재생 시점의 밀도(속도 정보가 있으면 속도도 함께)를 기준으로 링크를 혼잡도 색으로 칠합니다. 데이터가 있는 링크만 칠해지며,
+                        같은 CI 범례를 사용합니다.</td></tr>
                 <tr><td><strong>Signal connections</strong></td><td>교차로 커넥션을 현재 신호 상태에 따라 녹색/적색으로 색칠합니다.</td></tr>
                 <tr><td><strong>Station pax</strong></td>
                     <td>정류장 위에 대기 승객 수 배지를 표시합니다. 배지가 겹치지 않도록 <strong>많이 축소하면
-                        자동으로 숨겨집니다</strong> — 확대하면 다시 나타납니다.</td></tr>
-                <tr><td><strong>Events</strong></td><td>진행 중 이벤트 구간 오버레이 표시.</td></tr>
+                        자동으로 숨겨집니다</strong>. 확대하면 다시 나타납니다.</td></tr>
+                <tr><td><strong>Events</strong></td><td>진행 중인 이벤트 구간을 오버레이로 표시합니다.</td></tr>
                 <tr><td><strong>Canvas</strong></td><td><strong>Background</strong></td>
-                    <td>지도 배경색 (스크린샷·발표 자료용). ↺ 로 기본값 복원.</td></tr>
+                    <td>지도 배경색을 정합니다(스크린샷·발표 자료용). ↺를 누르면 기본값으로 돌아갑니다.</td></tr>
                 <tr><td colspan="3" class="mono" style="font-size:12px">
                     표시 옵션·배경색·위성 배경 설정은 브라우저에 저장되어 다음 접속에도 유지됩니다.</td></tr>
-                <tr><td><strong>Satellite basemap</strong></td><td colspan="2"><a href="#basemap">아래 절 참고</a> — 위성/항공사진 배경.</td></tr>
+                <tr><td><strong>Satellite basemap</strong></td><td colspan="2">위성/항공사진을 배경으로 표시합니다. 자세한 내용은 <a href="#basemap">아래 절</a>을 참고하세요.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Group</th><th>Option</th><th>What it shows</th></tr>
@@ -947,8 +947,8 @@
             <p class="i18n-ko"><strong>Link heatmap</strong>의 CI는 <strong>밀도 지수</strong>(차로당 밀도 ÷ 80 veh/km/lane)와
                 <strong>속도저하 지수</strong>(1 − 평균속도 ÷ 자유속도) 중 <strong>큰 값</strong>입니다.
                 재생 시점에 따라 실시간으로 갱신됩니다. 이벤트 테이블에 속도(<span class="mono">spd</span>) 컬럼이 없는
-                옛 DB 에서는 밀도 지수만 쓰고, <strong>Meso link state</strong> 는 차량 대수로 구한 밀도 지수만 씁니다.
-                지도 아래 범례의 마지막 줄이 <em>지금 쓰이는 계산식</em>을 그대로 보여줍니다.</p>
+                예전 DB에서는 밀도 지수만 사용하고, <strong>Meso link state</strong>는 차량 대수로 구한 밀도 지수만 사용합니다.
+                지도 아래 범례의 마지막 줄에는 <em>현재 사용 중인 계산식</em>이 표시됩니다.</p>
             <p class="i18n-en">For <strong>Link heatmap</strong>, CI is the <strong>larger</strong> of a
                 <strong>density index</strong> (per-lane density ÷ 80 veh/km/lane) and a <strong>speed-drop
                 index</strong> (1 − mean speed ÷ free-flow speed), updated live as playback advances. Older DBs
@@ -960,23 +960,23 @@
         <!-- ================================================== BIMS -->
         <section id="bims">
             <h2><span class="ws-badge" style="--ws: var(--hue-inspect)">BIMS</span> <span class="i18n-ko">버스 정보 관리(BIMS)</span><span class="i18n-en">Bus Information Management System (BIMS)</span></h2>
-            <p class="i18n-ko">결과 DB가 로드되면 버스·정류장·노선의 운영 정보를 볼 수 있습니다. 평상시 화면은 그대로이며,
-                다음 세 곳에서 들어갑니다.</p>
+            <p class="i18n-ko">결과 DB가 로드되면 버스·정류장·노선의 운영 정보를 볼 수 있습니다. 평소 지도 화면은 바뀌지 않으며,
+                BIMS는 다음 세 곳에서 열 수 있습니다.</p>
             <p class="i18n-en">Once a result DB is loaded, bus, station and route operations can be inspected. The normal
                 map stays unchanged; BIMS opens from three places.</p>
             <ul class="i18n-ko">
-                <li><strong>버스 클릭 → 차량 정보 패널의 BIMS 버튼</strong> — Bus Information 모달: 현재 재차·혼잡도, 이전/다음
-                    정류장, 다음 정류장까지 거리, 도착 예측(예측과 실제 병기), 운행 진행률. 탭: Overview(노선 스트립과 같은 노선의
+                <li><strong>버스 클릭 → 차량 정보 패널의 BIMS 버튼</strong>: Bus Information 모달을 엽니다. 현재 재차 인원·혼잡도, 이전/다음
+                    정류장, 다음 정류장까지 거리, 도착 예측(예측과 실제 병기), 운행 진행률을 보여 줍니다. 탭: Overview(노선 스트립과 같은 노선의
                     다른 버스), Passengers(승하차·재차 프로파일), Stops(정류장별 도착·출발·정차·승하차·배차간격), History(속도·재차·
                     정차·구간 통행시간 그래프).</li>
-                <li><strong>정류장 클릭</strong> — Station Information 모달: 대기 승객, 누적 승하차, 서비스 대수, 평균 정차시간,
-                    평균 배차간격과 <strong>Upcoming / Recent buses</strong>(Approaching·En Route·At Stop·Departed). 탭:
+                <li><strong>정류장 클릭</strong>: Station Information 모달을 엽니다. 대기 승객, 누적 승하차, 서비스 대수, 평균 정차시간,
+                    평균 배차간격과 <strong>Upcoming / Recent buses</strong>(Approaching·En Route·At Stop·Departed)를 보여 줍니다. 탭:
                     Arrivals, Waiting Passengers, Lines, Charts(대기 인원·승하차·도착·정차·배차간격 시계열).
                     <strong>View Approaching Buses</strong>로 이 정류장으로 오는 버스만 지도에서 강조합니다. 헤더의 경유 노선 목록은
-                    <strong>Routes (N)</strong> 토글로 펼치며 기본은 접힌 상태입니다.</li>
-                <li><strong>상단바 BIMS 버튼</strong> — 관제 대시보드: KPI(운행 버스, 노선, 승객, 평균속도, 평균 배차간격, bunching,
+                    <strong>Routes (N)</strong> 토글로 펼칠 수 있으며, 기본값은 접힌 상태입니다.</li>
+                <li><strong>상단바 BIMS 버튼</strong>: 관제 대시보드를 엽니다. 대시보드는 KPI(운행 버스, 노선, 승객, 평균속도, 평균 배차간격, bunching,
                     이상상황 수), Fleet Status(상태 필터: Running / At Stop / Delayed / Bunched / Finished), Route Performance,
-                    Station Status(지도 정류장을 상태 색으로 표시), Issues(bunching·과대 배차간격·과밀·장기 정차·장기 대기·저속 자동 탐지).
+                    Station Status(지도 정류장을 상태 색으로 표시), Issues(bunching·과대 배차간격·과밀·장기 정차·장기 대기·저속 자동 탐지)로 구성됩니다.
                     표의 행을 누르면 지도가 그 객체로 이동하고 모달이 열립니다. 톱니 버튼으로 임계값을 조정합니다.</li>
             </ul>
             <ul class="i18n-en">
@@ -994,15 +994,15 @@
                     bunching, excessive headway, overcrowding, long dwell, long waiting and slow buses). Clicking a row moves the
                     map to that object and opens its modal. The gear button adjusts thresholds.</li>
             </ul>
-            <p class="i18n-ko">BIMS 창은 기본으로 화면 중앙에 뜨지만, 헤더의 <strong>Dock</strong> 버튼으로 우측 패널에 붙일 수
-                있습니다(선택은 브라우저에 저장). Follow·Focus·Highlight처럼 지도를 봐야 하는 동작을 누르면 자동으로 도킹됩니다.
-                대시보드는 왼쪽 가장자리를 끌어 폭을 조절하고, 두 번 클릭하면 기본 폭으로 돌아갑니다. 시점 표기는 시나리오 시각
-                (HH:MM:SS)이며 상단바의 Timestep 옆에도 같은 시각이 표시됩니다. 네트워크 폴더에
+            <p class="i18n-ko">BIMS 창은 기본적으로 화면 중앙에 열리지만, 헤더의 <strong>Dock</strong> 버튼을 누르면 오른쪽 패널에 고정할 수
+                있습니다(이 선택은 브라우저에 저장됩니다). Follow·Focus·Highlight처럼 지도를 봐야 하는 동작을 실행하면 창이 자동으로 도킹됩니다.
+                대시보드의 폭은 왼쪽 가장자리를 끌어 조절하며, 가장자리를 두 번 클릭하면 기본 폭으로 돌아갑니다. 시각은 시나리오 시각
+                (HH:MM:SS)으로 표시되며, 상단바의 Timestep 옆에도 같은 시각이 나옵니다. 네트워크 폴더에
                 <span class="mono">ptNames.json</span>(<span class="mono">{"stations": {"30000123": "KAIST"}, "routes": {"1": "102"}}</span>)
-                을 두면 ID 대신 이름이 표시됩니다.</p>
+                파일을 두면 ID 대신 이름이 표시됩니다.</p>
             <p class="i18n-ko">Route ID·Bus ID·Station ID는 어디서나 칩으로 표시되며 클릭하면 해당 뷰로 이동합니다(브레드크럼으로
-                되돌아갑니다). Route 뷰의 <strong>Highlight on map</strong>은 노선을, <strong>Show all buses</strong>는 운행 중인
-                버스를 지도에 강조하고, Charts 탭에 배차간격 추이·시간-거리(Marey) 다이어그램·재차 프로파일이 있습니다. 검색창에
+                이전 뷰로 돌아갈 수 있습니다). Route 뷰의 <strong>Highlight on map</strong>은 노선을, <strong>Show all buses</strong>는 운행 중인
+                버스를 지도에 강조합니다. Charts 탭에는 배차간격 추이, 시간-거리(Marey) 다이어그램, 재차 프로파일이 있습니다. 검색창에
                 <span class="mono">line:102</span>처럼 입력하면 노선 뷰가 열립니다.</p>
             <p class="i18n-en">The BIMS window opens centered by default; the <strong>Dock</strong> button in its header pins it to
                 the right side (remembered in the browser). Actions that need the map, such as Follow, Focus and Highlight, dock
@@ -1014,9 +1014,9 @@
                 back). In the Route view, <strong>Highlight on map</strong> emphasises the route and <strong>Show all buses</strong>
                 its buses; the Charts tab holds headway over time, a time–distance (Marey) diagram and the load profile. Typing
                 <span class="mono">line:102</span> in the search box opens the route view.</p>
-            <div class="warn i18n-ko"><strong>데이터 한계.</strong> 재차 인원은 정류장 승하차 기록의 누적(승차−하차)으로 계산하며,
-                버스 정원은 입력에 없어 차종별 기본값(NB/AB 50, TRT 80)을 가정합니다. 계획 시각표가 없어 지연은 "배차간격 과대 또는
-                저속" 플래그로 정의합니다. 실행 중 미리보기에서는 정류장 이벤트를 best-effort로 읽어 일부만 보일 수 있습니다.</div>
+            <div class="warn i18n-ko"><strong>데이터 한계.</strong> 재차 인원은 정류장 승하차 기록을 누적(승차−하차)해 계산하며,
+                버스 정원은 입력 데이터에 없으므로 차종별 기본값(NB/AB 50, TRT 80)을 가정합니다. 계획 시각표가 없으므로 지연은 "배차간격 과대 또는
+                저속" 플래그로 정의합니다. 실행 중 미리보기에서는 정류장 이벤트를 best-effort 방식으로 읽기 때문에 일부만 보일 수 있습니다.</div>
             <div class="warn i18n-en"><strong>Data limits.</strong> Onboard counts are cumulative boardings minus alightings from
                 station events; bus capacity is not in the inputs, so a per-type default (NB/AB 50, TRT 80) is assumed. There is
                 no planned timetable, so "Delayed" means excessive headway or a slow segment. During the run preview, station
@@ -1026,18 +1026,18 @@
         <!-- ================================================== 위성 배경 -->
         <section id="basemap">
             <h2><span class="i18n-ko">위성 배경</span><span class="i18n-en">Satellite basemap</span></h2>
-            <p class="i18n-ko"><strong>Display</strong> 패널의 <strong>Satellite basemap</strong> 에서 네트워크
-                아래에 위성/항공사진을 깔 수 있습니다. 결과를 실제 지형과 함께 보여줄 때 씁니다.
+            <p class="i18n-ko"><strong>Display</strong> 패널의 <strong>Satellite basemap</strong>에서 네트워크
+                아래에 위성/항공사진을 배경으로 표시할 수 있습니다. 결과를 실제 지형과 함께 보여 줄 때 유용합니다.
                 Edit 모드와 같은 기능이며 정합값도 공유합니다.</p>
             <p class="i18n-en">The <strong>Satellite basemap</strong> group in the <strong>Display</strong>
                 panel puts satellite or aerial imagery under the network — useful when presenting results
                 against real geography. It is the same feature as in Edit mode and shares its alignment data.</p>
             <ul class="i18n-ko">
-                <li><strong>Esri Satellite</strong> — 키 없이 바로 쓸 수 있는 전 세계 위성영상.</li>
-                <li><strong>VWorld Aerial</strong> — 국내 최고 해상도 항공영상.
-                    <a href="https://www.vworld.kr" target="_blank" rel="noopener">vworld.kr</a> 에서 무료 인증키를
-                    발급받아(사용 도메인에 접속 주소 등록) <strong>Key</strong> 칸에 넣습니다.</li>
-                <li><strong>Opacity</strong> — 배경이 진하면 도로가 묻히므로 슬라이더로 조절합니다.</li>
+                <li><strong>Esri Satellite</strong>: 인증키 없이 바로 사용할 수 있는 전 세계 위성영상입니다.</li>
+                <li><strong>VWorld Aerial</strong>: 국내 최고 해상도의 항공영상입니다.
+                    <a href="https://www.vworld.kr" target="_blank" rel="noopener">vworld.kr</a>에서 무료 인증키를
+                    발급받고(사용 도메인에 접속 주소를 등록합니다) <strong>Key</strong> 칸에 입력합니다.</li>
+                <li><strong>Opacity</strong>: 배경이 진하면 도로가 잘 보이지 않으므로 슬라이더로 투명도를 조절합니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>Esri Satellite</strong> — worldwide imagery, no key required.</li>
@@ -1046,11 +1046,11 @@
                     (register the address you serve from) and paste it into the <strong>Key</strong> field.</li>
                 <li><strong>Opacity</strong> — dial the imagery back so the roads stay readable.</li>
             </ul>
-            <p class="i18n-ko">네트워크 좌표는 원점이 bbox 남서 모서리인 <em>국소 미터 좌표</em>라 그 자체로는 지구상
-                위치를 알 수 없습니다. NextSIM 이 <span class="mono">basemap.json</span> →
+            <p class="i18n-ko">네트워크 좌표는 원점이 bbox 남서 모서리인 <em>국소 미터 좌표</em>이므로 좌표만으로는 지구상
+                위치를 알 수 없습니다. NextSIM이 <span class="mono">basemap.json</span> →
                 <span class="mono">osm_import.json</span> → 노드의 <span class="mono">osm_lat/osm_lon</span> →
-                <span class="mono">nodelink_import.json</span> 순으로 정합을 자동 탐색하며, 결과는 패널 아래
-                상태줄에 표시됩니다. 정합이 없는 네트워크는 Edit 모드에서 한 번 맞춰 저장하면 Run 모드에서도
+                <span class="mono">nodelink_import.json</span> 순서로 정합 정보를 자동으로 찾으며, 결과는 패널 아래
+                상태줄에 표시됩니다. 정합 정보가 없는 네트워크는 Edit 모드에서 한 번 정합을 맞춰 저장하면 Run 모드에서도
                 그대로 복원됩니다.</p>
             <p class="i18n-en">Network coordinates are <em>local metric</em> with the origin at the bounding
                 box's south-west corner, so they carry no earth position on their own. The tooling looks for a
@@ -1065,10 +1065,10 @@
         <section id="map-search">
             <h2><span class="i18n-ko">지도 탐색과 검색</span><span class="i18n-en">Map navigation and search</span></h2>
             <ul class="i18n-ko">
-                <li><strong>확대/축소</strong> — 마우스 휠. <strong>화면 이동</strong> — 왼쪽 버튼(또는 가운데 버튼) 드래그. 트랙패드도 누른 채 끌면 됩니다.</li>
-                <li><strong>미니맵</strong> — 좌측 하단 개요 지도에서 현재 화면 위치를 확인하고,
-                    클릭·드래그로 바로 이동합니다. ▾로 접을 수 있습니다.</li>
-                <li><strong>축척 막대</strong> — 좌측 하단.</li>
+                <li><strong>확대/축소</strong>: 마우스 휠을 사용합니다. <strong>화면 이동</strong>: 왼쪽 버튼(또는 가운데 버튼)으로 드래그합니다. 트랙패드에서는 누른 채로 끌면 됩니다.</li>
+                <li><strong>미니맵</strong>: 좌측 하단 개요 지도에서 현재 화면 위치를 확인하고,
+                    클릭하거나 드래그해 바로 이동합니다. ▾로 접을 수 있습니다.</li>
+                <li><strong>축척 막대</strong>: 좌측 하단에 표시됩니다.</li>
                 <li>차량·링크·노드에 마우스를 올리면 툴팁으로 ID가 표시됩니다.</li>
             </ul>
             <ul class="i18n-en">
@@ -1080,20 +1080,20 @@
             </ul>
 
             <h3><span class="i18n-ko">검색</span><span class="i18n-en">Search</span></h3>
-            <p class="i18n-ko">상단 검색창에 입력하면 <strong>실시간 후보 목록</strong>이 열립니다 —
-                <kbd>↑</kbd><kbd>↓</kbd> 로 이동, <kbd>Enter</kbd> 로 이동·강조(3초), <kbd>Esc</kbd> 로 닫기.
-                정확한 ID를 알면 그대로 입력하고 <kbd>Enter</kbd> 만 눌러도 됩니다.</p>
+            <p class="i18n-ko">상단 검색창에 입력하면 <strong>실시간 후보 목록</strong>이 열립니다.
+                <kbd>↑</kbd><kbd>↓</kbd>로 후보를 고르고, <kbd>Enter</kbd>로 해당 위치로 이동해 3초간 강조하며, <kbd>Esc</kbd>로 목록을 닫습니다.
+                정확한 ID를 알면 그대로 입력하고 <kbd>Enter</kbd>만 눌러도 됩니다.</p>
             <p class="i18n-en">Typing in the top-bar search box opens a <strong>live suggestion list</strong> —
                 <kbd>↑</kbd><kbd>↓</kbd> to move, <kbd>Enter</kbd> to jump (highlighted for three seconds),
                 <kbd>Esc</kbd> to close. If you know the exact ID, just type it and press <kbd>Enter</kbd>.</p>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>입력</th><th>의미</th></tr>
-                <tr><td class="mono">1234</td><td>차량 → 링크 → 노드 순으로 해당 ID를 탐색</td></tr>
-                <tr><td class="mono">v:1234</td><td>차량 ID 지정 검색 (<span class="mono">vehicle:</span> 도 가능)</td></tr>
-                <tr><td class="mono">l:5678</td><td>링크 ID 지정 검색 (<span class="mono">link:</span>)</td></tr>
-                <tr><td class="mono">n:910</td><td>노드 ID 지정 검색 (<span class="mono">node:</span>)</td></tr>
-                <tr><td class="mono">s:12</td><td>정류장 검색 (<span class="mono">station:</span>) —
-                    <strong>후보 목록에서만</strong> 동작합니다. <kbd>Enter</kbd> 직행 검색은 v/l/n 만 받습니다.</td></tr>
+                <tr><td class="mono">1234</td><td>차량 → 링크 → 노드 순으로 해당 ID를 찾습니다.</td></tr>
+                <tr><td class="mono">v:1234</td><td>차량 ID를 지정해 검색합니다 (<span class="mono">vehicle:</span>도 사용할 수 있습니다).</td></tr>
+                <tr><td class="mono">l:5678</td><td>링크 ID를 지정해 검색합니다 (<span class="mono">link:</span>).</td></tr>
+                <tr><td class="mono">n:910</td><td>노드 ID를 지정해 검색합니다 (<span class="mono">node:</span>).</td></tr>
+                <tr><td class="mono">s:12</td><td>정류장을 검색합니다 (<span class="mono">station:</span>).
+                    <strong>후보 목록에서만</strong> 동작하며, <kbd>Enter</kbd>로 바로 이동하는 검색은 v/l/n 접두어만 받습니다.</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Input</th><th>Meaning</th></tr>
@@ -1112,14 +1112,14 @@
             <h2><span class="ws-badge" style="--ws: var(--hue-inspect)">Inspect</span> <span class="i18n-ko">정보 조회</span><span class="i18n-en">Inspecting objects</span></h2>
 
             <h3><span class="i18n-ko">차량</span><span class="i18n-en">Vehicles</span></h3>
-            <p class="i18n-ko">재생 중 차량을 클릭하면 <strong>Vehicle Information</strong> 패널이 열려 차종, 현재
-                위치(링크·차로), 속도 등 상태를 보여줍니다. 재생을 계속하면 값이 실시간으로 갱신됩니다.</p>
+            <p class="i18n-ko">재생 중 차량을 클릭하면 <strong>Vehicle Information</strong> 패널이 열리고 차종, 현재
+                위치(링크·차로), 속도 등의 상태가 표시됩니다. 재생을 계속하면 값이 실시간으로 갱신됩니다.</p>
             <ul class="i18n-ko">
-                <li><strong>Follow vehicle</strong> — 카메라가 그 차량을 따라가고 "Following V &lt;id&gt;" 칩이
-                    표시됩니다. 지도를 드래그해 이동하면 추적이 해제되고(줌은 유지),
-                    <strong>Stop follow</strong> 나 칩의 × 로도 끝냅니다.</li>
-                <li><strong>Show route</strong> — 그 차량의 OD 후보 경로를 지도에 강조합니다
-                    (기·종점 정보가 없으면 비활성).</li>
+                <li><strong>Follow vehicle</strong>: 카메라가 해당 차량을 따라가고 "Following V &lt;id&gt;" 칩이
+                    표시됩니다. 지도를 드래그해 이동하면 추적이 해제되며(줌은 유지됩니다),
+                    <strong>Stop follow</strong>나 칩의 ×를 눌러도 추적이 끝납니다.</li>
+                <li><strong>Show route</strong>: 해당 차량의 OD 후보 경로를 지도에 강조합니다
+                    (기·종점 정보가 없으면 비활성화됩니다).</li>
             </ul>
             <p class="i18n-en">Clicking a vehicle during playback opens the <strong>Vehicle Information</strong>
                 panel with its type, current position (link and lane), speed, and other state, updating live as
@@ -1134,7 +1134,7 @@
 
             <h3><span class="i18n-ko">링크 · 노드</span><span class="i18n-en">Links and nodes</span></h3>
             <p class="i18n-ko">링크나 노드를 클릭하면 <strong>Network information</strong> 플로팅 패널이 열려 속성이
-                표시됩니다. 신호가 설치된 노드는 적용 중인 신호 플랜(주기·옵셋)이 함께 나오고,
+                표시됩니다. 신호가 설치된 노드에서는 적용 중인 신호 플랜(주기·옵셋)이 함께 표시되고,
                 <strong>🚦 Signal Plan 상세보기</strong> 버튼으로 현시 구성 다이어그램을 팝업으로 볼 수
                 있습니다.</p>
             <p class="i18n-en">Clicking a link or node opens the floating <strong>Network information</strong>
@@ -1144,7 +1144,7 @@
             <h3><span class="i18n-ko">정류장 · 대중교통</span><span class="i18n-en">Stations and transit</span></h3>
             <ul class="i18n-ko">
                 <li>정류장을 클릭하면 해당 시점의 <strong>대기·승하차 승객 현황</strong> 팝업이 열립니다.</li>
-                <li><strong>Station pax</strong> 표시를 켜면(Display 패널) 재생 중 각 정류장의
+                <li>Display 패널에서 <strong>Station pax</strong> 표시를 켜면 재생 중 각 정류장의
                     대기 승객 수가 배지로 표시됩니다.</li>
             </ul>
             <ul class="i18n-en">
@@ -1155,8 +1155,8 @@
 
             <h3><span class="i18n-ko">검지기 분석</span><span class="i18n-en">Detector analysis</span></h3>
             <p class="i18n-ko">지도의 검지기 표시를 클릭하면 <strong>Detector Analysis</strong> 패널이 열립니다
-                (Edit 모드의 Infrastructure 워크스페이스에서 정의한 E1·E2·E3 검지기).
-                <strong>Plot</strong> 탭은 시간에 따른 값 그래프를, <strong>Data</strong> 탭은 원자료 표를 보여주며,
+                (Edit 모드의 Infrastructure 워크스페이스에서 정의한 E1·E2·E3 검지기가 대상입니다).
+                <strong>Plot</strong> 탭은 시간에 따른 값의 변화를 그래프로, <strong>Data</strong> 탭은 원자료를 표로 보여 주며,
                 지표(Metric)와 집계 단위(Aggregation)를 골라 볼 수 있습니다. 검지기는 micro 링크에서만 기록됩니다.</p>
             <p class="i18n-en">Clicking a detector marker on the map opens the <strong>Detector Analysis</strong>
                 panel (for the E1/E2/E3 detectors defined in the Infrastructure workspace of Edit mode). The
@@ -1164,9 +1164,9 @@
                 both follow the Metric and Aggregation selectors. Detectors only record on micro links.</p>
 
             <h3><span class="i18n-ko">이벤트</span><span class="i18n-en">Events</span></h3>
-            <p class="i18n-ko">Events 표시가 켜져 있으면 <strong>현재 재생 시점에 활성인</strong> 이벤트만 링크 위
-                패턴으로 나타나며, 클릭하면 유형·시간·영향 차로 등의 상세 팝오버가 열립니다. 이벤트가 안 보인다면
-                대개 <em>아직 시작 시각 전이거나 이미 끝난</em> 경우입니다 — 타임스텝을 이벤트 구간으로 옮겨 보세요.</p>
+            <p class="i18n-ko">Events 표시가 켜져 있으면 <strong>현재 재생 시점에 활성인</strong> 이벤트만 링크
+                위에 패턴으로 나타나며, 클릭하면 유형, 시간, 영향을 받는 차로 등을 보여 주는 상세 팝오버가 열립니다. 이벤트가 보이지 않는다면
+                대개 <em>아직 시작 시각 전이거나 이미 끝난</em> 경우입니다. 타임스텝을 이벤트 구간으로 옮겨 보세요.</p>
             <p class="i18n-en">With Events enabled, only the events <strong>active at the current playback
                 time</strong> are drawn as a hatched band on their link; clicking one opens a popover with its
                 type, times, and affected lanes. If you see none, the usual reason is that the current time is
@@ -1177,14 +1177,14 @@
         <section id="summary">
             <h2><span class="ws-badge" style="--ws: var(--hue-summary)">Analyze</span> <span class="i18n-ko">시나리오 요약</span><span class="i18n-en">Scenario summary</span></h2>
             <p class="i18n-ko">결과 DB가 로드된 뒤 <strong>Simulation 패널의 Scenario Summary</strong>를 누르면 요약 패널이
-                열립니다. 상단에 <strong>총 차량 수 · 우회 비율 · 장시간 정지 · 평균 속도</strong> 지표가 나오고,
-                아래 표는 기준을 골라 정렬해 볼 수 있습니다 —
+                열립니다. 상단에 <strong>총 차량 수 · 우회 비율 · 장시간 정지 · 평균 속도</strong> 지표가 표시되고,
+                아래 표는 다음 기준으로 정렬해 볼 수 있습니다:
                 <span class="mono">Long-Stopped Vehicles</span>,
                 <span class="mono">Constrained LC Records</span>,
                 <span class="mono">Rerouted Vehicles</span>,
                 <span class="mono">Speed Drop vs Free Flow</span>.
-                병목·이상 지점을 빠르게 훑는 용도이며, 표의 링크 ID를 검색창에 넣으면 그 위치로 이동합니다
-                (표 행 자체는 클릭 대상이 아닙니다).</p>
+                이 패널은 병목이나 이상 지점을 빠르게 찾아보는 용도이며, 표의 링크 ID를 검색창에 입력하면 그 위치로 이동합니다
+                (표의 행은 클릭할 수 없습니다).</p>
             <p class="i18n-en">Once a result DB is loaded, <strong>Scenario Summary</strong> in the Simulation panel
                 opens a summary view. Four KPIs sit at the top — <strong>total vehicles, rerouted share,
                 long-stopped count, mean speed</strong> — over a table you can sort by criterion:
@@ -1200,8 +1200,8 @@
         <section id="input-files">
             <h2><span class="i18n-ko">입력 파일 점검</span><span class="i18n-en">Inspecting input files</span></h2>
             <p class="i18n-ko"><strong>Network 창의 Inspect input files</strong>(Run 모드)는 선택한 네트워크 폴더에 어떤 입력
-                파일이 있는지, 각 파일의 핵심 내용(규모·시간 범위 등)을 요약해 보여줍니다. 재생 결과가
-                기대와 다를 때 "어떤 입력으로 돌린 것인지"를 먼저 확인하는 용도입니다. 입력을 고쳐야
+                파일이 있는지와 각 파일의 핵심 내용(규모·시간 범위 등)을 요약해 보여 줍니다. 재생 결과가
+                예상과 다를 때 "어떤 입력으로 실행했는지"를 먼저 확인하는 데 사용합니다. 입력을 고쳐야
                 한다면 <a class="doc-cross" href="editor-guide.html"
                 data-local="editor-guide.html"
                >Edit 모드</a>로
@@ -1223,11 +1223,11 @@
             <h3><span class="i18n-ko">차량이 안 보여요</span><span class="i18n-en">I can't see any vehicles</span></h3>
             <ul class="i18n-ko">
                 <li>결과 DB가 로드되었는지(Simulation 패널의 상태 표시), 재생 시점이 시나리오 시간 범위 안인지 확인하세요.</li>
-                <li>Edit 모드에 다녀왔다면 결과가 화면에서 내려가 있습니다 — <strong>Simulation › Load last result</strong> 로 다시 여세요.</li>
-                <li>Display의 <strong>Micro vehicles / Meso vehicles</strong> 체크가 꺼져 있지 않은지 확인하세요.</li>
-                <li>큰 DB는 구간별로 로드됩니다 — 방금 이동한 시점의 데이터가 아직 로드 중일 수 있습니다.</li>
+                <li>Edit 모드로 전환했다가 돌아왔다면 결과가 화면에서 내려가 있습니다. <strong>Simulation › Load last result</strong>로 다시 여세요.</li>
+                <li>Display의 <strong>Micro vehicles / Meso vehicles</strong> 체크박스가 꺼져 있지 않은지 확인하세요.</li>
+                <li>큰 DB는 구간별로 로드되므로, 방금 이동한 시점의 데이터가 아직 로드 중일 수 있습니다.</li>
                 <li>아주 많이 축소한 상태에서는 차량 한 대가 1픽셀 미만이 되어, 대신 링크 혼잡도 히트맵이
-                    표시됩니다(집계 데이터가 있는 경우). 조금 확대하면 차량이 돌아옵니다.</li>
+                    표시됩니다(집계 데이터가 있는 경우). 조금 확대하면 차량이 다시 표시됩니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li>Check that a result DB is loaded (status in the Simulation panel) and that the current time is
@@ -1241,12 +1241,12 @@
                     drawn instead (where aggregate data exists). Zoom in a little and the vehicles return.</li>
             </ul>
 
-            <h3><span class="i18n-ko">차량이 축소하면 사라지는 이유는?</span><span class="i18n-en">Why do vehicles thin out when I zoom out?</span></h3>
-            <p class="i18n-ko">차량 표시는 두 기준으로 자동 조절됩니다. 화면에서 차량 한 대가
-                <strong>1픽셀보다 작아지면</strong> 개별 차량 대신 링크 혼잡도 히트맵이 더 정확한 표현이라
-                그쪽으로 바뀝니다(대체할 집계 데이터가 없으면 바뀌지 않습니다). 그리고 화면 안 차량이
-                <strong>6,000대를 넘으면</strong> 일부만 표본으로 그려 프레임률을 지킵니다. 도시 전체를 한 화면에
-                담는 정도의 배율에서는 대부분 그대로 다 보입니다.</p>
+            <h3><span class="i18n-ko">축소하면 차량이 사라지는 이유는?</span><span class="i18n-en">Why do vehicles thin out when I zoom out?</span></h3>
+            <p class="i18n-ko">차량 표시는 두 가지 기준에 따라 자동으로 조절됩니다. 화면에서 차량 한 대가
+                <strong>1픽셀보다 작아지면</strong> 개별 차량보다 링크 혼잡도 히트맵이 상황을 더 정확하게 보여 주므로
+                히트맵으로 바뀝니다(대체할 집계 데이터가 없으면 바뀌지 않습니다). 또한 화면 안의 차량이
+                <strong>6,000대를 넘으면</strong> 일부만 표본으로 그려 프레임률을 유지합니다. 도시 전체가 한 화면에
+                들어오는 배율에서도 대개는 모든 차량이 그대로 보입니다.</p>
             <p class="i18n-en">Vehicle drawing adapts on two axes. When a vehicle would be
                 <strong>smaller than one pixel</strong> on screen, the link congestion heatmap is the more
                 accurate picture and is drawn instead (this substitution is skipped when there is no aggregate
@@ -1255,11 +1255,11 @@
                 see all of them.</p>
 
             <h3><span class="i18n-ko">큰 네트워크에서 지도가 느려요</span><span class="i18n-en">The map is slow on a large network</span></h3>
-            <p class="i18n-ko">네트워크는 규모와 무관하게 항상 캔버스로 그려지며, 뷰포트 컬링과 배율별 LOD를 써서
-                수만 링크 규모까지 부드럽게 동작합니다. 차량은 전용 레이어에서 WebGL2 로 그리며, 지원하지 않는 브라우저에서는 Canvas 2D 로 자동 대체됩니다. 렌더 차이를 확인해야 할 때만
-                브라우저 콘솔에서 <code>localStorage.setItem('nextsim-network-canvas','off')</code> 로 예전 SVG
-                경로를 켤 수 있습니다(디버깅용). 반대로 <span class="mono">'on'</span> 을 넣는 것은 이제 의미가 없습니다
-                — 기본이 이미 캔버스입니다.</p>
+            <p class="i18n-ko">네트워크는 규모와 무관하게 항상 캔버스로 그려지며, 뷰포트 컬링과 배율별 LOD를 사용해
+                수만 개 링크 규모까지 부드럽게 동작합니다. 차량은 전용 레이어에서 WebGL2로 그리며, WebGL2를 지원하지 않는 브라우저에서는 자동으로 Canvas 2D를 사용합니다. 렌더링 차이를 확인해야 할 때만
+                브라우저 콘솔에서 <code>localStorage.setItem('nextsim-network-canvas','off')</code>로 예전 SVG
+                렌더링 경로를 켤 수 있습니다(디버깅용). 반대로 <span class="mono">'on'</span>을 설정하는 것은 이제 의미가 없습니다.
+                기본값이 이미 캔버스이기 때문입니다.</p>
             <p class="i18n-en">The network is always drawn on canvas regardless of size, using viewport culling
                 and zoom-based level of detail; it stays smooth into the tens of thousands of links. Vehicles are
                 drawn on their own layer with WebGL2, falling back to Canvas 2D on browsers without it. For debugging a rendering difference you can switch back to the old SVG
@@ -1269,11 +1269,11 @@
 
             <h3><span class="i18n-ko">이벤트가 지도에 안 나타나요</span><span class="i18n-en">Events don't show on the map</span></h3>
             <ul class="i18n-ko">
-                <li>Display의 <strong>Events</strong> 가 켜져 있는지 확인하세요.</li>
+                <li>Display의 <strong>Events</strong>가 켜져 있는지 확인하세요.</li>
                 <li>이벤트는 <strong>활성 시간대에만</strong> 그려집니다. 이벤트 시각은 선택한 시나리오의 시작
-                    시각 기준 오프셋으로 해석되므로, 예를 들어 08:00 시작 시나리오에서 08:05에 시작하는 이벤트는
+                    시각을 기준으로 한 오프셋으로 해석됩니다. 예를 들어 08:00에 시작하는 시나리오에서 08:05에 시작하는 이벤트는
                     재생 300초 지점부터 보입니다.</li>
-                <li>시나리오를 바꾸면 이벤트가 새 기준으로 다시 해석됩니다 — 재생 전에 목표 시나리오를 먼저 고르세요.</li>
+                <li>시나리오를 바꾸면 이벤트가 새 기준으로 다시 해석되므로, 재생 전에 목표 시나리오를 먼저 고르세요.</li>
             </ul>
             <ul class="i18n-en">
                 <li>Check that <strong>Events</strong> is enabled in the Display panel.</li>
@@ -1284,19 +1284,19 @@
             </ul>
 
             <h3><span class="i18n-ko">지도가 안 움직여요</span><span class="i18n-en">The map won't pan</span></h3>
-            <p class="i18n-ko">지도를 <strong>왼쪽 버튼</strong>(또는 가운데 버튼)으로 누른 채 끌면 이동합니다. 미니맵 클릭으로도 이동할 수
+            <p class="i18n-ko">지도를 <strong>왼쪽 버튼</strong>(또는 가운데 버튼)으로 누른 채 끌면 이동합니다. 미니맵을 클릭해도 이동할 수
                 있습니다.</p>
             <p class="i18n-en">Pan by dragging with the <strong>left</strong> (or middle) mouse button. Clicking the
                 minimap also moves the view.</p>
 
-            <h3><span class="i18n-ko">네트워크·수요를 고치고 다시 돌리고 싶어요</span><span class="i18n-en">I want to change the network or demand and re-run</span></h3>
-            <p class="i18n-ko">상단바의 <strong>Edit</strong> 로 전환해 입력을 수정·저장한 뒤 <strong>Run</strong> 으로 돌아와
+            <h3><span class="i18n-ko">네트워크·수요를 고치고 다시 실행하고 싶어요</span><span class="i18n-en">I want to change the network or demand and re-run</span></h3>
+            <p class="i18n-ko">상단바의 <strong>Edit</strong>으로 전환해 입력을 수정하고 저장한 뒤 <strong>Run</strong>으로 돌아와
                 <strong>Simulation › Run Selected Network</strong>를 다시 실행하면 됩니다. 저장하지 않은 변경이 있으면
-                Run 으로 전환할 때 <strong>Discard</strong> / <strong>Save &amp; switch</strong> 를 묻습니다. 자세한 편집
+                Run으로 전환할 때 <strong>Discard</strong> / <strong>Save &amp; switch</strong> 중 무엇을 할지 묻습니다. 자세한 편집
                 방법은 <a class="doc-cross" href="editor-guide.html"
                 data-local="editor-guide.html"
                >Edit 모드
-                가이드</a> 참고.</p>
+                가이드</a>를 참고하세요.</p>
             <p class="i18n-en">Switch to <strong>Edit</strong> in the top bar, change and save the inputs, switch back
                 to <strong>Run</strong>, and run <strong>Simulation › Run Selected Network</strong> again. If anything is
                 still unsaved when you switch back, you are asked to <strong>Discard</strong> or

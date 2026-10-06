@@ -657,7 +657,7 @@
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></div>
-                <a href="#overview"><span class="i18n-ko">NextCI 란</span><span class="i18n-en">What NextCI is</span></a>
+                <a href="#overview"><span class="i18n-ko">NextCI란</span><span class="i18n-en">What NextCI is</span></a>
                 <a href="#setup"><span class="i18n-ko">준비</span><span class="i18n-en">Setup</span></a>
                 <a href="#quickstart"><span class="i18n-ko">첫 연결</span><span class="i18n-en">First connection</span></a>
                 <a href="#server"><span class="i18n-ko">서버 실행 방식</span><span class="i18n-en">How the server runs</span></a>
@@ -674,7 +674,7 @@
                 <div class="nav__group-label"><span class="i18n-ko">참고</span><span class="i18n-en">Reference</span></div>
                 <a href="#protocol"><span class="i18n-ko">와이어 프로토콜</span><span class="i18n-en">Wire protocol</span></a>
                 <a href="#troubleshooting"><span class="i18n-ko">문제 해결</span><span class="i18n-en">Troubleshooting</span></a>
-                <a href="#limits"><span class="i18n-ko">아직 안 되는 것</span><span class="i18n-en">Not yet supported</span></a>
+                <a href="#limits"><span class="i18n-ko">아직 지원하지 않는 기능</span><span class="i18n-en">Not yet supported</span></a>
             </div>
         </div>
     </nav>
@@ -682,9 +682,9 @@
     <main class="content">
         <div class="masthead">
             <h1><span class="i18n-ko">NextCI 시작하기</span><span class="i18n-en">NextCI: getting started</span></h1>
-            <p class="i18n-ko">NextCI 는 NextSIM 엔진을 TCP 로 바깥에서 제어하는 인터페이스입니다. Python 에서 시뮬레이션을
+            <p class="i18n-ko">NextCI는 NextSIM 엔진을 TCP로 외부에서 제어하는 인터페이스입니다. Python에서 시뮬레이션을
                 원하는 만큼 진행하고, 차량·링크·검지기 상태를 읽고, 같은 시점으로 되돌려 여러 시도를 비교할 수 있습니다.
-                강화학습, 공동 시뮬레이션, 제어 실험처럼 시뮬레이션을 프로그램 안에서 다뤄야 할 때 씁니다.</p>
+                강화학습, 공동 시뮬레이션, 제어 실험처럼 프로그램 안에서 시뮬레이션을 다뤄야 할 때 사용합니다.</p>
             <p class="i18n-en">NextCI is the interface for driving the NextSIM engine from outside over TCP. From Python you
                 advance the simulation as far as you want, read vehicle, link, and detector state, and rewind to the same
                 moment to compare attempts. Use it when a program has to hold the simulation: reinforcement learning,
@@ -700,20 +700,20 @@
             <a class="toolcard" href="#setup" style="--tc: var(--ws-station)">
                 <h3><span class="i18n-ko">시작하기</span><span class="i18n-en">Getting started</span></h3>
                 <code><span class="i18n-ko">이 페이지</span><span class="i18n-en">this page</span></code>
-                <p class="i18n-ko">설치, 첫 연결, 서버 실행 방식, 알아 둘 개념.</p>
+                <p class="i18n-ko">설치 방법, 첫 연결, 서버 실행 방식과 알아 두어야 할 개념을 설명합니다.</p>
                 <p class="i18n-en">Setup, first connection, how the server runs, the concepts to know.</p>
             </a>
             <a class="toolcard" href="nextci-tutorials.html" style="--tc: var(--ws-network)">
                 <h3><span class="i18n-ko">튜토리얼</span><span class="i18n-en">Tutorials</span></h3>
                 <code>4 <span class="i18n-ko">편</span><span class="i18n-en">scripts</span></code>
-                <p class="i18n-ko">기록하기, 검지기로 재기, 같은 시점에서 반복하기, 하이브리드로 바꾸기.</p>
+                <p class="i18n-ko">도로 상태 기록, 검지기 측정, 같은 시점에서 반복 실행, 하이브리드 모드 전환을 다룹니다.</p>
                 <p class="i18n-en">Logging, measuring with detectors, repeating from one moment, going hybrid.</p>
                 <span class="go"><span class="i18n-ko">튜토리얼 →</span><span class="i18n-en">Tutorials →</span></span>
             </a>
             <a class="toolcard" href="nextci-reference.html" style="--tc: var(--ws-scenario)">
                 <h3><span class="i18n-ko">API 레퍼런스</span><span class="i18n-en">API reference</span></h3>
                 <code>NextCIClient</code>
-                <p class="i18n-ko">모든 메서드의 인자 · 반환 · 조건 · 비용 · 와이어 ID. 이름으로 찾을 수 있습니다.</p>
+                <p class="i18n-ko">모든 메서드의 인자 · 반환값 · 조건 · 비용 · 와이어 ID를 정리했습니다. 이름으로 찾을 수 있습니다.</p>
                 <p class="i18n-en">Arguments, returns, conditions, costs, and wire IDs of every method, searchable by name.</p>
                 <span class="go"><span class="i18n-ko">레퍼런스 →</span><span class="i18n-en">Reference →</span></span>
             </a>
@@ -721,10 +721,10 @@
 
         <!-- ================================================== 개요 -->
         <section id="overview">
-            <h2><span class="i18n-ko">NextCI 란</span><span class="i18n-en">What NextCI is</span></h2>
-            <p class="i18n-ko">엔진은 별도 프로세스(<span class="mono">UnitTestsAPI</span>)로 돌고, Python 패키지
-                <span class="mono">nextci</span> 가 TCP 로 명령을 보냅니다. Python 안에서 도는 시뮬레이터가 아니라
-                C++ 프로세스를 원격으로 조종하는 구조입니다.</p>
+            <h2><span class="i18n-ko">NextCI란</span><span class="i18n-en">What NextCI is</span></h2>
+            <p class="i18n-ko">엔진은 별도 프로세스(<span class="mono">UnitTestsAPI</span>)로 실행되고, Python 패키지
+                <span class="mono">nextci</span>가 TCP로 명령을 보냅니다. Python 안에서 실행되는 시뮬레이터가 아니라
+                C++ 프로세스를 원격으로 제어하는 구조입니다.</p>
             <p class="i18n-en">The engine runs as a separate process (<span class="mono">UnitTestsAPI</span>), and the Python
                 package <span class="mono">nextci</span> sends it commands over TCP. It is not a simulator running inside
                 Python; it remote-controls a C++ process.</p>
@@ -734,7 +734,7 @@
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>할 수 있는 것</th><th>메서드 예</th></tr>
                 <tr><td>시뮬레이션 진행 · 종료 · 결과 저장</td><td class="mono">sim_step, sim_stop, flush_recordings, save_results</td></tr>
-                <tr><td>상태 조회 — 시뮬레이션, 차량, 링크, 차로, Meso 셀, 검지기</td><td class="mono">get_vehicle_count, get_link_mean_speed_mps, get_meso_cell_density_veh_per_km …</td></tr>
+                <tr><td>상태 조회: 시뮬레이션, 차량, 링크, 차로, Meso 셀, 검지기</td><td class="mono">get_vehicle_count, get_link_mean_speed_mps, get_meso_cell_density_veh_per_km …</td></tr>
                 <tr><td>검지기 추가 · 삭제 (E1 · E2 · E3)</td><td class="mono">add_detector_e1/e2/e3, remove_detector</td></tr>
                 <tr><td>링크 하나의 micro/meso 모드 전환</td><td class="mono">set_link_mode</td></tr>
                 <tr><td>메모리 체크포인트 저장 · 복원</td><td class="mono">save_checkpoint, restore_checkpoint</td></tr>
@@ -747,9 +747,9 @@
                 <tr><td>Switch one link between micro and meso</td><td class="mono">set_link_mode</td></tr>
                 <tr><td>Save and restore in-memory checkpoints</td><td class="mono">save_checkpoint, restore_checkpoint</td></tr>
             </table></div>
-            <div class="warn i18n-ko"><strong>아직 신호·차량·수요를 바꾸는 API 는 없습니다.</strong> 지금의 NextCI 는 조회와
-                시뮬레이션 제어가 중심이고, 바꿀 수 있는 것은 링크 모드와 검지기뿐입니다. 자세한 것은
-                <a href="#limits">아직 안 되는 것</a>을 보세요.</div>
+            <div class="warn i18n-ko"><strong>아직 신호·차량·수요를 바꾸는 API는 없습니다.</strong> 현재 NextCI는 조회와
+                시뮬레이션 제어를 중심으로 하며, 바꿀 수 있는 대상은 링크 모드와 검지기뿐입니다. 자세한 내용은
+                <a href="#limits">아직 지원하지 않는 기능</a>을 보세요.</div>
             <div class="warn i18n-en"><strong>There is no API yet for changing signals, vehicles, or demand.</strong> NextCI
                 today is mostly queries plus simulation control; what you can change is link mode and detectors. See
                 <a href="#limits">Not yet supported</a>.</div>
@@ -759,14 +759,14 @@
         <section id="setup">
             <h2><span class="i18n-ko">준비</span><span class="i18n-en">Setup</span></h2>
             <p class="i18n-ko">NextCI 서버(<span class="mono">UnitTestsAPI</span>)는 Windows 설치 파일과 Linux · WSL 배포판에
-                들어 있지 않습니다. <a href="installation.html#source">소스에서 빌드</a>한 환경이 필요합니다.</p>
+                포함되어 있지 않습니다. <a href="installation.html#source">소스에서 빌드</a>한 환경이 필요합니다.</p>
             <p class="i18n-en">The NextCI server (<span class="mono">UnitTestsAPI</span>) is not in the Windows installer or the
                 Linux · WSL package. You need a <a href="installation.html#source">build from source</a>.</p>
             <ol class="steps i18n-ko">
-                <li>서버를 빌드합니다. 결과는 <span class="mono">build/captain/release/bin/UnitTestsAPI</span> 입니다.</li>
+                <li>서버를 빌드합니다. 실행 파일은 <span class="mono">build/captain/release/bin/UnitTestsAPI</span>에 생성됩니다.</li>
                 <li>Python 패키지를 설치합니다. 외부 의존성은 없습니다.</li>
-                <li>Python 런처에 서버 위치를 알려 줍니다. 런처가 기본으로 찾는 곳(<span class="mono">Captain/build/bin</span> 등)에는
-                    프리셋 빌드 경로가 없으므로 <span class="mono">NEXTSIM_UNIT_TESTS_API</span> 로 지정합니다.</li>
+                <li>Python 런처에 서버 위치를 알려 줍니다. 런처가 기본으로 찾는 경로(<span class="mono">Captain/build/bin</span> 등)에는
+                    프리셋 빌드 경로가 포함되어 있지 않으므로 환경 변수 <span class="mono">NEXTSIM_UNIT_TESTS_API</span>로 지정합니다.</li>
             </ol>
             <ol class="steps i18n-en">
                 <li>Build the server. It lands in <span class="mono">build/captain/release/bin/UnitTestsAPI</span>.</li>
@@ -784,19 +784,19 @@ python3 -m pip install -e NextCI
 <span class="c"># 3</span>
 export NEXTSIM_UNIT_TESTS_API="$PWD/build/captain/release/bin/UnitTestsAPI"</pre>
 
-            <h3><span class="i18n-ko">어느 네트워크를 돌리나</span><span class="i18n-en">Which network runs</span></h3>
-            <p class="i18n-ko">서버는 작업 폴더에서 위로 올라가며 <span class="mono">SimulationInput/config.txt</span> 를 찾고,
-                거기 적힌 <span class="mono">network</span>(<span class="mono">SimulationInput/networks/&lt;network&gt;/</span>)를 돌립니다. 경로 파일
+            <h3><span class="i18n-ko">실행되는 네트워크</span><span class="i18n-en">Which network runs</span></h3>
+            <p class="i18n-ko">서버는 작업 폴더에서 상위 폴더로 올라가며 <span class="mono">SimulationInput/config.txt</span>를 찾고,
+                그 파일에 적힌 <span class="mono">network</span>(<span class="mono">SimulationInput/networks/&lt;network&gt;/</span>)를 실행합니다. 경로 파일
                 (<span class="mono">Route.json</span> 등)이 있어야 하므로, 처음 쓰는 네트워크는 Simulation 화면에서 한 번
-                실행하거나 RouteGenerator 를 먼저 돌려 두세요. 다른 데이터 폴더를 쓰려면 <span class="mono">NEXTSIM_SERVER_CWD</span>
-                에 그 폴더를 지정합니다.</p>
+                실행하거나 RouteGenerator를 먼저 실행해 두세요. 다른 데이터 폴더를 쓰려면 <span class="mono">NEXTSIM_SERVER_CWD</span>에
+                그 폴더를 지정합니다.</p>
             <p class="i18n-en">The server walks up from its working directory looking for
                 <span class="mono">SimulationInput/config.txt</span> and runs the <span class="mono">network</span> it names
                 (<span class="mono">SimulationInput/networks/&lt;network&gt;/</span>). Route files (<span class="mono">Route.json</span> and so on) must
                 exist, so for a new network run it once from the Simulation page or run RouteGenerator first. To use another
                 data folder, point <span class="mono">NEXTSIM_SERVER_CWD</span> at it.</p>
-            <div class="warn i18n-ko"><strong>서버도 결과 DB 를 새로 씁니다.</strong> <span class="mono">SimulationOutput/simulation_output.db</span>
-                가 NextCI 세션의 기록으로 바뀝니다. 보관할 결과는 먼저 옮겨 두거나, 별도 데이터 폴더(<span class="mono">NEXTSIM_SERVER_CWD</span>)를 쓰세요.</div>
+            <div class="warn i18n-ko"><strong>서버도 결과 DB를 덮어씁니다.</strong> <span class="mono">SimulationOutput/simulation_output.db</span>가
+                NextCI 세션의 기록으로 바뀝니다. 보관할 결과는 먼저 다른 곳으로 옮기거나, 별도 데이터 폴더(<span class="mono">NEXTSIM_SERVER_CWD</span>)를 사용하세요.</div>
             <div class="warn i18n-en"><strong>The server rewrites the result database too.</strong>
                 <span class="mono">SimulationOutput/simulation_output.db</span> becomes the NextCI session's record. Move any result you
                 want to keep first, or use a separate data folder (<span class="mono">NEXTSIM_SERVER_CWD</span>).</div>
@@ -805,8 +805,8 @@ export NEXTSIM_UNIT_TESTS_API="$PWD/build/captain/release/bin/UnitTestsAPI"</pre
         <!-- ================================================== 첫 연결 -->
         <section id="quickstart">
             <h2><span class="i18n-ko">첫 연결</span><span class="i18n-en">First connection</span></h2>
-            <p class="i18n-ko"><span class="mono">launch_and_connect()</span> 가 서버를 띄우고 준비될 때까지 기다린 뒤 연결합니다.
-                <span class="mono">with</span> 블록을 벗어나면 연결을 닫고 서버도 끕니다.</p>
+            <p class="i18n-ko"><span class="mono">launch_and_connect()</span>는 서버를 실행하고, 서버가 준비될 때까지 기다린 뒤 연결합니다.
+                <span class="mono">with</span> 블록을 벗어나면 연결을 닫고 서버도 종료합니다.</p>
             <p class="i18n-en"><span class="mono">launch_and_connect()</span> starts the server, waits until it is ready, and
                 connects. Leaving the <span class="mono">with</span> block closes the connection and stops the server.</p>
 <pre class="cmd">from nextci import NextCIClient
@@ -821,8 +821,8 @@ with NextCIClient(port=9999).launch_and_connect() as client:
     client.sim_step(300)                        <span class="c"># 382 vehicles now</span>
     print(client.restore_checkpoint("t0"))      <span class="c"># cycle=1000;finished=0</span>
     print(client.get_vehicle_count())           <span class="c"># 313 again</span></pre>
-            <p class="i18n-ko">주석의 값은 예제 네트워크 <span class="mono">bucheon</span> 의 시나리오 0 에서 나온 것입니다.
-                네트워크와 시나리오에 따라 다릅니다.</p>
+            <p class="i18n-ko">주석에 적힌 값은 예제 네트워크 <span class="mono">bucheon</span>의 시나리오 0에서 얻은 결과입니다.
+                네트워크와 시나리오에 따라 값이 달라집니다.</p>
             <p class="i18n-en">The values in the comments come from scenario 0 of the example network
                 <span class="mono">bucheon</span>; they depend on the network and scenario.</p>
         </section>
@@ -830,8 +830,8 @@ with NextCIClient(port=9999).launch_and_connect() as client:
         <!-- ================================================== 서버 -->
         <section id="server">
             <h2><span class="i18n-ko">서버 실행 방식</span><span class="i18n-en">How the server runs</span></h2>
-            <p class="i18n-ko">기본은 <strong>ServeOnce</strong> 입니다. 클라이언트 하나가 연결했다가 끊으면 서버 프로세스도 끝납니다.
-                여러 번 연결하려면 서버를 직접 <span class="mono">--serve-loop</span> 로 띄우고 <span class="mono">connect()</span> 만 씁니다.</p>
+            <p class="i18n-ko">기본 방식은 <strong>ServeOnce</strong>입니다. 클라이언트 하나가 연결했다가 끊으면 서버 프로세스도 종료됩니다.
+                여러 번 연결하려면 서버를 <span class="mono">--serve-loop</span> 옵션으로 직접 실행하고 <span class="mono">connect()</span>만 사용합니다.</p>
             <p class="i18n-en">The default is <strong>ServeOnce</strong>: when one client connects and disconnects, the server
                 process ends. To connect repeatedly, start the server yourself with <span class="mono">--serve-loop</span> and
                 only call <span class="mono">connect()</span>.</p>
@@ -844,11 +844,11 @@ client = NextCIClient(port=9999).connect()</pre>
                 <tr><th>설정</th><th>기본값</th><th>의미</th></tr>
                 <tr><td class="mono">NextCIClient(host, port, timeout)</td><td class="mono">127.0.0.1, 9999, 5.0</td><td>접속 주소 · 포트 · 연결 제한 시간(초)</td></tr>
                 <tr><td class="mono">launch_server(ready_timeout_sec=)</td><td class="mono">120.0</td><td>서버가 포트를 열 때까지 기다리는 최대 시간(초)</td></tr>
-                <tr><td class="mono">NEXTSIM_UNIT_TESTS_API</td><td>—</td><td>서버 실행 파일 경로 (인자 <span class="mono">binary_path</span> 가 우선)</td></tr>
-                <tr><td class="mono">NEXTSIM_SERVER_CWD</td><td class="mono">Captain/build <span class="i18n-ko">또는</span> Captain</td><td>서버 작업 폴더. 여기서 위로 <span class="mono">SimulationInput</span> 을 찾습니다.</td></tr>
-                <tr><td class="mono">NEXTCI_SERVE_LOOP</td><td class="mono">0</td><td><span class="mono">1</span> 이면 <span class="mono">--serve-loop</span> 와 같습니다.</td></tr>
-                <tr><td class="mono">NEXTCI_SERVER_LOG_MODE</td><td class="mono">inherit</td><td>서버 로그: <span class="mono">inherit</span> · <span class="mono">devnull</span> · <span class="mono">file</span> · <span class="mono">pipe</span></td></tr>
-                <tr><td class="mono">NEXTCI_SERVER_LOG_FILE</td><td class="mono">Captain/build/nextci-server.log</td><td><span class="mono">file</span> 모드의 로그 파일</td></tr>
+                <tr><td class="mono">NEXTSIM_UNIT_TESTS_API</td><td>—</td><td>서버 실행 파일 경로(인자 <span class="mono">binary_path</span>가 우선)</td></tr>
+                <tr><td class="mono">NEXTSIM_SERVER_CWD</td><td class="mono">Captain/build <span class="i18n-ko">또는</span> Captain</td><td>서버 작업 폴더. 이 폴더에서 상위로 올라가며 <span class="mono">SimulationInput</span>을 찾습니다.</td></tr>
+                <tr><td class="mono">NEXTCI_SERVE_LOOP</td><td class="mono">0</td><td><span class="mono">1</span>이면 <span class="mono">--serve-loop</span> 옵션과 같습니다.</td></tr>
+                <tr><td class="mono">NEXTCI_SERVER_LOG_MODE</td><td class="mono">inherit</td><td>서버 로그 출력 방식: <span class="mono">inherit</span> · <span class="mono">devnull</span> · <span class="mono">file</span> · <span class="mono">pipe</span></td></tr>
+                <tr><td class="mono">NEXTCI_SERVER_LOG_FILE</td><td class="mono">Captain/build/nextci-server.log</td><td><span class="mono">file</span> 모드에서 쓰는 로그 파일</td></tr>
             </table></div>
             <div class="tablewrap i18n-en"><table>
                 <tr><th>Setting</th><th>Default</th><th>Meaning</th></tr>
@@ -867,9 +867,9 @@ client = NextCIClient(port=9999).connect()</pre>
         <!-- ================================================== 스텝 -->
         <section id="stepping">
             <h2><span class="i18n-ko">시간과 스텝</span><span class="i18n-en">Time and steps</span></h2>
-            <p class="i18n-ko">시간 단위는 <strong>사이클</strong>이고, 1 사이클은 0.1 초입니다. <span class="mono">sim_step(n)</span> 은
-                n 사이클을 진행하고 <span class="mono">cycle=…;finished=…</span> 형식의 문자열을 돌려줍니다. 시나리오 끝은
-                <span class="mono">get_total_cycle()</span> 과 <span class="mono">is_finished()</span> 로 알 수 있습니다.</p>
+            <p class="i18n-ko">시간 단위는 <strong>사이클</strong>이며, 1사이클은 0.1초입니다. <span class="mono">sim_step(n)</span>은
+                n 사이클을 진행하고 <span class="mono">cycle=…;finished=…</span> 형식의 문자열을 반환합니다. 시나리오가 끝나는 시점은
+                <span class="mono">get_total_cycle()</span>과 <span class="mono">is_finished()</span>로 확인할 수 있습니다.</p>
             <p class="i18n-en">Time is counted in <strong>cycles</strong>; one cycle is 0.1 s. <span class="mono">sim_step(n)</span>
                 advances n cycles and returns a string of the form <span class="mono">cycle=…;finished=…</span>. The end of the
                 scenario is given by <span class="mono">get_total_cycle()</span> and <span class="mono">is_finished()</span>.</p>
@@ -878,8 +878,8 @@ client = NextCIClient(port=9999).connect()</pre>
         client.sim_step(50)                      <span class="c"># 5 s</span>
         speed = client.get_link_mean_speed_mps(20000402)
         ...</pre>
-            <div class="tip i18n-ko"><strong>검지기 구간 값은 flush 뒤에.</strong> 검지기의 구간 집계(교통량, 점유율 등)는
-                <span class="mono">sim_step()</span> 다음 <span class="mono">flush_recordings()</span> 를 불러야 갱신됩니다.</div>
+            <div class="tip i18n-ko"><strong>검지기 구간 값은 flush 뒤에 읽습니다.</strong> 검지기의 구간 집계(교통량, 점유율 등)는
+                <span class="mono">sim_step()</span> 다음에 <span class="mono">flush_recordings()</span>를 호출해야 갱신됩니다.</div>
             <div class="tip i18n-en"><strong>Flush before reading detector intervals.</strong> Interval aggregates (flow,
                 occupancy, and so on) update after <span class="mono">sim_step()</span> followed by
                 <span class="mono">flush_recordings()</span>.</div>
@@ -888,16 +888,16 @@ client = NextCIClient(port=9999).connect()</pre>
         <!-- ================================================== 조회 -->
         <section id="queries">
             <h2><span class="i18n-ko">상태 조회</span><span class="i18n-en">Querying state</span></h2>
-            <p class="i18n-ko">시뮬레이션 · 차량 · 링크 · 차로 · Meso 셀 · 검지기를 읽는 메서드는 80 개가 넘습니다. 영역별 목록과
-                각 메서드의 인자 · 반환 · 조건 · 비용은 <a href="nextci-reference.html">API 레퍼런스</a>에 있고,
-                <a href="nextci-reference.html#cheatsheet">한눈에 보기</a> 표로 한 번에 훑어볼 수 있습니다.</p>
+            <p class="i18n-ko">시뮬레이션 · 차량 · 링크 · 차로 · Meso 셀 · 검지기 상태를 읽는 메서드는 80개가 넘습니다. 영역별 목록과
+                각 메서드의 인자 · 반환값 · 조건 · 비용은 <a href="nextci-reference.html">API 레퍼런스</a>에 정리되어 있고,
+                <a href="nextci-reference.html#cheatsheet">한눈에 보기</a> 표에서 전체를 한 번에 훑어볼 수 있습니다.</p>
             <p class="i18n-en">There are more than 80 methods for reading the simulation, vehicles, links, lanes, meso cells, and
                 detectors. The list by area, with each method's arguments, returns, conditions, and costs, is in the
                 <a href="nextci-reference.html">API reference</a>; the <a href="nextci-reference.html#cheatsheet">at-a-glance</a>
                 table shows them all at once.</p>
-            <div class="warn i18n-ko"><strong>차량 수는 micro 차로 위만 셉니다.</strong> <span class="mono">get_vehicle_count()</span>
-                와 <span class="mono">get_link_*</span> 는 meso 셀 안의 차량을 세지 않습니다. 링크를 meso 로 바꾸면 그 링크의 차량은
-                셀로 옮겨지고, <span class="mono">get_meso_cell_vehicle_count()</span> 로 셉니다.</div>
+            <div class="warn i18n-ko"><strong>차량 수는 micro 차로에 있는 차량만 셉니다.</strong> <span class="mono">get_vehicle_count()</span>와
+                <span class="mono">get_link_*</span>는 meso 셀 안의 차량을 세지 않습니다. 링크를 meso로 바꾸면 그 링크의 차량은
+                셀로 옮겨지므로 <span class="mono">get_meso_cell_vehicle_count()</span>로 세어야 합니다.</div>
             <div class="warn i18n-en"><strong>Vehicle counts cover micro lanes only.</strong> <span class="mono">get_vehicle_count()</span>
                 and <span class="mono">get_link_*</span> do not count vehicles inside meso cells. When a link switches to meso its
                 vehicles move into cells and are counted with <span class="mono">get_meso_cell_vehicle_count()</span>.</div>
@@ -906,9 +906,9 @@ client = NextCIClient(port=9999).connect()</pre>
         <!-- ================================================== Meso -->
         <section id="meso">
             <h2><span class="i18n-ko">Meso 조회와 모드 전환</span><span class="i18n-en">Meso queries and mode switching</span></h2>
-            <p class="i18n-ko">Meso 셀 값은 <strong>그 링크가 지금 meso 모드일 때만</strong> 읽을 수 있습니다. micro 로 도는 링크의 셀을
-                물으면 <span class="mono">Meso cell not found or currently in micro mode</span> 오류가 납니다. 필요하면
-                <span class="mono">set_link_mode()</span> 로 링크 하나를 meso 로 바꾼 뒤 조금 진행하고 읽습니다.</p>
+            <p class="i18n-ko">Meso 셀 값은 <strong>그 링크가 현재 meso 모드일 때만</strong> 읽을 수 있습니다. micro 모드로 실행 중인 링크의 셀을
+                조회하면 <span class="mono">Meso cell not found or currently in micro mode</span> 오류가 발생합니다. 필요하면
+                <span class="mono">set_link_mode()</span>로 링크 하나를 meso로 바꾼 뒤 시뮬레이션을 조금 진행하고 값을 읽습니다.</p>
             <p class="i18n-en">Meso cell values can be read <strong>only while that link is in meso mode</strong>. Asking for a
                 cell of a link running micro fails with <span class="mono">Meso cell not found or currently in micro mode</span>.
                 If needed, switch the link with <span class="mono">set_link_mode()</span>, advance a little, then read.</p>
@@ -918,8 +918,8 @@ client.set_link_mode(link, "meso")
 client.sim_step(50)                              <span class="c"># meso updates every 5 s</span>
 print(client.get_meso_section_count(link))
 print(client.get_meso_cell_density_veh_per_km(link, 0, 0))</pre>
-            <div class="tip i18n-ko"><strong>조회 비용.</strong> 대수 · 속도 · 밀도는 사이클마다 캐시되어 가볍지만,
-                <span class="mono">get_meso_cell_vehicle_id_list()</span> 는 대기열을 훑어 목록을 복사하므로 필요할 때만 쓰세요.</div>
+            <div class="tip i18n-ko"><strong>조회 비용.</strong> 대수 · 속도 · 밀도는 사이클마다 캐시되어 조회 부담이 적지만,
+                <span class="mono">get_meso_cell_vehicle_id_list()</span>는 대기열을 순회하며 목록을 복사하므로 필요할 때만 사용하세요.</div>
             <div class="tip i18n-en"><strong>Query cost.</strong> Count, speed, and density are cached per cycle and cheap;
                 <span class="mono">get_meso_cell_vehicle_id_list()</span> walks the queue and copies a list, so use it only
                 when you need it.</div>
@@ -928,8 +928,8 @@ print(client.get_meso_cell_density_veh_per_km(link, 0, 0))</pre>
         <!-- ================================================== 검지기 -->
         <section id="detectors">
             <h2><span class="i18n-ko">검지기</span><span class="i18n-en">Detectors</span></h2>
-            <p class="i18n-ko">입력 파일의 검지기 말고도 세션 중에 검지기를 더 붙일 수 있습니다. E1 은 한 지점,
-                E2 는 차로 위 한 구간, E3 는 진입 · 진출 지점으로 둘러싼 영역입니다.</p>
+            <p class="i18n-ko">입력 파일에 정의된 검지기 외에도 세션 중에 검지기를 추가할 수 있습니다. E1은 한 지점,
+                E2는 차로 위의 한 구간, E3는 진입 · 진출 지점으로 둘러싼 영역입니다.</p>
             <p class="i18n-en">Besides the detectors in the input files, you can attach more during a session. E1 is a point,
                 E2 a stretch of one lane, E3 an area bounded by entry and exit points.</p>
 <pre class="cmd">link = 20001453                                  <span class="c"># 3 lanes, 243.9 m</span>
@@ -944,10 +944,10 @@ client.flush_recordings()
 print(client.get_detector_flow("e1_a"))          <span class="c"># 120.0 veh/h</span>
 print(client.get_detector_mean_travel_time("e3_a"))
 client.remove_detector("e3_a")</pre>
-            <p class="i18n-ko">링크 <span class="mono">20001453</span> 과 교통량 값은 예제 네트워크 <span class="mono">bucheon</span>
-                기준입니다. 쓰는 네트워크의 ID 로 바꾸세요(<span class="mono">get_link_id_list()</span>, Editor 의 Network 워크스페이스).
-                없는 링크를 적으면 추가는 되지만 <span class="mono">enabled=0</span> 으로 붙어 값이 쌓이지 않습니다. 돌려받은
-                <span class="mono">payload</span> 로 확인하세요.</p>
+            <p class="i18n-ko">링크 <span class="mono">20001453</span>과 교통량 값은 예제 네트워크 <span class="mono">bucheon</span>
+                기준입니다. 사용하는 네트워크의 ID로 바꾸세요. ID는 <span class="mono">get_link_id_list()</span>나 Editor의 Network 워크스페이스에서 확인할 수 있습니다.
+                존재하지 않는 링크를 지정해도 검지기는 추가되지만, <span class="mono">enabled=0</span>으로 등록되어 값이 쌓이지 않습니다. 반환된
+                <span class="mono">payload</span>로 확인하세요.</p>
             <p class="i18n-en">Link <span class="mono">20001453</span> and the flow value are from the example network
                 <span class="mono">bucheon</span>; use IDs from your own network (<span class="mono">get_link_id_list()</span>,
                 or the Editor's Network workspace). A detector on a link that does not exist is still added, but with
@@ -957,9 +957,9 @@ client.remove_detector("e3_a")</pre>
         <!-- ================================================== 체크포인트 -->
         <section id="checkpoint">
             <h2><span class="i18n-ko">체크포인트</span><span class="i18n-en">Checkpoints</span></h2>
-            <p class="i18n-ko">체크포인트는 서버 메모리에 시뮬레이션 상태를 저장합니다. 복원해도 엔진을 다시 띄우지 않고
-                저장한 사이클로 그 자리에서 돌아가므로, 같은 시점에서 여러 정책을 시험하는 데 씁니다. ID 를 달리하면 여러 개를
-                함께 둘 수 있습니다.</p>
+            <p class="i18n-ko">체크포인트는 서버 메모리에 시뮬레이션 상태를 저장합니다. 복원할 때 엔진을 다시 시작하지 않고
+                저장한 사이클로 바로 돌아가므로, 같은 시점에서 여러 정책을 시험할 때 사용합니다. ID를 다르게 지정하면 체크포인트를 여러 개
+                함께 보관할 수 있습니다.</p>
             <p class="i18n-en">A checkpoint stores the simulation state in the server's memory. Restoring does not restart the
                 engine; it returns to the saved cycle in place, so you can try several policies from the same moment.
                 Different IDs coexist.</p>
@@ -984,16 +984,16 @@ b = client.get_vehicle_count()</pre>
                 <tr><td>P1</td><td>Detector accumulators</td></tr>
                 <tr><td>P2</td><td>Source and garage reservations and queues, sink queues</td></tr>
             </table></div>
-            <div class="warn i18n-ko"><strong>난수 상태는 저장되지 않습니다.</strong> 복원한 순간의 사이클 · 차량 수 · 차량 ID 는 저장
-                시점과 같지만, 그 뒤로 더 진행하면 쉬지 않고 돌린 경우와 결과가 달라질 수 있습니다. 같은 상태에서 새 행동을
-                시험하는 용도에는 충분하고, 궤적을 비트 단위로 재현하는 용도에는 맞지 않습니다. 체크포인트는 세션이 끝날 때까지
+            <div class="warn i18n-ko"><strong>난수 상태는 저장되지 않습니다.</strong> 복원한 직후의 사이클 · 차량 수 · 차량 ID는 저장
+                시점과 같지만, 그 뒤로 더 진행하면 중단 없이 실행한 경우와 결과가 달라질 수 있습니다. 같은 상태에서 새 행동을
+                시험하는 용도로는 충분하지만, 궤적을 비트 단위까지 재현하는 용도에는 적합하지 않습니다. 체크포인트는 세션이 끝날 때까지
                 메모리에 남으며 개수 제한이 없습니다.</div>
             <div class="warn i18n-en"><strong>Random-number state is not saved.</strong> At the moment of restore the cycle,
                 vehicle count, and vehicle IDs match the save, but stepping further can diverge from an uninterrupted run.
                 That is enough for trying new actions from the same state, not for bit-identical trajectory replay.
                 Checkpoints stay in memory until the session ends, with no count limit.</div>
-            <p class="i18n-ko">예전의 <span class="mono">save_state()</span> / <span class="mono">load_state()</span> 는 디스크의
-                <span class="mono">Vehicle.json</span> 을 쓰고, 불러오면 엔진을 다시 띄워 사이클이 0 이 됩니다. 제어 루프에는 체크포인트를 쓰세요.</p>
+            <p class="i18n-ko">예전의 <span class="mono">save_state()</span> / <span class="mono">load_state()</span>는 디스크의
+                <span class="mono">Vehicle.json</span>을 사용하며, 불러오면 엔진을 다시 시작하므로 사이클이 0이 됩니다. 제어 루프에는 체크포인트를 사용하세요.</p>
             <p class="i18n-en">The older <span class="mono">save_state()</span> / <span class="mono">load_state()</span> use
                 <span class="mono">Vehicle.json</span> on disk, and loading restarts the engine with the cycle back at 0. Use
                 checkpoints in control loops.</p>
@@ -1004,16 +1004,16 @@ b = client.get_vehicle_count()</pre>
         <!-- ================================================== 프로토콜 -->
         <section id="protocol">
             <h2><span class="i18n-ko">와이어 프로토콜</span><span class="i18n-en">Wire protocol</span></h2>
-            <p class="i18n-ko">Python 이 아닌 언어에서 붙으려면 이 형식으로 직접 보내면 됩니다. 정의는
-                <span class="mono">Captain/Includes/captain/NextCI/NextCIProtocol.hpp</span> 에 있습니다.</p>
+            <p class="i18n-ko">Python 이외의 언어에서 연결하려면 이 형식으로 직접 메시지를 보내면 됩니다. 정의는
+                <span class="mono">Captain/Includes/captain/NextCI/NextCIProtocol.hpp</span>에 있습니다.</p>
             <p class="i18n-en">To connect from a language other than Python, send this format directly. It is defined in
                 <span class="mono">Captain/Includes/captain/NextCI/NextCIProtocol.hpp</span>.</p>
 <pre class="cmd">[Length 4][Command ID 1][Variable ID 1][Object ID Length 2][Object ID][Value Type 1][Value Length 4][Value]</pre>
             <div class="tablewrap i18n-ko"><table>
                 <tr><th>값 타입</th><th>ID</th><th>의미</th></tr>
                 <tr><td class="mono">NONE</td><td class="mono">0x00</td><td>값 없음</td></tr>
-                <tr><td class="mono">INTEGER</td><td class="mono">0x01</td><td>4 바이트 빅엔디언 부호 없는 정수</td></tr>
-                <tr><td class="mono">DOUBLE</td><td class="mono">0x02</td><td>8 바이트 빅엔디언 IEEE-754</td></tr>
+                <tr><td class="mono">INTEGER</td><td class="mono">0x01</td><td>4바이트 빅엔디언 부호 없는 정수</td></tr>
+                <tr><td class="mono">DOUBLE</td><td class="mono">0x02</td><td>8바이트 빅엔디언 IEEE-754</td></tr>
                 <tr><td class="mono">STRING</td><td class="mono">0x03</td><td>UTF-8 문자열</td></tr>
                 <tr><td class="mono">RAW_BYTES</td><td class="mono">0x04</td><td>바이트열</td></tr>
             </table></div>
@@ -1039,9 +1039,9 @@ b = client.get_vehicle_count()</pre>
                 <tr><td></td><td></td><td class="mono">GET_MESO_VARIABLE</td><td class="mono">0x28</td></tr>
                 <tr><td></td><td></td><td class="mono">SET_LINK_MODE</td><td class="mono">0x29</td></tr>
             </table></div>
-            <p class="i18n-ko">객체 ID 는 링크가 <span class="mono">linkId</span>, 차로가 <span class="mono">linkId:laneIndex</span>,
-                Meso 셀이 <span class="mono">linkId:laneIndex:cellIndex</span> 입니다. <span class="mono">SUBSCRIBE</span>
-                (0x03) · <span class="mono">UNSUBSCRIBE</span> (0x04) 는 예약만 되어 있습니다.</p>
+            <p class="i18n-ko">객체 ID는 링크가 <span class="mono">linkId</span>, 차로가 <span class="mono">linkId:laneIndex</span>,
+                Meso 셀이 <span class="mono">linkId:laneIndex:cellIndex</span>입니다. <span class="mono">SUBSCRIBE</span>
+                (0x03)과 <span class="mono">UNSUBSCRIBE</span>(0x04)는 ID만 예약되어 있습니다.</p>
             <p class="i18n-en">Object IDs are <span class="mono">linkId</span> for links, <span class="mono">linkId:laneIndex</span>
                 for lanes, and <span class="mono">linkId:laneIndex:cellIndex</span> for meso cells.
                 <span class="mono">SUBSCRIBE</span> (0x03) and <span class="mono">UNSUBSCRIBE</span> (0x04) are reserved only.</p>
@@ -1052,50 +1052,50 @@ b = client.get_vehicle_count()</pre>
             <h2><span class="i18n-ko">문제 해결</span><span class="i18n-en">Troubleshooting</span></h2>
 
             <h3><span class="i18n-ko"><span class="mono">UnitTestsAPI binary not found</span></span><span class="i18n-en"><span class="mono">UnitTestsAPI binary not found</span></span></h3>
-            <p class="i18n-ko">서버를 빌드했는지, 그리고 <span class="mono">NEXTSIM_UNIT_TESTS_API</span> 가 그 파일을 가리키는지
-                확인하세요(<a href="#setup">준비</a> 3단계). <span class="mono">launch_and_connect(binary_path=…)</span> 로 직접 줄 수도 있습니다.</p>
+            <p class="i18n-ko">서버를 빌드했는지, 그리고 <span class="mono">NEXTSIM_UNIT_TESTS_API</span>가 그 실행 파일을 가리키는지
+                확인하세요(<a href="#setup">준비</a> 3단계). <span class="mono">launch_and_connect(binary_path=…)</span>로 경로를 직접 지정할 수도 있습니다.</p>
             <p class="i18n-en">Check that the server is built and that <span class="mono">NEXTSIM_UNIT_TESTS_API</span> points at
                 it (<a href="#setup">Setup</a>, step 3). You can also pass <span class="mono">launch_and_connect(binary_path=…)</span>.</p>
 
             <h3><span class="i18n-ko"><span class="mono">Port 9999 is already in use</span></span><span class="i18n-en"><span class="mono">Port 9999 is already in use</span></span></h3>
-            <p class="i18n-ko">이전 서버가 남아 있습니다. 그 서버를 끄거나(<span class="mono">pkill -f "UnitTestsAPI --port 9999"</span>)
-                다른 포트를 쓰세요(<span class="mono">NextCIClient(port=10000)</span>).</p>
+            <p class="i18n-ko">이전에 실행한 서버가 아직 남아 있습니다. 그 서버를 종료하거나(<span class="mono">pkill -f "UnitTestsAPI --port 9999"</span>)
+                다른 포트를 사용하세요(<span class="mono">NextCIClient(port=10000)</span>).</p>
             <p class="i18n-en">An earlier server is still running. Stop it (<span class="mono">pkill -f "UnitTestsAPI --port 9999"</span>)
                 or use another port (<span class="mono">NextCIClient(port=10000)</span>).</p>
 
-            <h3><span class="i18n-ko">링크 목록의 ID 인데 <span class="mono">Link not found</span> 가 납니다</span><span class="i18n-en">An ID from the link list gives <span class="mono">Link not found</span></span></h3>
-            <p class="i18n-ko"><span class="mono">get_link_id_list()</span> 에는 교차로 내부 링크(예제 네트워크에서는 <span class="mono">100004210</span>
-                같은 9 자리 ID)도 들어 있는데, 이들은 <span class="mono">get_link_*</span> 개별 조회를 지원하지 않습니다.
-                <span class="mono">NextCIStatusError</span> 를 잡고 건너뛰세요.</p>
+            <h3><span class="i18n-ko">링크 목록에 있는 ID인데 <span class="mono">Link not found</span> 오류가 납니다</span><span class="i18n-en">An ID from the link list gives <span class="mono">Link not found</span></span></h3>
+            <p class="i18n-ko"><span class="mono">get_link_id_list()</span>에는 교차로 내부 링크(예제 네트워크에서는 <span class="mono">100004210</span>
+                같은 9자리 ID)도 들어 있는데, 이 링크들은 <span class="mono">get_link_*</span> 개별 조회를 지원하지 않습니다.
+                <span class="mono">NextCIStatusError</span> 예외를 잡아 해당 링크를 건너뛰세요.</p>
             <p class="i18n-en"><span class="mono">get_link_id_list()</span> also lists intersection-internal links (nine-digit IDs such as
                 <span class="mono">100004210</span> in the example network), and these do not support per-link
                 <span class="mono">get_link_*</span> queries. Catch <span class="mono">NextCIStatusError</span> and skip them.</p>
 
-            <h3><span class="i18n-ko">두 번째 연결이 안 됩니다</span><span class="i18n-en">A second connection fails</span></h3>
-            <p class="i18n-ko">기본 ServeOnce 서버는 첫 클라이언트가 끊으면 끝납니다. 여러 번 붙으려면
-                <a href="#server"><span class="mono">--serve-loop</span></a> 로 띄우세요.</p>
+            <h3><span class="i18n-ko">두 번째 연결이 실패합니다</span><span class="i18n-en">A second connection fails</span></h3>
+            <p class="i18n-ko">기본 ServeOnce 서버는 첫 클라이언트의 연결이 끊기면 종료됩니다. 여러 번 연결하려면
+                <a href="#server"><span class="mono">--serve-loop</span></a> 옵션으로 서버를 실행하세요.</p>
             <p class="i18n-en">The default ServeOnce server ends when the first client disconnects. To connect again and again,
                 start it with <a href="#server"><span class="mono">--serve-loop</span></a>.</p>
 
             <h3><span class="i18n-ko"><span class="mono">Meso cell not found or currently in micro mode</span></span><span class="i18n-en"><span class="mono">Meso cell not found or currently in micro mode</span></span></h3>
-            <p class="i18n-ko">그 링크가 지금 micro 로 돌고 있습니다. <a href="#meso">Meso 조회와 모드 전환</a>을 보세요.</p>
+            <p class="i18n-ko">그 링크가 현재 micro 모드로 실행되고 있습니다. <a href="#meso">Meso 조회와 모드 전환</a>을 보세요.</p>
             <p class="i18n-en">That link is currently running micro. See <a href="#meso">Meso queries and mode switching</a>.</p>
 
             <h3><span class="i18n-ko">검지기 값을 읽으면 오류가 납니다</span><span class="i18n-en">Reading a detector value fails</span></h3>
-            <p class="i18n-ko">아직 구간 기록이 없을 때입니다. <span class="mono">sim_step()</span> 으로 집계 주기(<span class="mono">freq</span>)
-                이상 진행하고 <span class="mono">flush_recordings()</span> 를 부른 뒤 읽으세요.</p>
+            <p class="i18n-ko">아직 구간 기록이 없어서 생기는 오류입니다. <span class="mono">sim_step()</span>으로 집계 주기(<span class="mono">freq</span>)
+                이상 진행하고 <span class="mono">flush_recordings()</span>를 호출한 뒤 값을 읽으세요.</p>
             <p class="i18n-en">No interval has been recorded yet. Step past the aggregation interval (<span class="mono">freq</span>),
                 call <span class="mono">flush_recordings()</span>, then read.</p>
         </section>
 
         <!-- ================================================== 한계 -->
         <section id="limits">
-            <h2><span class="i18n-ko">아직 안 되는 것</span><span class="i18n-en">Not yet supported</span></h2>
+            <h2><span class="i18n-ko">아직 지원하지 않는 기능</span><span class="i18n-en">Not yet supported</span></h2>
             <ul class="i18n-ko">
-                <li><strong>제어 API</strong> — 신호 현시, 차량 생성 · 삭제 · 속도, 경로, 수요를 바꾸는 명령은 아직 없습니다.</li>
-                <li><strong>난수 상태 체크포인트</strong> — 복원 뒤 궤적을 그대로 재현하려면 필요하며, 계획만 되어 있습니다.</li>
-                <li><strong>체크포인트 개수 제한</strong> — 세션이 끝날 때까지 모두 메모리에 남습니다.</li>
-                <li><strong>구독(SUBSCRIBE)</strong> — 명령 ID 만 예약되어 있습니다.</li>
+                <li><strong>제어 API</strong>: 신호 현시, 차량 생성 · 삭제 · 속도, 경로, 수요를 바꾸는 명령은 아직 없습니다.</li>
+                <li><strong>난수 상태 체크포인트</strong>: 복원 뒤 궤적을 그대로 재현하는 데 필요하며, 아직 계획 단계입니다.</li>
+                <li><strong>체크포인트 개수 제한</strong>: 아직 제한이 없어 세션이 끝날 때까지 모든 체크포인트가 메모리에 남습니다.</li>
+                <li><strong>구독(SUBSCRIBE)</strong>: 명령 ID만 예약되어 있습니다.</li>
             </ul>
             <ul class="i18n-en">
                 <li><strong>Control APIs</strong> — there are no commands yet for signal phases, spawning or removing vehicles, speeds, routes, or demand.</li>
