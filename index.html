@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://aixmobility.github.io/nextsim-web/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="NextSIM — Hybrid Traffic Simulation">
-<meta property="og:description" content="KAIST AIxMobility Lab의 하이브리드 교통 시뮬레이터. 도시 전체는 빠르게 계산하고, 살펴볼 구간은 차량 한 대 한 대까지 봅니다.">
+<meta property="og:description" content="NextSIM은 KAIST AIxMobility Lab에서 개발한 하이브리드 교통 시뮬레이터입니다. 도시 전체를 빠르게 계산하면서, 필요한 구간은 차량 한 대 단위로 정밀하게 분석합니다.">
 <meta property="og:image" content="https://aixmobility.github.io/nextsim-web/assets/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -81,11 +81,10 @@
     <div class="wrap hero__inner">
         <h1 class="hero__logo"><img src="assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="640" height="180"></h1>
         <p class="hero__tagline">
-            <span class="i18n-ko">도시 전체는 빠르게 계산하고, 살펴볼 구간은 차량 한 대 한 대까지 봅니다.</span>
+            <span class="i18n-ko">도시 전체를 빠르게 계산하면서, 필요한 구간은 차량 한 대 단위로 정밀하게 분석합니다.</span>
             <span class="i18n-en">The whole city, fast. The part you care about, car by car.</span>
         </p>
-        <p class="hero__lede i18n-ko">NextSIM은 KAIST AIxMobility Lab에서 만든 하이브리드 교통 시뮬레이터입니다.
-            한 네트워크 안에서 미시(micro) 모형과 중시(meso) 모형을 함께 돌리고, 입력 편집부터 실행, 결과 재생까지 모두 브라우저에서 할 수 있습니다.</p>
+        <p class="hero__lede i18n-ko">NextSIM은 KAIST AIxMobility Lab에서 개발한 하이브리드 교통 시뮬레이터입니다. 하나의 네트워크에 미시(micro) 모형과 중시(meso) 모형을 함께 적용하며, 입력 데이터 편집부터 시뮬레이션 실행과 결과 재생까지 모든 작업을 브라우저에서 진행할 수 있습니다.</p>
         <p class="hero__lede i18n-en">A hybrid traffic simulator from the KAIST AIxMobility Lab. It runs microscopic and mesoscopic models
             together in one network, and you edit the inputs, run, and replay the results in the browser.</p>
         <div class="hero__cta">
@@ -104,12 +103,11 @@
         <canvas class="hero__canvas" id="heroCanvas" role="img"
                 aria-label="A made-up city: meso links coloured by congestion around a micro zone with individual vehicles stopping at signals"></canvas>
         <figcaption class="hero__caption">
-            <p class="i18n-ko">가상의 도시입니다. 가운데 구역만 차량 단위(micro)로, 바깥은 셀 단위(meso)로 계산합니다.</p>
+            <p class="i18n-ko">위 그림은 가상의 도시입니다. 가운데 구역은 차량 단위(micro)로 계산하고, 바깥 구역은 셀 단위(meso)로 계산합니다.</p>
             <p class="i18n-en">A made-up city. The centre is simulated vehicle by vehicle (micro), the rest cell by cell (meso).</p>
             <ul class="legend">
                 <li><span class="ramp ramp--sm" aria-hidden="true"></span><span class="i18n-ko">meso 혼잡도: 원활 → 정체</span><span class="i18n-en">Meso congestion: free → jammed</span></li>
-                <li><span class="i18n-ko">micro 차량</span><span class="i18n-en">Micro vehicles:</span> <b data-hud="moving">0</b><span class="i18n-ko">대 주행</span><span class="i18n-en"> moving</span>,
-                    <b data-hud="stopped">0</b><span class="i18n-ko">대 정지</span><span class="i18n-en"> stopped</span></li>
+                <li><span class="i18n-ko">micro 차량: 주행 </span><span class="i18n-en">Micro vehicles: </span><b data-hud="moving">0</b><span class="i18n-ko">대, 정지 </span><span class="i18n-en"> moving, </span><b data-hud="stopped">0</b><span class="i18n-ko">대</span><span class="i18n-en"> stopped</span></li>
                 <li><span class="i18n-ko">신호:</span><span class="i18n-en">Signal:</span>
                     <span data-hud="phase-ko" class="i18n-ko">동서 방향 녹색</span><span data-hud="phase-en" class="i18n-en">East–west green</span>,
                     <b data-hud="remain">07</b><span class="i18n-ko">초 남음</span><span class="i18n-en"> s left</span></li>
@@ -123,8 +121,7 @@
     <div class="wrap">
         <header class="section__head">
             <h2 class="display"><span class="i18n-ko">필요한 곳만 차량 단위로 계산합니다</span><span class="i18n-en">Vehicle-level detail only where it matters</span></h2>
-            <p class="i18n-ko">도시 전체를 차량 단위로 계산하면 너무 오래 걸리고, 전부 집계 모형으로 계산하면 교차로 하나에서 무슨 일이 일어나는지 알 수 없습니다.
-                NextSIM에서는 링크와 시간대마다 모형을 따로 정할 수 있고, 두 모형이 만나는 경계에서는 엔진이 차량을 자동으로 넘겨줍니다.</p>
+            <p class="i18n-ko">도시 전체를 차량 단위로 계산하면 시간이 너무 오래 걸리고, 모든 구간을 집계 모형으로 계산하면 특정 교차로에서 어떤 현상이 일어나는지 파악할 수 없습니다. NextSIM에서는 링크와 시간대마다 적용할 모형을 따로 지정할 수 있으며, 두 모형이 만나는 경계에서는 엔진이 차량을 한 모형에서 다른 모형으로 자동으로 옮깁니다.</p>
             <p class="i18n-en">Simulating a whole city car by car is slow; simulating all of it in aggregate hides what happens at the one intersection
                 you are studying. NextSIM lets you choose the model per link and per time period, and the engine hands vehicles across the boundary.</p>
         </header>
@@ -174,14 +171,14 @@
                 </figure>
                 <h3>Micro <small><span class="i18n-ko">미시 모형</span><span class="i18n-en">microscopic</span></small></h3>
                 <dl class="spec">
-                    <dt><span class="i18n-ko">표현</span><span class="i18n-en">Represents</span></dt>
-                    <dd><span class="i18n-ko">차로 위 차량 한 대 한 대의 위치·속도·가속도</span><span class="i18n-en">Each vehicle's position, speed, and acceleration on its lane</span></dd>
+                    <dt><span class="i18n-ko">계산 대상</span><span class="i18n-en">Represents</span></dt>
+                    <dd><span class="i18n-ko">차로를 주행하는 각 차량의 위치·속도·가속도</span><span class="i18n-en">Each vehicle's position, speed, and acceleration on its lane</span></dd>
                     <dt><span class="i18n-ko">모형</span><span class="i18n-en">Models</span></dt>
-                    <dd><span class="i18n-ko">차량 추종, 차로 변경</span><span class="i18n-en">Car following, lane changing</span></dd>
+                    <dd><span class="i18n-ko">차량 추종 모형, 차로 변경 모형</span><span class="i18n-en">Car following, lane changing</span></dd>
                     <dt><span class="i18n-ko">계산 주기</span><span class="i18n-en">Time step</span></dt>
                     <dd><span class="i18n-ko">0.1초</span><span class="i18n-en">0.1 s</span></dd>
                     <dt><span class="i18n-ko">결과</span><span class="i18n-en">Output</span></dt>
-                    <dd><span class="i18n-ko">차량 궤적, 차로별 상세 거동</span><span class="i18n-en">Vehicle trajectories, lane-level detail</span></dd>
+                    <dd><span class="i18n-ko">차량 궤적과 차로별 주행 상태</span><span class="i18n-en">Vehicle trajectories, lane-level detail</span></dd>
                 </dl>
             </article>
 
@@ -211,14 +208,14 @@
                 </figure>
                 <h3>Meso <small><span class="i18n-ko">중시 모형</span><span class="i18n-en">mesoscopic</span></small></h3>
                 <dl class="spec">
-                    <dt><span class="i18n-ko">표현</span><span class="i18n-en">Represents</span></dt>
-                    <dd><span class="i18n-ko">링크를 여러 셀로 나누고, 셀마다 차량 대수만 셉니다</span><span class="i18n-en">Links are split into cells; each cell keeps only a vehicle count</span></dd>
+                    <dt><span class="i18n-ko">계산 대상</span><span class="i18n-en">Represents</span></dt>
+                    <dd><span class="i18n-ko">링크를 여러 셀로 나눈 뒤, 각 셀에 있는 차량 대수</span><span class="i18n-en">Links are split into cells; each cell keeps only a vehicle count</span></dd>
                     <dt><span class="i18n-ko">모형</span><span class="i18n-en">Models</span></dt>
-                    <dd><span class="i18n-ko">셀 사이의 유입·유출, 확률적 차로 변경</span><span class="i18n-en">Flow between cells, probabilistic lane changing</span></dd>
+                    <dd><span class="i18n-ko">셀 사이의 유입·유출 흐름, 확률적 차로 변경</span><span class="i18n-en">Flow between cells, probabilistic lane changing</span></dd>
                     <dt><span class="i18n-ko">계산 주기</span><span class="i18n-en">Time step</span></dt>
                     <dd><span class="i18n-ko">5초</span><span class="i18n-en">5 s</span></dd>
                     <dt><span class="i18n-ko">결과</span><span class="i18n-en">Output</span></dt>
-                    <dd><span class="i18n-ko">링크 단위 교통 상태를 적은 계산량으로</span><span class="i18n-en">Link-level traffic state at a low cost</span></dd>
+                    <dd><span class="i18n-ko">적은 계산량으로 구한 링크 단위 교통 상태</span><span class="i18n-en">Link-level traffic state at a low cost</span></dd>
                 </dl>
             </article>
         </div>
@@ -230,49 +227,49 @@
     <div class="wrap">
         <header class="section__head">
             <h2 class="display"><span class="i18n-ko">주요 기능</span><span class="i18n-en">Features</span></h2>
-            <p class="i18n-ko">‘소스 빌드’라고 적힌 기능은 Windows 설치 파일과 ZIP 배포판에 들어 있지 않습니다. 소스에서 직접 빌드해야 쓸 수 있습니다.</p>
+            <p class="i18n-ko">‘소스 빌드’ 표시가 있는 기능은 Windows 설치 파일과 ZIP 배포판에 포함되어 있지 않으므로, 소스 코드를 직접 빌드해야 사용할 수 있습니다.</p>
             <p class="i18n-en">Features marked “source build” are not in the Windows installer or the ZIP package; build from source to use them.</p>
         </header>
         <div class="features">
             <article class="feature">
                 <h3><span class="i18n-ko">링크별 모형 선택</span><span class="i18n-en">Micro or meso per link</span></h3>
-                <p class="i18n-ko">링크와 시간대마다 micro와 meso 중 하나를 고릅니다. 두 모형 사이를 오가는 차량은 엔진이 처리합니다.</p>
+                <p class="i18n-ko">링크와 시간대마다 micro 모형과 meso 모형 중 하나를 선택할 수 있습니다. 두 모형 사이를 이동하는 차량은 엔진이 자동으로 처리합니다.</p>
                 <p class="i18n-en">Choose micro or meso for each link and time period. The engine moves vehicles between the two.</p>
             </article>
             <article class="feature">
                 <h3><span class="i18n-ko">대중교통</span><span class="i18n-en">Public transit</span></h3>
-                <p class="i18n-ko">버스·TRT·트램·철도 노선과 승객 수요를 도로 교통과 함께 계산합니다. 정류장별 대기 인원과 차내 인원은 BIMS 화면에서 봅니다.</p>
+                <p class="i18n-ko">버스·TRT·트램·철도 노선과 승객 수요를 도로 교통과 함께 시뮬레이션합니다. 정류장마다 기다리는 승객 수와 차내 승객 수는 BIMS 화면에서 확인할 수 있습니다.</p>
                 <p class="i18n-en">Bus, TRT, tram, and rail lines and passenger demand run together with road traffic. Waiting and on-board passengers per stop appear in the BIMS view.</p>
             </article>
             <article class="feature">
                 <h3><span class="i18n-ko">신호</span><span class="i18n-en">Signals</span></h3>
-                <p class="i18n-ko">현시, 신호 계획, 시간대별 운영 계획(TOD)을 편집합니다.</p>
+                <p class="i18n-ko">신호 현시와 신호 계획, 시간대별 운영 계획(TOD)을 편집할 수 있습니다.</p>
                 <p class="i18n-en">Edit phases, signal plans, and time-of-day (TOD) schedules.</p>
             </article>
             <article class="feature">
                 <h3><span class="i18n-ko">가상 검지기</span><span class="i18n-en">Virtual detectors</span></h3>
-                <p class="i18n-ko">E1(지점)·E2(구간)·E3(영역) 검지기로 교통량, 점유율, 통행시간을 현장 관측 자료와 같은 형식으로 모읍니다.</p>
+                <p class="i18n-ko">E1(지점)·E2(구간)·E3(영역) 검지기를 설치하여 교통량, 점유율, 통행시간을 현장 관측 자료와 같은 형식으로 수집합니다.</p>
                 <p class="i18n-en">E1 (point), E2 (section), and E3 (area) detectors collect flow, occupancy, and travel time in the same form as field data.</p>
             </article>
             <article class="feature">
                 <h3><span class="i18n-ko">실제 도로망 가져오기</span><span class="i18n-en">Real road networks</span></h3>
-                <p class="i18n-ko">국가표준 노드링크나 OpenStreetMap 자료로 네트워크를 만들고 바로 편집합니다. 시험용 무작위 네트워크도 만들 수 있습니다.</p>
+                <p class="i18n-ko">국가표준 노드링크 데이터나 OpenStreetMap 데이터로 네트워크를 생성한 뒤 바로 편집할 수 있습니다. 테스트에 쓸 무작위 네트워크도 생성할 수 있습니다.</p>
                 <p class="i18n-en">Build a network from Korea's standard node-link data or OpenStreetMap and edit it right away, or generate a random one for testing.</p>
             </article>
             <article class="feature">
                 <h3><span class="i18n-ko">동적 통행 배정(DTA)</span><span class="i18n-en">Dynamic traffic assignment (DTA)</span> <span class="tag"><span class="i18n-ko">미리보기</span><span class="i18n-en">preview</span></span></h3>
-                <p class="i18n-ko">시뮬레이션을 반복하면서 기점과 종점 사이의 경로 선택 비율이 수렴할 때까지 배정합니다. 수렴 과정과 링크·경로 결과는 웹 화면에서 봅니다.</p>
+                <p class="i18n-ko">시뮬레이션을 반복 실행하면서, 기점과 종점 사이의 경로 선택 비율이 수렴할 때까지 통행을 배정합니다. 수렴 과정과 링크별·경로별 결과는 웹 화면에서 확인할 수 있습니다.</p>
                 <p class="i18n-en">Repeat the simulation until route shares between origins and destinations converge, then look at the convergence and the link and route results in the browser.</p>
             </article>
             <article class="feature">
                 <h3>NextCI <span class="tag"><span class="i18n-ko">소스 빌드</span><span class="i18n-en">source build</span></span></h3>
-                <p class="i18n-ko">TCP로 시뮬레이션을 한 스텝씩 진행하고 상태를 조회합니다. 강화학습이나 다른 시뮬레이터와 연동할 때 쓰는 Python 클라이언트가 있습니다.</p>
+                <p class="i18n-ko">TCP 통신으로 시뮬레이션을 한 스텝씩 진행하면서 상태를 조회할 수 있습니다. 강화학습 환경이나 다른 시뮬레이터와 연동할 수 있도록 Python 클라이언트를 제공합니다.</p>
                 <p class="i18n-en">Step the simulation and query its state over TCP, with a Python client for reinforcement learning and co-simulation.</p>
                 <a class="textlink" href="docs/nextci-guide.html"><span class="i18n-ko">NextCI 가이드</span><span class="i18n-en">NextCI guide</span> →</a>
             </article>
             <article class="feature">
                 <h3><span class="i18n-ko">체크포인트</span><span class="i18n-en">Checkpoints</span> <span class="tag"><span class="i18n-ko">소스 빌드</span><span class="i18n-en">source build</span></span></h3>
-                <p class="i18n-ko">원하는 시점의 상태를 저장해 두었다가 되돌아가, 같은 시점에서 여러 제어안을 이어서 돌려 봅니다.</p>
+                <p class="i18n-ko">원하는 시점의 시뮬레이션 상태를 저장해 두고 언제든 그 시점으로 되돌아갈 수 있습니다. 따라서 같은 시점에서 여러 제어안을 각각 실행하여 비교할 수 있습니다.</p>
                 <p class="i18n-en">Save the state at any moment and come back to it to try several control strategies from the same point.</p>
             </article>
         </div>
@@ -284,8 +281,7 @@
     <div class="wrap">
         <header class="section__head">
             <h2 class="display"><span class="i18n-ko">Edit 모드와 Run 모드</span><span class="i18n-en">Edit mode and Run mode</span></h2>
-            <p class="i18n-ko">NextSIM 화면 하나에서 상단의 Edit과 Run으로 모드를 바꿉니다. Edit 모드에서 입력을 만들어 저장하고
-                Run 모드에서 실행하면 차량·승객 경로 계산(RouteGenerator)과 시뮬레이션이 차례로 돌고, 결과도 같은 화면에서 재생합니다.</p>
+            <p class="i18n-ko">NextSIM은 하나의 화면에서 상단의 Edit과 Run을 선택하여 모드를 전환합니다. Edit 모드에서 입력 데이터를 만들어 저장한 뒤 Run 모드에서 실행하면, 차량·승객 경로 계산(RouteGenerator)과 시뮬레이션이 차례로 진행됩니다. 시뮬레이션 결과도 같은 화면에서 재생할 수 있습니다.</p>
             <p class="i18n-en">One NextSIM screen, switched between Edit and Run at the top. Build and save the inputs in Edit mode, then run
                 them in Run mode: route calculation (RouteGenerator) and the simulation run one after the other, and the result
                 replays on the same screen.</p>
@@ -294,14 +290,14 @@
         <div class="tool">
             <div class="tool__text">
                 <h3 class="display display--sm"><span class="i18n-ko">Edit 모드</span><span class="i18n-en">Edit mode</span></h3>
-                <p class="tool__lede i18n-ko">시뮬레이션 입력을 지도 위에서 만들고 고칩니다. 입력 파일의 형식은 몰라도 됩니다.</p>
+                <p class="tool__lede i18n-ko">시뮬레이션에 필요한 입력 데이터를 지도 위에서 직접 만들고 수정할 수 있습니다. 입력 파일 형식을 몰라도 편집할 수 있습니다.</p>
                 <p class="tool__lede i18n-en">Create and edit simulation inputs on the map, without learning the file formats.</p>
                 <ul class="list i18n-ko">
-                    <li>도로·차로·교차로 연결 편집, 노드링크·OSM 가져오기</li>
-                    <li>OD 수요와 시간대별 micro/meso 설정</li>
+                    <li>도로·차로·교차로 연결 편집, 노드링크·OSM 데이터 가져오기</li>
+                    <li>OD 수요 입력과 시간대별 micro/meso 설정</li>
                     <li>신호(현시·계획·TOD), 정류장, 대중교통 노선, 돌발 상황 편집</li>
-                    <li>저장할 때마다 자동 백업, 언제든 이전 상태로 복원</li>
-                    <li>네트워크를 ZIP 패키지로 내보내고 가져오기, 다른 이름으로 저장</li>
+                    <li>저장할 때마다 자동으로 백업하고, 필요하면 이전 상태로 복원</li>
+                    <li>네트워크를 ZIP 패키지로 내보내거나 가져오기, 다른 이름으로 저장</li>
                 </ul>
                 <ul class="list i18n-en">
                     <li>Roads, lanes, and junction connections; import from node-link data or OSM</li>
@@ -314,20 +310,20 @@
             </div>
             <figure class="tool__media">
                 <img src="assets/img/editor.webp" alt="NextSIM in Edit mode, Mode workspace" loading="lazy" width="1600" height="1000">
-                <figcaption><span class="i18n-ko">Edit 모드의 Mode 화면. 링크마다 micro/meso를 정합니다.</span><span class="i18n-en">The Mode workspace in Edit mode, where each link is set to micro or meso.</span></figcaption>
+                <figcaption><span class="i18n-ko">Edit 모드의 Mode 화면입니다. 이 화면에서 링크마다 micro 또는 meso를 지정합니다.</span><span class="i18n-en">The Mode workspace in Edit mode, where each link is set to micro or meso.</span></figcaption>
             </figure>
         </div>
 
         <div class="tool tool--flip">
             <div class="tool__text">
                 <h3 class="display display--sm"><span class="i18n-ko">Run 모드</span><span class="i18n-en">Run mode</span></h3>
-                <p class="tool__lede i18n-ko">시뮬레이션을 실행하고, 결과를 지도 위에서 시간에 따라 재생하며 살펴봅니다.</p>
+                <p class="tool__lede i18n-ko">시뮬레이션을 실행한 뒤, 결과를 지도 위에서 시간 순서대로 재생하며 분석할 수 있습니다.</p>
                 <p class="tool__lede i18n-en">Run a simulation, then replay the result on the map and inspect it over time.</p>
                 <ul class="list i18n-ko">
-                    <li>실행 중에도 지금까지의 결과를 지도에서 미리 확인</li>
-                    <li>재생 속도 조절, 링크 혼잡도 색상 표시와 범례</li>
-                    <li>차량·링크·정류장을 눌러 상세 정보 보기, 시나리오 요약 통계</li>
-                    <li>버스 운행 정보(BIMS): 정류장별 대기·승하차·차내 인원</li>
+                    <li>실행 중에도 현재까지 계산된 결과를 지도에서 미리 확인</li>
+                    <li>재생 속도 조절, 링크 혼잡도를 색상과 범례로 표시</li>
+                    <li>차량·링크·정류장을 클릭하여 상세 정보 확인, 시나리오별 요약 통계 제공</li>
+                    <li>버스 운행 정보(BIMS): 정류장별 대기 승객, 승하차 인원, 차내 인원</li>
                 </ul>
                 <ul class="list i18n-en">
                     <li>Preview a run on the map while it is still going</li>
@@ -339,7 +335,7 @@
             </div>
             <figure class="tool__media">
                 <img src="assets/img/visualizer.webp" alt="NextSIM in Run mode, links coloured by congestion" loading="lazy" width="1600" height="1000">
-                <figcaption><span class="i18n-ko">Run 모드에서 링크 혼잡도를 색으로 표시한 화면 (08:08:00)</span><span class="i18n-en">Links coloured by congestion in Run mode, at 08:08:00.</span></figcaption>
+                <figcaption><span class="i18n-ko">Run 모드에서 08:08:00 시점의 링크 혼잡도를 색으로 표시한 화면입니다.</span><span class="i18n-en">Links coloured by congestion in Run mode, at 08:08:00.</span></figcaption>
             </figure>
         </div>
     </div>
@@ -350,46 +346,46 @@
     <div class="wrap">
         <header class="section__head">
             <h2 class="display"><span class="i18n-ko">설치</span><span class="i18n-en">Install</span></h2>
-            <p class="i18n-ko">설치 방법은 네 가지이고, 어떤 방법으로 설치해도 브라우저에서 쓰는 NextSIM은 같습니다. Windows를 쓴다면 설치 파일이 가장 간단합니다.</p>
+            <p class="i18n-ko">NextSIM은 네 가지 방법으로 설치할 수 있으며, 어떤 방법으로 설치하더라도 브라우저에서 사용하는 기능은 같습니다. Windows 사용자라면 설치 파일을 이용하는 방법이 가장 간단합니다.</p>
             <p class="i18n-en">There are four ways to install, and all of them run the same NextSIM in the browser. On Windows, the installer is the simplest.</p>
         </header>
         <div class="installs">
             <div class="install">
                 <h3><a href="docs/installation.html#windows"><span class="i18n-ko">Windows 설치 파일</span><span class="i18n-en">Windows installer</span></a></h3>
-                <p class="i18n-ko">Windows 10/11 64비트용입니다. 설치 프로그램만 따라가면 되고, Python·WSL·Docker는 따로 설치하지 않아도 됩니다.</p>
+                <p class="i18n-ko">Windows 10/11 64비트에서 사용할 수 있습니다. 설치 프로그램의 안내에 따라 진행하면 되며, Python이나 WSL, Docker를 따로 설치할 필요가 없습니다.</p>
                 <p class="i18n-en">For 64-bit Windows 10 and 11. Follow the installer; no Python, WSL, or Docker needed.</p>
                 <code>NextSim-Setup-v1.2.exe</code>
             </div>
             <div class="install">
                 <h3><a href="docs/installation.html#docker">Docker</a></h3>
-                <p class="i18n-ko">Docker가 설치되어 있으면 운영체제와 관계없이 쓸 수 있습니다. 명령 하나로 엔진 빌드부터 웹 서버 실행까지 합니다. 소스 저장소 접근 권한이 필요합니다.</p>
+                <p class="i18n-ko">Docker가 설치되어 있다면 운영체제와 관계없이 사용할 수 있습니다. 명령어 하나로 엔진 빌드부터 웹 서버 실행까지 진행됩니다. 이 방법을 사용하려면 소스 저장소 접근 권한이 필요합니다.</p>
                 <p class="i18n-en">Anywhere Docker runs. One command builds the engine and starts the web server. Needs access to the source repository.</p>
                 <code>docker compose up --build</code>
             </div>
             <div class="install">
                 <h3><a href="docs/installation.html#zip"><span class="i18n-ko">Linux·WSL 배포판</span><span class="i18n-en">Linux and WSL package</span></a></h3>
-                <p class="i18n-ko">미리 빌드된 ZIP을 풀고 스크립트 하나만 실행하면 됩니다. 따로 컴파일할 필요가 없습니다.</p>
+                <p class="i18n-ko">미리 빌드된 ZIP 파일의 압축을 풀고 스크립트 하나만 실행하면 됩니다. 별도로 컴파일할 필요가 없습니다.</p>
                 <p class="i18n-en">Unpack the prebuilt ZIP and run one script. No compiler needed.</p>
                 <code>./start_web.sh</code>
             </div>
             <div class="install">
                 <h3><a href="docs/installation.html#source"><span class="i18n-ko">소스에서 빌드</span><span class="i18n-en">Build from source</span></a></h3>
-                <p class="i18n-ko">엔진을 고치거나 NextCI를 쓰려면 소스에서 빌드합니다. 소스 저장소 접근 권한이 필요합니다.</p>
+                <p class="i18n-ko">엔진을 수정하거나 NextCI를 사용하려면 소스 코드를 직접 빌드해야 합니다. 이 방법을 사용하려면 소스 저장소 접근 권한이 필요합니다.</p>
                 <p class="i18n-en">To change the engine or use NextCI. Needs access to the source repository.</p>
                 <code>cmake --preset release -S Captain</code>
             </div>
         </div>
-        <p class="req-note i18n-ko">어느 방법이든 <strong>AVX2를 지원하는 x86-64 CPU</strong>(2013년 이후 나온 인텔·AMD CPU 대부분)가 필요합니다.</p>
+        <p class="req-note i18n-ko">어떤 방법으로 설치하든 <strong>AVX2를 지원하는 x86-64 CPU</strong>가 필요합니다. 2013년 이후 출시된 인텔·AMD CPU는 대부분 AVX2를 지원합니다.</p>
         <p class="req-note i18n-en">Every method needs an <strong>x86-64 CPU with AVX2</strong> (most Intel and AMD CPUs since 2013).</p>
 
         <div class="guide">
             <h3 class="display display--sm"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></h3>
             <ol class="guide__steps">
-                <li><a href="docs/index.html"><b>1</b><strong><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></strong><span><span class="i18n-ko">구성과 입력 데이터</span><span class="i18n-en">How the parts fit together</span></span></a></li>
-                <li><a href="docs/installation.html"><b>2</b><strong><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></strong><span><span class="i18n-ko">네 가지 설치 방법과 처음 실행하기</span><span class="i18n-en">Four ways to install, first run</span></span></a></li>
-                <li><a href="docs/editor-guide.html"><b>3</b><strong><span class="i18n-ko">Edit 모드</span><span class="i18n-en">Edit mode</span></strong><span><span class="i18n-ko">입력 만들기와 편집</span><span class="i18n-en">Building the inputs</span></span></a></li>
-                <li><a href="docs/visualizer-guide.html"><b>4</b><strong><span class="i18n-ko">Run 모드</span><span class="i18n-en">Run mode</span></strong><span><span class="i18n-ko">실행과 결과 분석</span><span class="i18n-en">Running and analysis</span></span></a></li>
-                <li><a href="docs/nextci-guide.html"><b>5</b><strong>NextCI</strong><span><span class="i18n-ko">Python에서 시뮬레이션 제어하기</span><span class="i18n-en">Controlling the simulation from Python</span></span></a></li>
+                <li><a href="docs/index.html"><b>1</b><strong><span class="i18n-ko">개요</span><span class="i18n-en">Overview</span></strong><span><span class="i18n-ko">NextSIM의 구성과 입력 데이터</span><span class="i18n-en">How the parts fit together</span></span></a></li>
+                <li><a href="docs/installation.html"><b>2</b><strong><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></strong><span><span class="i18n-ko">네 가지 설치 방법과 첫 실행</span><span class="i18n-en">Four ways to install, first run</span></span></a></li>
+                <li><a href="docs/editor-guide.html"><b>3</b><strong><span class="i18n-ko">Edit 모드</span><span class="i18n-en">Edit mode</span></strong><span><span class="i18n-ko">입력 데이터 작성과 편집</span><span class="i18n-en">Building the inputs</span></span></a></li>
+                <li><a href="docs/visualizer-guide.html"><b>4</b><strong><span class="i18n-ko">Run 모드</span><span class="i18n-en">Run mode</span></strong><span><span class="i18n-ko">시뮬레이션 실행과 결과 분석</span><span class="i18n-en">Running and analysis</span></span></a></li>
+                <li><a href="docs/nextci-guide.html"><b>5</b><strong>NextCI</strong><span><span class="i18n-ko">Python으로 시뮬레이션 제어</span><span class="i18n-en">Controlling the simulation from Python</span></span></a></li>
             </ol>
         </div>
     </div>
@@ -401,21 +397,20 @@
         <div class="about">
             <div>
                 <h2 class="display display--sm">KAIST AIxMobility Lab</h2>
-                <p class="i18n-ko">NextSIM은 KAIST AIxMobility Lab에서 개발하고 있습니다.
-                    공동 연구나 사용에 관한 문의는 연구실 홈페이지를 통해 연락해 주세요.</p>
+                <p class="i18n-ko">NextSIM은 KAIST AIxMobility Lab에서 개발하고 있습니다. 공동 연구나 사용 방법에 관해 문의할 사항이 있다면 연구실 홈페이지를 통해 연락해 주세요.</p>
                 <p class="i18n-en">NextSIM is developed at the AIxMobility Lab of KAIST (Korea Advanced Institute of Science
                     and Technology). For collaboration or questions about using it, contact us through the lab website.</p>
                 <a class="btn btn--pill" href="http://aimobility.kaist.ac.kr" target="_blank" rel="noopener">aimobility.kaist.ac.kr <span aria-hidden="true">↗</span></a>
             </div>
             <div class="about__license">
                 <h3 class="about__h"><span class="i18n-ko">라이선스</span><span class="i18n-en">License</span></h3>
-                <p class="i18n-ko"><strong>비상업적 용도</strong>로만 쓸 수 있습니다. 상업적으로 이용하려면 연구실에 문의해 주세요.</p>
+                <p class="i18n-ko">NextSIM은 <strong>비상업적 용도</strong>로만 사용할 수 있습니다. 상업적으로 이용하려면 연구실에 문의해 주세요.</p>
                 <p class="i18n-en"><strong>Non-commercial use only.</strong> For commercial use, please contact the lab.</p>
                 <p class="copyright">© 2026 KAIST AIxMobility Lab</p>
             </div>
             <div class="about__cite" id="cite">
                 <h3 class="about__h"><span class="i18n-ko">연구에 사용할 때</span><span class="i18n-en">Citing NextSIM</span></h3>
-                <p class="i18n-ko">연구에 NextSIM을 사용했다면 아래 논문을 인용해 주세요.</p>
+                <p class="i18n-ko">NextSIM을 연구에 활용하셨다면 아래 논문을 인용해 주세요.</p>
                 <p class="i18n-en">If you use NextSIM in your research, please cite the following paper.</p>
                 <p class="about__ref">Y. Kim, S. Choi, S. Jeon, and H. Yeo, “NextSim: Multi-Level Traffic Simulation for Urban Networks Using Dynamic Level Assignment,” <em>IEEE Transactions on Intelligent Transportation Systems</em>, vol. 27, no. 7, pp. 8564–8578, 2026, doi: <a href="https://doi.org/10.1109/TITS.2026.3671220" target="_blank" rel="noopener">10.1109/TITS.2026.3671220</a>.</p>
                 <details class="about__bib">
