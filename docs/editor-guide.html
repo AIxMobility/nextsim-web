@@ -380,15 +380,17 @@
     /* 콜아웃 */
     .tip, .warn {
         max-width: 72ch;
-        border-left: 3px solid var(--tip-edge);
+        border: 1px solid var(--hairline);
         background: var(--tip-bg);
-        border-radius: 0 10px 10px 0;
+        border-radius: 8px;
         padding: 11px 16px;
         margin: 14px 0;
         font-size: 14px;
     }
 
-    .warn { border-left-color: var(--warn-edge); background: var(--warn-bg); }
+    .warn { background: var(--warn-bg); }
+    .tip > strong:first-child { color: var(--tip-edge); }
+    .warn > strong:first-child { color: var(--warn-edge); }
 
     .tip strong, .warn strong { font-weight: 700; }
 
@@ -606,7 +608,7 @@
                 <span class="chip"><span class="i18n-ko">파일 형식: XML · JSON</span><span class="i18n-en">Formats: XML · JSON</span></span>
                 <a class="chip doc-cross" href="visualizer-guide.html"
                    data-local="visualizer-guide.html"
-                  >🎬 <span class="i18n-ko">실행·결과 재생은 Run 모드 가이드 →</span><span class="i18n-en">Running and replaying? See the Run mode guide →</span></a>
+                  ><span class="i18n-ko">실행·결과 재생은 Run 모드 가이드 →</span><span class="i18n-en">Running and replaying? See the Run mode guide →</span></a>
             </div>
         </div>
 
@@ -943,19 +945,39 @@
             <p class="i18n-ko">넷 다 없는 네트워크(직접 만든 network.xml 등)는 <strong>Center</strong> 칸에 네트워크 중심의
                 <span class="mono">위도, 경도</span>를 넣고 <strong>Place</strong> 를 누른 뒤,
                 <strong>Align</strong> 모드에서 맞춥니다 — 드래그는 이동, <kbd>Alt</kbd>+드래그는 회전,
-                <kbd>Shift</kbd>+드래그는 축척입니다. 움직이는 것은 <em>배경</em>이고 network.xml 은 건드리지 않습니다.
+                <kbd>Shift</kbd>+드래그는 축척입니다. 가운데 버튼 드래그는 사진은 두고 화면만 옮기고, 휠은 확대·축소입니다.
+                움직이는 것은 <em>배경</em>이고 network.xml 은 건드리지 않습니다.
                 <strong>Save</strong> 를 누르면 네트워크 폴더의 <span class="mono">basemap.json</span> 에 저장돼
                 다음에 열 때 그대로 복원됩니다.</p>
             <p class="i18n-en">For a network with none of those (a hand-built network.xml, say), type the network
                 centre's <span class="mono">latitude, longitude</span> into <strong>Center</strong>, press
                 <strong>Place</strong>, then fine-tune in <strong>Align</strong> mode — drag to move,
-                <kbd>Alt</kbd>+drag to rotate, <kbd>Shift</kbd>+drag to scale. You are moving the
+                <kbd>Alt</kbd>+drag to rotate, <kbd>Shift</kbd>+drag to scale. Middle-drag moves only the
+                view (not the imagery) and the wheel zooms. You are moving the
                 <em>imagery</em>; network.xml is never touched. <strong>Save</strong> writes
                 <span class="mono">basemap.json</span> into the network folder so it is restored next time.</p>
             <div class="tip i18n-ko"><strong>Tip.</strong> 제공자·불투명도·인증키는 브라우저에 저장되어 네트워크를 바꿔도
                 유지되고, 정합값은 네트워크마다 고유한 값이므로 폴더별로 따로 보관됩니다.</div>
             <div class="tip i18n-en"><strong>Tip.</strong> Provider, opacity, and key live in the browser and survive
                 a folder change; the alignment is a property of the network, so it is stored per folder.</div>
+
+            <h3><span class="i18n-ko">Edit 뷰: Overlay / Side by side</span><span class="i18n-en">Edit view: Overlay / Side by side</span></h3>
+            <p class="i18n-ko"><strong>Display → Edit view</strong> (또는 <kbd>B</kbd>)에서 보기를 고릅니다.
+                <strong>Overlay</strong> 는 네트워크를 위성 사진 위에 겹쳐 보여 주고(불투명도 슬라이더),
+                <strong>Side by side</strong> 는 한쪽은 사진 없는 편집 화면, 다른 쪽은 위성 지도입니다. 두 화면은 같은
+                카메라로 함께 움직이고(어느 쪽에서 휠·드래그해도 됨), 한쪽에 마우스를 올리면 다른 쪽 같은 지점에 십자
+                커서가 보입니다. 위성 쪽에는 네트워크를 <em>Outline</em>(중심선, 기본)·<em>Translucent</em>·<em>None</em>
+                으로 겹쳐 볼 수 있고, 선택·hover 한 링크는 색으로 강조됩니다. 가운데 구분선을 끌어 비율을 바꾸고
+                <strong>⇄</strong> 로 좌우를 바꿉니다. 위성 쪽은 보기 전용이며, Align 은 Overlay 로 돌아가 맞춥니다.
+                고른 보기는 브라우저에 저장됩니다.</p>
+            <p class="i18n-en">Pick the view in <strong>Display → Edit view</strong> (or press <kbd>B</kbd>).
+                <strong>Overlay</strong> draws the network over the imagery (opacity slider); <strong>Side by
+                side</strong> puts the editing map without imagery on one side and the satellite map on the other.
+                Both share one camera — wheel or drag on either side — and hovering one side shows a crosshair at
+                the same spot on the other. The satellite side can show the network as <em>Outline</em> (centre
+                lines, default), <em>Translucent</em> or <em>None</em>; selected and hovered links are highlighted.
+                Drag the divider to resize and use <strong>⇄</strong> to swap sides. The satellite side is view
+                only, and Align switches back to Overlay. The choice is remembered by the browser.</p>
 
             <h3><span class="i18n-ko">실행 취소</span><span class="i18n-en">Undo</span></h3>
             <p class="i18n-ko">모든 워크스페이스에서 <kbd>Ctrl</kbd>+<kbd>Z</kbd>로 실행을 취소하고,

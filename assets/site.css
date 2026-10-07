@@ -531,8 +531,8 @@ p { margin: 0; }
 
 .paper-card {
     margin: 0;
-    padding: 24px 0 24px 24px;
-    border-left: 2px solid var(--accent);
+    padding: 20px 0 0;
+    border-top: 1px solid var(--edge);
 }
 .paper-card--wide { margin-bottom: 48px; }
 .paper-card__journal { color: var(--fog); font-size: 13.5px; margin-bottom: 10px; }

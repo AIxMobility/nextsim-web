@@ -348,15 +348,17 @@
 
     .tip, .warn {
         max-width: 72ch;
-        border-left: 3px solid var(--tip-edge);
+        border: 1px solid var(--hairline);
         background: var(--tip-bg);
-        border-radius: 0 10px 10px 0;
+        border-radius: 8px;
         padding: 11px 16px;
         margin: 14px 0;
         font-size: 14px;
     }
 
-    .warn { border-left-color: var(--warn-edge); background: var(--warn-bg); }
+    .warn { background: var(--warn-bg); }
+    .tip > strong:first-child { color: var(--tip-edge); }
+    .warn > strong:first-child { color: var(--warn-edge); }
 
     .tablewrap { overflow-x: auto; margin: 14px 0; }
 
@@ -556,7 +558,7 @@
                 <span class="chip"><span class="i18n-ko">브라우저 기반 (Chrome 권장)</span><span class="i18n-en">Browser based (Chrome recommended)</span></span>
                 <a class="chip doc-cross" href="editor-guide.html"
                    data-local="editor-guide.html"
-                  >📘 <span class="i18n-ko">입력 편집은 Edit 모드 가이드 →</span><span class="i18n-en">Editing inputs? See the Edit mode guide →</span></a>
+                  ><span class="i18n-ko">입력 편집은 Edit 모드 가이드 →</span><span class="i18n-en">Editing inputs? See the Edit mode guide →</span></a>
             </div>
         </div>
 
@@ -688,19 +690,19 @@
                     packages an already finished simulation, cannot be cancelled.</li>
             </ul>
 
-            <p class="i18n-ko"><strong>Live preview (delayed)</strong>를 켜 두면(기본값) 시뮬레이션이 끝나기 전에도
+            <p class="i18n-ko"><strong>Play while running</strong>을 켜 두면(기본값) 시뮬레이션이 끝나기 전에도
                 <strong>이미 디스크에 확정된 구간</strong>부터 재생할 수 있습니다. 상단바 바로 아래 지도 가운데에
-                <span class="mono">PREVIEW · playable to N s</span> 배지가 뜨고, 확정 구간이 늘어나면 슬라이더 범위도
-                따라 늘어납니다. 미리보기는 엔진의 실제 진행보다 이벤트 청크 하나(수십 초)만큼 늦게 따라가며, 재생이 구간 끝에
-                닿으면 멈추지 않고 새 데이터를 기다립니다. 정류장 승객 배지는 미리보기에서는 표시되지 않고 최종 로드
-                때 나타납니다. 실행이 끝나면 최종 결과가 같은 시점에서 이어서 로드됩니다.</p>
-            <p class="i18n-en">With <strong>Live preview (delayed)</strong> on (the default) you can start replaying
+                <span class="mono">Running · playable to N s</span> 표시가 뜨고, 확정 구간이 늘어나면 슬라이더 범위도
+                따라 늘어납니다. 재생할 수 있는 구간은 엔진의 실제 진행보다 이벤트 청크 하나(수십 초)만큼 늦게 늘어나며, 재생이
+                구간 끝에 닿으면 멈추지 않고 새 데이터를 기다립니다. 정류장 승객 배지는 실행이 끝나 최종 결과를 불러올 때
+                나타납니다. 실행이 끝나면 최종 결과가 같은 시점에서 이어서 로드됩니다.</p>
+            <p class="i18n-en">With <strong>Play while running</strong> on (the default) you can start replaying
                 the <strong>part of the run already confirmed on disk</strong> before the simulation finishes. A
-                <span class="mono">PREVIEW · playable to N s</span> badge appears at the top center of the map, just under the top bar, and the
-                slider range grows as more of the run is confirmed. The preview lags the engine by about one event
+                <span class="mono">Running · playable to N s</span> label appears at the top center of the map, just under the top bar, and the
+                slider range grows as more of the run is confirmed. The playable range trails the engine by about one event
                 chunk (tens of seconds); when playback reaches the end of the confirmed range it waits for new data
-                instead of stopping. Station passenger badges are not shown in the preview; they appear with the
-                final load, which resumes at the same time position when the run completes.</p>
+                instead of stopping. Station passenger badges appear once the final result is loaded, which resumes at
+                the same time position when the run completes.</p>
 
             <div class="warn i18n-ko"><strong>실행 중에는 네트워크를 바꿀 수 없습니다.</strong> Network 창의 폴더 선택은
                 실행이 끝날 때까지 잠깁니다. 네트워크를 바꾸면 실행 중인 네트워크의 궤적이 다른 지도 위에 그려지기 때문입니다.
@@ -728,11 +730,11 @@
 
             <div class="tip i18n-ko"><strong>실행 중에 페이지를 새로고침해도 됩니다.</strong> 서버 작업은 계속 실행되고,
                 Run 모드는 해당 실행의 네트워크를 불러오는 즉시 그 실행에 다시 연결됩니다. 진행률, <strong>Cancel Run</strong>,
-                완료 후 자동 결과 로드가 그대로 이어집니다 (실시간 미리보기는 새 청크가 확정되면 다시 켜집니다).
+                완료 후 자동 결과 로드가 그대로 이어집니다 (실행 중 재생은 새 청크가 확정되면 다시 이어집니다).
                 다른 탭에서 시작한 실행도 같은 네트워크를 열면 이어서 표시됩니다. 다른 네트워크를 열면 그 실행은 보이지 않습니다.</div>
             <div class="tip i18n-en"><strong>Reloading the page mid-run is fine.</strong> The server job keeps going, and
                 Run mode reattaches to the run as soon as the run's network is loaded — the progress display,
-                <strong>Cancel Run</strong> and the automatic result load continue (the live preview comes back once new
+                <strong>Cancel Run</strong> and the automatic result load continue (playback during the run resumes once new
                 chunks are confirmed). A run started in another tab is followed too when you open the same network; it is
                 not shown while another network is open.</div>
 
@@ -770,7 +772,7 @@
             <ul class="i18n-ko">
                 <li><strong>시뮬레이션 실행 중</strong>: 전환하면 실행이 취소되고 지도의 진행 표시가 지워진다고 알립니다.
                     마지막으로 완료된 결과는 그대로 남습니다. 버튼 이름은 <strong>Cancel run and switch</strong>입니다.</li>
-                <li><strong>결과가 열려 있음</strong>(또는 Live preview 표시 중): 지도의 결과를 내리고 네트워크만 보여 준다고
+                <li><strong>결과가 열려 있음</strong>(실행 중에 재생하고 있을 때 포함): 지도의 결과를 내리고 네트워크만 보여 준다고
                     알립니다. 버튼 이름은 <strong>Clear result and switch</strong>입니다.</li>
                 <li>오른쪽 위 <strong>X</strong> 또는 <kbd>Esc</kbd>: 창을 닫고 Run 모드에 남습니다.</li>
                 <li>실행이 이미 끝나 결과를 저장하는 중(<strong>DB load</strong> 단계)이면 전환하지 않고, 잠시 뒤 다시 전환하라는
@@ -779,7 +781,7 @@
             <ul class="i18n-en">
                 <li><strong>A simulation is running</strong> — the warning says the run will be cancelled and the progress
                     on the map cleared. The last completed result is kept. Button: <strong>Cancel run and switch</strong>.</li>
-                <li><strong>A result is loaded</strong> (or a live preview is shown) — the warning says the result on the
+                <li><strong>A result is loaded</strong> (including playback during a run) — the warning says the result on the
                     map will be cleared so only the network is shown. Button: <strong>Clear result and switch</strong>.</li>
                 <li><strong>X</strong> (top right) or <kbd>Esc</kbd> — close the warning and stay in Run mode.</li>
                 <li>If the run has already finished and its result is being saved (the <strong>DB load</strong> stage),
@@ -1000,10 +1002,10 @@
                 <span class="mono">line:102</span> in the search box opens the route view.</p>
             <div class="warn i18n-ko"><strong>데이터 한계.</strong> 재차 인원은 정류장 승하차 기록을 누적(승차−하차)해 계산하며,
                 버스 정원은 입력 데이터에 없으므로 차종별 기본값(NB/AB 50, TRT 80)을 가정합니다. 계획 시각표가 없으므로 지연은 "배차간격 과대 또는
-                저속" 플래그로 정의합니다. 실행 중 미리보기에서는 정류장 이벤트를 best-effort 방식으로 읽기 때문에 일부만 보일 수 있습니다.</div>
+                저속" 플래그로 정의합니다. 실행 중에 재생할 때는 정류장 이벤트를 best-effort 방식으로 읽기 때문에 일부만 보일 수 있습니다.</div>
             <div class="warn i18n-en"><strong>Data limits.</strong> Onboard counts are cumulative boardings minus alightings from
                 station events; bus capacity is not in the inputs, so a per-type default (NB/AB 50, TRT 80) is assumed. There is
-                no planned timetable, so "Delayed" means excessive headway or a slow segment. During the run preview, station
+                no planned timetable, so "Delayed" means excessive headway or a slow segment. While a run is in progress, station
                 events are read best-effort and may be incomplete.</div>
         </section>
 

@@ -378,15 +378,17 @@
     /* 콜아웃 */
     .tip, .warn {
         max-width: 72ch;
-        border-left: 3px solid var(--tip-edge);
+        border: 1px solid var(--hairline);
         background: var(--tip-bg);
-        border-radius: 0 10px 10px 0;
+        border-radius: 8px;
         padding: 11px 16px;
         margin: 14px 0;
         font-size: 14px;
     }
 
-    .warn { border-left-color: var(--warn-edge); background: var(--warn-bg); }
+    .warn { background: var(--warn-bg); }
+    .tip > strong:first-child { color: var(--tip-edge); }
+    .warn > strong:first-child { color: var(--warn-edge); }
 
     .tip strong, .warn strong { font-weight: 700; }
 
@@ -534,19 +536,17 @@
         display: block;
         padding: 16px 18px;
         border: 1px solid var(--hairline);
-        border-left: 3px solid var(--tc, var(--accent));
         border-radius: 12px;
         background: var(--surface);
-        box-shadow: var(--shadow);
         color: inherit;
         text-decoration: none;
-        transition: transform .12s ease, border-color .12s ease;
+        transition: border-color .12s ease;
     }
-    .toolcard:hover { transform: translateY(-2px); border-color: var(--tc, var(--accent)); }
-    .toolcard h3 { margin: 0 0 4px; font-size: 16px; color: var(--tc, var(--accent)); }
+    .toolcard:hover { border-color: var(--muted); }
+    .toolcard h3 { margin: 0 0 4px; font-size: 16px; color: var(--ink); }
     .toolcard code { font-size: 12px; }
     .toolcard p { margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.55; }
-    .toolcard .go { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 700; color: var(--tc, var(--accent)); }
+    .toolcard .go { display: inline-block; margin-top: 10px; font-size: 12px; font-weight: 700; color: var(--accent-strong); }
 
     /* 파이프라인 단계 표시 */
     .pipeline {
@@ -658,14 +658,14 @@
 
         <div class="toolgrid">
             <a class="toolcard" href="installation.html" style="--tc: var(--ws-station)">
-                <h3>🧰 <span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></h3>
+                <h3><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></h3>
                 <code>Windows · Docker · ZIP · source</code>
                 <p class="i18n-ko">사용 환경에 맞는 설치 방법을 고르고 <strong>첫 시뮬레이션</strong>까지 실행합니다.</p>
                 <p class="i18n-en">Pick the install method that fits your machine and run your <strong>first simulation</strong>.</p>
                 <span class="go"><span class="i18n-ko">설치 가이드 →</span><span class="i18n-en">Installation guide →</span></span>
             </a>
             <a class="toolcard" href="editor-guide.html" style="--tc: var(--ws-network)">
-                <h3>📘 <span class="i18n-ko">NextSIM · Edit 모드</span><span class="i18n-en">NextSIM · Edit mode</span></h3>
+                <h3><span class="i18n-ko">NextSIM · Edit 모드</span><span class="i18n-en">NextSIM · Edit mode</span></h3>
                 <code>/nextsim/?mode=edit</code>
                 <p class="i18n-ko">네트워크·수요·신호·대중교통·이벤트 등 시뮬레이션 <strong>입력</strong>을 지도 위에서
                     만들고 편집합니다.</p>
@@ -674,7 +674,7 @@
                 <span class="go"><span class="i18n-ko">Edit 모드 가이드 →</span><span class="i18n-en">Edit mode guide →</span></span>
             </a>
             <a class="toolcard" href="visualizer-guide.html" style="--tc: var(--ws-signal)">
-                <h3>🎬 <span class="i18n-ko">NextSIM · Run 모드</span><span class="i18n-en">NextSIM · Run mode</span></h3>
+                <h3><span class="i18n-ko">NextSIM · Run 모드</span><span class="i18n-en">NextSIM · Run mode</span></h3>
                 <code>/nextsim/</code>
                 <p class="i18n-ko">시뮬레이션을 실행하고 <strong>결과</strong>를 시간축을 따라 재생·분석합니다.
                     NextSIM 화면은 이 모드로 열립니다.</p>
