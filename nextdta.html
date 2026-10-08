@@ -73,12 +73,24 @@
 
 <main id="main">
 <header class="page-head module-head">
-    <div class="wrap">
-        <p class="crumb"><a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a></p>
-        <h1 class="display display--xl">NextDTA</h1>
-        <p class="module-tagline"><span class="i18n-ko">차량이 어떤 길을 고를지, 시뮬레이션으로 찾아냅니다.</span><span class="i18n-en">Find out which roads traffic will take, by simulation.</span></p>
-        <p class="i18n-ko">NextDTA는 동적 통행 배정(Dynamic Traffic Assignment) 모듈입니다. 기점과 종점 사이에 경로가 여러 개 있을 때, 운전자들이 각 경로를 얼마나 선택할지를 시뮬레이션을 반복 실행하며 찾아냅니다. 시간에 따라 달라지는 혼잡을 반영하므로, 출퇴근 시간처럼 교통 상황이 계속 바뀌는 시간대의 경로 분포를 재현할 수 있습니다.</p>
-<p class="i18n-en">NextDTA is the dynamic traffic assignment module. When there are several routes between an origin and a destination, it finds how many drivers take each one by running the simulation again and again. Because it follows congestion as it changes over time, it reproduces route choice in periods such as the morning peak.</p>
+    <div class="wrap module-head__grid">
+        <div class="module-head__copy">
+            <p class="crumb"><a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a></p>
+            <h1 class="display display--xl">NextDTA</h1>
+            <p class="module-tagline"><span class="i18n-ko">차량이 어떤 길을 고를지, 시뮬레이션으로 찾아냅니다.</span><span class="i18n-en">Find out which roads traffic will take, by simulation.</span></p>
+            <p class="i18n-ko">NextDTA는 동적 통행 배정(Dynamic Traffic Assignment) 모듈입니다. 기점과 종점 사이에 경로가 여러 개 있을 때, 운전자들이 각 경로를 얼마나 선택할지를 시뮬레이션을 반복 실행하며 찾아냅니다. 시간에 따라 달라지는 혼잡을 반영하므로, 출퇴근 시간처럼 교통 상황이 계속 바뀌는 시간대의 경로 분포를 재현할 수 있습니다.</p>
+    <p class="i18n-en">NextDTA is the dynamic traffic assignment module. When there are several routes between an origin and a destination, it finds how many drivers take each one by running the simulation again and again. Because it follows congestion as it changes over time, it reproduces route choice in periods such as the morning peak.</p>
+        </div>
+        <div class="module-head__media">
+            <!-- 기능 설명 영상 자리. 영상이 준비되면 아래 div 에 둘 중 하나만 넣는다 (site.js 가 플레이어로 바꾼다):
+                   data-youtube="영상 ID"  또는  data-src="assets/video/파일.mp4" (data-poster 로 첫 화면 이미지) -->
+            <div class="video" data-youtube="" data-src="" data-poster="">
+                <div class="video__placeholder">
+                    <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
+                    <p><span class="i18n-ko">기능 설명 영상을 준비하고 있습니다.</span><span class="i18n-en">A walkthrough video is coming soon.</span></p>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 <section class="section section--first">
@@ -87,19 +99,6 @@
     <img src="assets/img/modules/dta-convergence.webp" alt="NextDTA: link flows on the map and the convergence chart" loading="lazy">
     <figcaption><span class="i18n-ko">부천 네트워크에서 배정을 20번 반복한 결과입니다. 지도에는 링크별 교통량을, 아래 그래프에는 반복할수록 결과가 안정되는 과정을 표시합니다.</span><span class="i18n-en">Twenty iterations on the Bucheon network: link flows on the map, and below, how the result settles from one iteration to the next.</span></figcaption>
 </figure>
-    </div>
-</section>
-<section class="section" id="video">
-    <div class="wrap">
-        <header class="section__head"><h2 class="display"><span class="i18n-ko">영상으로 보기</span><span class="i18n-en">Watch it in action</span></h2></header>
-<!-- 기능 설명 영상 자리. 영상이 준비되면 아래 div 에 둘 중 하나만 넣는다 (site.js 가 플레이어로 바꾼다):
-       data-youtube="영상 ID"  또는  data-src="assets/video/파일.mp4" (data-poster 로 첫 화면 이미지) -->
-<div class="video" data-youtube="" data-src="" data-poster="">
-    <div class="video__placeholder">
-        <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
-        <p><span class="i18n-ko">기능 설명 영상을 준비하고 있습니다.</span><span class="i18n-en">A walkthrough video is coming soon.</span></p>
-    </div>
-</div>
     </div>
 </section>
 <section class="section" id="uses">

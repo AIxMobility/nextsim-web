@@ -76,61 +76,35 @@
 
 <main id="main">
 
-<!-- ============================================================ 히어로 -->
-<section class="hero">
-    <div class="wrap hero__inner">
-        <h1 class="hero__logo"><img src="assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="640" height="180"></h1>
-        <p class="hero__tagline">
-            <span class="i18n-ko">도시 전체를 빠르게 계산하면서, 필요한 구간은 차량 한 대 단위로 정밀하게 분석합니다.</span>
-            <span class="i18n-en">The whole city, fast. The part you care about, car by car.</span>
-        </p>
-        <p class="hero__lede i18n-ko">NextSIM은 KAIST AIxMobility Lab에서 개발한 하이브리드 교통 시뮬레이터입니다. 하나의 네트워크에 미시(micro) 모형과 중시(meso) 모형을 함께 적용하며, 입력 데이터 편집부터 시뮬레이션 실행과 결과 재생까지 모든 작업을 브라우저에서 진행할 수 있습니다.</p>
-        <p class="hero__lede i18n-en">A hybrid traffic simulator from the KAIST AIxMobility Lab. It runs microscopic and mesoscopic models
-            together in one network, and you edit the inputs, run, and replay the results in the browser.</p>
-        <div class="hero__cta">
-            <a class="btn btn--accent" href="docs/installation.html">
-                <span class="i18n-ko">설치하기</span><span class="i18n-en">Install NextSIM</span>
-            </a>
-            <a class="btn btn--pill" href="docs/index.html">
-                <span class="i18n-ko">사용자 가이드</span><span class="i18n-en">Read the guide</span>
-                <span aria-hidden="true">→</span>
-            </a>
+<!-- ============================================================ 히어로: 왼쪽 소개, 오른쪽 홍보 영상 -->
+<section class="hero hero--split">
+    <div class="wrap hero__grid">
+        <div class="hero__copy">
+            <h1 class="hero__logo"><img src="assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="400" height="112"></h1>
+            <p class="hero__tagline">
+                <span class="i18n-ko">도시 전체를 빠르게 계산하면서, 필요한 구간은 차량 한 대 단위로 정밀하게 분석합니다.</span>
+                <span class="i18n-en">The whole city, fast. The part you care about, car by car.</span>
+            </p>
+            <p class="hero__lede i18n-ko">NextSIM은 KAIST AIxMobility Lab에서 개발한 하이브리드 교통 시뮬레이터입니다. 하나의 네트워크에 미시(micro) 모형과 중시(meso) 모형을 함께 적용하며, 입력 데이터 편집부터 시뮬레이션 실행과 결과 재생까지 모든 작업을 브라우저에서 진행할 수 있습니다.</p>
+            <p class="hero__lede i18n-en">A hybrid traffic simulator from the KAIST AIxMobility Lab. It runs microscopic and mesoscopic models
+                together in one network, and you edit the inputs, run, and replay the results in the browser.</p>
+            <div class="hero__cta">
+                <a class="btn btn--accent" href="docs/installation.html">
+                    <span class="i18n-ko">설치하기</span><span class="i18n-en">Install NextSIM</span>
+                </a>
+                <a class="btn btn--pill" href="docs/index.html">
+                    <span class="i18n-ko">사용자 가이드</span><span class="i18n-en">Read the guide</span>
+                    <span aria-hidden="true">→</span>
+                </a>
+            </div>
         </div>
-    </div>
-
-    <!-- 가상 도시 그림. 범례의 숫자는 site.js 의 시뮬레이션 값이다 (data-hud) -->
-    <figure class="wrap hero__figure">
-        <canvas class="hero__canvas" id="heroCanvas" role="img"
-                aria-label="A made-up city: meso links coloured by congestion around a micro zone with individual vehicles stopping at signals"></canvas>
-        <figcaption class="hero__caption">
-            <p class="i18n-ko">위 그림은 가상의 도시입니다. 가운데 구역은 차량 단위(micro)로 계산하고, 바깥 구역은 셀 단위(meso)로 계산합니다.</p>
-            <p class="i18n-en">A made-up city. The centre is simulated vehicle by vehicle (micro), the rest cell by cell (meso).</p>
-            <ul class="legend">
-                <li><span class="ramp ramp--sm" aria-hidden="true"></span><span class="i18n-ko">meso 혼잡도: 원활 → 정체</span><span class="i18n-en">Meso congestion: free → jammed</span></li>
-                <li><span class="i18n-ko">micro 차량: 주행 </span><span class="i18n-en">Micro vehicles: </span><b data-hud="moving">0</b><span class="i18n-ko">대, 정지 </span><span class="i18n-en"> moving, </span><b data-hud="stopped">0</b><span class="i18n-ko">대</span><span class="i18n-en"> stopped</span></li>
-                <li><span class="i18n-ko">신호:</span><span class="i18n-en">Signal:</span>
-                    <span data-hud="phase-ko" class="i18n-ko">동서 방향 녹색</span><span data-hud="phase-en" class="i18n-en">East–west green</span>,
-                    <b data-hud="remain">07</b><span class="i18n-ko">초 남음</span><span class="i18n-en"> s left</span></li>
-            </ul>
-        </figcaption>
-    </figure>
-</section>
-
-<!-- ============================================================ 홍보 영상 -->
-<section class="section" id="video">
-    <div class="wrap">
-        <header class="section__head">
-            <h2 class="display"><span class="i18n-ko">영상으로 보는 NextSIM</span><span class="i18n-en">NextSIM in motion</span></h2>
-            <p class="i18n-ko">도로망을 불러오고 신호와 수요를 편집한 뒤, 도시 교통을 시뮬레이션하고 결과를 분석하는 과정을 영상으로 확인해 보세요.</p>
-            <p class="i18n-en">Watch NextSIM import a road network, edit signals and demand, simulate city traffic and analyse the result.</p>
-        </header>
-        <!-- 홍보 영상 자리. 영상이 준비되면 아래 div 에 둘 중 하나만 넣는다 (site.js 가 플레이어로 바꾼다):
-               data-youtube="영상 ID"                 예: data-youtube="dQw4w9WgXcQ"  (youtube-nocookie.com 으로 넣는다)
-               data-src="assets/video/nextsim.mp4"   파일을 직접 올릴 때 (data-poster 로 첫 화면 이미지를 줄 수 있다) -->
-        <div class="video" data-youtube="" data-src="assets/video/nextsim.mp4" data-poster="assets/video/nextsim-poster.webp">
-            <div class="video__placeholder">
-                <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
-                <p><span class="i18n-ko">소개 영상을 준비하고 있습니다.</span><span class="i18n-en">The introduction video is coming soon.</span></p>
+        <div class="hero__media">
+            <!-- 홍보 영상. YouTube 로 옮기면 data-src 를 비우고 data-youtube="영상 ID" 를 넣는다 (site.js 가 플레이어로 바꾼다) -->
+            <div class="video" data-youtube="" data-src="assets/video/nextsim.mp4" data-poster="assets/video/nextsim-poster.webp">
+                <div class="video__placeholder">
+                    <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
+                    <p><span class="i18n-ko">NextSIM 소개 영상</span><span class="i18n-en">NextSIM introduction video</span></p>
+                </div>
             </div>
         </div>
     </div>

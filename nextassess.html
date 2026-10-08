@@ -73,12 +73,24 @@
 
 <main id="main">
 <header class="page-head module-head">
-    <div class="wrap">
-        <p class="crumb"><a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a></p>
-        <h1 class="display display--xl">NextAssess</h1>
-        <p class="module-tagline"><span class="i18n-ko">시뮬레이션 결과를 영향평가 지표로 바꿔 보여 줍니다.</span><span class="i18n-en">Turn simulation results into impact indicators.</span></p>
-        <p class="i18n-ko">NextAssess는 NextSIM 시뮬레이션 결과로 교통 영향을 평가하는 모듈입니다. 대중교통 서비스, 도로 서비스 수준(LoS), 도로 안전성을 같은 결과에서 함께 계산하고, 지도와 차트, 표로 보여 줍니다. 평가할 시나리오와 분석 기간을 고르면 나머지 계산은 NextAssess가 처리합니다.</p>
-<p class="i18n-en">NextAssess evaluates traffic impacts from a NextSIM simulation. It computes transit service, road level of service (LoS) and road safety from the same result and shows them on the map, in charts and in tables. Pick the scenario and the analysis period, and NextAssess does the rest.</p>
+    <div class="wrap module-head__grid">
+        <div class="module-head__copy">
+            <p class="crumb"><a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a></p>
+            <h1 class="display display--xl">NextAssess</h1>
+            <p class="module-tagline"><span class="i18n-ko">시뮬레이션 결과를 영향평가 지표로 바꿔 보여 줍니다.</span><span class="i18n-en">Turn simulation results into impact indicators.</span></p>
+            <p class="i18n-ko">NextAssess는 NextSIM 시뮬레이션 결과로 교통 영향을 평가하는 모듈입니다. 대중교통 서비스, 도로 서비스 수준(LoS), 도로 안전성을 같은 결과에서 함께 계산하고, 지도와 차트, 표로 보여 줍니다. 평가할 시나리오와 분석 기간을 고르면 나머지 계산은 NextAssess가 처리합니다.</p>
+    <p class="i18n-en">NextAssess evaluates traffic impacts from a NextSIM simulation. It computes transit service, road level of service (LoS) and road safety from the same result and shows them on the map, in charts and in tables. Pick the scenario and the analysis period, and NextAssess does the rest.</p>
+        </div>
+        <div class="module-head__media">
+            <!-- 기능 설명 영상 자리. 영상이 준비되면 아래 div 에 둘 중 하나만 넣는다 (site.js 가 플레이어로 바꾼다):
+                   data-youtube="영상 ID"  또는  data-src="assets/video/파일.mp4" (data-poster 로 첫 화면 이미지) -->
+            <div class="video" data-youtube="" data-src="" data-poster="">
+                <div class="video__placeholder">
+                    <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
+                    <p><span class="i18n-ko">기능 설명 영상을 준비하고 있습니다.</span><span class="i18n-en">A walkthrough video is coming soon.</span></p>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
 <section class="section section--first">
@@ -87,19 +99,6 @@
     <img src="assets/img/modules/impact-los.webp" alt="NextAssess: road level of service on the map" loading="lazy">
     <figcaption><span class="i18n-ko">도로 서비스 수준 결과입니다. 교차로와 도로마다 A~F 등급을 지도에 표시하고, 시설 유형별 등급과 시간대별 변화를 함께 보여 줍니다.</span><span class="i18n-en">Road level of service: an A–F grade for every junction and road on the map, with grades by facility type and over time.</span></figcaption>
 </figure>
-    </div>
-</section>
-<section class="section" id="video">
-    <div class="wrap">
-        <header class="section__head"><h2 class="display"><span class="i18n-ko">영상으로 보기</span><span class="i18n-en">Watch it in action</span></h2></header>
-<!-- 기능 설명 영상 자리. 영상이 준비되면 아래 div 에 둘 중 하나만 넣는다 (site.js 가 플레이어로 바꾼다):
-       data-youtube="영상 ID"  또는  data-src="assets/video/파일.mp4" (data-poster 로 첫 화면 이미지) -->
-<div class="video" data-youtube="" data-src="" data-poster="">
-    <div class="video__placeholder">
-        <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
-        <p><span class="i18n-ko">기능 설명 영상을 준비하고 있습니다.</span><span class="i18n-en">A walkthrough video is coming soon.</span></p>
-    </div>
-</div>
     </div>
 </section>
 <section class="section" id="assessments">

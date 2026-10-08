@@ -266,31 +266,18 @@ p { margin: 0; }
 }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 
-/* 가상 도시 그림 + 캡션 */
-.hero__figure { margin: 72px auto 0; }
-.hero__canvas {
-    display: block;
-    width: 100%;
-    aspect-ratio: 2.15 / 1;
-    border-radius: 12px;
-    background: #070914;
-    outline: 1px solid var(--edge);
-    outline-offset: -1px;
+/* 홈 히어로: 왼쪽 소개 · 오른쪽 홍보 영상 */
+.hero--split { padding-block: 72px 8px; }
+.hero__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; }
+.hero--split .hero__logo { margin: 0 0 28px; }
+.hero--split .hero__logo img { width: clamp(240px, 28vw, 400px); transform: translateX(-2.5%); }  /* 로고 그림 안쪽 여백만큼 당겨 글자와 왼쪽 선을 맞춘다 */
+.hero--split .hero__tagline { font-size: clamp(19px, 1.8vw, 23px); }
+.hero--split .hero__lede { max-width: none; margin: 0 0 32px; font-size: 16px; }
+.hero--split .hero__cta { justify-content: flex-start; }
+@media (max-width: 960px) {
+    .hero--split { padding-top: 56px; }
+    .hero__grid { grid-template-columns: minmax(0, 1fr); gap: 40px; }
 }
-.hero__caption {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 8px 32px;
-    margin-top: 14px;
-    color: var(--fog);
-    font-size: 14px;
-}
-.legend { display: flex; flex-wrap: wrap; gap: 6px 24px; margin: 0; padding: 0; list-style: none; }
-.legend li { display: inline-block; }
-.legend .ramp--sm { vertical-align: middle; margin: -2px 8px 0 0; }
-.legend b { color: var(--frost); font-weight: 600; font-variant-numeric: tabular-nums; }
-@media (max-width: 860px) { .hero__canvas { aspect-ratio: 4 / 3; } }
 
 /* ---------- 섹션 ---------- */
 .section { padding-block: var(--section) 0; }
@@ -595,3 +582,9 @@ p { margin: 0; }
 .tags li { padding: 6px 14px; border: 1px solid var(--edge-strong); border-radius: 999px; color: var(--mist); font-size: 14px; }
 .split--gap { margin-top: 40px; }
 .split .tool__media img { border-radius: 10px; }
+
+/* 모듈 페이지 머리: 왼쪽 설명 · 오른쪽 기능 설명 영상 */
+.module-head__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; }
+.module-head .module-head__copy p { max-width: none; }
+.module-head .module-head__copy p.i18n-ko, .module-head .module-head__copy p.i18n-en { font-size: 16px; }
+@media (max-width: 960px) { .module-head__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; } }

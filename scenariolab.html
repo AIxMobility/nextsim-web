@@ -73,16 +73,29 @@
 
 <main id="main">
 <header class="page-head module-head">
-    <div class="wrap">
-        <p class="crumb"><a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a></p>
-        <h1 class="display display--xl">ScenarioLab</h1>
-        <p class="module-tagline"><span class="i18n-ko">새 교통 기능을 코딩 없이 설정하고 실험합니다.</span><span class="i18n-en">Configure and test traffic features without writing code.</span></p>
-        <p class="i18n-ko">ScenarioLab은 V2X, 주행 안내(Guidance), 제어권 전환(TOR) 같은 교통·차량 기능을 직접 설정하고 시험해 보는 시나리오 실험 환경입니다. NextSIM이 제공하는 기능을 고르고 파라미터만 조정하면, 새 기능을 직접 코딩하지 않아도 시뮬레이션으로 효과를 확인할 수 있습니다.</p>
-<p class="i18n-en">ScenarioLab is a scenario lab for traffic and vehicle features such as V2X, guidance and take-over requests (TOR). Pick a feature NextSIM provides, adjust its parameters, and see its effect in simulation without writing code.</p>
-        <p class="i18n-ko note">ScenarioLab은 현재 개발하고 있는 모듈입니다.</p>
-<p class="i18n-en note">ScenarioLab is under development.</p>
+    <div class="wrap module-head__grid">
+        <div class="module-head__copy">
+            <p class="crumb"><a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a></p>
+            <h1 class="display display--xl">ScenarioLab</h1>
+            <p class="module-tagline"><span class="i18n-ko">새 교통 기능을 코딩 없이 설정하고 실험합니다.</span><span class="i18n-en">Configure and test traffic features without writing code.</span></p>
+            <p class="i18n-ko">ScenarioLab은 V2X, 주행 안내(Guidance), 제어권 전환(TOR) 같은 교통·차량 기능을 직접 설정하고 시험해 보는 시나리오 실험 환경입니다. NextSIM이 제공하는 기능을 고르고 파라미터만 조정하면, 새 기능을 직접 코딩하지 않아도 시뮬레이션으로 효과를 확인할 수 있습니다.</p>
+    <p class="i18n-en">ScenarioLab is a scenario lab for traffic and vehicle features such as V2X, guidance and take-over requests (TOR). Pick a feature NextSIM provides, adjust its parameters, and see its effect in simulation without writing code.</p>
+            <p class="i18n-ko note">ScenarioLab은 현재 개발하고 있는 모듈입니다.</p>
+    <p class="i18n-en note">ScenarioLab is under development.</p>
+        </div>
+        <div class="module-head__media">
+            <!-- 기능 설명 영상 자리. 영상이 준비되면 아래 div 에 둘 중 하나만 넣는다 (site.js 가 플레이어로 바꾼다):
+                   data-youtube="영상 ID"  또는  data-src="assets/video/파일.mp4" (data-poster 로 첫 화면 이미지) -->
+            <div class="video" data-youtube="" data-src="" data-poster="">
+                <div class="video__placeholder">
+                    <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
+                    <p><span class="i18n-ko">기능 설명 영상을 준비하고 있습니다.</span><span class="i18n-en">A walkthrough video is coming soon.</span></p>
+                </div>
+            </div>
+        </div>
     </div>
-</header><section class="section" id="flow">
+</header>
+<section class="section" id="flow">
     <div class="wrap">
         <header class="section__head">
             <h2 class="display"><span class="i18n-ko">실험 과정이 하나의 화면에서 이어집니다</span><span class="i18n-en">One screen, from setup to comparison</span></h2>
@@ -97,19 +110,6 @@
     <li><b>5</b><strong><span class="i18n-ko">결과 분석</span><span class="i18n-en">Analyse results</span></strong><span class="i18n-ko flow__desc">기능이 교통 흐름과 안전에 준 영향을 살펴봅니다.</span><span class="i18n-en flow__desc">Look at the effect on traffic flow and safety.</span></li>
     <li><b>6</b><strong><span class="i18n-ko">시나리오 비교</span><span class="i18n-en">Compare scenarios</span></strong><span class="i18n-ko flow__desc">값을 바꿔 실행한 시나리오의 결과를 나란히 비교합니다.</span><span class="i18n-en flow__desc">Compare the runs side by side.</span></li>
 </ol>
-    </div>
-</section>
-<section class="section" id="video">
-    <div class="wrap">
-        <header class="section__head"><h2 class="display"><span class="i18n-ko">영상으로 보기</span><span class="i18n-en">Watch it in action</span></h2></header>
-<!-- 기능 설명 영상 자리. 영상이 준비되면 아래 div 에 둘 중 하나만 넣는다 (site.js 가 플레이어로 바꾼다):
-       data-youtube="영상 ID"  또는  data-src="assets/video/파일.mp4" (data-poster 로 첫 화면 이미지) -->
-<div class="video" data-youtube="" data-src="" data-poster="">
-    <div class="video__placeholder">
-        <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
-        <p><span class="i18n-ko">기능 설명 영상을 준비하고 있습니다.</span><span class="i18n-en">A walkthrough video is coming soon.</span></p>
-    </div>
-</div>
     </div>
 </section>
 
