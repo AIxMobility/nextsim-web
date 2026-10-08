@@ -588,3 +588,18 @@ p { margin: 0; }
 .module-head .module-head__copy p { max-width: none; }
 .module-head .module-head__copy p.i18n-ko, .module-head .module-head__copy p.i18n-en { font-size: 16px; }
 @media (max-width: 960px) { .module-head__grid { grid-template-columns: minmax(0, 1fr); gap: 32px; } }
+
+/* ---------- 상단 배경: 실제 도로망(NextSIM toronto 네트워크)을 어둡게 덮고 아래로 갈수록 바탕색으로 사라지게 ---------- */
+body { position: relative; isolation: isolate; }
+.page-bg {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: min(1200px, 130vh);
+    z-index: -1;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, rgba(5, 6, 15, .62) 0%, rgba(5, 6, 15, .78) 40%, rgba(5, 6, 15, .94) 72%, var(--canvas) 100%),
+        url("img/network-bg.webp") center top / cover no-repeat;
+}
+@media (max-width: 700px) { .page-bg { height: 900px; background-position: center top, 40% top; } }
+.footer__credit { margin-top: 14px; font-size: 12px; color: var(--fog); opacity: .8; }
