@@ -374,6 +374,7 @@
             video.controls = true;
             video.preload = 'metadata';
             video.playsInline = true;
+            video.setAttribute('aria-label', 'NextSIM');
             if (box.dataset.poster) video.poster = box.dataset.poster;
             box.replaceChildren(video);
         }
