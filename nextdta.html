@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NextDTA — NextSIM</title>
+<meta name="description" content="NextDTA, the dynamic traffic assignment module of NextSIM.">
+<meta name="theme-color" content="#05060f">
+<meta property="og:title" content="NextDTA — NextSIM">
+<meta property="og:description" content="NextDTA는 시뮬레이션을 반복해 기점과 종점 사이의 경로 선택 비율을 찾아내는 NextSIM의 동적 통행 배정 모듈입니다.">
+<meta property="og:image" content="assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+<script>
+    /* 언어를 body 파싱 전에 정해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       사용자 가이드(docs/)와 같은 키를 써서 사이트 전체에서 선택이 유지된다.
+       우선순위: ?lang= → 저장된 선택 → 브라우저 언어 → 한국어 */
+    (function () {
+        var root = document.documentElement;
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') lang = q;
+            if (!lang) {
+                var saved = window.localStorage.getItem('nextsim-doc-lang');
+                if (saved === 'en' || saved === 'ko') lang = saved;
+            }
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+        if (!lang) lang = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        root.setAttribute('data-lang', lang);
+        root.setAttribute('lang', lang);
+    })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span class="i18n-ko">본문으로 건너뛰기</span><span class="i18n-en">Skip to content</span></a>
+
+<!-- ============================================================ 헤더 (index · features · research 가 같은 헤더를 쓴다) -->
+<header class="topbar" id="top">
+    <div class="topbar__inner wrap">
+        <a class="brand" href="index.html">
+            <img src="assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="107" height="30">
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">
+            <span class="i18n-ko">메뉴</span><span class="i18n-en">Menu</span>
+        </button>
+        <nav class="sitenav" id="siteNav" aria-label="Site">
+            <a href="modules.html" aria-current="page"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a>
+            <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+            <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+            <a href="index.html#start"><span class="i18n-ko">시작하기</span><span class="i18n-en">Get started</span></a>
+            <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+            <div class="sitenav__end">
+                <div class="lang-switch" role="group" aria-label="Language / 언어">
+                    <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+                    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+                <a class="btn btn--accent btn--sm" href="docs/installation.html"><span class="i18n-ko">설치하기</span><span class="i18n-en">Install</span></a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+<header class="page-head module-head">
+    <div class="wrap">
+        <p class="crumb"><a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a></p>
+        <h1 class="display display--xl">NextDTA</h1>
+        <p class="module-tagline"><span class="i18n-ko">차량이 어떤 길을 고를지, 시뮬레이션으로 찾아냅니다.</span><span class="i18n-en">Find out which roads traffic will take, by simulation.</span></p>
+        <p class="i18n-ko">NextDTA는 동적 통행 배정(Dynamic Traffic Assignment) 모듈입니다. 기점과 종점 사이에 경로가 여러 개 있을 때, 운전자들이 각 경로를 얼마나 선택할지를 시뮬레이션을 반복 실행하며 찾아냅니다. 시간에 따라 달라지는 혼잡을 반영하므로, 출퇴근 시간처럼 교통 상황이 계속 바뀌는 시간대의 경로 분포를 재현할 수 있습니다.</p>
+<p class="i18n-en">NextDTA is the dynamic traffic assignment module. When there are several routes between an origin and a destination, it finds how many drivers take each one by running the simulation again and again. Because it follows congestion as it changes over time, it reproduces route choice in periods such as the morning peak.</p>
+    </div>
+</header>
+<section class="section section--first">
+    <div class="wrap">
+<figure class="tool__media module-shot">
+    <img src="assets/img/modules/dta-convergence.webp" alt="NextDTA: link flows on the map and the convergence chart" loading="lazy">
+    <figcaption><span class="i18n-ko">부천 네트워크에서 배정을 20번 반복한 결과입니다. 지도에는 링크별 교통량을, 아래 그래프에는 반복할수록 결과가 안정되는 과정을 표시합니다.</span><span class="i18n-en">Twenty iterations on the Bucheon network: link flows on the map, and below, how the result settles from one iteration to the next.</span></figcaption>
+</figure>
+    </div>
+</section>
+<section class="section" id="video">
+    <div class="wrap">
+        <header class="section__head"><h2 class="display"><span class="i18n-ko">영상으로 보기</span><span class="i18n-en">Watch it in action</span></h2></header>
+<!-- 기능 설명 영상 자리. 영상이 준비되면 아래 div 에 둘 중 하나만 넣는다 (site.js 가 플레이어로 바꾼다):
+       data-youtube="영상 ID"  또는  data-src="assets/video/파일.mp4" (data-poster 로 첫 화면 이미지) -->
+<div class="video" data-youtube="" data-src="" data-poster="">
+    <div class="video__placeholder">
+        <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
+        <p><span class="i18n-ko">기능 설명 영상을 준비하고 있습니다.</span><span class="i18n-en">A walkthrough video is coming soon.</span></p>
+    </div>
+</div>
+    </div>
+</section>
+<section class="section" id="uses">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">이런 일을 할 수 있습니다</span><span class="i18n-en">What you can do with it</span></h2>
+        </header>
+<div class="features">
+    <article class="feature">
+        <h3><span class="i18n-ko">도로가 바뀌면 경로도 바뀝니다</span><span class="i18n-en">See traffic move when roads change</span></h3>
+        <p class="i18n-ko">도로를 새로 만들거나 차로를 줄였을 때, 차량이 어느 경로로 옮겨 가는지 확인할 수 있습니다. 개통 전후나 공사 기간의 우회 교통을 미리 살펴보는 데 활용할 수 있습니다.</p>
+<p class="i18n-en">Add a road or remove a lane and see which routes the traffic moves to, for example before a new road opens or during road works.</p>
+    </article>
+    <article class="feature">
+        <h3><span class="i18n-ko">시간대별 경로 선택</span><span class="i18n-en">Route choice by time of day</span></h3>
+        <p class="i18n-ko">5분, 15분처럼 배정 간격을 정하면 시간대마다 다른 경로 선택 비율을 구합니다. 혼잡이 커지는 시간대에 우회 경로가 얼마나 늘어나는지 확인할 수 있습니다.</p>
+<p class="i18n-en">Set an assignment interval such as 5 or 15 minutes to get route shares for each period, and see how detours grow as congestion builds.</p>
+    </article>
+    <article class="feature">
+        <h3><span class="i18n-ko">기점·종점별 경로 비교</span><span class="i18n-en">Compare routes for each OD pair</span></h3>
+        <p class="i18n-ko">기점과 종점 쌍마다 실제로 사용된 경로와 경로별 선택 비율, 통행시간을 지도와 표로 비교할 수 있습니다.</p>
+<p class="i18n-en">For each origin–destination pair, compare the routes in use, their shares and travel times on the map and in a table.</p>
+    </article>
+    <article class="feature">
+        <h3><span class="i18n-ko">NextSIM 시나리오에 바로 적용</span><span class="i18n-en">Feed the result back into NextSIM</span></h3>
+        <p class="i18n-ko">배정으로 얻은 경로 선택 비율을 NextSIM 시나리오에 적용하면, 이후 시뮬레이션이 그 비율에 따라 차량을 경로에 배분합니다.</p>
+<p class="i18n-en">Apply the resulting route shares to a NextSIM scenario, and later simulations route vehicles by those shares.</p>
+    </article>
+</div>
+    </div>
+</section>
+<section class="section" id="screens">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">화면 둘러보기</span><span class="i18n-en">A look at the screens</span></h2>
+        </header>
+<figure class="tool__media">
+    <img src="assets/img/modules/dta-routes.webp" alt="NextDTA: routes of one OD pair on the map" loading="lazy">
+    <figcaption><span class="i18n-ko">기점·종점 쌍을 고르면 사용된 경로가 지도에 색으로 표시되고, 경로별 선택 비율과 통행시간을 함께 볼 수 있습니다.</span><span class="i18n-en">Pick an OD pair to see its routes coloured on the map, with each route’s share and travel time.</span></figcaption>
+</figure>
+<div class="split split--gap">
+<figure class="tool__media">
+    <img src="assets/img/modules/dta-setup.webp" alt="NextDTA setup dialog" loading="lazy">
+    <figcaption><span class="i18n-ko">DTA 실행 설정 창입니다.</span><span class="i18n-en">The DTA setup dialog.</span></figcaption>
+</figure>
+<div>
+<p class="i18n-ko">실행하기 전에 사용할 OD 행렬과 시뮬레이션 시간대, 경로 선택 방식, 반복 횟수와 수렴 기준을 한 화면에서 정합니다.</p>
+<p class="i18n-en">Before a run, one dialog sets the OD matrix, the simulation window, how routes are chosen, and the iteration and convergence settings.</p>
+<p class="i18n-ko">반복할 때마다 새로운 경로를 찾아 후보에 추가하도록 설정할 수 있어, 처음부터 경로 목록을 따로 준비하지 않아도 됩니다.</p>
+<p class="i18n-en">It can look for new routes in every iteration, so you do not have to prepare a route list beforehand.</p>
+</div>
+</div>
+    </div>
+</section>
+<section class="section section--last" id="tips">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">알아 두면 좋은 점</span><span class="i18n-en">Good to know</span></h2>
+        </header>
+<ul class="list list--tips i18n-ko">
+    <li>반복할 때마다 결과가 저장되므로, 상단 슬라이더로 원하는 반복 회차의 지도와 경로를 다시 볼 수 있습니다.</li>
+    <li>지도의 링크 색과 두께로 교통량, 평균 속도, 통행시간, 지연 중 원하는 지표를 표시할 수 있습니다.</li>
+    <li>경로 비용은 통행시간이나 거리 중에서 고를 수 있고, 가장 빠른 경로로 수요를 모으는 방식과 여러 경로에 수요를 나누는 방식 중 하나를 선택할 수 있습니다.</li>
+    <li>실행 중에도 반복 회차와 수렴 지표를 확인할 수 있고, 필요하면 중간에 멈출 수 있습니다.</li>
+    <li>NextDTA는 Windows 설치 파일과 Linux·WSL 배포판에 포함되어 있어, 설치하면 바로 사용할 수 있습니다.</li>
+</ul>
+<ul class="list list--tips i18n-en">
+    <li>Every iteration is saved, so the slider at the top brings back the map and routes of any iteration.</li>
+    <li>Links can be coloured and sized by volume, mean speed, travel time or delay.</li>
+    <li>Route cost can be travel time or distance, and demand can go to the fastest route or be spread over several similar routes.</li>
+    <li>Follow the iterations and the convergence measure while it runs, and stop it at any time.</li>
+    <li>NextDTA is included in the Windows installer and the Linux and WSL package.</li>
+</ul>
+<p class="more"><a class="textlink" href="nextimpact.html">NextImpact →</a>
+    <a class="textlink" href="nextsignal.html">NextSignal →</a>
+    <a class="textlink" href="nextdrt.html">NextDRT →</a>
+    <a class="textlink" href="scenariolab.html">ScenarioLab →</a></p>
+    </div>
+</section>
+</main>
+
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer__row">
+            <span>NextSIM · KAIST AIxMobility Lab</span>
+            <nav aria-label="Footer">
+                <a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a>
+                <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+                <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+                <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+                <a href="docs/installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a>
+                <a href="https://github.com/AIxMobility/nextsim-web/releases/latest" target="_blank" rel="noopener"><span class="i18n-ko">다운로드</span><span class="i18n-en">Downloads</span></a>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

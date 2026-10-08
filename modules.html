@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NextSIM — Modules</title>
+<meta name="description" content="NextSIM modules: NextDTA, NextImpact, NextSignal, NextDRT and ScenarioLab.">
+<meta name="theme-color" content="#05060f">
+<meta property="og:title" content="NextSIM — Modules">
+<meta property="og:description" content="NextSIM의 모듈: NextDTA, NextImpact, NextSignal, NextDRT, ScenarioLab">
+<meta property="og:image" content="assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+<script>
+    /* 언어를 body 파싱 전에 정해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       사용자 가이드(docs/)와 같은 키를 써서 사이트 전체에서 선택이 유지된다.
+       우선순위: ?lang= → 저장된 선택 → 브라우저 언어 → 한국어 */
+    (function () {
+        var root = document.documentElement;
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') lang = q;
+            if (!lang) {
+                var saved = window.localStorage.getItem('nextsim-doc-lang');
+                if (saved === 'en' || saved === 'ko') lang = saved;
+            }
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+        if (!lang) lang = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        root.setAttribute('data-lang', lang);
+        root.setAttribute('lang', lang);
+    })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span class="i18n-ko">본문으로 건너뛰기</span><span class="i18n-en">Skip to content</span></a>
+
+<!-- ============================================================ 헤더 (index · features · research 가 같은 헤더를 쓴다) -->
+<header class="topbar" id="top">
+    <div class="topbar__inner wrap">
+        <a class="brand" href="index.html">
+            <img src="assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="107" height="30">
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">
+            <span class="i18n-ko">메뉴</span><span class="i18n-en">Menu</span>
+        </button>
+        <nav class="sitenav" id="siteNav" aria-label="Site">
+            <a href="modules.html" aria-current="page"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a>
+            <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+            <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+            <a href="index.html#start"><span class="i18n-ko">시작하기</span><span class="i18n-en">Get started</span></a>
+            <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+            <div class="sitenav__end">
+                <div class="lang-switch" role="group" aria-label="Language / 언어">
+                    <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+                    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+                <a class="btn btn--accent btn--sm" href="docs/installation.html"><span class="i18n-ko">설치하기</span><span class="i18n-en">Install</span></a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+<header class="page-head">
+    <div class="wrap">
+        <h1 class="display display--xl"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></h1>
+        <p class="i18n-ko">NextSIM은 시뮬레이션 엔진과 편집·실행 화면을 중심으로, 목적에 맞게 골라 쓰는 모듈을 함께 제공합니다. 각 모듈은 NextSIM 시뮬레이션과 같은 네트워크·시나리오를 사용합니다.</p>
+<p class="i18n-en">Around the simulation engine and its editing and running screens, NextSIM offers modules for specific jobs. Every module works on the same networks and scenarios as the simulation.</p>
+    </div>
+</header>
+<section class="section section--first section--last">
+    <div class="wrap">
+<div class="rows">
+    <section class="row">
+        <h3 class="row__title"><a href="nextdta.html">NextDTA</a></h3>
+        <div class="row__body">
+            <p class="module-tagline module-tagline--sm"><span class="i18n-ko">차량이 어떤 길을 고를지, 시뮬레이션으로 찾아냅니다.</span><span class="i18n-en">Find out which roads traffic will take, by simulation.</span></p>
+            <p class="i18n-ko">기점과 종점 사이의 경로 선택 비율을 시뮬레이션을 반복하며 구하는 동적 통행 배정 모듈입니다.</p>
+<p class="i18n-en">Dynamic traffic assignment: route shares between origins and destinations, found by repeated simulation.</p>
+            <a class="textlink" href="nextdta.html"><span class="i18n-ko">자세히 보기</span><span class="i18n-en">Learn more</span> →</a>
+        </div>
+    </section>
+    <section class="row">
+        <h3 class="row__title"><a href="nextimpact.html">NextImpact</a></h3>
+        <div class="row__body">
+            <p class="module-tagline module-tagline--sm"><span class="i18n-ko">시뮬레이션 결과를 영향평가 지표로 바꿔 보여 줍니다.</span><span class="i18n-en">Turn simulation results into impact indicators.</span></p>
+            <p class="i18n-ko">대중교통 서비스, 도로 서비스 수준(LoS), 도로 안전성을 시뮬레이션 결과로 평가하고 지도와 표로 보여 줍니다.</p>
+<p class="i18n-en">Assesses transit service, road level of service and road safety from a simulation and shows them on the map and in tables.</p>
+            <a class="textlink" href="nextimpact.html"><span class="i18n-ko">자세히 보기</span><span class="i18n-en">Learn more</span> →</a>
+        </div>
+    </section>
+    <section class="row">
+        <h3 class="row__title"><a href="nextsignal.html">NextSignal</a></h3>
+        <div class="row__body">
+            <p class="module-tagline module-tagline--sm"><span class="i18n-ko">교차로 신호를 평가하고 최적화합니다.</span><span class="i18n-en">Evaluate and optimise junction signals.</span></p>
+            <p class="i18n-ko note">모듈 소개를 준비하고 있습니다.</p>
+<p class="i18n-en note">Introduction coming soon.</p>
+            <a class="textlink" href="nextsignal.html"><span class="i18n-ko">자세히 보기</span><span class="i18n-en">Learn more</span> →</a>
+        </div>
+    </section>
+    <section class="row">
+        <h3 class="row__title"><a href="nextdrt.html">NextDRT</a></h3>
+        <div class="row__body">
+            <p class="module-tagline module-tagline--sm"><span class="i18n-ko">수요응답형 교통(DRT) 운영을 설계하고 평가합니다.</span><span class="i18n-en">Design and evaluate demand-responsive transit.</span></p>
+            <p class="i18n-ko note">모듈 소개를 준비하고 있습니다.</p>
+<p class="i18n-en note">Introduction coming soon.</p>
+            <a class="textlink" href="nextdrt.html"><span class="i18n-ko">자세히 보기</span><span class="i18n-en">Learn more</span> →</a>
+        </div>
+    </section>
+    <section class="row">
+        <h3 class="row__title"><a href="scenariolab.html">ScenarioLab</a></h3>
+        <div class="row__body">
+            <p class="module-tagline module-tagline--sm"><span class="i18n-ko">새 교통 기능을 코딩 없이 설정하고 실험합니다.</span><span class="i18n-en">Configure and test traffic features without writing code.</span></p>
+            <p class="i18n-ko">V2X, 주행 안내(Guidance), 제어권 전환(TOR) 같은 기능을 파라미터만 바꿔 가며 실험하고 비교하는 시나리오 실험 환경입니다.</p>
+<p class="i18n-en">A scenario lab for trying features such as V2X, guidance and take-over requests by changing their parameters and comparing the runs.</p>
+            <a class="textlink" href="scenariolab.html"><span class="i18n-ko">자세히 보기</span><span class="i18n-en">Learn more</span> →</a>
+        </div>
+    </section>
+</div>
+    </div>
+</section>
+</main>
+
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer__row">
+            <span>NextSIM · KAIST AIxMobility Lab</span>
+            <nav aria-label="Footer">
+                <a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a>
+                <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+                <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+                <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+                <a href="docs/installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a>
+                <a href="https://github.com/AIxMobility/nextsim-web/releases/latest" target="_blank" rel="noopener"><span class="i18n-ko">다운로드</span><span class="i18n-en">Downloads</span></a>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

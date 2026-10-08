@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NextImpact — NextSIM</title>
+<meta name="description" content="NextImpact, the impact analysis module of NextSIM: transit, road LoS and safety.">
+<meta name="theme-color" content="#05060f">
+<meta property="og:title" content="NextImpact — NextSIM">
+<meta property="og:description" content="NextImpact는 NextSIM 시뮬레이션 결과로 대중교통, 도로 서비스 수준, 도로 안전성을 평가하는 영향평가 모듈입니다.">
+<meta property="og:image" content="assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+<script>
+    /* 언어를 body 파싱 전에 정해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       사용자 가이드(docs/)와 같은 키를 써서 사이트 전체에서 선택이 유지된다.
+       우선순위: ?lang= → 저장된 선택 → 브라우저 언어 → 한국어 */
+    (function () {
+        var root = document.documentElement;
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') lang = q;
+            if (!lang) {
+                var saved = window.localStorage.getItem('nextsim-doc-lang');
+                if (saved === 'en' || saved === 'ko') lang = saved;
+            }
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+        if (!lang) lang = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        root.setAttribute('data-lang', lang);
+        root.setAttribute('lang', lang);
+    })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span class="i18n-ko">본문으로 건너뛰기</span><span class="i18n-en">Skip to content</span></a>
+
+<!-- ============================================================ 헤더 (index · features · research 가 같은 헤더를 쓴다) -->
+<header class="topbar" id="top">
+    <div class="topbar__inner wrap">
+        <a class="brand" href="index.html">
+            <img src="assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="107" height="30">
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">
+            <span class="i18n-ko">메뉴</span><span class="i18n-en">Menu</span>
+        </button>
+        <nav class="sitenav" id="siteNav" aria-label="Site">
+            <a href="modules.html" aria-current="page"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a>
+            <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+            <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+            <a href="index.html#start"><span class="i18n-ko">시작하기</span><span class="i18n-en">Get started</span></a>
+            <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+            <div class="sitenav__end">
+                <div class="lang-switch" role="group" aria-label="Language / 언어">
+                    <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+                    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+                <a class="btn btn--accent btn--sm" href="docs/installation.html"><span class="i18n-ko">설치하기</span><span class="i18n-en">Install</span></a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+<header class="page-head module-head">
+    <div class="wrap">
+        <p class="crumb"><a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a></p>
+        <h1 class="display display--xl">NextImpact</h1>
+        <p class="module-tagline"><span class="i18n-ko">시뮬레이션 결과를 영향평가 지표로 바꿔 보여 줍니다.</span><span class="i18n-en">Turn simulation results into impact indicators.</span></p>
+        <p class="i18n-ko">NextImpact는 NextSIM 시뮬레이션 결과로 교통 영향을 평가하는 모듈입니다. 대중교통 서비스, 도로 서비스 수준(LoS), 도로 안전성을 같은 결과에서 함께 계산하고, 지도와 차트, 표로 보여 줍니다. 평가할 시나리오와 분석 기간을 고르면 나머지 계산은 NextImpact가 처리합니다.</p>
+<p class="i18n-en">NextImpact assesses traffic impacts from a NextSIM simulation. It computes transit service, road level of service (LoS) and road safety from the same result and shows them on the map, in charts and in tables. Pick the scenario and the analysis period, and NextImpact does the rest.</p>
+    </div>
+</header>
+<section class="section section--first">
+    <div class="wrap">
+<figure class="tool__media module-shot">
+    <img src="assets/img/modules/impact-los.webp" alt="NextImpact: road level of service on the map" loading="lazy">
+    <figcaption><span class="i18n-ko">도로 서비스 수준 결과입니다. 교차로와 도로마다 A~F 등급을 지도에 표시하고, 시설 유형별 등급과 시간대별 변화를 함께 보여 줍니다.</span><span class="i18n-en">Road level of service: an A–F grade for every junction and road on the map, with grades by facility type and over time.</span></figcaption>
+</figure>
+    </div>
+</section>
+<section class="section" id="video">
+    <div class="wrap">
+        <header class="section__head"><h2 class="display"><span class="i18n-ko">영상으로 보기</span><span class="i18n-en">Watch it in action</span></h2></header>
+<!-- 기능 설명 영상 자리. 영상이 준비되면 아래 div 에 둘 중 하나만 넣는다 (site.js 가 플레이어로 바꾼다):
+       data-youtube="영상 ID"  또는  data-src="assets/video/파일.mp4" (data-poster 로 첫 화면 이미지) -->
+<div class="video" data-youtube="" data-src="" data-poster="">
+    <div class="video__placeholder">
+        <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
+        <p><span class="i18n-ko">기능 설명 영상을 준비하고 있습니다.</span><span class="i18n-en">A walkthrough video is coming soon.</span></p>
+    </div>
+</div>
+    </div>
+</section>
+<section class="section" id="assessments">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">세 가지 평가를 한 번에</span><span class="i18n-en">Three assessments, one result</span></h2>
+            <p class="i18n-ko">같은 시뮬레이션 결과에서 대중교통, 도로 서비스 수준, 도로 안전성을 함께 평가합니다. 필요한 평가만 골라서 실행할 수도 있습니다.</p>
+<p class="i18n-en">Transit, road level of service and safety come from the same simulation result, and you can run only the ones you need.</p>
+        </header>
+<div class="rows">
+    <section class="row">
+        <h3 class="row__title"><span class="i18n-ko">대중교통</span><span class="i18n-en">Public transit</span></h3>
+        <div class="row__body">
+            <p class="i18n-ko">노선과 정류장마다 운행 속도, 승객 대기 시간, 배차 간격 준수율, 차내 혼잡도 같은 효율성·편의성 지표를 계산합니다. 승용차 대비 통행시간이나 차량이 가득 차 타지 못한 승객의 비율도 확인할 수 있습니다.</p>
+<p class="i18n-en">Efficiency and convenience indicators for every route and stop: operating speed, passenger waiting time, headway adherence, crowding, travel time compared with the car, and passengers left behind by full vehicles.</p>
+            <figure class="tool__media">
+    <img src="assets/img/modules/impact-transit.webp" alt="NextImpact: public transit results" loading="lazy">
+    <figcaption><span class="i18n-ko">대중교통 결과입니다. 노선은 평균 운행 속도로, 정류장은 평균 대기 시간으로 색을 칠합니다.</span><span class="i18n-en">Transit results: routes coloured by mean speed and stops by mean waiting time.</span></figcaption>
+</figure>
+        </div>
+    </section>
+    <section class="row">
+        <h3 class="row__title"><span class="i18n-ko">도로 서비스 수준(LoS)</span><span class="i18n-en">Road level of service (LoS)</span></h3>
+        <div class="row__body">
+            <p class="i18n-ko">신호교차로, 비신호교차로, 다차로 도로, 2차로 도로, 간선 축처럼 시설 유형마다 지체 시간이나 평균 속도를 구하고 A~F 등급을 매깁니다. 등급을 나누는 기준값은 필요에 맞게 바꿔서 적용할 수 있습니다.</p>
+<p class="i18n-en">Delay or mean speed for each facility type, such as signalised and unsignalised junctions, multilane and two-lane roads and arterial corridors, graded from A to F. The grade thresholds can be changed to suit your standard.</p>
+        </div>
+    </section>
+    <section class="row">
+        <h3 class="row__title"><span class="i18n-ko">도로 안전성</span><span class="i18n-en">Road safety</span></h3>
+        <div class="row__body">
+            <p class="i18n-ko">차량 사이의 간격과 속도 차이를 분석해 충돌 위험이 높은 상황이 얼마나 자주 일어나는지 계산합니다. 위험이 높은 링크와 교차로 주변을 지도에서 찾아 주므로, 개선이 필요한 지점을 빠르게 확인할 수 있습니다.</p>
+<p class="i18n-en">Gaps and speed differences between vehicles show how often risky situations occur. The map points out the links and junction areas with the highest risk, so the places that need attention stand out.</p>
+            <figure class="tool__media">
+    <img src="assets/img/modules/impact-safety.webp" alt="NextImpact: road safety results" loading="lazy">
+    <figcaption><span class="i18n-ko">도로 안전성 결과입니다. 링크마다 위험 점수를 색으로 표시하고, 위험 관측 비율과 평균 속도의 시간대별 변화를 함께 보여 줍니다.</span><span class="i18n-en">Safety results: a risk score per link, with risk observations and mean speed over time.</span></figcaption>
+</figure>
+        </div>
+    </section>
+</div>
+    </div>
+</section>
+<section class="section" id="how">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">이렇게 사용합니다</span><span class="i18n-en">How it works</span></h2>
+        </header>
+<ol class="flow">
+    <li><b>1</b><span class="i18n-ko">평가할 시뮬레이션 선택</span><span class="i18n-en">Pick the simulation</span></li>
+    <li><b>2</b><span class="i18n-ko">평가 항목 선택</span><span class="i18n-en">Pick the assessments</span></li>
+    <li><b>3</b><span class="i18n-ko">분석 기간 설정</span><span class="i18n-en">Set the analysis period</span></li>
+    <li><b>4</b><span class="i18n-ko">항목별 설정</span><span class="i18n-en">Adjust each assessment</span></li>
+    <li><b>5</b><span class="i18n-ko">검토 후 실행</span><span class="i18n-en">Review and run</span></li>
+    <li><b>6</b><span class="i18n-ko">결과 확인</span><span class="i18n-en">Read the results</span></li>
+</ol>
+<div class="split">
+<figure class="tool__media">
+    <img src="assets/img/modules/impact-wizard.webp" alt="NextImpact analysis wizard" loading="lazy">
+    <figcaption><span class="i18n-ko">분석 실행 화면입니다. 시나리오마다 사용할 수 있는 시뮬레이션 결과가 있는지 함께 표시합니다.</span><span class="i18n-en">The analysis wizard shows which simulation results are available for each scenario.</span></figcaption>
+</figure>
+<div>
+<p class="i18n-ko">분석 실행 화면이 여섯 단계로 안내하므로, 처음 쓰는 사람도 순서대로 따라가면 됩니다. 실행하기 전에 서버가 설정 전체를 확인하기 때문에 잘못된 설정으로 분석이 중간에 실패하는 일을 줄일 수 있습니다.</p>
+<p class="i18n-en">The wizard walks you through six steps, and the server checks the whole setup before running, so an analysis is less likely to fail halfway.</p>
+<p class="i18n-ko">고른 시나리오에 쓸 수 있는 시뮬레이션 결과가 없으면, NextImpact가 시뮬레이션부터 실행한 뒤 이어서 평가합니다.</p>
+<p class="i18n-en">If the chosen scenario has no usable simulation result yet, NextImpact runs the simulation first and then the assessment.</p>
+</div>
+</div>
+    </div>
+</section>
+<section class="section section--last" id="tips">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">알아 두면 좋은 점</span><span class="i18n-en">Good to know</span></h2>
+        </header>
+<ul class="list list--tips i18n-ko">
+    <li>도로 서비스 수준과 안전성 결과는 5분처럼 집계 구간마다 지도에서 재생할 수 있어, 언제 어디서 상황이 나빠지는지 한눈에 확인할 수 있습니다.</li>
+    <li>왼쪽의 시간대별 그래프를 누르면 그 시각의 지도로 바로 이동합니다.</li>
+    <li>결과 표는 CSV 파일로 내려받을 수 있고, 분석 결과는 저장되어 언제든 다시 열어 볼 수 있습니다.</li>
+    <li>화면은 영어로 표시되며, Display 메뉴에서 한국어로 바꿀 수 있습니다.</li>
+    <li>NextImpact는 소스 저장소에서 NextSIM을 실행할 때 사용할 수 있습니다. Windows 설치 파일과 ZIP 배포판에는 포함되어 있지 않습니다.</li>
+</ul>
+<ul class="list list--tips i18n-en">
+    <li>LoS and safety results replay on the map interval by interval, so you can see when and where conditions get worse.</li>
+    <li>Click a chart over time to jump the map to that moment.</li>
+    <li>Result tables download as CSV, and saved analyses can be reopened at any time.</li>
+    <li>The screen is in English, with Korean available from the Display menu.</li>
+    <li>NextImpact is available when NextSIM runs from the source repository; it is not in the Windows installer or the ZIP package.</li>
+</ul>
+<p class="more"><a class="textlink" href="nextdta.html">NextDTA →</a>
+    <a class="textlink" href="nextsignal.html">NextSignal →</a>
+    <a class="textlink" href="nextdrt.html">NextDRT →</a>
+    <a class="textlink" href="scenariolab.html">ScenarioLab →</a></p>
+    </div>
+</section>
+</main>
+
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer__row">
+            <span>NextSIM · KAIST AIxMobility Lab</span>
+            <nav aria-label="Footer">
+                <a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a>
+                <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+                <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+                <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+                <a href="docs/installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a>
+                <a href="https://github.com/AIxMobility/nextsim-web/releases/latest" target="_blank" rel="noopener"><span class="i18n-ko">다운로드</span><span class="i18n-en">Downloads</span></a>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ScenarioLab — NextSIM</title>
+<meta name="description" content="ScenarioLab: configure and test V2X, guidance and TOR scenarios in NextSIM without code.">
+<meta name="theme-color" content="#05060f">
+<meta property="og:title" content="ScenarioLab — NextSIM">
+<meta property="og:description" content="ScenarioLab은 V2X, 주행 안내, 제어권 전환 같은 기능을 코딩 없이 설정하고 실험·비교하는 NextSIM의 시나리오 실험 환경입니다.">
+<meta property="og:image" content="assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/logo/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+<script>
+    /* 언어를 body 파싱 전에 정해 잘못된 언어가 잠깐 보이는 것을 막는다.
+       사용자 가이드(docs/)와 같은 키를 써서 사이트 전체에서 선택이 유지된다.
+       우선순위: ?lang= → 저장된 선택 → 브라우저 언어 → 한국어 */
+    (function () {
+        var root = document.documentElement;
+        var lang = null;
+        try {
+            var q = new URLSearchParams(window.location.search).get('lang');
+            if (q === 'en' || q === 'ko') lang = q;
+            if (!lang) {
+                var saved = window.localStorage.getItem('nextsim-doc-lang');
+                if (saved === 'en' || saved === 'ko') lang = saved;
+            }
+        } catch (e) { /* 스토리지 차단 환경 무시 */ }
+        if (!lang) lang = /^ko\b/i.test(navigator.language || '') ? 'ko' : 'en';
+        root.setAttribute('data-lang', lang);
+        root.setAttribute('lang', lang);
+    })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main"><span class="i18n-ko">본문으로 건너뛰기</span><span class="i18n-en">Skip to content</span></a>
+
+<!-- ============================================================ 헤더 (index · features · research 가 같은 헤더를 쓴다) -->
+<header class="topbar" id="top">
+    <div class="topbar__inner wrap">
+        <a class="brand" href="index.html">
+            <img src="assets/logo/NextSIM_horizontal_color_on-dark.svg" alt="NextSIM" width="107" height="30">
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="siteNav">
+            <span class="i18n-ko">메뉴</span><span class="i18n-en">Menu</span>
+        </button>
+        <nav class="sitenav" id="siteNav" aria-label="Site">
+            <a href="modules.html" aria-current="page"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a>
+            <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+            <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+            <a href="index.html#start"><span class="i18n-ko">시작하기</span><span class="i18n-en">Get started</span></a>
+            <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+            <div class="sitenav__end">
+                <div class="lang-switch" role="group" aria-label="Language / 언어">
+                    <button type="button" data-lang="ko" aria-pressed="true">KO</button>
+                    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+                <a class="btn btn--accent btn--sm" href="docs/installation.html"><span class="i18n-ko">설치하기</span><span class="i18n-en">Install</span></a>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+<header class="page-head module-head">
+    <div class="wrap">
+        <p class="crumb"><a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a></p>
+        <h1 class="display display--xl">ScenarioLab</h1>
+        <p class="module-tagline"><span class="i18n-ko">새 교통 기능을 코딩 없이 설정하고 실험합니다.</span><span class="i18n-en">Configure and test traffic features without writing code.</span></p>
+        <p class="i18n-ko">ScenarioLab은 V2X, 주행 안내(Guidance), 제어권 전환(TOR) 같은 교통·차량 기능을 직접 설정하고 시험해 보는 시나리오 실험 환경입니다. NextSIM이 제공하는 기능을 고르고 파라미터만 조정하면, 새 기능을 직접 코딩하지 않아도 시뮬레이션으로 효과를 확인할 수 있습니다.</p>
+<p class="i18n-en">ScenarioLab is a scenario lab for traffic and vehicle features such as V2X, guidance and take-over requests (TOR). Pick a feature NextSIM provides, adjust its parameters, and see its effect in simulation without writing code.</p>
+        <p class="i18n-ko note">ScenarioLab은 현재 개발하고 있는 모듈입니다.</p>
+<p class="i18n-en note">ScenarioLab is under development.</p>
+    </div>
+</header><section class="section" id="flow">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">실험 과정이 하나의 화면에서 이어집니다</span><span class="i18n-en">One screen, from setup to comparison</span></h2>
+            <p class="i18n-ko">결과 기록을 따로 찾아볼 필요 없이, 기능 선택부터 시나리오 비교까지 한 화면에서 진행합니다.</p>
+<p class="i18n-en">No digging through result logs: the whole experiment, from choosing features to comparing scenarios, happens on one screen.</p>
+        </header>
+<ol class="flow flow--detail">
+    <li><b>1</b><strong><span class="i18n-ko">기능 선택</span><span class="i18n-en">Choose features</span></strong><span class="i18n-ko flow__desc">실험할 기능을 고릅니다. 여러 기능을 함께 켤 수도 있습니다.</span><span class="i18n-en flow__desc">Pick the features to test; several can be on at once.</span></li>
+    <li><b>2</b><strong><span class="i18n-ko">파라미터 설정</span><span class="i18n-en">Set parameters</span></strong><span class="i18n-ko flow__desc">통신 범위, 순응률처럼 기능마다 필요한 값을 정합니다.</span><span class="i18n-en flow__desc">Set values such as communication range or compliance rate.</span></li>
+    <li><b>3</b><strong><span class="i18n-ko">시나리오 실행</span><span class="i18n-en">Run scenarios</span></strong><span class="i18n-ko flow__desc">설정을 바꾼 여러 시나리오를 실행합니다.</span><span class="i18n-en flow__desc">Run scenarios with different settings.</span></li>
+    <li><b>4</b><strong><span class="i18n-ko">이벤트 확인</span><span class="i18n-en">Check events</span></strong><span class="i18n-ko flow__desc">통신, 안내, 제어권 전환이 언제 어디서 일어났는지 확인합니다.</span><span class="i18n-en flow__desc">See when and where messages, guidance and take-overs happened.</span></li>
+    <li><b>5</b><strong><span class="i18n-ko">결과 분석</span><span class="i18n-en">Analyse results</span></strong><span class="i18n-ko flow__desc">기능이 교통 흐름과 안전에 준 영향을 살펴봅니다.</span><span class="i18n-en flow__desc">Look at the effect on traffic flow and safety.</span></li>
+    <li><b>6</b><strong><span class="i18n-ko">시나리오 비교</span><span class="i18n-en">Compare scenarios</span></strong><span class="i18n-ko flow__desc">값을 바꿔 실행한 시나리오의 결과를 나란히 비교합니다.</span><span class="i18n-en flow__desc">Compare the runs side by side.</span></li>
+</ol>
+    </div>
+</section>
+<section class="section" id="video">
+    <div class="wrap">
+        <header class="section__head"><h2 class="display"><span class="i18n-ko">영상으로 보기</span><span class="i18n-en">Watch it in action</span></h2></header>
+<!-- 기능 설명 영상 자리. 영상이 준비되면 아래 div 에 둘 중 하나만 넣는다 (site.js 가 플레이어로 바꾼다):
+       data-youtube="영상 ID"  또는  data-src="assets/video/파일.mp4" (data-poster 로 첫 화면 이미지) -->
+<div class="video" data-youtube="" data-src="" data-poster="">
+    <div class="video__placeholder">
+        <img src="assets/logo/favicon.svg" alt="" width="56" height="56">
+        <p><span class="i18n-ko">기능 설명 영상을 준비하고 있습니다.</span><span class="i18n-en">A walkthrough video is coming soon.</span></p>
+    </div>
+</div>
+    </div>
+</section>
+
+<section class="section" id="role">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">Run 모드와 무엇이 다른가요</span><span class="i18n-en">How it differs from Run mode</span></h2>
+        </header>
+<div class="rows">
+    <section class="row">
+        <h3 class="row__title"><span class="i18n-ko">NextSIM Run 모드</span><span class="i18n-en">NextSIM Run mode</span></h3>
+        <div class="row__body"><p class="i18n-ko">네트워크 전체의 시뮬레이션 결과를 재생하며 일반적인 교통 상황을 확인합니다.</p>
+<p class="i18n-en">Replay the simulation of the whole network and read the overall traffic picture.</p></div>
+    </section>
+    <section class="row">
+        <h3 class="row__title">ScenarioLab</h3>
+        <div class="row__body"><p class="i18n-ko">특정 기능이나 특정 구간을 대상으로 기능을 검증하고 실험하는 데 집중합니다. 예를 들어 V2X 통신 범위를 다르게 설정한 시나리오 여러 개를 실행해 결과를 비교하거나, 주행 안내 순응률에 따라 교통 흐름이 어떻게 달라지는지 비교할 수 있습니다.</p>
+<p class="i18n-en">Focuses on testing one feature or one stretch of road. Run several scenarios with different V2X ranges and compare them, or see how traffic changes with the guidance compliance rate.</p></div>
+    </section>
+</div>
+    </div>
+</section>
+<section class="section" id="modules">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">기본으로 제공하는 기능</span><span class="i18n-en">Built-in features</span></h2>
+            <p class="i18n-ko">첫 버전에서는 다음 세 가지 기능을 제공하며, 기능마다 아래 항목을 설정할 수 있습니다.</p>
+<p class="i18n-en">The first version comes with three features, each with the settings below.</p>
+        </header>
+<div class="params">
+    <article class="param">
+        <h3><span class="i18n-ko">V2X</span><span class="i18n-en">V2X</span></h3>
+        <ul class="list i18n-ko"><li>통신 가능 범위</li><li>지연 시간(Latency)</li><li>패킷 손실(Packet loss)</li><li>적용 차량</li><li>메시지 유형</li><li>RSU 적용 범위</li></ul><ul class="list i18n-en"><li>Communication range</li><li>Latency</li><li>Packet loss</li><li>Equipped vehicles</li><li>Message type</li><li>RSU coverage</li></ul>
+    </article>
+    <article class="param">
+        <h3><span class="i18n-ko">주행 안내(Guidance)</span><span class="i18n-en">Guidance</span></h3>
+        <ul class="list i18n-ko"><li>안내 적용 구역</li><li>대상 차량</li><li>안내 정보 종류</li><li>순응률(Compliance rate)</li><li>경로·차로 변경 안내</li></ul><ul class="list i18n-en"><li>Guidance zone</li><li>Target vehicles</li><li>Kind of information</li><li>Compliance rate</li><li>Route and lane-change guidance</li></ul>
+    </article>
+    <article class="param">
+        <h3><span class="i18n-ko">제어권 전환(TOR)</span><span class="i18n-en">Take-over request (TOR)</span></h3>
+        <ul class="list i18n-ko"><li>TOR 발생 구역</li><li>발생 조건</li><li>제어권 전환 허용 시간(Take-over time budget)</li><li>운전자 반응 시간</li><li>성공·실패 조건</li></ul><ul class="list i18n-en"><li>Where TORs occur</li><li>Trigger conditions</li><li>Take-over time budget</li><li>Driver response time</li><li>Success and failure conditions</li></ul>
+    </article>
+</div>
+<p class="i18n-ko note">각 기능은 켜고 끌 수 있으며, 여러 기능을 함께 켜서 복합 시나리오를 구성할 수도 있습니다.</p>
+<p class="i18n-en note">Each feature can be switched on or off, and several can be combined into one scenario.</p>
+    </div>
+</section>
+<section class="section section--last" id="next">
+    <div class="wrap">
+        <header class="section__head">
+            <h2 class="display"><span class="i18n-ko">앞으로 추가할 기능</span><span class="i18n-en">Coming next</span></h2>
+            <p class="i18n-ko">새로운 기능도 같은 구조로 추가할 수 있도록 설계하고 있습니다.</p>
+<p class="i18n-en">New features plug into the same structure.</p>
+        </header>
+<ul class="tags"><li><span class="i18n-ko">신호 우선 제어</span><span class="i18n-en">Signal priority</span></li><li><span class="i18n-ko">가변 속도 제한</span><span class="i18n-en">Variable speed limits</span></li><li><span class="i18n-ko">램프 미터링</span><span class="i18n-en">Ramp metering</span></li><li><span class="i18n-ko">C-ITS 서비스</span><span class="i18n-en">C-ITS services</span></li></ul>
+<p class="more"><a class="textlink" href="nextdta.html">NextDTA →</a>
+    <a class="textlink" href="nextimpact.html">NextImpact →</a>
+    <a class="textlink" href="nextsignal.html">NextSignal →</a>
+    <a class="textlink" href="nextdrt.html">NextDRT →</a></p>
+    </div>
+</section>
+</main>
+
+<footer class="footer">
+    <div class="wrap">
+        <div class="footer__row">
+            <span>NextSIM · KAIST AIxMobility Lab</span>
+            <nav aria-label="Footer">
+                <a href="modules.html"><span class="i18n-ko">모듈</span><span class="i18n-en">Modules</span></a>
+                <a href="features.html"><span class="i18n-ko">기능</span><span class="i18n-en">Features</span></a>
+                <a href="research.html"><span class="i18n-ko">연구</span><span class="i18n-en">Research</span></a>
+                <a href="docs/index.html"><span class="i18n-ko">사용자 가이드</span><span class="i18n-en">User guide</span></a>
+                <a href="docs/installation.html"><span class="i18n-ko">설치</span><span class="i18n-en">Installation</span></a>
+                <a href="https://github.com/AIxMobility/nextsim-web/releases/latest" target="_blank" rel="noopener"><span class="i18n-ko">다운로드</span><span class="i18n-en">Downloads</span></a>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
