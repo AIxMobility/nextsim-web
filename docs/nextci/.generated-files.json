@@ -7,6 +7,7 @@
   "api/link.html",
   "api/meso.html",
   "api/simulation.html",
+  "api/traffic-light.html",
   "api/types.html",
   "api/vehicle.html",
   "assets/nextci.css",

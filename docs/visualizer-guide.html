@@ -526,12 +526,14 @@
                 <a href="#display" style="--dot: var(--hue-display)"><span class="ws-dot"></span><span class="i18n-ko">표시 옵션</span><span class="i18n-en">Display options</span></a>
                 <a href="#bims" style="--dot: var(--hue-inspect)"><span class="ws-dot"></span><span class="i18n-ko">버스 정보(BIMS)</span><span class="i18n-en">BIMS</span></a>
                 <a href="#basemap"><span class="i18n-ko">위성 배경</span><span class="i18n-en">Satellite basemap</span></a>
+                <a href="#view-3d"><span class="i18n-ko">3D 보기</span><span class="i18n-en">3D view</span></a>
+                <a href="#capture"><span class="i18n-ko">화면 저장과 녹화</span><span class="i18n-en">Pictures and recordings</span></a>
                 <a href="#map-search"><span class="i18n-ko">지도 탐색과 검색</span><span class="i18n-en">Navigation &amp; search</span></a>
             </div>
             <div class="nav__group">
                 <div class="nav__group-label"><span class="i18n-ko">분석</span><span class="i18n-en">Analysis</span></div>
                 <a href="#inspect" style="--dot: var(--hue-inspect)"><span class="ws-dot"></span><span class="i18n-ko">정보 조회</span><span class="i18n-en">Inspecting objects</span></a>
-                <a href="#summary" style="--dot: var(--hue-summary)"><span class="ws-dot"></span><span class="i18n-ko">시나리오 요약</span><span class="i18n-en">Scenario summary</span></a>
+                <a href="#summary" style="--dot: var(--hue-summary)"><span class="ws-dot"></span><span class="i18n-ko">결과 요약</span><span class="i18n-en">Result summary</span></a>
                 <a href="#input-files"><span class="i18n-ko">입력 파일 점검</span><span class="i18n-en">Inspect input files</span></a>
             </div>
             <div class="nav__group">
@@ -582,18 +584,21 @@
                 data-local="editor-guide.html"
                >Edit mode
                 guide</a>.</p>
-            <p class="i18n-ko">화면 구성: 모든 기능은 상단바에 모여 있습니다. 상단바에는 NextSIM 로고,
-                <strong>Run | Edit</strong> 모드 전환, <strong>네트워크 버튼</strong>(폴더 아이콘과 현재 네트워크 이름을 표시하며
-                <strong>Network</strong> 창을 엽니다), <strong>Simulation</strong>(시나리오 선택·실행·결과 로드),
-                재생 컨트롤(Play/Stop·Speed·Timestep), 검색, <strong>Display</strong>(표시 옵션), <strong>BIMS</strong>,
-                <strong>Help</strong>가 있습니다. 결과는 중앙 지도에서 재생되고, 링크·노드·차량·정류장을 클릭하면
+            <p class="i18n-ko">화면 구성: 상단바 기본 줄(재생 바)에는 NextSIM 로고, <strong>Run | Edit</strong> 모드 전환,
+                <strong>Simulation</strong>(실행·결과 불러오기), 재생 컨트롤(Play/Stop·Speed·Timestep), <strong>Setup</strong>,
+                <strong>Tools</strong>, 도움말(물음표)이 있습니다. <strong>Setup</strong>을 누르면 상단바가
+                <strong>Network</strong>(현재 네트워크 이름 표시, Network 창을 엽니다)·<strong>Run setup</strong>(시나리오·시간·경로 생성)·<strong>Display</strong>
+                줄로, <strong>Tools</strong>를 누르면 검색·<strong>Capture</strong>·<strong>BIMS</strong> 줄로 바뀌고,
+                X 나 <kbd>Esc</kbd>로 재생 바로 돌아옵니다. <kbd>Ctrl</kbd>+<kbd>F</kbd>는 Tools 줄의 검색창을 엽니다. 결과는 중앙 지도에서 재생되고, 링크·노드·차량·정류장을 클릭하면
                 상세 정보 패널이 열립니다. 네트워크를 아직 고르지 않았다면 지도 자리에
                 <em>No network loaded</em> 카드와 <strong>Select network</strong> · <strong>Add network</strong> 버튼이 표시됩니다.</p>
-            <p class="i18n-en">Layout: everything lives in the top bar — the NextSIM logo, the <strong>Run | Edit</strong>
-                mode switch, the <strong>network button</strong> (folder icon and the current network's name; it opens
-                the <strong>Network</strong> dialog), <strong>Simulation</strong> (pick a scenario, run it, load a
-                result), the playback controls (Play/Stop, Speed, Timestep), search, <strong>Display</strong>,
-                <strong>BIMS</strong>, and <strong>Help</strong>. Results replay on the central map; clicking a link,
+            <p class="i18n-en">Layout: the default top bar (the playback bar) holds the NextSIM logo, the
+                <strong>Run | Edit</strong> switch, <strong>Simulation</strong> (run, or load a result), the playback
+                controls (Play/Stop, Speed, Timestep), <strong>Setup</strong>, <strong>Tools</strong> and help (question
+                mark). <strong>Setup</strong> turns the bar into <strong>Network</strong> (shows the current network and opens
+                the Network dialog), <strong>Run setup</strong> (scenario, time, route generation) and <strong>Display</strong>;
+                <strong>Tools</strong> turns it into search, <strong>Capture</strong> and <strong>BIMS</strong>. X or
+                <kbd>Esc</kbd> returns to the playback bar, and <kbd>Ctrl</kbd>+<kbd>F</kbd> opens the search box in Tools. Results replay on the central map; clicking a link,
                 node, vehicle, or station opens a detail panel. Before you pick a network, the map area shows a
                 <em>No network loaded</em> card with <strong>Select network</strong> and <strong>Add network</strong>
                 buttons.</p>
@@ -608,11 +613,10 @@
                     <code>/</code>는 홈 화면이며, 네트워크 카드의 <strong>실행</strong>을 누르면 그 네트워크가 Run 모드로 열립니다.
                     특정 네트워크를 바로 열려면 <code>/nextsim/?mode=run&amp;folder=SimulationInput/networks/&lt;이름&gt;</code>
                     처럼 주소를 입력합니다. 예전 주소인 <code>/simulation/</code>과 <code>/visualizer/</code>는 쿼리를 유지한 채 <code>/nextsim/?mode=run</code>으로 이동합니다.</li>
-                <li>상단바의 네트워크 버튼(폴더 아이콘, 처음에는 <em>Select network</em>로 표시됨)을 눌러 <strong>Network</strong> 창의
+                <li>상단바 <strong>Setup</strong> → <strong>Network</strong>(처음에는 <em>Select network</em>로 표시됨)를 눌러 <strong>Network</strong> 창의
                     목록에서 네트워크 폴더를 선택합니다. 그러면 지도에 네트워크가 그려집니다.</li>
-                <li>상단바에서 <strong>Simulation</strong> 패널을 열고 <strong>Target scenario</strong>에서 재생할
-                    시나리오를 선택합니다. 시간 범위 등 시나리오 정보가 바로 아래 카드에 표시됩니다.
-                    (시나리오 선택은 Network 창이 아니라 Simulation 패널에 있습니다.)</li>
+                <li>같은 Setup 줄의 <strong>Run setup</strong>을 열고 <strong>Target scenario</strong>에서 재생할
+                    시나리오를 선택합니다. 시간 범위 등 시나리오 정보가 바로 아래 카드에 표시됩니다.</li>
             </ol>
             <ol class="steps i18n-en">
                 <li>Install NextSIM and start its server (<a href="installation.html">installation guide</a>), then open
@@ -621,12 +625,11 @@
                     mode. To open a given network directly, use
                     <code>/nextsim/?mode=run&amp;folder=SimulationInput/networks/&lt;name&gt;</code>. The old addresses
                     <code>/simulation/</code> and <code>/visualizer/</code> redirect to <code>/nextsim/?mode=run</code>, keeping their query.</li>
-                <li>Click the network button in the top bar (folder icon; it reads <em>Select network</em> until you
-                    pick one) and choose a network folder from the list in the <strong>Network</strong> dialog — the
+                <li>Click <strong>Setup</strong> → <strong>Network</strong> in the top bar (it reads <em>Select network</em>
+                    until you pick one) and choose a network folder from the list in the <strong>Network</strong> dialog — the
                     network is drawn on the map.</li>
-                <li>Open the <strong>Simulation</strong> panel in the top bar and pick the scenario to replay under
-                    <strong>Target scenario</strong> — its time range and other details appear in the card just
-                    below. (Scenario selection lives in the Simulation panel, not in the Network dialog.)</li>
+                <li>Open <strong>Run setup</strong> in the same Setup bar and pick the scenario to replay under
+                    <strong>Target scenario</strong> — its time range and other details appear in the card just below.</li>
             </ol>
             <p class="i18n-ko"><strong>Network</strong> 창에는 네트워크 목록과 새로고침 버튼, <strong>Add network</strong>(Edit 모드로
                 전환한 뒤 네트워크를 만드는 방법을 고릅니다. 실행 중이거나 결과가 열려 있으면 <a href="#switch-to-edit">전환 경고</a>가 먼저 뜹니다),
@@ -655,8 +658,14 @@
                 re-resolves them automatically, so choose the target scenario first.</div>
 
             <h3><span class="i18n-ko">방법 A: Edit 모드에서 만든 입력으로 바로 실행</span><span class="i18n-en">Option A — run straight from edited inputs</span></h3>
-            <p class="i18n-ko">상단바 <strong>Simulation</strong> 버튼을 누르면 Simulation 패널이 열립니다.</p>
-            <p class="i18n-en">The <strong>Simulation</strong> button in the top bar opens the Simulation panel.</p>
+            <p class="i18n-ko">실행 전에 정하는 것(<strong>Target scenario</strong>, <strong>Scenario time</strong>, <strong>Route generation</strong>,
+                <strong>Play while running</strong>)은 <strong>Setup → Run setup</strong> 창에 있고,
+                상단바 <strong>Simulation</strong> 창에는 실행과 결과 불러오기만 있습니다. Simulation 창 맨 위에 지금 설정이 한 줄로
+                보이며, <strong>Change</strong>를 누르면 Run setup 창으로 갑니다.</p>
+            <p class="i18n-en">What you set before a run (<strong>Target scenario</strong>, <strong>Scenario time</strong>,
+                <strong>Route generation</strong>, <strong>Play while running</strong>) is in
+                <strong>Setup → Run setup</strong>; the <strong>Simulation</strong> panel in the top bar only runs and loads
+                results. Its first line sums up the current setup, and <strong>Change</strong> opens Run setup.</p>
             <ul class="i18n-ko">
                 <li><strong>Route generation</strong>: 실행 전에 경로를 생성할지 선택합니다.
                     <strong>RouteGenerator</strong>는 차량·PT 경로를, <strong>PaxRouteGenerator</strong>는
@@ -711,7 +720,7 @@
                 알림 창을 표시합니다. 알림 창에서 바로 기록된 네트워크로 전환해 결과를 이어서 열 수 있습니다. (결과를 만든 뒤 같은 네트워크를 편집한
                 경우는 <a href="#switch-to-edit">Edit 모드로 전환</a>을 보세요.)
                 결과를 열면 그 결과를 만든 시나리오가 자동으로 적용되고, 신호 색·신호 계획·이벤트 시각은 그 시나리오
-                기준으로 계산됩니다. 결과를 연 채로 Simulation 패널에서 다음 실행용 시나리오를 바꿔도 재생 중인 신호는 바뀌지
+                기준으로 계산됩니다. 결과를 연 채로 Run setup 창에서 다음 실행용 시나리오를 바꿔도 재생 중인 신호는 바뀌지
                 않습니다. <strong>Run Selected Network</strong>는 고른 시나리오를 그대로 실행합니다(고르지 않으면 파일의 첫 시나리오를 실행합니다).
                 시나리오가 기록되지 않은 예전 결과는 당시 엔진이 항상 실행하던 첫 시나리오의 결과로 간주합니다.</div>
             <div class="warn i18n-en"><strong>The network cannot be changed mid-run.</strong> The folder selector in
@@ -723,7 +732,7 @@
                 the recorded network and continue. (For a result whose network was edited afterwards, see
                 <a href="#switch-to-edit">Switching to Edit mode</a>.) Opening a result applies the scenario that
                 produced it: signal colours, signal plans and event times are computed for that scenario, and changing
-                the Simulation panel's scenario for the next run does not change the signals of the result being
+                the Run setup scenario for the next run does not change the signals of the result being
                 replayed. Older results that do not record a scenario are treated as the first scenario, which older
                 engine builds always ran. <strong>Run Selected Network</strong> simulates the scenario you pick (the
                 first one of the file when none is picked).</div>
@@ -737,6 +746,40 @@
                 <strong>Cancel Run</strong> and the automatic result load continue (playback during the run resumes once new
                 chunks are confirmed). A run started in another tab is followed too when you open the same network; it is
                 not shown while another network is open.</div>
+
+            <h3 id="run-failed"><span class="i18n-ko">실행이 실패했을 때</span><span class="i18n-en">When a run fails</span></h3>
+            <p class="i18n-ko">실행이 실패하면 Run 패널의 단계 목록 아래에 <strong>실패 원인</strong> 상자가 나타납니다.
+                상자에는 다음 내용이 들어 있습니다.</p>
+            <p class="i18n-en">When a run fails, a <strong>failure box</strong> appears under the step list in the Run
+                panel. It shows:</p>
+            <ul class="i18n-ko">
+                <li><strong>실패한 단계</strong>: RouteGenerator, PaxRouteGenerator, Simulation, Result loading 중 하나입니다.</li>
+                <li><strong>원인</strong>: 엔진이 남긴 오류 문장입니다. 입력 파일을 읽지 못했다면 그 사실을 원인으로 보여 주고, 뒤따른 오류는 아래 목록에 넣습니다.
+                    엔진이 메시지 없이 죽었다면 종료 코드의 뜻(예: segmentation fault)과 <em>Last output</em>(멈추기 직전에 찍은 줄)을 보여 주므로 어느 단계에서 멈췄는지 알 수 있습니다.</li>
+                <li><strong>문제 요소</strong>: 메시지에 나온 링크·노드·정류장·노선 ID입니다. 링크·노드·정류장 ID를 누르면 지도가 그 위치로 이동하고 잠깐 강조됩니다.</li>
+                <li><strong>고치는 방법</strong>: 자주 나오는 오류(차로 연결이 없는 PT 노선, 읽을 수 없는 network.xml, 없는 ID 참조, 경로 파일 누락 등)에 대한 안내입니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li><strong>The failed step</strong> — RouteGenerator, PaxRouteGenerator, Simulation or Result loading.</li>
+                <li><strong>The cause</strong> — the engine's error message. When an input file could not be read, that is
+                    shown as the cause and the errors that followed are listed below it. When the engine crashed without a
+                    message, the box explains the exit code (for example a segmentation fault) and shows <em>Last output</em>,
+                    the line printed just before it stopped, which tells you the phase it was in.</li>
+                <li><strong>The elements involved</strong> — link, node, station and line IDs named in the message. Clicking
+                    a link, node or station ID moves the map there and highlights it briefly.</li>
+                <li><strong>How to fix it</strong> — advice for common errors: a PT line with no lane connection, an
+                    unreadable network.xml, a reference to a missing ID, missing route files, and so on.</li>
+            </ul>
+            <p class="i18n-ko">그 아래의 <strong>Run log</strong>를 펼치면 엔진 출력이 그대로 보입니다. 실행 중에는 최근 출력이 계속 갱신되고,
+                실패하면 자동으로 펼쳐지며 전체 로그를 읽어 옵니다. 오류 줄은 빨간색, 경고 줄은 노란색으로 표시되고,
+                <strong>Errors only</strong>를 켜면 오류·경고 줄만 남습니다. <strong>Copy</strong>는 보이는 로그를 복사하고,
+                <strong>Download</strong>는 이 실행의 전체 로그를 텍스트 파일로 내려받습니다. 전체 로그는 서버의
+                <span class="mono">SimulationOutput/.web_job_logs/</span>에 최근 50회분이 남습니다.</p>
+            <p class="i18n-en">Expand <strong>Run log</strong> below it to see the engine output as is. During a run the
+                latest output keeps updating; on failure it opens by itself and loads the full log. Error lines are red,
+                warnings yellow, and <strong>Errors only</strong> keeps just those lines. <strong>Copy</strong> copies the
+                log shown, and <strong>Download</strong> saves the full log of the run as a text file. The server keeps the
+                full logs of the last 50 runs in <span class="mono">SimulationOutput/.web_job_logs/</span>.</p>
 
             <h3><span class="i18n-ko">방법 B: 기존 결과 열기</span><span class="i18n-en">Option B — open an existing result</span></h3>
             <p class="i18n-ko">같은 <strong>Simulation</strong> 패널 아래쪽의 <strong>Load a result</strong>에서 엽니다.</p>
@@ -886,6 +929,10 @@
                     <td>정류장 위에 대기 승객 수 배지를 표시합니다. 배지가 겹치지 않도록 <strong>많이 축소하면
                         자동으로 숨겨집니다</strong>. 확대하면 다시 나타납니다.</td></tr>
                 <tr><td><strong>Events</strong></td><td>진행 중인 이벤트 구간을 오버레이로 표시합니다.</td></tr>
+                <tr><td><strong>Rail network</strong></td>
+                    <td>철도 노선·역·출구와 <strong>시간표대로 운행하는 열차</strong>를 보여 줍니다(기본은 꺼짐). 켜면 도로망이 살짝 흐려져 철도가 앞에 보입니다.
+                        열차는 <span class="mono">railPTline.xml</span>의 출발 시각과 역별 <span class="mono">timeOffset</span>으로 엔진과 같은 규칙(정차 없이 역 사이를 일정한 속도로)에 따라
+                        재생 시각의 위치에 그려지며, 흰 몸체에 노선색 테두리와 진행 방향 화살이 붙습니다. 3D 보기에는 아직 열차가 없습니다.</td></tr>
                 <tr><td><strong>Canvas</strong></td><td><strong>Background</strong></td>
                     <td>지도 배경색을 정합니다(스크린샷·발표 자료용). ↺를 누르면 기본값으로 돌아갑니다.</td></tr>
                 <tr><td colspan="3" class="mono" style="font-size:12px">
@@ -915,6 +962,12 @@
                     <td>Badges each station with its waiting-passenger count. Badges are <strong>hidden
                         automatically when zoomed far out</strong> so they don't overlap — zoom in to bring them back.</td></tr>
                 <tr><td><strong>Events</strong></td><td>Overlay for events that are active at the current time.</td></tr>
+                <tr><td><strong>Rail network</strong></td>
+                    <td>Rail lines, stations and exits with <strong>trains running to the timetable</strong> (off by default). While on,
+                        the roads are dimmed so the rail network stands out. Trains are placed at the playback time from the departure
+                        times and per-station <span class="mono">timeOffset</span> in <span class="mono">railPTline.xml</span>, by the same
+                        rule as the engine (no dwell, constant speed between stations): a white body with the line colour outline and a
+                        direction arrow. The 3D view does not show trains yet.</td></tr>
                 <tr><td><strong>Canvas</strong></td><td><strong>Background</strong></td>
                     <td>Map background color, for screenshots and slides. ↺ restores the default.</td></tr>
                 <tr><td colspan="3" class="mono" style="font-size:12px">
@@ -1047,6 +1100,60 @@
                 save; Run mode restores the same alignment.</p>
         </section>
 
+        <!-- ================================================== 3D 보기 -->
+        <section id="view-3d">
+            <h2><span class="i18n-ko">3D 보기</span><span class="i18n-en">3D view</span></h2>
+            <p class="i18n-ko">Display 패널 맨 위의 <strong>View</strong>(2D map | 3D view, 또는 <kbd>3</kbd> 키)로 같은 결과를 3D로 봅니다.
+                재생·속도·시간·Display 패널은 2D 것을 그대로 쓰므로 두 화면의 시각·차량·색이 늘 같습니다.
+                도로·신호·정류장과 대기 승객·검지기·이벤트·혼잡도·차량 경로·노선 강조가 3D에도 나오고,
+                차량 클릭·Follow·검색 이동도 2D와 같이 동작합니다. Run 모드에서만 쓸 수 있습니다:
+                Edit 모드의 Display 패널에서 3D view 를 고르면 Run 모드로 넘어간 뒤 3D 가 열리고,
+                3D 중에는 Edit 로 넘어갈 수 없습니다(2D 로 돌아온 뒤 편집). 단축키는 오른쪽 아래 <strong>Shortcuts</strong>에 있습니다.</p>
+            <p class="i18n-en"><strong>View</strong> at the top of the Display panel (2D map | 3D view, or the <kbd>3</kbd> key)
+                shows the same result in 3D. Playback, speed, time and the Display panel are shared with 2D, so both
+                views always show the same moment, vehicles and colours. Roads, signals, stations with waiting
+                passengers, detectors, events, congestion, vehicle routes and line highlights appear in 3D, and vehicle
+                click, Follow and search work as in 2D. Run mode only: choosing 3D view in the Edit-mode Display panel
+                switches to Run mode and opens 3D, and Edit mode is unavailable while 3D is open (return to 2D to edit).
+                The shortcuts are under <strong>Shortcuts</strong> at the bottom right.</p>
+            <ul class="i18n-ko">
+                <li><strong>카메라</strong>: 왼쪽 드래그 = 이동, 오른쪽 드래그 = 회전·기울기(Top 에서는 이동), 휠 = 확대.
+                    <kbd>T</kbd> Drone/Top 전환, <kbd>F</kbd> 전체 맞춤,
+                    <kbd>Esc</kbd> 따라가기 해제.</li>
+                <li><strong>Bldg</strong>(<kbd>B</kbd>): OSM 건물. 건물 자료가 있는 네트워크만 켜집니다
+                    (<span class="mono">viewer3d/tools/fetch_buildings.py</span>로 받습니다).</li>
+                <li><strong>Sat</strong>(<kbd>S</kbd>): 2D 위성 배경(Display 패널)을 켜고 끄며, 켜면 3D 지면에도 깝니다. 정합 정보가 있는 네트워크만 켜집니다.</li>
+                <li><kbd>K</kbd> 카메라 위치 추가 · <kbd>G</kbd> 그 경로로 비행 (+Key / Path / Clear).
+                    화면 저장과 녹화는 2D 와 같이 상단바 <strong>Capture</strong>에서 합니다.</li>
+            </ul>
+            <ul class="i18n-en">
+                <li><strong>Camera</strong> — left drag moves, right drag rotates and tilts (moves in Top), wheel zooms.
+                    <kbd>T</kbd> Drone/Top, <kbd>F</kbd> fit, <kbd>Esc</kbd> stop following.</li>
+                <li><strong>Bldg</strong> (<kbd>B</kbd>) — OSM buildings, for networks that have building data
+                    (fetched with <span class="mono">viewer3d/tools/fetch_buildings.py</span>).</li>
+                <li><strong>Sat</strong> (<kbd>S</kbd>) — turns the 2D satellite basemap (Display panel) on or off; when on it is also laid on the 3D ground. Needs a georeferenced network.</li>
+                <li><kbd>K</kbd> adds a camera key and <kbd>G</kbd> flies the path (+Key / Path / Clear).
+                    Pictures and recordings use <strong>Capture</strong> in the top bar, as in 2D.</li>
+            </ul>
+            <p class="i18n-ko">WebGL 을 쓸 수 없는 브라우저에서는 처음 3D 를 켤 때 이유가 표시되고, 그 뒤로 3D 버튼이 꺼집니다.</p>
+            <p class="i18n-en">If the browser cannot start WebGL, the first try says why and the 3D button is then disabled.</p>
+        </section>
+
+        <!-- ================================================== 캡처 -->
+        <section id="capture">
+            <h2><span class="i18n-ko">화면 저장과 녹화</span><span class="i18n-en">Pictures and recordings</span></h2>
+            <p class="i18n-ko">상단바 <strong>Tools → Capture</strong>에서 지금 보이는 지도를 저장합니다. 2D·3D 모두 됩니다.
+                <strong>Save PNG</strong>(<kbd>P</kbd>)는 그림 한 장, <strong>Record video</strong>(<kbd>R</kbd>)는 다시 누를 때까지 녹화합니다(최대 10분, WebM).
+                녹화 중에는 지도 위쪽 가운데에 <strong>REC</strong> 카드(경과 시간과 <strong>Stop</strong> 버튼)가 뜨고, 2D·3D 를 바꾸거나 Edit 로 넘어가면 그때까지 녹화한 파일을 저장합니다.
+                2D 에서는 위성 배경 타일을 읽을 수 없어 저장본에서 빠집니다.</p>
+            <p class="i18n-en"><strong>Tools → Capture</strong> in the top bar saves the map as it is on screen, in 2D or 3D.
+                <strong>Save PNG</strong> (<kbd>P</kbd>) saves one picture and <strong>Record video</strong> (<kbd>R</kbd>)
+                records until you press it again (up to 10 minutes, WebM). While recording, a <strong>REC</strong> card with the
+                elapsed time and a <strong>Stop</strong> button sits at the top centre of the map;
+                switching between 2D and 3D or to Edit mode saves what was recorded so far. In 2D the satellite basemap
+                cannot be read back, so it is left out of pictures and recordings.</p>
+        </section>
+
         <!-- ================================================== 지도/검색 -->
         <section id="map-search">
             <h2><span class="i18n-ko">지도 탐색과 검색</span><span class="i18n-en">Map navigation and search</span></h2>
@@ -1161,25 +1268,20 @@
 
         <!-- ================================================== 요약 -->
         <section id="summary">
-            <h2><span class="ws-badge" style="--ws: var(--hue-summary)">Analyze</span> <span class="i18n-ko">시나리오 요약</span><span class="i18n-en">Scenario summary</span></h2>
-            <p class="i18n-ko">결과 DB가 로드된 뒤 <strong>Simulation 패널의 Scenario Summary</strong>를 누르면 요약 패널이
-                열립니다. 상단에 <strong>총 차량 수 · 우회 비율 · 장시간 정지 · 평균 속도</strong> 지표가 표시되고,
-                아래 표는 다음 기준으로 정렬해 볼 수 있습니다:
-                <span class="mono">Long-Stopped Vehicles</span>,
-                <span class="mono">Constrained LC Records</span>,
-                <span class="mono">Rerouted Vehicles</span>,
-                <span class="mono">Speed Drop vs Free Flow</span>.
-                이 패널은 병목이나 이상 지점을 빠르게 찾아보는 용도이며, 표의 링크 ID를 검색창에 입력하면 그 위치로 이동합니다
-                (표의 행은 클릭할 수 없습니다).</p>
-            <p class="i18n-en">Once a result DB is loaded, <strong>Scenario Summary</strong> in the Simulation panel
-                opens a summary view. Four KPIs sit at the top — <strong>total vehicles, rerouted share,
-                long-stopped count, mean speed</strong> — over a table you can sort by criterion:
-                <span class="mono">Long-Stopped Vehicles</span>,
-                <span class="mono">Constrained LC Records</span>,
-                <span class="mono">Rerouted Vehicles</span>, and
-                <span class="mono">Speed Drop vs Free Flow</span>.
-                It is for scanning a result for bottlenecks and anomalies; to visit one, paste its link ID into
-                the search box (the table rows themselves are not clickable).</p>
+            <h2><span class="ws-badge" style="--ws: var(--hue-summary)">Analyze</span> <span class="i18n-ko">결과 요약 (Summary)</span><span class="i18n-en">Result summary</span></h2>
+            <p class="i18n-ko">결과를 불러온 뒤 상단바 <strong>Tools → Summary</strong>를 누르면 작은 요약 창이 열립니다(다시 누르면 닫힙니다).
+                위쪽에 <strong>차량 수 · 평균 속도 · 우회 비율 · 장시간 정지 차량</strong> 네 지표가 있고, 아래 <strong>Top links</strong>는
+                고른 기준(장시간 정지 차량, 제약된 차로 변경, 우회 차량, 자유 흐름 대비 속도 저하)으로 먼저 볼 링크 5개를 보여 줍니다.
+                링크 ID 를 검색창(<kbd>Ctrl</kbd>+<kbd>F</kbd>)에 넣으면 그 위치로 이동합니다.
+                대중교통·도로 서비스 수준(LoS)·안전 지표처럼 자세한 분석은 창 아래 <strong>Open NextAssess</strong>로 같은 네트워크를 NextAssess 에서 엽니다
+                (NextAssess 가 없는 배포판에서는 이 줄이 보이지 않습니다).</p>
+            <p class="i18n-en">After a result is loaded, <strong>Tools → Summary</strong> in the top bar opens a small summary
+                (press it again to close). It shows four figures — <strong>vehicles, mean speed, rerouted share and long-stopped
+                vehicles</strong> — and <strong>Top links</strong>: the five links to look at first under the chosen criterion
+                (long-stopped vehicles, constrained lane changes, rerouted vehicles, speed drop vs free flow). Put a link ID into
+                the search box (<kbd>Ctrl</kbd>+<kbd>F</kbd>) to go there. For detailed transit, road LoS and safety indicators,
+                <strong>Open NextAssess</strong> at the bottom opens the same network in NextAssess (the line is hidden where
+                NextAssess is not installed).</p>
         </section>
 
         <!-- ================================================== 입력 점검 -->
