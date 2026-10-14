@@ -602,4 +602,3 @@ body { position: relative; isolation: isolate; }
         url("img/network-bg.webp") center top / cover no-repeat;
 }
 @media (max-width: 700px) { .page-bg { height: 900px; background-position: center top, 40% top; } }
-.footer__credit { margin-top: 14px; font-size: 12px; color: var(--fog); opacity: .8; }
